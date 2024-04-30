@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LULScenario : MonoBehaviour
+public class Scenario : MonoBehaviour
 {
 
     public Vector3 spawnPoint;

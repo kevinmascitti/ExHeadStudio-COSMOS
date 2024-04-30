@@ -21,7 +21,7 @@ public class Stats
     public Dictionary<Element,int> elemDef = new Dictionary<Element, int>();
 }
 
-public class LULCharacter : MonoBehaviour
+public class Character : MonoBehaviour
 {
     public float currentHP;
     public bool isPlayer = false;

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LULPiece : MonoBehaviour
+public class Piece : MonoBehaviour
 {
     public PartType type;
     public Stats stats;

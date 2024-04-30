@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class LULEnemy : LULCharacter
+public class Enemy : Character
 {
     public Type type;
     public Stats stats;

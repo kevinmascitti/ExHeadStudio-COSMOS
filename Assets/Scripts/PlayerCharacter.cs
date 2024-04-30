@@ -17,16 +17,16 @@ public enum PartType
     Legs
 }
 
-public class LULPlayerCharacter : LULCharacter
+public class PlayerCharacter : Character
 {
     public float MAX_HP = 100;
     public float def_HP = 100;
     public Slider sliderHP;
 
-    public Dictionary<PartType, LULPiece> composition;
+    public Dictionary<PartType, Piece> composition;
 
-    [NonSerialized] public LULScenario currentScenario;
-    [NonSerialized] public LULScenario defaultScenario;
+    [NonSerialized] public Scenario currentScenario;
+    [NonSerialized] public Scenario defaultScenario;
 
     public static EventHandler OnPlayerDeath;
     public static EventHandler<ScenarioArgs> OnScenarioBegin;
@@ -76,9 +76,9 @@ public class LULPlayerCharacter : LULCharacter
 
 public class ScenarioArgs : EventArgs
 {
-    public ScenarioArgs(LULScenario a)
+    public ScenarioArgs(Scenario a)
     {
         scenario = a;
     }
-    public LULScenario scenario;
+    public Scenario scenario;
 }
