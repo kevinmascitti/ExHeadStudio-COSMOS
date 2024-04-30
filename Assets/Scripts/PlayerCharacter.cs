@@ -24,6 +24,12 @@ public class PlayerCharacter : Character
     public Slider sliderHP;
 
     public Dictionary<PartType, Piece> composition;
+    
+    public Animator animator;
+    public float attackRange;
+    [NonSerialized] public LayerMask enemyLayer;
+    public float attackRate = 2f;
+    private float nextAttackTime = 0f;
 
     [NonSerialized] public Scenario currentScenario;
     [NonSerialized] public Scenario defaultScenario;
@@ -40,8 +46,19 @@ public class PlayerCharacter : Character
         {
             sliderHP.maxValue = MAX_HP;
         }
-    
+        
         UpdateHP(def_HP);
+        animator = GetComponent<Animator>();
+        enemyLayer = LayerMask.GetMask("Enemy");
+    }
+
+    public void Update()
+    {
+        if (Time.time >= nextAttackTime && Input.GetKeyDown(KeyCode.A))
+        {
+            Attack();
+            nextAttackTime = Time.time + 1f;
+        }
     }
 
     public override void UpdateHP(float newHP)
@@ -70,6 +87,12 @@ public class PlayerCharacter : Character
         currentScenario = defaultScenario;
         gameObject.transform.position = currentScenario.respawnPoint;
         Debug.Log("RESPAWNED");
+    }
+    
+    private void Attack()
+    {
+        animator.SetTrigger("Attack");
+        Debug.Log("Attack done!");
     }
 
 }
