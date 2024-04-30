@@ -21,7 +21,7 @@ public class Enemy : Character
     // Update is called once per frame
     void Update()
     {
-        
+        base.Update();
     }
 
     public override void Die()
