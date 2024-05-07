@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     Vector3 playerVector;
     float initialJumpVelocity;
 
+
     private void Start()
     {
         playerController = GetComponent<CharacterController>();
@@ -30,23 +31,24 @@ public class PlayerMovement : MonoBehaviour
         playerVector = new Vector3(0f, 0f, 0f);
     }
 
-    // Update is called once per frame
     void Update()
     {
         playerVector.x = Input.GetAxisRaw("Vertical") * moveSpeed;
         playerVector.z = Input.GetAxisRaw("Horizontal") * moveSpeed;
 
+        //Premere il tasto per la corsa moltiplica la velocità per un valore
         if (Input.GetKey(KeyCode.LeftShift))
         {
             playerVector.x = playerVector.x * speedMultiplier;
 
         }
+        // Se il player è a terra e si preme il tasto di salto, il player salta
         if (Input.GetKeyDown(KeyCode.Space) && playerController.isGrounded)
         {
             isJumpPressed = true;
         }
 
-
+        //Muove il player, calcola la gravità da applicare e gestisce il salto
         playerController.Move(playerVector * Time.deltaTime);
         HandleGravity();
         HandleJump();
