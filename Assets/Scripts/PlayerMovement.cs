@@ -7,8 +7,8 @@ public class PlayerMovement : MonoBehaviour
 {
 
     [Header("Variabili Movimento")]
-    [SerializeField, Range(0f, 10f)] float moveSpeed;
-    [SerializeField, Range(0f, 10f)] float speedMultiplier;
+    [SerializeField, Range(0f, 100f)] float movementSpeed;
+    //[SerializeField, Range(0f, 10f)] float speedMultiplier;
     [SerializeField, Range(0f, 100f)] float maxJumpHeight = 1f;
     [SerializeField, Range(0f, 100f)] float maxJumpTime = .5f;
 
@@ -22,30 +22,35 @@ public class PlayerMovement : MonoBehaviour
     float groundedGravity = -0.5f;
     Vector3 playerVector;
     float initialJumpVelocity;
-
+    Transform playerTransform;
 
     private void Start()
     {
         playerController = GetComponent<CharacterController>();
         HandleJumpVariables();
         playerVector = new Vector3(0f, 0f, 0f);
+        playerTransform = GetComponent<Transform>();
     }
 
     void Update()
     {
-        playerVector.x = Input.GetAxisRaw("Vertical") * moveSpeed;
-        playerVector.z = Input.GetAxisRaw("Horizontal") * moveSpeed;
+        //Ottengo gli input da tastiera e li salvo in un vettore 2D che mi servirà dopo per calcolare la direzione del player
+        Vector2 inputs = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
 
-        //Premere il tasto per la corsa moltiplica la velocità per un valore
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-            playerVector.x = playerVector.x * speedMultiplier;
+        playerVector.x = inputs.x * movementSpeed;
+        playerVector.z = inputs.y * movementSpeed;
 
-        }
         // Se il player è a terra e si preme il tasto di salto, il player salta
         if (Input.GetKeyDown(KeyCode.Space) && playerController.isGrounded)
         {
             isJumpPressed = true;
+        }
+        /*Se i valori di input del vettore 2D sono a zero, allora il player è fermo, altrimenti ruota il player nella direzione di movimento
+        ATTENZIONE: Usare un vettore 3D, con le funzionalità implementate, non fa ruotare in modo corretto, oppure se si setta y=0f, dà errore.
+        Il controllo sul vettore 2D anziché su quello 3D evita che compaia l'errore "Look Rotation Viewing Vector Is Zero" */
+        if (inputs != Vector2.zero)
+        {
+            playerTransform.forward = new Vector3(inputs.x, 0f, inputs.y);
         }
 
         //Muove il player, calcola la gravità da applicare e gestisce il salto
