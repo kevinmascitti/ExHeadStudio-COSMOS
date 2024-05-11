@@ -1,6 +1,8 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Transactions;
 using TMPro;
 using Unity.VisualScripting;
@@ -37,6 +39,14 @@ public class PlayerCharacter : Character
     public static EventHandler OnPlayerDeath;
     public static EventHandler<ScenarioArgs> OnScenarioBegin;
 
+
+    //Aggiunte per la Healthbar
+    private float lerpTimer;
+    private float chipSpeed;
+    public Image frontHealthBar;
+    public Image backHealthBar;
+
+
     // Start is called before the first frame update
     public void Awake()
     {
@@ -59,18 +69,49 @@ public class PlayerCharacter : Character
             Attack();
             nextAttackTime = Time.time + 1f;
         }
+
+        def_HP = Mathf.Clamp(def_HP, 0, MAX_HP);
     }
 
     public override void UpdateHP(float newHP)
     {
+        lerpTimer = 0f;
         base.UpdateHP(newHP);
         UpdateHPUI(currentHP);
     }
     
     public void UpdateHPUI(float HP)
     {
-        if(sliderHP)
-            sliderHP.value = HP;
+        float fillFront = frontHealthBar.fillAmount;
+        float fillBack = backHealthBar.fillAmount;
+        float healthFraction = HP / MAX_HP;
+
+        if(fillBack > healthFraction)
+        {
+            frontHealthBar.fillAmount = healthFraction;
+            backHealthBar.color = Color.red;
+            lerpTimer += Time.deltaTime;
+            float percentComplete = lerpTimer / chipSpeed;
+            backHealthBar.fillAmount = Mathf.Lerp(fillBack, healthFraction, percentComplete);
+        }
+
+        if(fillFront < healthFraction)
+        {
+            frontHealthBar.fillAmount = healthFraction;
+            backHealthBar.color = Color.green;
+            lerpTimer += Time.deltaTime;
+            float percentComplete = lerpTimer / chipSpeed;
+            frontHealthBar.fillAmount = Mathf.Lerp(fillFront, healthFraction, percentComplete);
+        }
+
+        //if(sliderHP)
+        //    sliderHP.value = HP;
+    }
+
+
+    public void RestoreHealth(float healthAmount)
+    {
+        
     }
 
     public override void Die()

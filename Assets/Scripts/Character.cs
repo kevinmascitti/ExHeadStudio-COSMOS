@@ -61,7 +61,7 @@ public class Character : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))//Space viene usato anche per il salto
         {
             Debug.Log("Damage " + stats.atk);
             if (isPlayer)
@@ -72,6 +72,7 @@ public class Character : MonoBehaviour
                     gameObject.GetComponent<PlayerCharacter>().UpdateHP(0);
             }
         }
+
 
         if (currentHP <= 0)
         {
@@ -93,6 +94,7 @@ public class Character : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+       
         UpdateHP(currentHP-damage);
         if (currentHP <= 0)
         {
