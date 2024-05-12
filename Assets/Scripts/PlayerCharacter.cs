@@ -75,7 +75,6 @@ public class PlayerCharacter : Character
 
     public override void UpdateHP(float newHP)
     {
-        lerpTimer = 0f;
         base.UpdateHP(newHP);
         UpdateHPUI(currentHP);
     }
@@ -85,6 +84,7 @@ public class PlayerCharacter : Character
         float fillFront = frontHealthBar.fillAmount;
         float fillBack = backHealthBar.fillAmount;
         float healthFraction = HP / MAX_HP;
+        lerpTimer = 0f;
 
         if(fillBack > healthFraction)
         {
@@ -106,12 +106,6 @@ public class PlayerCharacter : Character
 
         //if(sliderHP)
         //    sliderHP.value = HP;
-    }
-
-
-    public void RestoreHealth(float healthAmount)
-    {
-        
     }
 
     public override void Die()

@@ -61,7 +61,7 @@ public class Character : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))//Space viene usato anche per il salto
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             Debug.Log("Damage " + stats.atk);
             if (isPlayer)
