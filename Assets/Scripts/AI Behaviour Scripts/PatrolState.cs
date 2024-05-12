@@ -5,24 +5,30 @@ using UnityEngine.AI;
 
 public class PatrolState : StateMachineBehaviour
 {
-    [Header("Controlli animazione")]
-    [SerializeField] private float stateDuration; //Indica la durata dello stato
+     private float stateDuration; //Indica la durata dello stato
+     private float chaseRange; //Distanza entro la quale l'IA insegue il player
+
+    StateController controller;
 
     float timer;
 
+    //Transform player; //Posizione del player
     List<Transform> wayPoints = new List<Transform>(); //Lista di punti da reaggiungere mentre è in patrol
     NavMeshAgent agent;
+
+
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        controller = animator.GetComponent<StateController>();
         agent= animator.GetComponent<NavMeshAgent>();
+        wayPoints = controller.GetWaypoints();
         timer = 0f;
-        GameObject go = GameObject.FindGameObjectWithTag("Waypoints");
-        foreach (Transform t in go.transform)
-        {
-            wayPoints.Add(t);
-        }
-        agent.SetDestination(wayPoints[Random.Range(0, wayPoints.Count)].position);  
+        stateDuration = controller.GetPatrollingStateDuration();
+        chaseRange = controller.GetChaseRange();
+        agent.speed = controller.GetPatrollingSpeed();
+        agent.SetDestination(wayPoints[Random.Range(0, wayPoints.Count)].position);
+        Debug.Log(agent.destination);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -31,12 +37,17 @@ public class PatrolState : StateMachineBehaviour
         if(agent.remainingDistance <= agent.stoppingDistance)
         {
             agent.SetDestination(wayPoints[Random.Range(0, wayPoints.Count)].position);
+            Debug.Log(agent.destination);
         }
-        timer += Time.deltaTime;
+        
         if(timer > stateDuration) {
-            animator.SetBool("isPatroling", false);
+            animator.SetBool("isPatrolling", false);
         }
-        Debug.Log("patrollando");
+        float distance = controller.GetDistanceFromPlayer();
+        if (distance < chaseRange)
+            animator.SetBool("isChasing", true);
+
+        timer += Time.deltaTime;
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
