@@ -10,9 +10,12 @@ public class CureObject : MonoBehaviour
     {
         if (other.CompareTag("Player"))     
         {
+            //Debug.Log("Oggetto Cura: " + healthAmount.ToString());
             float actual = other.gameObject.GetComponent<PlayerCharacter>().currentHP;
-            Debug.Log("Oggetto Cura: " + healthAmount);
-            other.gameObject.GetComponent<PlayerCharacter>().UpdateHP(actual + healthAmount);
+            actual += healthAmount;
+            //Debug.Log("Actual: " + actual.ToString());
+            //Debug.Log("Actual + amount: " + (actual + healthAmount).ToString());
+            other.gameObject.GetComponent<PlayerCharacter>().UpdateHP(actual);
         }
 
         gameObject.SetActive(false);//Vorrei eliminarlo, ma non mi lascia

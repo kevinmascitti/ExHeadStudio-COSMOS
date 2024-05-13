@@ -42,7 +42,7 @@ public class PlayerCharacter : Character
 
     //Aggiunte per la Healthbar
     private float lerpTimer;
-    private float chipSpeed;
+    [SerializeField] float chipSpeed;
     public Image frontHealthBar;
     public Image backHealthBar;
 
@@ -52,10 +52,10 @@ public class PlayerCharacter : Character
     {
         isPlayer = true;
 
-        if (sliderHP)
-        {
-            sliderHP.maxValue = MAX_HP;
-        }
+        //if (sliderHP)
+        //{
+        //    sliderHP.maxValue = MAX_HP;
+        //}
         
         UpdateHP(def_HP);
         animator = GetComponent<Animator>();
@@ -70,21 +70,21 @@ public class PlayerCharacter : Character
             nextAttackTime = Time.time + 1f;
         }
 
-        def_HP = Mathf.Clamp(def_HP, 0, MAX_HP);
+        def_HP = Mathf.Clamp(currentHP, 0, MAX_HP);
+        UpdateHPUI();
     }
 
     public override void UpdateHP(float newHP)
     {
         base.UpdateHP(newHP);
-        UpdateHPUI(currentHP);
+        lerpTimer = 0f;
     }
     
-    public void UpdateHPUI(float HP)
+    public void UpdateHPUI()
     {
         float fillFront = frontHealthBar.fillAmount;
         float fillBack = backHealthBar.fillAmount;
-        float healthFraction = HP / MAX_HP;
-        lerpTimer = 0f;
+        float healthFraction = currentHP / MAX_HP;
 
         if(fillBack > healthFraction)
         {
@@ -92,16 +92,18 @@ public class PlayerCharacter : Character
             backHealthBar.color = Color.red;
             lerpTimer += Time.deltaTime;
             float percentComplete = lerpTimer / chipSpeed;
+            percentComplete = percentComplete * percentComplete;
             backHealthBar.fillAmount = Mathf.Lerp(fillBack, healthFraction, percentComplete);
         }
 
         if(fillFront < healthFraction)
         {
-            frontHealthBar.fillAmount = healthFraction;
-            backHealthBar.color = Color.green;
+            backHealthBar.fillAmount = healthFraction;
+            backHealthBar.color = Color.yellow;
             lerpTimer += Time.deltaTime;
             float percentComplete = lerpTimer / chipSpeed;
-            frontHealthBar.fillAmount = Mathf.Lerp(fillFront, healthFraction, percentComplete);
+            percentComplete = percentComplete*percentComplete;
+            frontHealthBar.fillAmount = Mathf.Lerp(fillFront, backHealthBar.fillAmount, percentComplete); 
         }
 
         //if(sliderHP)
@@ -126,7 +128,7 @@ public class PlayerCharacter : Character
     
     private void Attack()
     {
-        animator.SetTrigger("Attack");
+        //animator.SetTrigger("Attack");
         Debug.Log("Attack done!");
     }
 
