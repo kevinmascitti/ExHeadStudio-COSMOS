@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -24,12 +25,18 @@ public class PlayerMovement : MonoBehaviour
     float initialJumpVelocity;
     Transform playerTransform;
 
+    //per la camera
+    private Transform cameraMain;
+    [SerializeField] float rotationSpeed = 4f;
+
     private void Start()
     {
         playerController = GetComponent<CharacterController>();
         HandleJumpVariables();
         playerVector = new Vector3(0f, 0f, 0f);
         playerTransform = GetComponent<Transform>();
+
+        cameraMain = Camera.main.transform;
     }
 
     void Update()
@@ -39,6 +46,10 @@ public class PlayerMovement : MonoBehaviour
 
         playerVector.x = inputs.x * movementSpeed;
         playerVector.z = inputs.y * movementSpeed;
+
+        //Per la rotazione della camera: i valori del vettore vengono moltipliacati per la direzione della camera
+        playerVector = cameraMain.forward * playerVector.z + cameraMain.right * playerVector.x;
+        playerVector.y = 0f;
 
         // Se il player è a terra e si preme il tasto di salto, il player salta
         if (Input.GetKeyDown(KeyCode.Space) && playerController.isGrounded)
@@ -50,9 +61,13 @@ public class PlayerMovement : MonoBehaviour
         Il controllo sul vettore 2D anziché su quello 3D evita che compaia l'errore "Look Rotation Viewing Vector Is Zero" */
         if (inputs != Vector2.zero)
         {
-            playerTransform.forward = new Vector3(inputs.x, 0f, inputs.y);
-        }
+            //playerTransform.forward = new Vector3(inputs.x, 0f, inputs.y);
 
+            //Prove per la camera, con questi comandi il player punta e ruota nella stessa direzione della camera
+            float targetAngle = Mathf.Atan2(inputs.x, inputs.y) * Mathf.Rad2Deg + cameraMain.eulerAngles.y;
+            Quaternion targetRotation = Quaternion.Euler(0f, targetAngle, 0f);
+            playerTransform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+        }
         //Muove il player, calcola la gravità da applicare e gestisce il salto
         playerController.Move(playerVector * Time.deltaTime);
         HandleGravity();
