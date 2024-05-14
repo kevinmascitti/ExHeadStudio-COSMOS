@@ -45,7 +45,8 @@ public class PlayerCharacter : Character
     [SerializeField] float chipSpeed;
     public Image frontHealthBar;
     public Image backHealthBar;
-
+    public Image characterIcon;
+    public Image[] icons;
 
     // Start is called before the first frame update
     public void Awake()
@@ -86,7 +87,32 @@ public class PlayerCharacter : Character
         float fillBack = backHealthBar.fillAmount;
         float healthFraction = currentHP / MAX_HP;
 
-        if(fillBack > healthFraction)
+        if (healthFraction >= 0.75f)
+        {
+            //characterIcon.color = new Color(characterIcon.color.r, characterIcon.color.g, characterIcon.color.b, 1f); //Cambio trasparenza
+            //characterIcon.color = Color.green; //Cambio colore
+            icons[0].enabled = true;//Cambio sprite
+            icons[1].enabled = false;
+
+        }
+
+        else if (healthFraction >= 0.50f && healthFraction < 0.75f)
+        {
+            //characterIcon.color = new Color(characterIcon.color.r, characterIcon.color.g, characterIcon.color.b, 0.8f);
+            //characterIcon.color = Color.yellow;
+            icons[0].enabled = false;//Cambio sprite
+            icons[1].enabled = true;
+        }
+        else if (healthFraction >= 0.25f && healthFraction < 0.50f)
+        {
+            characterIcon.color.WithAlpha(healthFraction);
+        }
+        else if (healthFraction < 0.25f)
+        {
+            characterIcon.color.WithAlpha(healthFraction);
+        }
+
+        if (fillBack > healthFraction)
         {
             frontHealthBar.fillAmount = healthFraction;
             backHealthBar.color = Color.red;
