@@ -44,12 +44,14 @@ public class PlayerMovement : MonoBehaviour
         //Ottengo gli input da tastiera e li salvo in un vettore 2D che mi servirà dopo per calcolare la direzione del player
         Vector2 inputs = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
 
+        //Vector3 inputs = new Vector3(Input.GetAxisRaw("Horizontal"), 0f,  Input.GetAxisRaw("Vertical")).normalized
         playerVector.x = inputs.x * movementSpeed;
         playerVector.z = inputs.y * movementSpeed;
 
-        //Per la rotazione della camera: i valori del vettore vengono moltipliacati per la direzione della camera
+        //Per la rotazione della camera: i valori del vettore vengono moltiplicati per la direzione della camera
+
         playerVector = cameraMain.forward * playerVector.z + cameraMain.right * playerVector.x;
-        playerVector.y = 0f;
+        //playerVector.y = 0f;
 
         // Se il player è a terra e si preme il tasto di salto, il player salta
         if (Input.GetKeyDown(KeyCode.Space) && playerController.isGrounded)
