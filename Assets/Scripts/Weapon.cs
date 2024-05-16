@@ -6,12 +6,13 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     public int weaponAtk;
-    public void OnCollisionEnter(Collision collision)
+    
+    public void OnTriggerEnter(Collider other)
     {
-        if (collision.collider.gameObject.layer == LayerMask.GetMask("Enemy"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
             Debug.Log("Enemy damage!");
-            collision.collider.gameObject.GetComponent<Enemy>().TakeDamage(gameObject.GetComponent<PlayerCharacter>().stats.atk + weaponAtk - collision.collider.gameObject.GetComponent<Enemy>().def);
+            other.gameObject.GetComponent<Enemy>().TakeDamage(gameObject.GetComponentInParent<PlayerCharacter>().stats.atk + weaponAtk - other.gameObject.GetComponent<Enemy>().def);
         }
     }
 }

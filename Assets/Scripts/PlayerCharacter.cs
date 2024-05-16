@@ -67,7 +67,7 @@ public class PlayerCharacter : Character
     {
         if (Time.time >= nextAttackTime && Input.GetKeyDown(KeyCode.A))
         {
-            Attack();
+            BaseAttack();
             nextAttackTime = Time.time + 1f;
         }
 
@@ -83,57 +83,60 @@ public class PlayerCharacter : Character
     
     public void UpdateHPUI()
     {
-        float fillFront = frontHealthBar.fillAmount;
-        float fillBack = backHealthBar.fillAmount;
-        float healthFraction = currentHP / MAX_HP;
-
-        if (healthFraction >= 0.75f)
+        if (frontHealthBar && backHealthBar)
         {
-            //characterIcon.color = new Color(characterIcon.color.r, characterIcon.color.g, characterIcon.color.b, 1f); //Cambio trasparenza
-            //characterIcon.color = Color.green; //Cambio colore
-            icons[0].enabled = true;//Cambio sprite
-            icons[1].enabled = false;
+            float fillFront = frontHealthBar.fillAmount;
+            float fillBack = backHealthBar.fillAmount;
+            float healthFraction = currentHP / MAX_HP;
 
-        }
+            if (healthFraction >= 0.75f)
+            {
+                //characterIcon.color = new Color(characterIcon.color.r, characterIcon.color.g, characterIcon.color.b, 1f); //Cambio trasparenza
+                //characterIcon.color = Color.green; //Cambio colore
+                icons[0].enabled = true; //Cambio sprite
+                icons[1].enabled = false;
 
-        else if (healthFraction >= 0.50f && healthFraction < 0.75f)
-        {
-            //characterIcon.color = new Color(characterIcon.color.r, characterIcon.color.g, characterIcon.color.b, 0.8f);
-            //characterIcon.color = Color.yellow;
-            icons[0].enabled = false;//Cambio sprite
-            icons[1].enabled = true;
-        }
-        else if (healthFraction >= 0.25f && healthFraction < 0.50f)
-        {
-            characterIcon.color.WithAlpha(healthFraction);
-        }
-        else if (healthFraction < 0.25f)
-        {
-            characterIcon.color.WithAlpha(healthFraction);
-        }
+            }
 
-        if (fillBack > healthFraction)
-        {
-            frontHealthBar.fillAmount = healthFraction;
-            backHealthBar.color = Color.red;
-            lerpTimer += Time.deltaTime;
-            float percentComplete = lerpTimer / chipSpeed;
-            percentComplete = percentComplete * percentComplete;
-            backHealthBar.fillAmount = Mathf.Lerp(fillBack, healthFraction, percentComplete);
-        }
+            else if (healthFraction >= 0.50f && healthFraction < 0.75f)
+            {
+                //characterIcon.color = new Color(characterIcon.color.r, characterIcon.color.g, characterIcon.color.b, 0.8f);
+                //characterIcon.color = Color.yellow;
+                icons[0].enabled = false; //Cambio sprite
+                icons[1].enabled = true;
+            }
+            else if (healthFraction >= 0.25f && healthFraction < 0.50f)
+            {
+                characterIcon.color.WithAlpha(healthFraction);
+            }
+            else if (healthFraction < 0.25f)
+            {
+                characterIcon.color.WithAlpha(healthFraction);
+            }
 
-        if(fillFront < healthFraction)
-        {
-            backHealthBar.fillAmount = healthFraction;
-            backHealthBar.color = Color.yellow;
-            lerpTimer += Time.deltaTime;
-            float percentComplete = lerpTimer / chipSpeed;
-            percentComplete = percentComplete*percentComplete;
-            frontHealthBar.fillAmount = Mathf.Lerp(fillFront, backHealthBar.fillAmount, percentComplete); 
-        }
+            if (fillBack > healthFraction)
+            {
+                frontHealthBar.fillAmount = healthFraction;
+                backHealthBar.color = Color.red;
+                lerpTimer += Time.deltaTime;
+                float percentComplete = lerpTimer / chipSpeed;
+                percentComplete = percentComplete * percentComplete;
+                backHealthBar.fillAmount = Mathf.Lerp(fillBack, healthFraction, percentComplete);
+            }
 
-        //if(sliderHP)
-        //    sliderHP.value = HP;
+            if (fillFront < healthFraction)
+            {
+                backHealthBar.fillAmount = healthFraction;
+                backHealthBar.color = Color.yellow;
+                lerpTimer += Time.deltaTime;
+                float percentComplete = lerpTimer / chipSpeed;
+                percentComplete = percentComplete * percentComplete;
+                frontHealthBar.fillAmount = Mathf.Lerp(fillFront, backHealthBar.fillAmount, percentComplete);
+            }
+
+            //if(sliderHP)
+            //    sliderHP.value = HP;
+        }
     }
 
     public override void Die()
@@ -152,10 +155,10 @@ public class PlayerCharacter : Character
         Debug.Log("RESPAWNED");
     }
     
-    private void Attack()
+    private void BaseAttack()
     {
-        //animator.SetTrigger("Attack");
-        Debug.Log("Attack done!");
+        animator.SetTrigger("BaseAttack");
+        Debug.Log("Base Attack done!");
     }
 
 }
