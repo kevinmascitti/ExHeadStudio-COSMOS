@@ -60,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
         playerVector.z = inputs.y * movementSpeed;
 
         //Per la rotazione della camera: i valori del vettore vengono moltiplicati per la direzione della camera
-        //playerVector = playerCamera.forward * playerVector.z + playerCamera.right * playerVector.x;
+        playerVector = playerCamera.forward * playerVector.z + playerCamera.right * playerVector.x;
         
 
         // Se il player è a terra e si preme il tasto di salto, il player salta
@@ -128,7 +128,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void ComputePlayerVelocity(Vector3 newPosition)
     {
-        velocity = (newPosition - lastPositionAcquired).magnitude / Time.deltaTime;
+        Vector2 playerPosition =  new Vector2(newPosition.x, newPosition.z);
+        Vector2 lastPlayerPos = new Vector2(lastPositionAcquired.x, lastPositionAcquired.z);
+        velocity = (playerPosition - lastPlayerPos).magnitude / Time.deltaTime;
         lastPositionAcquired = newPosition;
     }
 
