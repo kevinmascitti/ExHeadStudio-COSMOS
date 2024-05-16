@@ -72,12 +72,7 @@ public class Character : MonoBehaviour
                     gameObject.GetComponent<PlayerCharacter>().UpdateHP(0);
             }
         }
-
-
-        if (currentHP <= 0)
-        {
-            Die();
-        }
+        
     }
 
     public virtual void UpdateHP(float newHP)

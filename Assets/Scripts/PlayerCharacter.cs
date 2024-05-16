@@ -31,7 +31,7 @@ public class PlayerCharacter : Character
     public float attackRange;
     [NonSerialized] public LayerMask enemyLayer;
     public float attackRate = 2f;
-    private float nextAttackTime = 0f;
+    private float nextActionTimer = 1f;
 
     [NonSerialized] public Scenario currentScenario;
     [NonSerialized] public Scenario defaultScenario;
@@ -61,17 +61,43 @@ public class PlayerCharacter : Character
         UpdateHP(def_HP);
         animator = GetComponent<Animator>();
         enemyLayer = LayerMask.GetMask("Enemy");
+
+        Weapon.OnEnemyCollision += DoDamage;
     }
 
     public void Update()
     {
-        if (Time.time >= nextAttackTime && Input.GetKeyDown(KeyCode.A))
+        if (Time.time >= nextActionTimer && Input.GetKeyDown(KeyCode.Z))
         {
             BaseAttack();
-            nextAttackTime = Time.time + 1f;
+            nextActionTimer = Time.time + 1f;
+        }
+        else if (Time.time >= nextActionTimer && Input.GetKeyDown(KeyCode.X))
+        {
+            StrongAttack();
+            nextActionTimer = Time.time + 1f;
+        }
+        else if (Time.time >= nextActionTimer && Input.GetKeyDown(KeyCode.C))
+        {
+            if (Input.GetKey(KeyCode.W))
+            {
+                animator.SetTrigger("ForwardDodge");
+            }
+            else if (Input.GetKey(KeyCode.A))
+            {
+                animator.SetTrigger("LeftDodge");
+            }
+            else if (Input.GetKey(KeyCode.S))
+            {
+                animator.SetTrigger("BackwardDodge");
+            }
+            else if (Input.GetKey(KeyCode.D))
+            {
+                animator.SetTrigger("RightDodge");
+            }
         }
 
-        def_HP = Mathf.Clamp(currentHP, 0, MAX_HP);
+            def_HP = Mathf.Clamp(currentHP, 0, MAX_HP);
         UpdateHPUI();
     }
 
@@ -154,11 +180,22 @@ public class PlayerCharacter : Character
         gameObject.transform.position = currentScenario.respawnPoint;
         Debug.Log("RESPAWNED");
     }
+
+    private void DoDamage(object sender, EnemyCollisionArgs args)
+    {
+        args.enemy.TakeDamage(stats.atk + args.hitter.atk - args.enemy.def);
+    }
     
     private void BaseAttack()
     {
         animator.SetTrigger("BaseAttack");
         Debug.Log("Base Attack done!");
+    }
+    
+    private void StrongAttack()
+    {
+        animator.SetTrigger("StrongAttack");
+        Debug.Log("Strong Attack done!");
     }
 
 }
