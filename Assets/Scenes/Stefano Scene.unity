@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -299,6 +299,7 @@ Transform:
   m_GameObject: {fileID: 219000213}
   serializedVersion: 2
   m_LocalRotation: {x: 0.144367, y: 0.000000020259687, z: -0.0000000029557938, w: 0.98952425}
+  m_LocalRotation: {x: 0.18033664, y: -0, z: -0, w: 0.98360497}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -343,6 +344,9 @@ MonoBehaviour:
   movementSpeed: 5.2
   maxJumpHeight: 1.5
   maxJumpTime: 0.1
+  maxJumpHeight: 1
+  maxJumpTime: 0.5
+  cameraMain: {fileID: 1641022774}
   rotationSpeed: 2
 --- !u!143 &395945023
 CharacterController:
@@ -796,6 +800,7 @@ Transform:
   m_GameObject: {fileID: 525865057}
   serializedVersion: 2
   m_LocalRotation: {x: 0.19890396, y: 0.000000013298534, z: -0.000000002699061, w: 0.98001903}
+  m_LocalRotation: {x: 0.1444882, y: 0.000000008512913, z: -0.0000000012430594, w: 0.98950654}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1741,7 +1746,7 @@ GameObject:
   - component: {fileID: 1641022776}
   m_Layer: 0
   m_Name: PlayerCamera
-  m_TagString: Untagged
+  m_TagString: PlayerCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2453,6 +2458,7 @@ Transform:
   m_GameObject: {fileID: 2063569614}
   serializedVersion: 2
   m_LocalRotation: {x: 0.14436698, y: 0.00062959007, z: -0.00009185427, w: 0.989524}
+  m_LocalRotation: {x: 0.29992074, y: -0.027285269, z: 0.008582187, w: 0.95353526}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
 
-    [Header("Variabili Movimento")]
+    [Header("Controlli Movimento")]
     [SerializeField, Range(0f, 100f)] float movementSpeed;
     //[SerializeField, Range(0f, 10f)] float speedMultiplier;
     [SerializeField, Range(0f, 100f)] float maxJumpHeight = 1f;
@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
 
     private CharacterController playerController;
 
-    [Header("Movement Variables")]
+    [Header("Variabili Movimento")]
     private bool isJumpPressed;
     private bool isJumping = false;
     float gravity = -9.81f;
@@ -24,19 +24,31 @@ public class PlayerMovement : MonoBehaviour
     Vector3 playerVector;
     float initialJumpVelocity;
     Transform playerTransform;
+    private float velocity;
+    Vector3 lastPositionAcquired;
+
+    [Header("Animazioni Movimento")]
+
 
     //per la camera
-    private Transform cameraMain;
+    [SerializeField] private Transform playerCamera;
     [SerializeField] float rotationSpeed = 4f;
 
-    private void Start()
+    private void Awake()
     {
+        
+        velocity = 0f;
         playerController = GetComponent<CharacterController>();
         HandleJumpVariables();
         playerVector = new Vector3(0f, 0f, 0f);
         playerTransform = GetComponent<Transform>();
 
-        cameraMain = Camera.main.transform;
+       // playerCamera = GameObject.FindGameObjectWithTag("PlayerCamera").transform;
+    }
+
+    private void Start()
+    {
+        lastPositionAcquired = playerTransform.position;
     }
 
     void Update()
@@ -52,12 +64,16 @@ public class PlayerMovement : MonoBehaviour
 
         playerVector = cameraMain.forward * playerVector.z + cameraMain.right * playerVector.x;
         //playerVector.y = 0f;
+        playerVector = playerCamera.forward * playerVector.z + playerCamera.right * playerVector.x;
+        
+>>>>>>> 9de0393ddd1f1092e6ab12490e624e7ab700eebd
 
         // Se il player è a terra e si preme il tasto di salto, il player salta
         if (Input.GetKeyDown(KeyCode.Space) && playerController.isGrounded)
         {
             isJumpPressed = true;
         }
+        Debug.Log(playerVector.y);
         /*Se i valori di input del vettore 2D sono a zero, allora il player è fermo, altrimenti ruota il player nella direzione di movimento
         ATTENZIONE: Usare un vettore 3D, con le funzionalità implementate, non fa ruotare in modo corretto, oppure se si setta y=0f, dà errore.
         Il controllo sul vettore 2D anziché su quello 3D evita che compaia l'errore "Look Rotation Viewing Vector Is Zero" */
@@ -66,14 +82,17 @@ public class PlayerMovement : MonoBehaviour
             //playerTransform.forward = new Vector3(inputs.x, 0f, inputs.y);
 
             //Prove per la camera, con questi comandi il player punta e ruota nella stessa direzione della camera
-            float targetAngle = Mathf.Atan2(inputs.x, inputs.y) * Mathf.Rad2Deg + cameraMain.eulerAngles.y;
+            float targetAngle = Mathf.Atan2(inputs.x, inputs.y) * Mathf.Rad2Deg + playerCamera.eulerAngles.y;
             Quaternion targetRotation = Quaternion.Euler(0f, targetAngle, 0f);
             playerTransform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
         }
         //Muove il player, calcola la gravità da applicare e gestisce il salto
+
+        ComputePlayerVelocity(playerTransform.position);
+
         playerController.Move(playerVector * Time.deltaTime);
-        HandleGravity();
         HandleJump();
+        HandleGravity();
     }
 
     private void HandleJumpVariables()
@@ -85,6 +104,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleJump()
     {
+        Debug.Log(playerController.isGrounded + ", " + isJumpPressed);
         if (playerController.isGrounded && isJumpPressed)
         {
             isJumping = true;
@@ -109,5 +129,22 @@ public class PlayerMovement : MonoBehaviour
         {
             playerVector.y += gravity * Time.deltaTime;
         }
+    }
+
+    private void ComputePlayerVelocity(Vector3 newPosition)
+    {
+        Vector2 playerPosition =  new Vector2(newPosition.x, newPosition.z);
+        Vector2 lastPlayerPos = new Vector2(lastPositionAcquired.x, lastPositionAcquired.z);
+        velocity = (playerPosition - lastPlayerPos).magnitude / Time.deltaTime;
+        lastPositionAcquired = newPosition;
+    }
+
+    public bool GetIsJumping()
+    {
+        return isJumping;
+    }
+    public bool GetIsMoving()
+    {
+        return velocity != 0f;
     }
 }
