@@ -69,7 +69,9 @@ public class PlayerMovement : MonoBehaviour
         //float mainCameraX = mainCamera.right.magnitude * playerVector.x;
         //float mainCameraZ = mainCamera.forward.magnitude * playerVector.z;
 
-        //playerVector += mainCamera.right * playerVector.x + mainCamera.forward * playerVector.z;
+        //float mainCameraX = mainCamera.right.magnitude;
+        //float mainCameraZ = mainCamera.forward.magnitude;
+        playerVector = mainCamera.right * playerVector.x + mainCamera.forward * playerVector.z;
         //playerVector = mainCamera.right + mainCamera.forward + new Vector3(inputs.x * movementSpeed, 0f, inputs.z * movementSpeed);
         //Debug.Log("Update: " + playerVector);
         //playerVector.y = 0f;
@@ -88,7 +90,7 @@ public class PlayerMovement : MonoBehaviour
         Il controllo sul vettore 2D anziché su quello 3D evita che compaia l'errore "Look Rotation Viewing Vector Is Zero" */
         if ((inputs.x != 0) || (inputs.y != 0))//(inputs != Vector2.zero)
         {
-            //playerTransform.forward = new Vector3(inputs.x, 0f, inputs.y);
+            //playerTransform.forward = new Vector3(mainCameraX, 0f, mainCameraZ);
 
             //Prove per la camera, con questi comandi il player punta e ruota nella stessa direzione della camera
             float targetAngle = Mathf.Atan2(inputs.x, inputs.y) * Mathf.Rad2Deg + mainCamera.eulerAngles.y;
