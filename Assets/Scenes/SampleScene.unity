@@ -1138,7 +1138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fb1e0470466c44508aedd5f438bf723, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponAtk: 10
+  atk: 0
 --- !u!65 &1852172852
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1235,6 +1235,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3866094596059062297, guid: 8047137dc8ba4405eb2b82db996b0546,
         type: 3}
+      propertyPath: speed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3866094596059062297, guid: 8047137dc8ba4405eb2b82db996b0546,
+        type: 3}
       propertyPath: animator
       value: 
       objectReference: {fileID: 1241553744}
@@ -1247,6 +1252,11 @@ PrefabInstance:
         type: 3}
       propertyPath: attackRange
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3866094596059062297, guid: 8047137dc8ba4405eb2b82db996b0546,
+        type: 3}
+      propertyPath: dodgeDistance
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3866094596059062297, guid: 8047137dc8ba4405eb2b82db996b0546,
         type: 3}

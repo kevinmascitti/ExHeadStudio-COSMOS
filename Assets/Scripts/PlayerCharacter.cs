@@ -31,7 +31,10 @@ public class PlayerCharacter : Character
     public float attackRange;
     [NonSerialized] public LayerMask enemyLayer;
     public float attackRate = 2f;
-    private float nextActionTimer = 1f;
+    [SerializeField] private float nextActionTimer = 1f;
+    [SerializeField] private float speed = 5f;
+    [SerializeField] private float dodgeDistance = 10f;
+    private Vector3 movementDirection;
 
     [NonSerialized] public Scenario currentScenario;
     [NonSerialized] public Scenario defaultScenario;
@@ -79,25 +82,62 @@ public class PlayerCharacter : Character
         }
         else if (Time.time >= nextActionTimer && Input.GetKeyDown(KeyCode.C))
         {
-            if (Input.GetKey(KeyCode.W))
+            if (Input.GetKey(KeyCode.A))
             {
-                animator.SetTrigger("ForwardDodge");
-            }
-            else if (Input.GetKey(KeyCode.A))
-            {
-                animator.SetTrigger("LeftDodge");
+                LeftDodge();
             }
             else if (Input.GetKey(KeyCode.S))
             {
-                animator.SetTrigger("BackwardDodge");
+                BackwardDodge();
             }
             else if (Input.GetKey(KeyCode.D))
             {
-                animator.SetTrigger("RightDodge");
+                RightDodge();
+            }
+            else
+            {
+                ForwardDodge();
             }
         }
+        // Raccogliere gli input dai tasti WASD
+        float moveHorizontal = 0f;
+        float moveVertical = 0f;
 
-            def_HP = Mathf.Clamp(currentHP, 0, MAX_HP);
+        if (Input.GetKey(KeyCode.W))
+        {
+            moveVertical += 1f;
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            moveVertical -= 1f;
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+            moveHorizontal -= 1f;
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            moveHorizontal += 1f;
+        }
+
+        // Creare il vettore di movimento combinando gli input
+        movementDirection = new Vector3(moveHorizontal, 0f, moveVertical);
+
+        // Normalizzare il vettore per garantire una velocità costante
+        if (movementDirection.magnitude > 1)
+        {
+            movementDirection.Normalize();
+        }
+        if (movementDirection != Vector3.zero)
+        {
+            Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, speed * Time.deltaTime);
+        }
+
+        // Muovere il personaggio
+        transform.Translate(movementDirection * speed * Time.deltaTime, Space.World);
+
+        def_HP = Mathf.Clamp(currentHP, 0, MAX_HP);
         UpdateHPUI();
     }
 
@@ -196,6 +236,63 @@ public class PlayerCharacter : Character
     {
         animator.SetTrigger("StrongAttack");
         Debug.Log("Strong Attack done!");
+    }
+
+    private void RightDodge()
+    {
+        animator.SetTrigger("RightDodge");
+        float animationDuration = animator.GetCurrentAnimatorStateInfo(0).length;
+        Vector3.Lerp(transform.position, transform.position + movementDirection, animationDuration);
+        Debug.Log("Right Dodge done!");
+    }
+    
+    private void LeftDodge()
+    {
+        animator.SetTrigger("LeftDodge");
+        float animationDuration = animator.GetCurrentAnimatorStateInfo(0).length;
+        Vector3.Lerp(transform.position, transform.position + movementDirection, animationDuration);
+        Debug.Log("Left Dodge done!");
+    }
+    
+    private void ForwardDodge()
+    {
+        animator.SetTrigger("ForwardDodge");
+        StartCoroutine(DodgeCoroutine());
+    }
+    
+    private IEnumerator DodgeCoroutine()
+    {
+        float animationDuration = animator.GetCurrentAnimatorStateInfo(0).length-1;
+        Vector3 startPosition = transform.position;
+        Vector3 dodgeDirection;
+        if (movementDirection == Vector3.zero)
+        {
+            dodgeDirection = new Vector3(0,0,1);
+        }
+        else
+        {
+            dodgeDirection = movementDirection;
+        }
+        Vector3 endPosition = startPosition + dodgeDirection * dodgeDistance;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < animationDuration)
+        {
+            transform.position = Vector3.Lerp(startPosition, endPosition, elapsedTime / animationDuration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.position = endPosition;
+        Debug.Log("Forward Dodge done!");
+    }
+    
+    private void BackwardDodge()
+    {
+        animator.SetTrigger("BackwardDodge");
+        float animationDuration = animator.GetCurrentAnimatorStateInfo(0).length;
+        Vector3.Lerp(transform.position, transform.position + movementDirection, animationDuration);
+        Debug.Log("Backward Dodge done!");
     }
 
 }
