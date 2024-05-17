@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering.UI;
+using UnityEngine.UIElements;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -45,6 +46,9 @@ public class PlayerMovement : MonoBehaviour
         HandleJumpVariables();
         playerVector = new Vector3(0f, 0f, 0f);
         playerTransform = GetComponent<Transform>();
+        UnityEngine.Cursor.visible = false;
+        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+
 
         // playerCamera = GameObject.FindGameObjectWithTag("PlayerCamera").transform;
     }
