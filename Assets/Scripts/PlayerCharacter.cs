@@ -26,6 +26,7 @@ public class PlayerCharacter : Character
     public Slider sliderHP;
 
     public Dictionary<PartType, Piece> composition;
+    public Accessory accessory;
     
     public Animator animator;
     public float attackRange;

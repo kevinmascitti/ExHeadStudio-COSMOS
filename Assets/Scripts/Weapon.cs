@@ -12,7 +12,9 @@ public enum WeaponType
 
 public class Weapon : EnemyHitter
 {
-    private WeaponType type;
-    [NonSerialized] private Element element;
-
+    public WeaponType type;
+    public Element element;
+    public float movementSpeed;
+    public AnimationClip baseAttack;
+    public AnimationClip strongAttack;
 }
