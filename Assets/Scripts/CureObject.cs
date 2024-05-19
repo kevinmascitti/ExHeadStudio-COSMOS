@@ -16,6 +16,7 @@ public class CureObject : MonoBehaviour
             //Debug.Log("Actual: " + actual.ToString());
             //Debug.Log("Actual + amount: " + (actual + healthAmount).ToString());
             other.gameObject.GetComponent<PlayerCharacter>().UpdateHP(actual);
+            Destroy(this.gameObject);
         }
 
         gameObject.SetActive(false);//Vorrei eliminarlo, ma non mi lascia
