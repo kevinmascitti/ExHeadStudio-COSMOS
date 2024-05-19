@@ -1613,7 +1613,6 @@ MonoBehaviour:
   chipSpeed: 10
   frontHealthBar: {fileID: 1386568992}
   backHealthBar: {fileID: 1754421642}
-  characterIcon: {fileID: 955016353}
   icons:
   - {fileID: 955016353}
   - {fileID: 1472621898}
@@ -1996,7 +1995,6 @@ MonoBehaviour:
   chipSpeed: 2
   frontHealthBar: {fileID: 1386568992}
   backHealthBar: {fileID: 1754421642}
-  characterIcon: {fileID: 0}
   icons:
   - {fileID: 955016353}
   - {fileID: 1472621898}
@@ -2561,7 +2559,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1017469688}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.07438025, y: -0.60318106, z: -0.05663982, w: 0.7921062}
+  m_LocalRotation: {x: -0.07438024, y: -0.603181, z: -0.056639813, w: 0.7921062}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

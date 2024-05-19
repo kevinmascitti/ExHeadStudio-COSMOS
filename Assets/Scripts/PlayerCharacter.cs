@@ -49,7 +49,7 @@ public class PlayerCharacter : Character
     [SerializeField] float chipSpeed;
     public Image frontHealthBar;
     public Image backHealthBar;
-    public Image characterIcon;
+    //public Image characterIcon;
     public Image[] icons;
 
     // Start is called before the first frame update
@@ -172,14 +172,14 @@ public class PlayerCharacter : Character
                 icons[0].enabled = false; //Cambio sprite
                 icons[1].enabled = true;
             }
-            else if (healthFraction >= 0.25f && healthFraction < 0.50f)
-            {
-                characterIcon.color.WithAlpha(healthFraction);
-            }
-            else if (healthFraction < 0.25f)
-            {
-                characterIcon.color.WithAlpha(healthFraction);
-            }
+            //else if (healthFraction >= 0.25f && healthFraction < 0.50f)
+            //{
+            //    characterIcon.color.WithAlpha(healthFraction);
+            //}
+            //else if (healthFraction < 0.25f)
+            //{
+            //    characterIcon.color.WithAlpha(healthFraction);
+            //}
 
             if (fillBack > healthFraction)
             {
