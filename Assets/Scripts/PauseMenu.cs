@@ -32,6 +32,7 @@ public class PauseMenu : MonoBehaviour
         foreach(var item in UI_elemets) 
         { 
             item.enabled = false;
+            Time.timeScale = 0f; //è una versione rudimentale per la pausa, va modificata per gli eventi che non avvengono in update
         }
     }
 
@@ -43,6 +44,7 @@ public class PauseMenu : MonoBehaviour
         foreach (var item in UI_elemets)
         {
             item.enabled = true;
+            Time.timeScale = 1;
         }
     }
 

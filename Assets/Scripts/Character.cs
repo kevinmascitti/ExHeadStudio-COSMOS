@@ -89,7 +89,8 @@ public class Character : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-       
+        Debug.Log("Danno inflitto: " + damage);
+
         UpdateHP(currentHP-damage);
         if (currentHP <= 0)
         {

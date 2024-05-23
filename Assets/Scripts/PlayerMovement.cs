@@ -90,7 +90,7 @@ public class PlayerMovement : MonoBehaviour
         //Debug.Log(playerVector.y);
         if (playerController.isGrounded)
         {
-            Debug.Log("grounded");
+            //Debug.Log("grounded");
         }
         /*Se i valori di input del vettore 2D sono a zero, allora il player è fermo, altrimenti ruota il player nella direzione di movimento
         ATTENZIONE: Usare un vettore 3D, con le funzionalità implementate, non fa ruotare in modo corretto, oppure se si setta y=0f, dà errore.
@@ -109,7 +109,7 @@ public class PlayerMovement : MonoBehaviour
         ComputePlayerVelocity(playerTransform.position);
 
 
-        Debug.Log(playerVector.y);
+        //Debug.Log(playerVector.y);
         playerController.Move(playerVector * Time.deltaTime);
 
         HandleGravity();
@@ -124,18 +124,18 @@ public class PlayerMovement : MonoBehaviour
     {
         float timeToApex = maxJumpTime / 2;
         gravity = (-2 * maxJumpHeight) / Mathf.Pow(timeToApex, 2);
-        Debug.Log("Gravità: " + gravity);
+        //Debug.Log("Gravità: " + gravity);
         initialJumpVelocity = (2 * maxJumpHeight) / timeToApex;
-        Debug.Log("Velocità: " + initialJumpVelocity);
+        //Debug.Log("Velocità: " + initialJumpVelocity);
 
     }
 
     private void HandleJump()
     {
-        Debug.Log(isJumping + ", " + isJumpPressed);
+        //Debug.Log(isJumping + ", " + isJumpPressed);
         if (isJumpPressed)
         {
-            Debug.Log("Jumping");
+            //Debug.Log("Jumping");
             isJumping = true;
             isJumpPressed = false;
             playerVector.y = initialJumpVelocity;
@@ -144,7 +144,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (playerController.isGrounded)
         {
-            Debug.Log("Stop jump");
+            //Debug.Log("Stop jump");
             isJumping = false;
         }
     }
