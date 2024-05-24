@@ -149,8 +149,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletDestroyTime: 10
-  damageRadius: 20
-  damage: 10
+  damageRadius: 5
+  damage: 20
+  bulletSpeed: 4
   enemyMask:
     serializedVersion: 2
     m_Bits: 64

@@ -3,25 +3,46 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FireArmAbility : LeftArm
 {
 
     [SerializeField] float cooldownTime;
-    [SerializeField] float bulletSpeed;
     [SerializeField] Transform bulletStartPosition;
     [SerializeField] GameObject bulletPrefab;
+    //[SerializeField] Image frontAbilityImage;
 
-    private CinemachineImpulseSource cameraShake;
+    //private int maxAbilityValue = 100;
+    //private float abilityValue;
+    //private float abilityTimer;
+
+    //private CinemachineImpulseSource cameraShake;
 
     private bool cooldown = false;
 
+    //private void Start()
+    //{
+    //    //abilityValue = maxAbilityValue;
+    //    //abilityTimer = cooldownTime;
+    //    //Mathf.Clamp(abilityValue, 0, maxAbilityValue);
+    //}
+
+    //private void Update()
+    //{
+    //    //abilityTimer += Time.deltaTime;
+    //    //abilityValue += Time.deltaTime;
+    //    //UpdateAbiltyColumn();
+    //}
+
     public override void LeftArmAbility()
     {
-        if(!cooldown)
+        if(!cooldown)//(abilityTimer >= cooldownTime)
         {
             base.LeftArmAbility();
             cooldown = true;
+            //abilityValue = 0;
+            //abilityTimer = 0;
             ShootBullet();
             StartCoroutine("AbilityCooldown");
         }
@@ -30,15 +51,22 @@ public class FireArmAbility : LeftArm
 
     public void ShootBullet()
     {
+        Debug.Log("Ho sparato");
         Instantiate(bulletPrefab, bulletStartPosition.position, bulletStartPosition.rotation);
-        bulletPrefab.GetComponent<Rigidbody>().velocity = bulletStartPosition.forward * bulletSpeed; //* Time.deltaTime; QUI UN PROBLEMA PER FARLO MUOVERE
-        cameraShake.GenerateImpulse();
+        //cameraShake.GenerateImpulse();
     }
 
     private IEnumerator AbilityCooldown()
     {
         yield return new WaitForSeconds(cooldownTime);
         cooldown = false;
-        //Debug.Log("Ho aspettato");
+        Debug.Log("Ho aspettato");
     }
+
+    //public void UpdateAbiltyColumn()
+    //{
+    //    float abilityFraction = abilityValue/maxAbilityValue;
+    //    frontAbilityImage.fillAmount = abilityFraction;
+
+    //}
 }

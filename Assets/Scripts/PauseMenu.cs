@@ -8,7 +8,7 @@ public class PauseMenu : MonoBehaviour
     //Lo script è assegnato ad una empty che gestisce tutta la HUD del giocatore. Il menù di pausa è un cavas che viene acceso/spento 
     //premendo escape; i comandi sono disabilitati quando il menù è attivo.
     [SerializeField] Canvas pauseMenu;
-    [SerializeField] Canvas[] UI_elemets;
+    [SerializeField] Canvas[] UI_elements;
     [SerializeField] GameObject player;
 
     private void Awake()
@@ -29,7 +29,7 @@ public class PauseMenu : MonoBehaviour
     {
         player.GetComponent<PlayerMovement>().enabled = false;
         pauseMenu.enabled = true;
-        foreach(var item in UI_elemets) 
+        foreach(var item in UI_elements) 
         { 
             item.enabled = false;
             Time.timeScale = 0f; //è una versione rudimentale per la pausa, va modificata per gli eventi che non avvengono in update
@@ -41,7 +41,7 @@ public class PauseMenu : MonoBehaviour
         player.GetComponent<PlayerMovement>().enabled = true;
         pauseMenu.enabled = false;
         Cursor.lockState = CursorLockMode.Locked;
-        foreach (var item in UI_elemets)
+        foreach (var item in UI_elements)
         {
             item.enabled = true;
             Time.timeScale = 1;
