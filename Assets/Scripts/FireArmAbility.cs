@@ -1,0 +1,86 @@
+using Cinemachine;
+using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class FireArmAbility : LeftArm
+{
+
+    [SerializeField] float cooldownTime;
+    [SerializeField] Transform bulletStartPosition;
+    [SerializeField] GameObject bulletPrefab;
+    [SerializeField] Image frontAbilityImage;
+
+    private float abilityTimer;
+    private float abilityFraction;
+
+    //private CinemachineImpulseSource cameraShake;
+
+    private bool cooldown = false;
+
+    private void Start()
+    {
+        abilityTimer = 0; //cooldownTime;
+        Mathf.Clamp(abilityTimer, 0, cooldownTime);
+    }
+
+    public override void Update()
+    {
+        base.Update();
+        abilityTimer += Time.deltaTime;
+        UpdateAbiltyColumn();
+    }
+
+    public override void LeftArmAbility()
+    {
+        if(!cooldown)
+        {
+            base.LeftArmAbility();
+            cooldown = true;
+            abilityTimer = 0;
+            ShootBullet();
+            StartCoroutine("AbilityCooldown");
+        }
+
+    }
+
+    public void ShootBullet()
+    {
+        //Debug.Log("Ho sparato");
+        Instantiate(bulletPrefab, bulletStartPosition.position, bulletStartPosition.rotation);
+        //cameraShake.GenerateImpulse();
+    }
+
+    private IEnumerator AbilityCooldown()
+    {
+        yield return new WaitForSeconds(cooldownTime);
+        cooldown = false;
+        //Debug.Log("Ho aspettato");
+    }
+
+    public void UpdateAbiltyColumn()
+    {
+        if(abilityTimer < cooldownTime)
+        {
+            abilityFraction = abilityTimer / cooldownTime;
+        }
+        else
+        {
+            abilityFraction = 1;
+        }
+        //if(abilityFraction >= 1)
+        //{
+        //    abilityFraction = 1;
+        //}
+        //else
+        //{
+        //     abilityFraction = abilityTimer / cooldownTime;
+        //}
+        //Debug.Log("timer: " + abilityTimer) ;
+        //Debug.Log("frazione:" + abilityFraction);
+        frontAbilityImage.fillAmount = abilityFraction;
+
+    }
+}
