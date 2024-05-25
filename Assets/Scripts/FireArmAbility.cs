@@ -11,38 +11,35 @@ public class FireArmAbility : LeftArm
     [SerializeField] float cooldownTime;
     [SerializeField] Transform bulletStartPosition;
     [SerializeField] GameObject bulletPrefab;
-    //[SerializeField] Image frontAbilityImage;
+    [SerializeField] Image frontAbilityImage;
 
-    //private int maxAbilityValue = 100;
-    //private float abilityValue;
-    //private float abilityTimer;
+    private float abilityTimer;
+    private float abilityFraction;
 
     //private CinemachineImpulseSource cameraShake;
 
     private bool cooldown = false;
 
-    //private void Start()
-    //{
-    //    //abilityValue = maxAbilityValue;
-    //    //abilityTimer = cooldownTime;
-    //    //Mathf.Clamp(abilityValue, 0, maxAbilityValue);
-    //}
+    private void Start()
+    {
+        abilityTimer = 0; //cooldownTime;
+        Mathf.Clamp(abilityTimer, 0, cooldownTime);
+    }
 
-    //private void Update()
-    //{
-    //    //abilityTimer += Time.deltaTime;
-    //    //abilityValue += Time.deltaTime;
-    //    //UpdateAbiltyColumn();
-    //}
+    public override void Update()
+    {
+        base.Update();
+        abilityTimer += Time.deltaTime;
+        UpdateAbiltyColumn();
+    }
 
     public override void LeftArmAbility()
     {
-        if(!cooldown)//(abilityTimer >= cooldownTime)
+        if(!cooldown)
         {
             base.LeftArmAbility();
             cooldown = true;
-            //abilityValue = 0;
-            //abilityTimer = 0;
+            abilityTimer = 0;
             ShootBullet();
             StartCoroutine("AbilityCooldown");
         }
@@ -51,7 +48,7 @@ public class FireArmAbility : LeftArm
 
     public void ShootBullet()
     {
-        Debug.Log("Ho sparato");
+        //Debug.Log("Ho sparato");
         Instantiate(bulletPrefab, bulletStartPosition.position, bulletStartPosition.rotation);
         //cameraShake.GenerateImpulse();
     }
@@ -60,13 +57,30 @@ public class FireArmAbility : LeftArm
     {
         yield return new WaitForSeconds(cooldownTime);
         cooldown = false;
-        Debug.Log("Ho aspettato");
+        //Debug.Log("Ho aspettato");
     }
 
-    //public void UpdateAbiltyColumn()
-    //{
-    //    float abilityFraction = abilityValue/maxAbilityValue;
-    //    frontAbilityImage.fillAmount = abilityFraction;
+    public void UpdateAbiltyColumn()
+    {
+        if(abilityTimer < cooldownTime)
+        {
+            abilityFraction = abilityTimer / cooldownTime;
+        }
+        else
+        {
+            abilityFraction = 1;
+        }
+        //if(abilityFraction >= 1)
+        //{
+        //    abilityFraction = 1;
+        //}
+        //else
+        //{
+        //     abilityFraction = abilityTimer / cooldownTime;
+        //}
+        //Debug.Log("timer: " + abilityTimer) ;
+        //Debug.Log("frazione:" + abilityFraction);
+        frontAbilityImage.fillAmount = abilityFraction;
 
-    //}
+    }
 }

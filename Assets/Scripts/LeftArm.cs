@@ -9,7 +9,7 @@ public class LeftArm : Piece
     {
         type = PartType.LeftArm;
     }
-    void Update()
+    public virtual void Update()
     {
         if (Input.GetKey(KeyCode.V))//da sostituire con il tasto del mouse
         {
@@ -21,7 +21,7 @@ public class LeftArm : Piece
     public virtual void LeftArmAbility()
     {
 
-        //qui bisogna inserire animazioni, suoni ì, effetti...
+        //qui bisogna inserire animazioni, suoni, effetti...
     }
 
 
