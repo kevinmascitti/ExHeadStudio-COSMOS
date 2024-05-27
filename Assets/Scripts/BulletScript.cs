@@ -28,8 +28,8 @@ public class BulletScript : MonoBehaviour
         foreach(Collider target in enemies)
         {
             //Debug.Log("Ho trovato un nemico");
-            //target.GetComponent<Enemy>().TakeDamage(damage);
-            target.SendMessage("TakeDamage", damage);
+            //target.GetComponent<Enemy>().TakeDamage(damage, Element.Fire);
+            //target.SendMessage("TakeDamage", damage);
 
         }
         

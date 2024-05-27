@@ -23,7 +23,7 @@ public class PlayerCharacter : Character
 {
     public float MAX_HP = 100;
     public float def_HP = 100;
-    public Slider sliderHP;
+    //public Slider sliderHP;
 
     public Dictionary<PartType, Piece> composition;
     public Accessory accessory;

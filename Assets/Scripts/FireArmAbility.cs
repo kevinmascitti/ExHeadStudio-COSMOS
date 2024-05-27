@@ -15,8 +15,8 @@ public class FireArmAbility : LeftArm
 
     private float abilityTimer;
     private float abilityFraction;
-
-    //private CinemachineImpulseSource cameraShake;
+    [SerializeField]
+    CinemachineImpulseSource impulseSource;
 
     private bool cooldown = false;
 
@@ -24,6 +24,8 @@ public class FireArmAbility : LeftArm
     {
         abilityTimer = 0; //cooldownTime;
         Mathf.Clamp(abilityTimer, 0, cooldownTime);
+        impulseSource = GetComponent<CinemachineImpulseSource>(); //è importante che la camera abbia il tag MainCamera
+
     }
 
     public override void Update()
@@ -40,7 +42,10 @@ public class FireArmAbility : LeftArm
             base.LeftArmAbility();
             cooldown = true;
             abilityTimer = 0;
+            //impulseSource = GetComponent<CinemachineImpulseSource>();
+              
             ShootBullet();
+            impulseSource.GenerateImpulse(Camera.main.transform.forward);
             StartCoroutine("AbilityCooldown");
         }
 
