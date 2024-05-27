@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEditor.Rendering.FilterWindow;
 using FixedUpdate = UnityEngine.PlayerLoop.FixedUpdate;
 
 public enum Element
@@ -42,7 +43,7 @@ public class Character : MonoBehaviour
     public float runSpeed;
     public float atkSpeed;
 
-    public void Start()
+    public void Awake()
     {
         stats.atk = atk;
         stats.def = def;
@@ -56,6 +57,7 @@ public class Character : MonoBehaviour
         stats.elemDef.Add(Element.Lightning, lightningDef);
         stats.elemAtk.Add(Element.Earth, earthAtk);
         stats.elemDef.Add(Element.Earth, earthDef);
+        
     }
     
     // Update is called once per frame
@@ -87,15 +89,23 @@ public class Character : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, Element element)
     {
         Debug.Log("Danno inflitto: " + damage);
 
         UpdateHP(currentHP-damage);
+        TakeElementalStatus(element);
         if (currentHP <= 0)
         {
             Die();
         }
+    }
+    
+
+
+    public void TakeElementalStatus(Element element)
+    {
+        Debug.Log("Applicazione Stato:" + element);
     }
 
     public virtual void Die()

@@ -12,6 +12,8 @@ public class StateController : MonoBehaviour
     [SerializeField] private float patrollingStateDuration;
     [SerializeField] float enemyChasingSpeed;
     [SerializeField] float enemyPatrollingSpeed;
+    [SerializeField] float attackTime;
+    [SerializeField] float repositionTime;
     [SerializeField] List<Transform> patrolWayPoints = new List<Transform>();
 
     /*
@@ -73,5 +75,10 @@ public class StateController : MonoBehaviour
     public float GetAttackRange()
     {
         return attackRange;
+    }
+
+    public float GetRepositionTime()
+    {
+        return repositionTime;
     }
 }

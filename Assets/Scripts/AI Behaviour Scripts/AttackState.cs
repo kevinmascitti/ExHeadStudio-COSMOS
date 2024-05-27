@@ -10,9 +10,13 @@ public class AttackState : StateMachineBehaviour
     float distanceFromPlayer;
     float chaseRange;
 
+    float attackTime;
+    float attackTimer;
+
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        attackTimer = 0f;
         controller = animator.GetComponent<StateController>();
         attackRange = controller.GetAttackRange();
         chaseRange = controller.GetChaseRange();
@@ -21,8 +25,12 @@ public class AttackState : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.transform.LookAt(controller.GetPlayerTransform().position);
-        Debug.Log("Attacking");
+        if(attackTimer >= attackTime)
+        {
+            animator.SetBool("isAttacking", false);
+            animator.SetBool("isRepositioning", true);
+        }
+        animator.transform.LookAt(null ,new Vector3(controller.GetPlayerTransform().position.x, 0f, controller.GetPlayerTransform().position.z));
         distanceFromPlayer = controller.GetDistanceFromPlayer();
 
         if (distanceFromPlayer > attackRange && distanceFromPlayer < chaseRange)
@@ -35,7 +43,7 @@ public class AttackState : StateMachineBehaviour
             animator.SetBool("isPatrolling", true);
             animator.SetBool("isAttacking", false);
         }
-        
+        attackTimer *= Time.deltaTime;
         
         
     }

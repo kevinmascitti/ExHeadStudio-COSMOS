@@ -37,6 +37,10 @@ public class PlayerCharacter : Character
     [SerializeField] private float dodgeDistance = 10f;
     private Vector3 movementDirection;
 
+    private Element activeRxElement;//Elemento nel braccio destro
+    private Element activeSxElement;//Elemento nel braccio sinistro
+
+
     [NonSerialized] public Scenario currentScenario;
     [NonSerialized] public Scenario defaultScenario;
 
@@ -224,7 +228,8 @@ public class PlayerCharacter : Character
 
     private void DoDamage(object sender, EnemyCollisionArgs args)
     {
-        args.enemy.TakeDamage(stats.atk + args.hitter.atk - args.enemy.def);
+        args.enemy.TakeDamage(stats.atk + args.hitter.atk - args.enemy.def, activeRxElement);
+        //Da sistemare perché ora viene passato solo l'elemento del braccio destro
     }
     
     private void BaseAttack()
