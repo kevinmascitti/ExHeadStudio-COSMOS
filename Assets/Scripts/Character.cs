@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Windows.Speech;
 using static UnityEditor.Rendering.FilterWindow;
 using FixedUpdate = UnityEngine.PlayerLoop.FixedUpdate;
 
@@ -45,9 +46,9 @@ public class Character : MonoBehaviour
 
     //Listone delle cose da controllare
     private Dictionary<Element, int> statusCharge = new Dictionary<Element, int>();
-    private Dictionary<Element, float> statusTimer = new Dictionary<Element, float>();
+    private Dictionary<Element, ElementTimer> statusTimer = new Dictionary<Element, ElementTimer>();
     private Dictionary<Element, int> effectCountdown = new Dictionary<Element, int>();
-    private Dictionary<Element, float> effectTimer = new Dictionary<Element, float>();
+    private Dictionary<Element, ElementTimer> effectTimer = new Dictionary<Element, ElementTimer>();
     private Dictionary<Element, bool> effectsApplied = new Dictionary<Element, bool>();
     private List<Element> elementsOfStatusApplied = new List<Element>();
     private List<Element> elementsOfEffectsApplied = new List<Element>();
@@ -69,6 +70,8 @@ public class Character : MonoBehaviour
         stats.elemDef.Add(Element.Lightning, lightningDef);
         stats.elemAtk.Add(Element.Earth, earthAtk);
         stats.elemDef.Add(Element.Earth, earthDef);
+
+        ElementTimer.Elapsed += HandleTimer;
     }
 
     // Update is called once per frame
@@ -77,18 +80,18 @@ public class Character : MonoBehaviour
         //Se il timer di uno qualunque tra effetti o status si azzera, allora fai quello che devi fare
         foreach (Element element in elementsOfStatusApplied)
         {
-            if (statusTimer[element] <= 0f)
-            {
-                statusCharge[element] = 0;
-                elementsOfStatusApplied.Remove(element);
-            }
+            // if (statusTimer[element] <= 0f)
+            // {
+            //     statusCharge[element] = 0;
+            //     elementsOfStatusApplied.Remove(element);
+            // }
         }
         foreach(Element element in elementsOfEffectsApplied)
         {
-            if (effectTimer[element] <= 0f)
-            {
-                Effect(element);
-            }
+            // if (effectTimer[element] <= 0f)
+            // {
+            //     Effect(element);
+            // }
         }
 
 
@@ -104,25 +107,38 @@ public class Character : MonoBehaviour
             }
         }
 
-        //Se la lista degli elementi applicati all'oggetto non è vuota, diminuisci il timer dello status o dell'effetto di quell'elemento
+        //Se la lista degli elementi applicati all'oggetto non ï¿½ vuota, diminuisci il timer dello status o dell'effetto di quell'elemento
         if(elementsOfStatusApplied.Count > 0) {
-            foreach (Element element in elementsOfStatusApplied)
-            {
-                if (statusTimer[element] > 0f)
-                    statusTimer[element] -= Time.deltaTime;
-            }
+            // foreach (Element element in elementsOfStatusApplied)
+            // {
+            //     if (statusTimer[element] > 0f)
+            //         statusTimer[element] -= Time.deltaTime;
+            // }
         }
         else isStatusApplied = false;
         if (elementsOfEffectsApplied.Count > 0)
         {
-            foreach (Element element in elementsOfEffectsApplied)
-            {
-                if (effectTimer[element] > 0f)
-                    effectTimer[element] -= Time.deltaTime;
-            }
+        //     foreach (Element element in elementsOfEffectsApplied)
+        //     {
+        //         if (effectTimer[element] > 0f)
+        //             effectTimer[element] -= Time.deltaTime;
+        //     }
         }
         else isEffectApplied = false;
         
+    }
+
+    private void HandleTimer(object sender, ElementTimerArgs args)
+    {
+        if (args.type == TimerType.Status)
+        {
+            statusTimer[args.element].Stop();
+            elementsOfStatusApplied.Remove(args.element);
+        }
+        else if (args.type == TimerType.Effect)
+        {
+            Effect(args.element);
+        }
     }
 
     public virtual void UpdateHP(float newHP)
@@ -161,7 +177,7 @@ public class Character : MonoBehaviour
             if(!elementsOfStatusApplied.Contains(element))
                 elementsOfStatusApplied.Add(element);
             isStatusApplied = true;
-            statusTimer[element] = 5f;
+            // statusTimer[element] = 5f;
         }
         if (statusCharge[element] >= 100 )
         {
@@ -174,7 +190,7 @@ public class Character : MonoBehaviour
     {
         isEffectApplied = true;
         effectCountdown[element] = 5;
-        effectTimer[element] = 5f;
+        // effectTimer[element] = 5f;
 
     }
 
@@ -184,7 +200,7 @@ public class Character : MonoBehaviour
 
 
         effectCountdown[e] -= 1;
-        effectTimer[e] = 5f;
+        // effectTimer[e] = 5f;
     }
     public virtual void Die()
     {
