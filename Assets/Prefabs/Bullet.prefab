@@ -148,10 +148,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c21d5d9c71a7c4fba96e7c18365182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletDestroyTime: 10
-  damageRadius: 5
-  damage: 20
+  bulletDestroyTime: 4
+  damageRadius: 10
+  maxDamage: 20
+  minDamage: 5
   bulletSpeed: 4
   enemyMask:
     serializedVersion: 2
     m_Bits: 64
+  blockMask:
+    serializedVersion: 2
+    m_Bits: 1
