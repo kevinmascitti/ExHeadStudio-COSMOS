@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Timers;
 using UnityEngine;
 
 public enum TimerType
@@ -9,8 +10,9 @@ public enum TimerType
     Effect
 }
 
-public class ElementTimer : MonoBehaviour
+public class ElementTimer
 {
+    public int id;
     public Element element;
     public TimerType type;
     public double Interval;
@@ -21,10 +23,14 @@ public class ElementTimer : MonoBehaviour
 
     static public EventHandler<ElementTimerArgs> Elapsed;
     
-    public ElementTimer(double seconds, bool enabled)
+    public ElementTimer(double seconds, bool enabled, TimerType t, Element e, int i)
     {
         Interval = seconds;
         Enabled = enabled;
+        type = t;
+        element = e;
+        id = i;
+        PlayerCharacter.OnUpdate += Update;
     }
 
     public void Begin()
@@ -52,8 +58,7 @@ public class ElementTimer : MonoBehaviour
             passedTime -= Time.deltaTime;
             if (passedTime <= 0)
             {
-                Elapsed?.Invoke(this, new ElementTimerArgs(type, element));
-                Enabled = false;
+                Elapsed?.Invoke(this, new ElementTimerArgs(type, element, id));
             }
         }
     }
@@ -61,12 +66,14 @@ public class ElementTimer : MonoBehaviour
 
 public class ElementTimerArgs : EventArgs 
 {
-    public ElementTimerArgs(TimerType t, Element e)
+    public ElementTimerArgs(TimerType t, Element e, int i)
     {
+        id = i;
         type = t;
         element = e;
     }
 
     public TimerType type;
     public Element element;
+    public int id;
 }

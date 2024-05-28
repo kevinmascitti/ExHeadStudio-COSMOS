@@ -46,7 +46,7 @@ public class PlayerCharacter : Character
 
     public static EventHandler OnPlayerDeath;
     public static EventHandler<ScenarioArgs> OnScenarioBegin;
-
+    public static System.Action OnUpdate;
 
     //Aggiunte per la Healthbar
     private float lerpTimer;
@@ -59,6 +59,7 @@ public class PlayerCharacter : Character
     // Start is called before the first frame update
     public void Awake()
     {
+        base.Awake();
         isPlayer = true;
 
         //if (sliderHP)
@@ -75,6 +76,8 @@ public class PlayerCharacter : Character
 
     public void Update()
     {
+        if(OnUpdate != null) OnUpdate();
+
         if (Time.time >= nextActionTimer && Input.GetKeyDown(KeyCode.Z))
         {
             BaseAttack();

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Windows.Speech;
@@ -25,6 +26,13 @@ public class Stats
 
 public class Character : MonoBehaviour
 {
+    [Header("Tempi recupero status e effetti")]
+    [SerializeField] private float status;
+    [SerializeField] private float effect;
+    public TextMeshProUGUI statusText;
+    public TextMeshProUGUI effectText;
+
+    [Header("Informazioni character")]
     public float currentHP;
     public bool isPlayer = false;
     public Stats stats = new Stats();
@@ -44,12 +52,12 @@ public class Character : MonoBehaviour
     public float runSpeed;
     public float atkSpeed;
 
-    //Listone delle cose da controllare
-    private Dictionary<Element, int> statusCharge = new Dictionary<Element, int>();
-    private Dictionary<Element, ElementTimer> statusTimer = new Dictionary<Element, ElementTimer>();
-    private Dictionary<Element, int> effectCountdown = new Dictionary<Element, int>();
-    private Dictionary<Element, ElementTimer> effectTimer = new Dictionary<Element, ElementTimer>();
-    private Dictionary<Element, bool> effectsApplied = new Dictionary<Element, bool>();
+    [Header("Dizionari")]
+    [SerializeField] private Dictionary<Element, int> statusCharge = new Dictionary<Element, int>();
+    [SerializeField] private Dictionary<Element, ElementTimer> statusTimer = new Dictionary<Element, ElementTimer>();
+    [SerializeField] private Dictionary<Element, int> effectCountdown = new Dictionary<Element, int>();
+    [SerializeField] private Dictionary<Element, ElementTimer> effectTimer = new Dictionary<Element, ElementTimer>();
+    [SerializeField] private Dictionary<Element, bool> effectsApplied = new Dictionary<Element, bool>();
     private List<Element> elementsOfStatusApplied = new List<Element>();
     private List<Element> elementsOfEffectsApplied = new List<Element>();
     private bool isStatusApplied;
@@ -70,34 +78,24 @@ public class Character : MonoBehaviour
         stats.elemDef.Add(Element.Lightning, lightningDef);
         stats.elemAtk.Add(Element.Earth, earthAtk);
         stats.elemDef.Add(Element.Earth, earthDef);
+        foreach(Element e in stats.elemDef.Keys) {
+            effectsApplied.Add(e, false);
+            statusCharge.Add(e, 0);
+            effectCountdown.Add(e, 0);
+            statusTimer.Add(e, new ElementTimer(status, false, TimerType.Status, e, this.GetInstanceID()));
+            effectTimer.Add(e, new ElementTimer(effect, false, TimerType.Effect, e, this.GetInstanceID()));
 
+        }
         ElementTimer.Elapsed += HandleTimer;
     }
-
+    
     // Update is called once per frame
     public void Update()
     {
-        //Se il timer di uno qualunque tra effetti o status si azzera, allora fai quello che devi fare
-        foreach (Element element in elementsOfStatusApplied)
-        {
-            // if (statusTimer[element] <= 0f)
-            // {
-            //     statusCharge[element] = 0;
-            //     elementsOfStatusApplied.Remove(element);
-            // }
-        }
-        foreach(Element element in elementsOfEffectsApplied)
-        {
-            // if (effectTimer[element] <= 0f)
-            // {
-            //     Effect(element);
-            // }
-        }
-
-
+        
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("Damage " + stats.atk);
+            // Debug.Log("Damage " + stats.atk);
             if (isPlayer)
             {
                 if (currentHP - (stats.atk - stats.def) >= 0)
@@ -107,38 +105,45 @@ public class Character : MonoBehaviour
             }
         }
 
-        //Se la lista degli elementi applicati all'oggetto non � vuota, diminuisci il timer dello status o dell'effetto di quell'elemento
-        if(elementsOfStatusApplied.Count > 0) {
-            // foreach (Element element in elementsOfStatusApplied)
-            // {
-            //     if (statusTimer[element] > 0f)
-            //         statusTimer[element] -= Time.deltaTime;
-            // }
-        }
-        else isStatusApplied = false;
-        if (elementsOfEffectsApplied.Count > 0)
-        {
-        //     foreach (Element element in elementsOfEffectsApplied)
-        //     {
-        //         if (effectTimer[element] > 0f)
-        //             effectTimer[element] -= Time.deltaTime;
-        //     }
-        }
-        else isEffectApplied = false;
-        
+        if (effectsApplied[Element.Fire])
+            Debug.Log(effectTimer[Element.Fire]);
+       
     }
 
     private void HandleTimer(object sender, ElementTimerArgs args)
     {
+        if (this.GetInstanceID()==args.id)
+        {
         if (args.type == TimerType.Status)
         {
             statusTimer[args.element].Stop();
-            elementsOfStatusApplied.Remove(args.element);
+                statusCharge[args.element] = 0;
+                statusText.text = "0";
         }
         else if (args.type == TimerType.Effect)
         {
+            if (effectCountdown[args.element] > 1)
+            {
+                Debug.Log("Effetto!");
             Effect(args.element);
+            effectCountdown[args.element] -= 1;
+            effectTimer[args.element].Begin();
+
+                effectText.text = effectCountdown[args.element].ToString();
+            }
+            else if (effectCountdown[args.element] == 1)
+            {
+                Effect(args.element);
+                effectCountdown[args.element] = 0;
+                effectsApplied[args.element] = false;
+                Debug.Log("Rimozione effetto: " + args.element);
+                effectTimer[args.element].Stop();
+                effectText.text = effectCountdown[args.element].ToString();
+            }
         }
+            
+        }
+        
     }
 
     public virtual void UpdateHP(float newHP)
@@ -155,7 +160,6 @@ public class Character : MonoBehaviour
 
     public void TakeDamage(int damage, Element element)
     {
-        Debug.Log("Danno inflitto: " + damage);
 
         UpdateHP(currentHP-damage);
         TakeElementalStatus(damage, element);
@@ -169,27 +173,36 @@ public class Character : MonoBehaviour
     //Applica lo status all'oggetto, salvalo nella lista e fai partire il timer
     public void TakeElementalStatus(int elementalDamage, Element element)
     {
-        Debug.Log("Applicazione Stato:" + element);
 
-        if (!effectsApplied[element])
+        if (!effectsApplied[element] )
         {
+        Debug.Log("Applicazione stato:" + element);
+            
             statusCharge[element] += elementalDamage;
-            if(!elementsOfStatusApplied.Contains(element))
-                elementsOfStatusApplied.Add(element);
+            statusText.text = statusCharge[element].ToString();
             isStatusApplied = true;
-            // statusTimer[element] = 5f;
+            statusTimer[element].Begin();
         }
-        if (statusCharge[element] >= 100 )
+        else;
+
+        if (statusCharge[element] >= 10 && !effectsApplied[element])
         {
+            statusCharge[element] = 0;
             ApplyElementEffect(element);
+            statusTimer[element].Stop();
+            statusText.text = statusCharge[element].ToString();
         }
-        
+
     }
     //Applicato abbastanza status, applica l'effetto e applicalo una volta ogni 5 secondi per 5 volte.
     public void ApplyElementEffect(Element element)
     {
-        isEffectApplied = true;
+        Debug.Log("Effetto Applicato");
+        effectsApplied[element] = true;
+
         effectCountdown[element] = 5;
+        effectTimer[element].Begin();
+        effectText.text = effectCountdown[element].ToString();
         // effectTimer[element] = 5f;
 
     }
@@ -197,10 +210,29 @@ public class Character : MonoBehaviour
     //Applica il danno o il malus di quello specifico elemento
     public void Effect(Element e)
     {
+        switch (e)
+        {
+            case Element.Fire:
 
+                //Applicazione dell'effetto fuoco (malus, danno....)
 
-        effectCountdown[e] -= 1;
-        // effectTimer[e] = 5f;
+                break;
+            case Element.Water:
+                //Applicazione effetto acqua (malus, danno...)
+                break;
+            case Element.Lightning:
+
+                //Applicazione effetto fulmine (malus, danno...)
+                break;
+            case Element.Earth:
+
+                //Applicazione effetto terra (malus, danno...)
+            break;  
+
+            default:
+                
+            break;
+        }
     }
     public virtual void Die()
     {
