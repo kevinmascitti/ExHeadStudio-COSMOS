@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BulletScript : MonoBehaviour
@@ -8,15 +9,21 @@ public class BulletScript : MonoBehaviour
 
     [SerializeField] float bulletDestroyTime;
     [SerializeField] float damageRadius;
-    [SerializeField] int damage;
+    [SerializeField] int maxDamage;
+    [SerializeField] int minDamage;
     [SerializeField] float bulletSpeed;
     [SerializeField] LayerMask enemyMask;
+    [SerializeField] LayerMask blockMask;
+    //[SerializeField] float explosionForce;
 
     Rigidbody rb;
 
-    private Collider[] enemies;
+    private int maxEnemies = 25;
+    private Collider[] enemiesArray;
+    private int damage;
     void Awake()
     {
+        enemiesArray = new Collider[maxEnemies];
         rb = GetComponent<Rigidbody>();
         Destroy(gameObject, bulletDestroyTime);
     }
@@ -24,15 +31,19 @@ public class BulletScript : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         //qui inserire suoni, effetti
-        Collider[] enemies =  Physics.OverlapSphere(gameObject.transform.position, damageRadius, enemyMask); //volendo si può usare la versione NonAlloc
-        foreach(Collider target in enemies)
-        {
-            //Debug.Log("Ho trovato un nemico");
-            //target.GetComponent<Enemy>().TakeDamage(damage, Element.Fire);
-            //target.SendMessage("TakeDamage", damage);
+        int hits = Physics.OverlapSphereNonAlloc(gameObject.transform.position, damageRadius, enemiesArray, enemyMask);
 
+        for(int i = 0; i < hits; i++) 
+        {
+            float distance = Vector3.Distance(gameObject.transform.position, enemiesArray[i].transform.position);
+            Debug.DrawRay(gameObject.transform.position, (enemiesArray[i].transform.position - gameObject.transform.position).normalized, Color.green, damageRadius);
+            if (!Physics.Raycast(gameObject.transform.position, (enemiesArray[i].transform.position - gameObject.transform.position).normalized, damageRadius, blockMask.value))
+            {
+                damage = Mathf.FloorToInt(Mathf.Lerp(maxDamage, minDamage, distance / damageRadius));
+                Debug.Log($"Ho trovato il nemico {enemiesArray[i].name} a " + distance + "gli infliggo " + damage);
+                //target.GetComponent<Enemy>().TakeDamage(damage, Element.Fire);
+            }
         }
-        
         Debug.Log("Colpito");
         Destroy(gameObject);
     }
@@ -41,6 +52,13 @@ public class BulletScript : MonoBehaviour
     void Update()
     {
         rb.velocity = transform.forward * bulletSpeed;
-
     }
+
+    public void OnDrawGizmos() //la funzione serve a visualizzare l'area del danno
+    {
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawWireSphere(gameObject.transform.position, damageRadius);
+    }
+
+
 }
