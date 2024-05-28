@@ -25,6 +25,10 @@ public class PlayerCharacter : Character
     public float def_HP = 100;
     public Slider sliderHP;
 
+    // lista COMPLETA dei PEZZI presenti nel modello da disabilitare o abilitare
+    public Dictionary<PartType, List<Piece>> completePiecesList;
+    
+    //lista attuale dei soli pezzi attivati nel modello
     public Dictionary<PartType, Piece> composition;
     public Accessory accessory;
     
@@ -67,6 +71,7 @@ public class PlayerCharacter : Character
         enemyLayer = LayerMask.GetMask("Enemy");
 
         Weapon.OnEnemyCollision += DoDamage;
+        ChoicePieceManager.OnChangePiece += ModifyComposition;
     }
 
     public void Update()
@@ -296,6 +301,14 @@ public class PlayerCharacter : Character
         Debug.Log("Backward Dodge done!");
     }
 
+    private void ModifyComposition(object sender, ChangePieceArgs args)
+    {
+        completePiecesList[args.partType][args.oldPieceNumber].gameObject.SetActive(false);
+        completePiecesList[args.partType][args.newPieceNumber].gameObject.SetActive(true);
+        Piece selectedPiece = completePiecesList[args.partType][args.newPieceNumber];
+        composition[args.partType] = selectedPiece;
+    }
+    
 }
 
 public class ScenarioArgs : EventArgs
