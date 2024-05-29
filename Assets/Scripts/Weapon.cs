@@ -7,7 +7,8 @@ public enum WeaponType
 {
     Sword,
     Ax,
-    Spear
+    Spear,
+    Projectile,
 }
 
 public class Weapon : EnemyHitter
