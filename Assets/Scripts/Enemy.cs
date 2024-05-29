@@ -111,13 +111,13 @@ public class Enemy : Character
                 lerpTimer += Time.deltaTime;
                 float percentComplete = lerpTimer / chipSpeed;
                 percentComplete = percentComplete * percentComplete;
-                frontSprite.fillAmount = Mathf.Lerp(fillBack, healthFraction, percentComplete);
+                backSprite.fillAmount = Mathf.Lerp(fillBack, healthFraction, percentComplete);
             }
 
             if (fillFront < healthFraction)
             {
                 backSprite.fillAmount = healthFraction;
-                backSprite.color = Color.yellow;
+                backSprite.color = Color.red;
                 lerpTimer += Time.deltaTime;
                 float percentComplete = lerpTimer / chipSpeed;
                 percentComplete = percentComplete * percentComplete;
@@ -125,5 +125,6 @@ public class Enemy : Character
             }
         }
     }
+
 
 }

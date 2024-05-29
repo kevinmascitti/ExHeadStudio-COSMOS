@@ -180,10 +180,9 @@ public class Character : MonoBehaviour
             
             statusCharge[element] += elementalDamage;
             statusText.text = statusCharge[element].ToString();
-            isStatusApplied = true;
             statusTimer[element].Begin();
         }
-        else;
+        //else;
 
         if (statusCharge[element] >= 10 && !effectsApplied[element])
         {

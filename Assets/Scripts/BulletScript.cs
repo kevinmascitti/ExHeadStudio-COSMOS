@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class BulletScript : MonoBehaviour
+public class BulletScript : Weapon
 {
 
 
@@ -12,6 +12,7 @@ public class BulletScript : MonoBehaviour
     [SerializeField] int maxDamage;
     [SerializeField] int minDamage;
     [SerializeField] float bulletSpeed;
+    [SerializeField] Element bulletElement;
     [SerializeField] LayerMask enemyMask;
     [SerializeField] LayerMask blockMask;
     //[SerializeField] float explosionForce;
@@ -36,15 +37,20 @@ public class BulletScript : MonoBehaviour
         for(int i = 0; i < hits; i++) 
         {
             float distance = Vector3.Distance(gameObject.transform.position, enemiesArray[i].transform.position);
-            Debug.DrawRay(gameObject.transform.position, (enemiesArray[i].transform.position - gameObject.transform.position).normalized, Color.green, damageRadius);
-            if (!Physics.Raycast(gameObject.transform.position, (enemiesArray[i].transform.position - gameObject.transform.position).normalized, damageRadius, blockMask.value))
+            Debug.Log(distance);
+            //Debug.Log(enemiesArray[i].name + (enemiesArray[i].transform.position - gameObject.transform.position).normalized);
+            //Debug.DrawRay(gameObject.transform.position, (enemiesArray[i].transform.position - gameObject.transform.position).normalized, Color.green, 10f);
+            if (!Physics.Raycast(gameObject.transform.position, (enemiesArray[i].transform.position - gameObject.transform.position).normalized, damageRadius, blockMask.value)
+                || distance <=1)
             {
                 damage = Mathf.FloorToInt(Mathf.Lerp(maxDamage, minDamage, distance / damageRadius));
                 Debug.Log($"Ho trovato il nemico {enemiesArray[i].name} a " + distance + "gli infliggo " + damage);
-                //target.GetComponent<Enemy>().TakeDamage(damage, Element.Fire);
+                Enemy target = enemiesArray[i].GetComponentInParent<Enemy>();
+                target.TakeDamage(damage, bulletElement);
+                
             }
         }
-        Debug.Log("Colpito");
+        //Debug.Log("Colpito");
         Destroy(gameObject);
     }
 

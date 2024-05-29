@@ -22,6 +22,7 @@ public class FireArmAbility : LeftArm
 
     private void Start()
     {
+        frontAbilityImage.fillAmount = 1;
         abilityTimer = 0; //cooldownTime;
         Mathf.Clamp(abilityTimer, 0, cooldownTime);
         impulseSource = GetComponent<CinemachineImpulseSource>(); //è importante che la camera abbia il tag MainCamera

@@ -135,7 +135,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &8477755311527085608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,11 +148,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c21d5d9c71a7c4fba96e7c18365182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atk: 10
+  type: 3
+  element: 2
+  movementSpeed: 4
+  baseAttack: {fileID: 0}
+  strongAttack: {fileID: 0}
   bulletDestroyTime: 4
-  damageRadius: 10
+  damageRadius: 7
   maxDamage: 20
   minDamage: 5
-  bulletSpeed: 4
+  bulletSpeed: 5
+  bulletElement: 2
   enemyMask:
     serializedVersion: 2
     m_Bits: 64
