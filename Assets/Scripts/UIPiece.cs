@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChoicePieceAnimation : MonoBehaviour
+public class UIPiece : MonoBehaviour
 {
 
     public void Select(Vector3 begin, Vector3 end)

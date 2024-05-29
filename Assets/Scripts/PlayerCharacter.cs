@@ -69,6 +69,8 @@ public class PlayerCharacter : Character
         UpdateHP(def_HP);
         animator = GetComponent<Animator>();
         enemyLayer = LayerMask.GetMask("Enemy");
+        
+        // TO DO: riempimento lista completa dei pezzi, assegnando i numeri esatti corrispondenti al pezzo (da usare in StartChoosingPieces())
 
         Weapon.OnEnemyCollision += DoDamage;
         ChoicePieceManager.OnChangePiece += ModifyComposition;
@@ -308,7 +310,7 @@ public class PlayerCharacter : Character
         Piece selectedPiece = completePiecesList[args.partType][args.newPieceNumber];
         composition[args.partType] = selectedPiece;
     }
-    
+
 }
 
 public class ScenarioArgs : EventArgs

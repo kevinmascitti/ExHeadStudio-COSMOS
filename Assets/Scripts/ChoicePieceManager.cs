@@ -1,19 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.HID;
 
 public class ChoicePieceManager : MonoBehaviour
 {
-    // dizionari con le posizioni utili per la UI di scelta dei pezzi
-    // riempio l'uiPositions con la posizione dei boundingBox presenti in scena utili per gli arrowIndicators
-    // di conseguenza dopo calcolo le posizioni da mettere negli altri dizionari aggiungendo/sottraendo dei valori di x
-    [SerializeField] private Dictionary<PartType, Vector3> firstRightPositions = new Dictionary<PartType, Vector3>();
-    [SerializeField] private Dictionary<PartType, Vector3> uiPositions = new Dictionary<PartType, Vector3>();
-    [SerializeField] private Dictionary<PartType, Vector3> lastLeftPositions = new Dictionary<PartType, Vector3>();
-
-    // dizionario della lista completa dei pezzi presenti nel gioco, ogni pezzo può essere sbloccato o meno
-    [SerializeField] private Dictionary<Piece, GameObject> piecesPrefabs = new Dictionary<Piece, GameObject>();
+    [NonSerialized] public bool isUIOpen = true;
     
     // dizionario dei pezzi presenti nella UI di scelta pezzo
     [SerializeField] private Dictionary<PartType, GameObject> compositionUI = new Dictionary<PartType, GameObject>();
@@ -23,28 +18,82 @@ public class ChoicePieceManager : MonoBehaviour
 
     [SerializeField] private PlayerCharacter player;
     [SerializeField] private Camera choicePiecesCamera;
-    [SerializeField] private PartType selectedPartType; // la partType selezionata nella UI
-    [SerializeField] private int selectedPieceNumber;   // il numero del pezzo selezionato, serve ad accedere alla lista dei modelli di pezzi del player
-
+        
+    // la partType selezionata nella UI
+    [SerializeField] private PartType selectedPartType;
+    // il numero del pezzo selezionato per partType, serve ad accedere alla lista dei modelli di pezzi del player
+    [SerializeField] private Dictionary<PartType, int> selectedPieceNumbers = new Dictionary<PartType, int>();
+    
     public static EventHandler<ChangePieceArgs> OnChangePiece;
 
     // Start is called before the first frame update
     void Start()
     {
-        foreach (PartType partType in player.completePiecesList.Keys)
-        {
-            foreach (Piece piece in player.completePiecesList[partType])
-            {
-                // Riempimento della lista COMPLETA di pezzi
-                // ogni pezzo deve avere il suo nome esatto definito come il nome del prefab 
-                // e ogni pezzo deve essere nella cartella corretta della sua PartType
-                piecesPrefabs.Add(piece, (GameObject) Resources.Load("Pieces/"+partType+"/"+piece.name));
-            }
-        }
+        OpenChoicePiecesUI();
 
+        ChoicePieceButton.OnClickedArrow += UpdateUI;
     }
 
-    public void PreviousPartType()
+    void Update()
+    {
+        if (isUIOpen)
+        {
+            if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                NextPiece();
+            }
+            else if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                PreviousPiece();
+            }
+            else if (Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                NextPartType();
+            }
+            else if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                PreviousPartType();
+            }
+        }
+    }
+
+    public void OpenChoicePiecesUI()
+    {
+        isUIOpen = true;
+        selectedPieceNumbers[PartType.Head] = player.composition[PartType.Head].numberInList;
+        selectedPieceNumbers[PartType.Body] = player.composition[PartType.Body].numberInList;
+        selectedPieceNumbers[PartType.RightArm] = player.composition[PartType.RightArm].numberInList;
+        selectedPieceNumbers[PartType.LeftArm] = player.composition[PartType.LeftArm].numberInList;
+        selectedPieceNumbers[PartType.Legs] = player.composition[PartType.Legs].numberInList;
+
+        Instantiate(player.completePiecesList[PartType.Head][selectedPieceNumbers[PartType.Head]].prefab, partTypeEmpties[PartType.Head].transform.position, new Quaternion(0,0,0,0), partTypeEmpties[PartType.Head].transform);
+        Instantiate(player.completePiecesList[PartType.Body][selectedPieceNumbers[PartType.Body]].prefab, partTypeEmpties[PartType.Body].transform.position, new Quaternion(0,0,0,0), partTypeEmpties[PartType.Body].transform);
+        Instantiate(player.completePiecesList[PartType.RightArm][selectedPieceNumbers[PartType.RightArm]].prefab, partTypeEmpties[PartType.RightArm].transform.position, new Quaternion(0,0,0,0), partTypeEmpties[PartType.RightArm].transform);
+        Instantiate(player.completePiecesList[PartType.LeftArm][selectedPieceNumbers[PartType.LeftArm]].prefab, partTypeEmpties[PartType.LeftArm].transform.position, new Quaternion(0,0,0,0), partTypeEmpties[PartType.LeftArm].transform);
+        Instantiate(player.completePiecesList[PartType.Legs][selectedPieceNumbers[PartType.Legs]].prefab, partTypeEmpties[PartType.Legs].transform.position, new Quaternion(0,0,0,0), partTypeEmpties[PartType.Legs].transform);
+        
+        selectedPartType = PartType.Head;
+        partTypeEmpties[selectedPartType].GetComponent<ArrowIndicator>().ShowArrows();
+    }
+
+    private void UpdateUI(object sender, bool isRight)
+    {
+        if (isUIOpen)
+        {
+            if (isRight)
+            {
+                Debug.Log("Right");
+                NextPiece();
+            }
+            else
+            {
+                PreviousPiece();
+                Debug.Log("Left");
+            }
+        }
+    }
+
+    private void PreviousPartType()
     {
         partTypeEmpties[selectedPartType].GetComponent<ArrowIndicator>().HideArrows();
         int newSelectedPartTypeNumber = (int) (selectedPartType - 1) % Enum.GetValues(typeof(PartType)).Length;
@@ -54,7 +103,7 @@ public class ChoicePieceManager : MonoBehaviour
         partTypeEmpties[selectedPartType].GetComponent<ArrowIndicator>().ShowArrows();
     }
     
-    public void NextPartType()
+    private void NextPartType()
     {
         partTypeEmpties[selectedPartType].GetComponent<ArrowIndicator>().HideArrows();
         int newSelectedPartTypeNumber = (int) (selectedPartType + 1) % Enum.GetValues(typeof(PartType)).Length;
@@ -62,49 +111,49 @@ public class ChoicePieceManager : MonoBehaviour
         partTypeEmpties[selectedPartType].GetComponent<ArrowIndicator>().ShowArrows();
     }
     
-    public void PreviousPiece()
+    private void PreviousPiece()
     {
-        int oldPieceNumber = selectedPieceNumber;
+        int oldPieceNumber = selectedPieceNumbers[selectedPartType];
         FindPreviousUnlockedPieceNumber();
-        int newPieceNumber = selectedPieceNumber;
+        int newPieceNumber = selectedPieceNumbers[selectedPartType];
         OnChangePiece?.Invoke(this, new ChangePieceArgs(selectedPartType, oldPieceNumber, newPieceNumber));
         
-        compositionUI[selectedPartType].GetComponent<ChoicePieceAnimation>().Deselect(uiPositions[selectedPartType], firstRightPositions[selectedPartType]);
-        compositionUI[selectedPartType] = Instantiate(piecesPrefabs[player.completePiecesList[selectedPartType][newPieceNumber]], lastLeftPositions[selectedPartType], new Quaternion(0,0,0,0), choicePiecesCamera.transform);
-        compositionUI[selectedPartType].GetComponent<ChoicePieceAnimation>().Select(lastLeftPositions[selectedPartType], uiPositions[selectedPartType]);
+        compositionUI[selectedPartType].GetComponent<UIPiece>().Deselect(partTypeEmpties[selectedPartType].transform.position, partTypeEmpties[selectedPartType].transform.position + new Vector3 (2,0,0));
+        compositionUI[selectedPartType] = Instantiate(player.completePiecesList[selectedPartType][newPieceNumber].prefab, partTypeEmpties[selectedPartType].transform.position - new Vector3 (2,0,0), new Quaternion(0,0,0,0), partTypeEmpties[selectedPartType].transform);
+        compositionUI[selectedPartType].GetComponent<UIPiece>().Select(partTypeEmpties[selectedPartType].transform.position - new Vector3 (2,0,0), partTypeEmpties[selectedPartType].transform.position);
 
-        UpdateUIInformation(player.completePiecesList[selectedPartType][selectedPieceNumber]);
+        UpdateUIInformation(player.completePiecesList[selectedPartType][selectedPieceNumbers[selectedPartType]]);
     }
     
-    public void NextPiece()
+    private void NextPiece()
     {
-        int oldPieceNumber = selectedPieceNumber;
+        int oldPieceNumber = selectedPieceNumbers[selectedPartType];
         FindNextUnlockedPieceNumber();
-        int newPieceNumber = selectedPieceNumber;
+        int newPieceNumber = selectedPieceNumbers[selectedPartType];
         OnChangePiece?.Invoke(this, new ChangePieceArgs(selectedPartType, oldPieceNumber, newPieceNumber));
         
-        compositionUI[selectedPartType].GetComponent<ChoicePieceAnimation>().Deselect(uiPositions[selectedPartType], lastLeftPositions[selectedPartType]);
-        compositionUI[selectedPartType] = Instantiate(piecesPrefabs[player.completePiecesList[selectedPartType][newPieceNumber]], firstRightPositions[selectedPartType], new Quaternion(0,0,0,0), choicePiecesCamera.transform);
-        compositionUI[selectedPartType].GetComponent<ChoicePieceAnimation>().Select(firstRightPositions[selectedPartType], uiPositions[selectedPartType]);
+        compositionUI[selectedPartType].GetComponent<UIPiece>().Deselect(partTypeEmpties[selectedPartType].transform.position, partTypeEmpties[selectedPartType].transform.position - new Vector3 (2,0,0));
+        compositionUI[selectedPartType] = Instantiate(player.completePiecesList[selectedPartType][newPieceNumber].prefab, partTypeEmpties[selectedPartType].transform.position + new Vector3 (2,0,0), new Quaternion(0,0,0,0), partTypeEmpties[selectedPartType].transform);
+        compositionUI[selectedPartType].GetComponent<UIPiece>().Select(partTypeEmpties[selectedPartType].transform.position + new Vector3 (2,0,0), partTypeEmpties[selectedPartType].transform.position);
 
-        UpdateUIInformation(player.completePiecesList[selectedPartType][selectedPieceNumber]);
+        UpdateUIInformation(player.completePiecesList[selectedPartType][selectedPieceNumbers[selectedPartType]]);
     }
 
-    public void FindPreviousUnlockedPieceNumber()
+    private void FindPreviousUnlockedPieceNumber()
     {
-        selectedPieceNumber--;
-        while (!player.completePiecesList[selectedPartType][selectedPieceNumber].isUnlocked)
-            selectedPieceNumber--;
+        selectedPieceNumbers[selectedPartType]--;
+        while (!player.completePiecesList[selectedPartType][selectedPieceNumbers[selectedPartType]].isUnlocked)
+            selectedPieceNumbers[selectedPartType]--;
     }
 
-    public void FindNextUnlockedPieceNumber()
+    private void FindNextUnlockedPieceNumber()
     {
-        selectedPieceNumber++;
-        while (!player.completePiecesList[selectedPartType][selectedPieceNumber].isUnlocked)
-            selectedPieceNumber++;
+        selectedPieceNumbers[selectedPartType]++;
+        while (!player.completePiecesList[selectedPartType][selectedPieceNumbers[selectedPartType]].isUnlocked)
+            selectedPieceNumbers[selectedPartType]++;
     }
 
-    public void UpdateUIInformation(Piece piece)
+    private void UpdateUIInformation(Piece piece)
     {
         
     }
