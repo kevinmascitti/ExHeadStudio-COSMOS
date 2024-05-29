@@ -6,10 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="64379580-1d6e-469a-b746-3e9f3d4f60ad" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ExHeadStudio-COSMOS/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ExHeadStudio-COSMOS/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Rob Scene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Rob Scene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Piece.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Piece.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerCharacter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerCharacter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ChoicePieceManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ChoicePieceManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,6 +15,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ArrowIndicator.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.mathematics@1.2.6/Unity.Mathematics/Noise/noise3D.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.shadergraph@14.0.10/Editor/Generation/Enumerations/InstancingOptions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMP_ListPool.cs" root0="SKIP_HIGHLIGHTING" />
@@ -82,7 +81,7 @@
       <updated>1714481832168</updated>
       <workItem from="1714481840598" duration="7098000" />
       <workItem from="1714493317529" duration="2131000" />
-      <workItem from="1716884584859" duration="11708000" />
+      <workItem from="1716884584859" duration="14692000" />
     </task>
     <servers />
   </component>
