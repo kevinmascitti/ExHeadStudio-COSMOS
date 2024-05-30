@@ -31,6 +31,14 @@ public class BulletScript : Weapon
 
     private void OnCollisionEnter(Collision collision)
     {
+        if(collision.gameObject.TryGetComponent<FireInteractive>(out FireInteractive fireInteract))
+        {
+            fireInteract.InteractionsType(fireInteract.typeOfObjectInteraction);
+            //FireInteractions interactionsConst = fireInteract.GetComponent<FireInteractions>();
+            //fireInteract.InteractionsType(FireInteractions.Destructible);
+        }
+
+
         //qui inserire suoni, effetti
         int hits = Physics.OverlapSphereNonAlloc(gameObject.transform.position, damageRadius, enemiesArray, enemyMask);
 
