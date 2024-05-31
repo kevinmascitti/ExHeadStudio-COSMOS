@@ -66,6 +66,7 @@ public class PlayerMovement : MonoBehaviour
         //Vector3 inputs = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));//.normalized;
         playerVector.x = inputs.x * movementSpeed;
         playerVector.z = inputs.y * movementSpeed;
+        //float yMovement = playerVector.y;
         //playerVector.x = inputs.x * movementSpeed * mainCamera.right.magnitude;
         //playerVector.z = inputs.y * movementSpeed * mainCamera.forward.magnitude;
 
@@ -75,11 +76,16 @@ public class PlayerMovement : MonoBehaviour
 
         //float mainCameraX = mainCamera.right.magnitude;
         //float mainCameraZ = mainCamera.forward.magnitude;
-        playerVector = mainCamera.right * playerVector.x + mainCamera.forward * playerVector.z;
+        Vector3 inputMovement = mainCamera.right*playerVector.x + mainCamera.forward*playerVector.z;
+
+        inputMovement.y = playerVector.y;
+        playerVector = inputMovement;
+        //playerVector.y=yMovement;
+        //playerVector = new Vector3();
         //playerVector = mainCamera.right + mainCamera.forward + new Vector3(inputs.x * movementSpeed, 0f, inputs.z * movementSpeed);
         //Debug.Log("Update: " + playerVector);
         //playerVector.y = 0f;
-
+       //Debug.Log("Right: "+ mainCamera.right);
         // Se il player è a terra e si preme il tasto di salto, il player salta
         if (Input.GetKeyDown(KeyCode.Space) && playerController.isGrounded)
         {
@@ -110,14 +116,11 @@ public class PlayerMovement : MonoBehaviour
 
 
         //Debug.Log(playerVector.y);
-        playerController.Move(playerVector * Time.deltaTime);
+        //Debug.Log(playerVector);
 
         HandleGravity();
-
-    }
-    private void FixedUpdate()
-    {
         HandleJump();
+        playerController.Move(playerVector * Time.deltaTime);
     }
 
     private void HandleJumpVariables()
@@ -139,8 +142,8 @@ public class PlayerMovement : MonoBehaviour
             isJumping = true;
             isJumpPressed = false;
             playerVector.y = initialJumpVelocity;
-
-            //Debug.Log("Jump: " + playerVector.y);
+            
+            Debug.Log("Jump: " + playerVector.y);
         }
         else if (playerController.isGrounded)
         {
