@@ -17,7 +17,7 @@ public class LeftArm : Piece
         }
     }
 
-    //funzione che regola le abilità specifiche di un braccio
+    //funzione che regola le abilitï¿½ specifiche di un braccio
     public virtual void LeftArmAbility()
     {
 

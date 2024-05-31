@@ -25,7 +25,16 @@ public class PlayerCharacter : Character
     public float def_HP = 100;
     //public Slider sliderHP;
 
-    public Dictionary<PartType, Piece> composition;
+    [SerializeField] private List<Piece> headList;
+    [SerializeField] private List<Piece> leftArmList;
+    [SerializeField] private List<Piece> rightArmList;
+    [SerializeField] private List<Piece> bodyList;
+    [SerializeField] private List<Piece> legsList;
+    // lista COMPLETA dei PEZZI presenti nel modello da disabilitare o abilitare
+    public Dictionary<PartType, List<Piece>> completePiecesList = new Dictionary<PartType, List<Piece>>();
+    
+    //lista attuale dei soli pezzi attivati nel modello
+    public Dictionary<PartType, Piece> composition = new Dictionary<PartType, Piece>();
     public Accessory accessory;
     
     public Animator animator;
@@ -36,6 +45,8 @@ public class PlayerCharacter : Character
     [SerializeField] private float speed = 5f;
     [SerializeField] private float dodgeDistance = 10f;
     private Vector3 movementDirection;
+    public float maxDistanceNPC = 5f;
+    public LayerMask npcLayer;
 
     private Element activeRxElement;//Elemento nel braccio destro
     private Element activeSxElement;//Elemento nel braccio sinistro
@@ -46,6 +57,9 @@ public class PlayerCharacter : Character
 
     public static EventHandler OnPlayerDeath;
     public static EventHandler<ScenarioArgs> OnScenarioBegin;
+    public static EventHandler OnChoicePieces;
+    public static EventHandler OnEndChoicePieces;
+
     public static System.Action OnUpdate;
 
     //Aggiunte per la Healthbar
@@ -71,7 +85,19 @@ public class PlayerCharacter : Character
         animator = GetComponent<Animator>();
         enemyLayer = LayerMask.GetMask("Enemy");
 
+        completePiecesList[PartType.Head] = headList;
+        completePiecesList[PartType.LeftArm] = leftArmList;
+        completePiecesList[PartType.RightArm] = rightArmList;
+        completePiecesList[PartType.Body] = bodyList;
+        completePiecesList[PartType.Legs] = legsList;
+        composition[PartType.Head] = completePiecesList[PartType.Head][0];
+        composition[PartType.LeftArm] = completePiecesList[PartType.LeftArm][0];
+        composition[PartType.RightArm] = completePiecesList[PartType.RightArm][0];
+        composition[PartType.Body] = completePiecesList[PartType.Body][0];
+        composition[PartType.Legs] = completePiecesList[PartType.Legs][0];
+        
         Weapon.OnEnemyCollision += DoDamage;
+        ChoicePieceManager.OnChangePiece += ModifyComposition;
     }
 
     public void Update()
@@ -147,6 +173,8 @@ public class PlayerCharacter : Character
 
         def_HP = Mathf.Clamp(currentHP, 0, MAX_HP);
         UpdateHPUI();
+
+        CheckForNPC();
     }
 
     public override void UpdateHP(float newHP)
@@ -304,6 +332,31 @@ public class PlayerCharacter : Character
         Debug.Log("Backward Dodge done!");
     }
 
+    private void ModifyComposition(object sender, ChangePieceArgs args)
+    {
+        completePiecesList[args.partType][args.oldPieceNumber].gameObject.SetActive(false);
+        completePiecesList[args.partType][args.newPieceNumber].gameObject.SetActive(true);
+        Piece selectedPiece = completePiecesList[args.partType][args.newPieceNumber];
+        composition[args.partType] = selectedPiece;
+    }
+
+    void CheckForNPC()
+    {
+        RaycastHit raycastHit;
+        if (Physics.Raycast(transform.position, transform.forward, out raycastHit,
+                maxDistanceNPC, npcLayer)
+            && raycastHit.transform.TryGetComponent(out NPC npc)
+            && Input.GetKeyDown(KeyCode.T))
+        {
+            OnChoicePieces?.Invoke(this, EventArgs.Empty);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            OnEndChoicePieces?.Invoke(this, EventArgs.Empty);
+        }
+    }
+    
 }
 
 public class ScenarioArgs : EventArgs
