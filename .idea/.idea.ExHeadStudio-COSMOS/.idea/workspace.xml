@@ -5,28 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="64379580-1d6e-469a-b746-3e9f3d4f60ad" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.ExHeadStudio-COSMOS/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ExHeadStudio-COSMOS/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Cyrus_Cosmos_Mondo_Fantasy_New_Arms.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Models/Cyrus_Cosmos_Mondo_Fantasy_New_Arms.fbx.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Scelta_Parti/Ascia.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Models/Scelta_Parti/Ascia.fbx.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Scelta_Parti/Braccio_SX_Cyrus.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Models/Scelta_Parti/Braccio_SX_Cyrus.fbx.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Scelta_Parti/Braccio_SX_Torcia_Umana.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Models/Scelta_Parti/Braccio_SX_Torcia_Umana.fbx.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Scelta_Parti/Gambe_Cyrus.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Models/Scelta_Parti/Gambe_Cyrus.fbx.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Scelta_Parti/Testa_Cyrus.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Models/Scelta_Parti/Testa_Cyrus.fbx.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Scelta_Parti/Torso_Cyrus.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Models/Scelta_Parti/Torso_Cyrus.fbx.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Pieces/Braccio_DX_Cyrus.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Pieces/Braccio_DX_Cyrus.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Pieces/Braccio_SX_Cyrus.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Pieces/Braccio_SX_Cyrus.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/NextButton.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/NextButton.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/PreviousButton.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/PreviousButton.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ArrowIndicator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ArrowIndicator.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/ChoicePieceManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ChoicePieceManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Piece.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Piece.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerCharacter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerCharacter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,7 +91,7 @@
       <workItem from="1714481840598" duration="7098000" />
       <workItem from="1714493317529" duration="2131000" />
       <workItem from="1716884584859" duration="26703000" />
-      <workItem from="1717060638170" duration="17220000" />
+      <workItem from="1717060638170" duration="17246000" />
     </task>
     <servers />
   </component>

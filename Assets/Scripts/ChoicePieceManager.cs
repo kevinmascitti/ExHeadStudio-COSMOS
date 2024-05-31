@@ -120,6 +120,7 @@ public class ChoicePieceManager : MonoBehaviour
                 partTypeEmpties[PartType.Legs].transform);
 
             selectedPartType = PartType.Head;
+            UpdateUIInformation(player.completePiecesList[selectedPartType][selectedPieceNumbers[selectedPartType]]);
             partTypeEmpties[selectedPartType].GetComponent<ArrowIndicator>().ShowArrows();
 
             string scriptName = "Outline";
