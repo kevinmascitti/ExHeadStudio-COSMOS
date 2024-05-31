@@ -15,8 +15,8 @@ public class FireInteractive : MonoBehaviour
 
     private void Awake()
     {
-
-        fireLight.enabled = false;
+        if(fireLight)
+            fireLight.enabled = false;
     }
 
     public void InteractionsType(FireInteractions interactionType)

@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LeftArm : Piece
+public class LeftArm : MonoBehaviour
 {
-
-    void Start()
+    private PartType type;
+    
+    public void Start()
     {
         type = PartType.LeftArm;
     }
-    public virtual void Update()
+    public void Update()
     {
         if (Input.GetKey(KeyCode.V))//da sostituire con il tasto del mouse
         {

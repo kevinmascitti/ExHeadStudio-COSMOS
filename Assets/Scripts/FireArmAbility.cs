@@ -24,16 +24,16 @@ public class FireArmAbility : LeftArm
     {
         frontAbilityImage.fillAmount = 1;
     }
-    private void Start()
+    public void Start()
     {
-
+        base.Start();
         abilityTimer = 0; //cooldownTime;
         Mathf.Clamp(abilityTimer, 0, cooldownTime);
-        impulseSource = GetComponent<CinemachineImpulseSource>(); //è importante che la camera abbia il tag MainCamera
+        impulseSource = GetComponent<CinemachineImpulseSource>(); //ï¿½ importante che la camera abbia il tag MainCamera
 
     }
 
-    public override void Update()
+    public void Update()
     {
         base.Update();
         abilityTimer += Time.deltaTime;
