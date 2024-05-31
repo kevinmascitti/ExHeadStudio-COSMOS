@@ -155,7 +155,7 @@ MonoBehaviour:
   baseAttack: {fileID: 0}
   strongAttack: {fileID: 0}
   bulletDestroyTime: 4
-  damageRadius: 3
+  damageRadius: 5
   maxDamage: 20
   minDamage: 5
   bulletSpeed: 5
