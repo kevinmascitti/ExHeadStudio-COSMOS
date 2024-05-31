@@ -23,7 +23,7 @@ public class PlayerCharacter : Character
 {
     public float MAX_HP = 100;
     public float def_HP = 100;
-    public Slider sliderHP;
+    //public Slider sliderHP;
 
     public Dictionary<PartType, Piece> composition;
     public Accessory accessory;
@@ -37,12 +37,16 @@ public class PlayerCharacter : Character
     [SerializeField] private float dodgeDistance = 10f;
     private Vector3 movementDirection;
 
+    private Element activeRxElement;//Elemento nel braccio destro
+    private Element activeSxElement;//Elemento nel braccio sinistro
+
+
     [NonSerialized] public Scenario currentScenario;
     [NonSerialized] public Scenario defaultScenario;
 
     public static EventHandler OnPlayerDeath;
     public static EventHandler<ScenarioArgs> OnScenarioBegin;
-
+    public static System.Action OnUpdate;
 
     //Aggiunte per la Healthbar
     private float lerpTimer;
@@ -55,6 +59,7 @@ public class PlayerCharacter : Character
     // Start is called before the first frame update
     public void Awake()
     {
+        base.Awake();
         isPlayer = true;
 
         //if (sliderHP)
@@ -71,6 +76,8 @@ public class PlayerCharacter : Character
 
     public void Update()
     {
+        if(OnUpdate != null) OnUpdate();
+
         if (Time.time >= nextActionTimer && Input.GetKeyDown(KeyCode.Z))
         {
             BaseAttack();
@@ -224,7 +231,8 @@ public class PlayerCharacter : Character
 
     private void DoDamage(object sender, EnemyCollisionArgs args)
     {
-        args.enemy.TakeDamage(stats.atk + args.hitter.atk - args.enemy.def);
+        args.enemy.TakeDamage(stats.atk + args.hitter.atk - args.enemy.def, activeRxElement);
+        //Da sistemare perché ora viene passato solo l'elemento del braccio destro
     }
     
     private void BaseAttack()

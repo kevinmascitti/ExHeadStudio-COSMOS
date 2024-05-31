@@ -17,7 +17,7 @@ public class EnemyHitter : MonoBehaviour
             OnEnemyCollision?.Invoke(this, new EnemyCollisionArgs(other.gameObject.GetComponent<Enemy>(), this));
         }
     }
-    
+
 }
 
 public class EnemyCollisionArgs : EventArgs 

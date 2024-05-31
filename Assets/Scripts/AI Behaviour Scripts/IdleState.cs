@@ -18,7 +18,7 @@ public class IdleState : StateMachineBehaviour
     {
         controller = animator.GetComponent<StateController>();
         timer = 0f;
-        player = GameObject.FindGameObjectWithTag("Player").transform; 
+        player = controller.GetPlayerTransform();
         stateDuration=controller.GetIdleStateDuration();
         chaseRange=controller.GetChaseRange();
     }
