@@ -4,8 +4,8 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Windows.Speech;
-using static UnityEditor.Rendering.FilterWindow;
 using FixedUpdate = UnityEngine.PlayerLoop.FixedUpdate;
+using static UnityEditor.Rendering.FilterWindow;
 
 public enum Element
 {
@@ -118,7 +118,7 @@ public class Character : MonoBehaviour
         {
             statusTimer[args.element].Stop();
                 statusCharge[args.element] = 0;
-                statusText.text = "0";
+                //statusText.text = "0";
         }
         else if (args.type == TimerType.Effect)
         {
@@ -158,9 +158,9 @@ public class Character : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int damage, Element element)
+    public void TakeDamage(int damage, Element element, LayerMask layer)
     {
-
+        Debug.Log(layer.ToString());
         UpdateHP(currentHP-damage);
         TakeElementalStatus(damage, element);
         if (currentHP <= 0)
@@ -176,7 +176,7 @@ public class Character : MonoBehaviour
 
         if (!effectsApplied[element] )
         {
-        Debug.Log("Applicazione stato:" + element);
+       // Debug.Log("Applicazione stato:" + element);
             
             statusCharge[element] += elementalDamage;
             //statusText.text = statusCharge[element].ToString();

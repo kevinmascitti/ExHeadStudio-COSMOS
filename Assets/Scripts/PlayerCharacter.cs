@@ -261,7 +261,7 @@ public class PlayerCharacter : Character
 
     private void DoDamage(object sender, EnemyCollisionArgs args)
     {
-        args.enemy.TakeDamage(stats.atk + args.hitter.atk - args.enemy.def, activeRxElement);
+        args.enemy.TakeDamage(stats.atk + args.hitter.atk - args.enemy.def, activeRxElement, args.hitter.GetComponentInParent<LayerMask>());
         //Da sistemare perché ora viene passato solo l'elemento del braccio destro
     }
     

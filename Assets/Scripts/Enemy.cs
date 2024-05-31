@@ -57,7 +57,7 @@ public class Enemy : Character
     private void DoDamage(object sender, PlayerCollisionArgs args)
     {
 
-        args.player.TakeDamage(stats.elemAtk[enemyElement] - args.player.def, enemyElement);
+        args.player.TakeDamage(stats.elemAtk[enemyElement] - args.player.def, enemyElement, args.hitter.gameObject.layer);
     }
 
     public override void Die()
