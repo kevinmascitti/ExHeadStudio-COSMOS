@@ -54,7 +54,7 @@ public class BulletScript : Weapon
                 damage = Mathf.FloorToInt(Mathf.Lerp(maxDamage, minDamage, distance / damageRadius));
                 Debug.Log($"Ho trovato il nemico {enemiesArray[i].name} a " + distance + "gli infliggo " + damage);
                 Enemy target = enemiesArray[i].GetComponentInParent<Enemy>();
-                target.TakeDamage(damage, bulletElement, GetComponent<LayerMask>());
+                target.TakeDamage(damage, bulletElement,enemyMask);
                 
             }
         }
