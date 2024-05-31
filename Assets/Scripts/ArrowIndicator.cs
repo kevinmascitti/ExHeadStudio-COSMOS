@@ -4,36 +4,41 @@ public class ArrowIndicator : MonoBehaviour
 {
     public float distanceFromObject = 1.0f;
 
-    private const int nArrows = 2;
     private GameObject[] arrows;
+    [SerializeField] private Vector2 rightPos;
+    [SerializeField] private Vector2 leftPos;
+    [SerializeField] private GameObject canvasChoicePieces;
 
     void Start()
     {
-        arrows = new GameObject[nArrows];
-        for (int i = 0; i < nArrows; i++)
-        {
-            arrows[i] = Instantiate((GameObject) Resources.Load("UIArrow"));
-            arrows[i].SetActive(false);
-        }
+        Bounds bounds = GetComponent<BoxCollider>().bounds;
+        Vector3 center = bounds.center;
+        Vector3 extents = bounds.extents;
+        
+        arrows = new GameObject[2];
+        arrows[0] = InstantiateButton(true, rightPos);
+        arrows[1] = InstantiateButton(false, leftPos);
+        arrows[0].SetActive(false);
+        arrows[1].SetActive(false);
+    }
+    
+    public GameObject InstantiateButton(bool isRight, Vector2 position)
+    {
+        GameObject newButton;
+        if (isRight)
+            newButton = Instantiate((GameObject) Resources.Load("NextButton"), canvasChoicePieces.transform);
+        else
+            newButton = Instantiate((GameObject) Resources.Load("PreviousButton"), canvasChoicePieces.transform);
+
+        RectTransform rectTransform = newButton.GetComponent<RectTransform>();
+        rectTransform.anchoredPosition = position;
+        return newButton;
     }
 
     public void ShowArrows()
     {
-        Bounds bounds = GetComponent<BoxCollider>().bounds;
-
-        Vector3 center = bounds.center;
-        Vector3 extents = bounds.extents;
-
-        Vector3[] positions = new Vector3[nArrows];
-        positions[2] = new Vector3(center.x + extents.x + distanceFromObject, center.y, center.z); // Destra
-        positions[3] = new Vector3(center.x - extents.x - distanceFromObject, center.y, center.z); // Sinistra
-
-        for (int i = 0; i < nArrows; i++)
-        {
-            arrows[i].SetActive(true);
-            arrows[i].transform.position = positions[i];
-            arrows[i].transform.LookAt(center);
-        }
+        arrows[0].SetActive(true);
+        arrows[1].SetActive(true);
     }
 
     public void HideArrows()

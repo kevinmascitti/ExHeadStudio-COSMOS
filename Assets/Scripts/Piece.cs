@@ -11,12 +11,14 @@ public class Piece : MonoBehaviour
     public PartType type;
     public bool isUnlocked = true;
     public Stats stats;
-    
+    public Element element;
+    public string description;
+
     // Start is called before the first frame update
     void Start()
     {
         name = gameObject.name;
-        prefab = (GameObject) Resources.Load("Pieces/" + type.DisplayName() + "/" + name);
+        // prefab = (GameObject) Resources.Load("Pieces/" + name);
         stats = new Stats();
     }
 
