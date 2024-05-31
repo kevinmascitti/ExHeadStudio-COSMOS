@@ -28,7 +28,7 @@ public class PatrolState : StateMachineBehaviour
         chaseRange = controller.GetChaseRange();
         agent.speed = controller.GetPatrollingSpeed();
         agent.SetDestination(wayPoints[Random.Range(0, wayPoints.Count)].position);
-        Debug.Log(agent.destination);
+        
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -37,7 +37,7 @@ public class PatrolState : StateMachineBehaviour
         if(agent.remainingDistance <= agent.stoppingDistance)
         {
             agent.SetDestination(wayPoints[Random.Range(0, wayPoints.Count)].position);
-            Debug.Log(agent.destination);
+            //Debug.Log(agent.destination);
         }
         
         if(timer > stateDuration) {
