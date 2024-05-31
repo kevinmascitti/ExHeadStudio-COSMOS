@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1682,6 +1682,11 @@ MonoBehaviour:
   atkSpeed: 0
   MAX_HP: 100
   def_HP: 100
+  headList: []
+  leftArmList: []
+  rightArmList: []
+  bodyList: []
+  legsList: []
   accessory: {fileID: 0}
   animator: {fileID: 0}
   attackRange: 0
@@ -1689,6 +1694,10 @@ MonoBehaviour:
   nextActionTimer: 1
   speed: 5
   dodgeDistance: 10
+  maxDistanceNPC: 5
+  npcLayer:
+    serializedVersion: 2
+    m_Bits: 0
   chipSpeed: 2
   frontHealthBar: {fileID: 1386568992}
   backHealthBar: {fileID: 1754421642}
@@ -3145,8 +3154,8 @@ MonoBehaviour:
   m_YAxis:
     Value: 1
     m_SpeedMode: 0
-    m_MaxSpeed: 0.5
-    m_AccelTime: 0.5
+    m_MaxSpeed: 2
+    m_AccelTime: 2
     m_DecelTime: 0.1
     m_InputAxisName: Mouse Y
     m_InputAxisValue: 0
@@ -3365,7 +3374,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1017469688}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.03200203, y: 0.000000017101938, z: -5.475773e-10, w: 0.9994878}
+  m_LocalRotation: {x: 0.03200203, y: -1e-45, z: -0, w: 0.9994878}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3638,7 +3647,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1112001760}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.044737, y: 0.000000023654877, z: -0.0000000010593088, w: 0.9989988}
+  m_LocalRotation: {x: 0.044736985, y: -3e-45, z: -0, w: 0.9989988}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3891,7 +3900,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1187846765}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.03200203, y: 0.000000017101938, z: -5.475773e-10, w: 0.9994878}
+  m_LocalRotation: {x: 0.03200203, y: -1e-45, z: -0, w: 0.9994878}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4201,7 +4210,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1252855588}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.03200203, y: 0.000000017101938, z: -5.475773e-10, w: 0.9994878}
+  m_LocalRotation: {x: 0.03200203, y: -1e-45, z: 0, w: 0.9994878}
   m_LocalPosition: {x: 0, y: 2.28, z: -7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4741,7 +4750,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6afb001b8e2b1924ca7074323019dffe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: 
+  numberInList: 0
+  prefab: {fileID: 0}
   type: 3
+  isUnlocked: 1
+  element: 0
+  description: 
   cooldownTime: 2
   bulletStartPosition: {fileID: 1079114598}
   bulletPrefab: {fileID: 146416292059051500, guid: c370b60197b50344aade3d8246fb8d9e,
@@ -4760,7 +4775,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ce290e7f0c4af44aa474c44e9efe379, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: 
+  numberInList: 0
+  prefab: {fileID: 0}
   type: 3
+  isUnlocked: 1
+  element: 0
+  description: 
 --- !u!114 &1453980233
 MonoBehaviour:
   m_ObjectHideFlags: 0
