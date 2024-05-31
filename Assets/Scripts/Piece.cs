@@ -15,7 +15,7 @@ public class Piece : MonoBehaviour
     public string description;
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         name = gameObject.name;
         // prefab = (GameObject) Resources.Load("Pieces/" + name);
@@ -23,7 +23,7 @@ public class Piece : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         
     }

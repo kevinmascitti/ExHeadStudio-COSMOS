@@ -69,6 +69,8 @@ public class PlayerCharacter : Character
     public Image backHealthBar;
     //public Image characterIcon;
     public Image[] icons;
+    [SerializeField] private GameObject healthBar;
+    [SerializeField] private GameObject abilitiesSection;
 
     // Start is called before the first frame update
     public void Awake()
@@ -349,11 +351,19 @@ public class PlayerCharacter : Character
             && Input.GetKeyDown(KeyCode.T))
         {
             OnChoicePieces?.Invoke(this, EventArgs.Empty);
+            GetComponent<PlayerMovement>().enabled = false;
+            Cursor.lockState = CursorLockMode.None;
+            healthBar.SetActive(false);
+            abilitiesSection.SetActive(false);
         }
 
         if (Input.GetKeyDown(KeyCode.Y))
         {
             OnEndChoicePieces?.Invoke(this, EventArgs.Empty);
+            GetComponent<PlayerMovement>().enabled = true;
+            Cursor.lockState = CursorLockMode.Locked;
+            healthBar.SetActive(true);
+            abilitiesSection.SetActive(true);
         }
     }
     
