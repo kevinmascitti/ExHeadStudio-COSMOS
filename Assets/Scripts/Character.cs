@@ -129,7 +129,7 @@ public class Character : MonoBehaviour
             effectCountdown[args.element] -= 1;
             effectTimer[args.element].Begin();
 
-                effectText.text = effectCountdown[args.element].ToString();
+                //effectText.text = effectCountdown[args.element].ToString();
             }
             else if (effectCountdown[args.element] == 1)
             {
@@ -138,7 +138,7 @@ public class Character : MonoBehaviour
                 effectsApplied[args.element] = false;
                 Debug.Log("Rimozione effetto: " + args.element);
                 effectTimer[args.element].Stop();
-                effectText.text = effectCountdown[args.element].ToString();
+               // effectText.text = effectCountdown[args.element].ToString();
             }
         }
             
@@ -179,7 +179,7 @@ public class Character : MonoBehaviour
         Debug.Log("Applicazione stato:" + element);
             
             statusCharge[element] += elementalDamage;
-            statusText.text = statusCharge[element].ToString();
+            //statusText.text = statusCharge[element].ToString();
             statusTimer[element].Begin();
         }
         //else;
@@ -189,7 +189,7 @@ public class Character : MonoBehaviour
             statusCharge[element] = 0;
             ApplyElementEffect(element);
             statusTimer[element].Stop();
-            statusText.text = statusCharge[element].ToString();
+            //statusText.text = statusCharge[element].ToString();
         }
 
     }
@@ -201,7 +201,7 @@ public class Character : MonoBehaviour
 
         effectCountdown[element] = 5;
         effectTimer[element].Begin();
-        effectText.text = effectCountdown[element].ToString();
+        //effectText.text = effectCountdown[element].ToString();
         // effectTimer[element] = 5f;
 
     }
