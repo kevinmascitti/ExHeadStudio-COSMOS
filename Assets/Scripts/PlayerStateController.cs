@@ -8,7 +8,9 @@ public class PlayerStateController : MonoBehaviour
     PlayerMovement player;
     private Animator playerAnimator;
 
-    private bool isJumping;
+    private bool isJumpAscension;
+    private bool isJumpPeak;
+    private bool isJumpFalling;
     private bool isMoving;
     private bool isIdling;
     void Awake()
@@ -21,10 +23,14 @@ public class PlayerStateController : MonoBehaviour
     void Update()
     {
         isMoving = player.GetIsMoving();
-        isJumping = player.GetIsJumping();
+        isJumpAscension = player.GetIsJumpAscension();
+        isJumpPeak = player.GetIsJumpPeak();
+        isJumpFalling = player.GetIsJumpFalling();
 
-        isIdling = !isMoving && !isJumping;
-        playerAnimator.SetBool("isJumping", isJumping);
+        isIdling = !isMoving && !isJumpAscension && !isJumpPeak && !isJumpFalling;
+        playerAnimator.SetBool("isJumpAscension", isJumpAscension);
+        playerAnimator.SetBool("isJumpPeak", isJumpPeak);
+        playerAnimator.SetBool("isJumpFalling", isJumpFalling);
         playerAnimator.SetBool("isMoving", isMoving);
         playerAnimator.SetBool("isIdle", isIdling);
     }

@@ -22,13 +22,16 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Variabili Movimento")]
     private bool isJumpPressed;
-    private bool isJumping = false;
+    private bool isJumpAscension = false;
+    private bool isJumpPeak = false;
+    private bool isJumpFalling = false; 
     float gravity = -9.81f;
     float groundedGravity = -0.5f;
     Vector3 playerVector;
     float initialJumpVelocity;
     Transform playerTransform;
-    private float velocity;
+    private float horizontalVelocity;
+    public float verticalVelocity;
     Vector3 lastPositionAcquired;
 
     [Header("Animazioni Movimento")]
@@ -41,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         
-        velocity = 0f;
+        horizontalVelocity = 0f;
         playerController = GetComponent<CharacterController>();
         HandleJumpVariables();
         playerVector = new Vector3(0f, 0f, 0f);
@@ -87,7 +90,7 @@ public class PlayerMovement : MonoBehaviour
         //playerVector.y = 0f;
        //Debug.Log("Right: "+ mainCamera.right);
         // Se il player è a terra e si preme il tasto di salto, il player salta
-        if (Input.GetKeyDown(KeyCode.Space) && playerController.isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             isJumpPressed = true;
             //Debug.Log("Salto");
@@ -113,14 +116,13 @@ public class PlayerMovement : MonoBehaviour
         //Muove il player, calcola la gravità da applicare e gestisce il salto
 
         ComputePlayerVelocity(playerTransform.position);
-
-
-        //Debug.Log(playerVector.y);
-        //Debug.Log(playerVector);
-
+        //if(!playerController.isGrounded)
+        //  Debug.Log(verticalVelocity);
+            //Debug.Log(playerVector);
         HandleGravity();
         HandleJump();
         playerController.Move(playerVector * Time.deltaTime);
+        
     }
 
     private void HandleJumpVariables()
@@ -132,23 +134,30 @@ public class PlayerMovement : MonoBehaviour
         //Debug.Log("Velocità: " + initialJumpVelocity);
 
     }
-
     private void HandleJump()
     {
-        //Debug.Log(isJumping + ", " + isJumpPressed);
-        if (isJumpPressed)
+        //Debug.Log(isJumpAscension + ", " + isJumpPressed);
+        if (isJumpPressed && playerController.isGrounded)
         {
             //Debug.Log("Jumping");
-            isJumping = true;
+            isJumpAscension = true;
             isJumpPressed = false;
             playerVector.y = initialJumpVelocity;
             
-            Debug.Log("Jump: " + playerVector.y);
+            
+        }
+        else if(isJumpAscension && verticalVelocity <= 1f && !playerController.isGrounded)
+        {
+            Debug.Log("Falling");
+            isJumpPeak=false;
+            isJumpFalling = true;
         }
         else if (playerController.isGrounded)
         {
             //Debug.Log("Stop jump");
-            isJumping = false;
+            isJumpAscension = false;
+            isJumpPeak = false;
+            isJumpFalling=false;
         }
     }
 
@@ -170,17 +179,29 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector2 playerPosition =  new Vector2(newPosition.x, newPosition.z);
         Vector2 lastPlayerPos = new Vector2(lastPositionAcquired.x, lastPositionAcquired.z);
-        velocity = (playerPosition - lastPlayerPos).magnitude / Time.deltaTime;
+        float playerPositionY = newPosition.y;
+        float lastPlayerPosY = lastPositionAcquired.y;
+        verticalVelocity = (playerPositionY - lastPlayerPosY) / Time.deltaTime;
+        horizontalVelocity = (playerPosition - lastPlayerPos).magnitude / Time.deltaTime;
         lastPositionAcquired = newPosition;
     }
-
-    public bool GetIsJumping()
+    
+    public bool GetIsJumpAscension()
     {
-        return isJumping;
+        return isJumpAscension;
+    }
+
+    public bool GetIsJumpPeak()
+    {
+        return isJumpPeak;
+    }
+    public bool GetIsJumpFalling()
+    {
+        return isJumpFalling;
     }
     public bool GetIsMoving()
     {
-        return velocity != 0f;
+        return horizontalVelocity != 0f && playerController.isGrounded;
     }
 
 

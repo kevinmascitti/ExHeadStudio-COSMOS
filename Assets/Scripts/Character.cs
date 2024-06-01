@@ -160,7 +160,7 @@ public class Character : MonoBehaviour
 
     public void TakeDamage(int damage, Element element, LayerMask layer)
     {
-        Debug.Log(layer.ToString());
+       // Debug.Log(layer.ToString());
         UpdateHP(currentHP-damage);
         TakeElementalStatus(damage, element);
         if (currentHP <= 0)
