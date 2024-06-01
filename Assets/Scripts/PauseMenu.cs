@@ -22,12 +22,13 @@ public class PauseMenu : MonoBehaviour
         if(Input.GetKeyUp(KeyCode.Escape)) 
         { 
             PauseGame();
-            Cursor.lockState = CursorLockMode.None;
         }
     }
 
     public void PauseGame()
     {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         player.GetComponent<PlayerMovement>().enabled = false;
         pauseMenu.enabled = true;
         foreach(var item in UI_elements) 
@@ -42,6 +43,7 @@ public class PauseMenu : MonoBehaviour
         player.GetComponent<PlayerMovement>().enabled = true;
         pauseMenu.enabled = false;
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         foreach (var item in UI_elements)
         {
             item.enabled = true;

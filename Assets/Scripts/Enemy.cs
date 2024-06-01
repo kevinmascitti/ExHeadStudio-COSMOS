@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using static UnityEditor.Rendering.FilterWindow;
+//using static UnityEditor.Rendering.FilterWindow;
 
 public class Enemy : Character
 {
