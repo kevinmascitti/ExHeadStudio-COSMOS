@@ -11,6 +11,8 @@ using UnityEngine.UIElements;
 public class PlayerMovement : MonoBehaviour
 {
 
+    
+
     [Header("Controlli Movimento")]
     [SerializeField, Range(0f, 100f)] float movementSpeed;
     //[SerializeField, Range(0f, 10f)] float speedMultiplier;
@@ -38,7 +40,6 @@ public class PlayerMovement : MonoBehaviour
 
 
     [Header("Camera")]
-
     [SerializeField] private Transform mainCamera; //non basta assegnare la virtual camera, serve la MAIN
     [SerializeField] float rotationSpeed = 4f;
     private void Awake()
@@ -140,11 +141,12 @@ public class PlayerMovement : MonoBehaviour
         if (isJumpPressed && playerController.isGrounded)
         {
             //Debug.Log("Jumping");
+            //StartCoroutine(JumpAnimationTimeOffset());
             isJumpAscension = true;
             isJumpPressed = false;
             playerVector.y = initialJumpVelocity;
-            
-            
+
+
         }
         else if(isJumpAscension && verticalVelocity <= 1f && !playerController.isGrounded)
         {
@@ -185,7 +187,13 @@ public class PlayerMovement : MonoBehaviour
         horizontalVelocity = (playerPosition - lastPlayerPos).magnitude / Time.deltaTime;
         lastPositionAcquired = newPosition;
     }
-    
+
+    IEnumerator JumpAnimationTimeOffset()
+    {
+        yield return new WaitForSeconds(1f);
+        playerVector.y = initialJumpVelocity;
+    }
+
     public bool GetIsJumpAscension()
     {
         return isJumpAscension;

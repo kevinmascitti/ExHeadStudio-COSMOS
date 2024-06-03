@@ -235,7 +235,7 @@ public class Character : MonoBehaviour
     }
     public virtual void Die()
     {
-        // animazione personaggio che muore???
-        // VFX nuvoletta di respawn e transizione
+
+
     }
 }

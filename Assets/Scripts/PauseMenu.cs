@@ -1,4 +1,5 @@
 using Cinemachine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,14 +10,19 @@ public class PauseMenu : MonoBehaviour
     //Lo script è assegnato ad una empty che gestisce tutta la HUD del giocatore. Il menù di pausa è un cavas che viene acceso/spento 
     //premendo escape; i comandi sono disabilitati quando il menù è attivo.
     [SerializeField] Canvas pauseMenu;
+    [SerializeField] Canvas deathScreen;
     [SerializeField] Canvas[] UI_elements;
     [SerializeField] GameObject player;
 
     private void Awake()
     {
         pauseMenu.enabled = false;
+        deathScreen.enabled = false;
 
+        PlayerCharacter.OnPlayerDeath += DeathScreen;
     }
+
+
     private void Update()
     {
         if(Input.GetKeyUp(KeyCode.Escape)) 
@@ -25,6 +31,19 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
+    public void DeathScreen(object sender, EventArgs e)
+    {
+        
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        player.GetComponent<PlayerMovement>().enabled = false;
+        deathScreen.enabled = true;
+        foreach (var item in UI_elements)
+        {
+            item.enabled = false;
+            Time.timeScale = 0f; //è una versione rudimentale per la pausa, va modificata per gli eventi che non avvengono in update
+        }
+    }
     public void PauseGame()
     {
         Cursor.lockState = CursorLockMode.None;

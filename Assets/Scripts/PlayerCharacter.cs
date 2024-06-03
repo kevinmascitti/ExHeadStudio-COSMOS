@@ -248,7 +248,7 @@ public class PlayerCharacter : Character
         base.Die();
         OnPlayerDeath?.Invoke(this, EventArgs.Empty);
         Debug.Log("DIED");
-        Respawn();
+       // Respawn();
     }
 
     public void Respawn()
