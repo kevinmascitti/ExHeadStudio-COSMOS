@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 3317979504580894440}
   - component: {fileID: 196062460518739984}
   - component: {fileID: 4487178518869903362}
-  - component: {fileID: 8477755311527085608}
   - component: {fileID: -3588868774517638232}
+  - component: {fileID: 8477755311527085608}
   - component: {fileID: 1536589440322809972}
   m_Layer: 0
   m_Name: Bullet
@@ -67,7 +67,6 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 9ffda1d58581a374f83a82d579e61eac, type: 2}
-  - {fileID: 2100000, guid: 698a8134f4ebbbd4e848648685f68067, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -139,36 +138,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!114 &8477755311527085608
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 146416292059051500}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71c21d5d9c71a7c4fba96e7c18365182, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  atk: 10
-  type: 3
-  element: 2
-  movementSpeed: 4
-  baseAttack: {fileID: 0}
-  strongAttack: {fileID: 0}
-  bulletDestroyTime: 4
-  damageRadius: 5
-  maxDamage: 20
-  minDamage: 5
-  bulletSpeed: 5
-  bulletElement: 2
-  enemyMask:
-    serializedVersion: 2
-    m_Bits: 64
-  blockMask:
-    serializedVersion: 2
-    m_Bits: 1
 --- !u!198 &-3588868774517638232
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -3757,12 +3726,12 @@ ParticleSystem:
   CollisionModule:
     enabled: 0
     serializedVersion: 4
-    type: 0
+    type: 1
     collisionMode: 0
     colliderForce: 0
     multiplyColliderForceByParticleSize: 0
     multiplyColliderForceByParticleSpeed: 0
-    multiplyColliderForceByCollisionAngle: 1
+    multiplyColliderForceByCollisionAngle: 0
     m_Planes: []
     m_Dampen:
       serializedVersion: 2
@@ -4076,7 +4045,7 @@ ParticleSystem:
     lifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.4
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -4126,13 +4095,13 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-    minVertexDistance: 0.2
+    minVertexDistance: 0.5
     textureMode: 0
     textureScale: {x: 1, y: 1}
     ribbonCount: 1
     shadowBias: 0.5
     worldSpace: 0
-    dieWithParticles: 1
+    dieWithParticles: 0
     sizeAffectsWidth: 1
     sizeAffectsLifetime: 0
     inheritParticleColor: 1
@@ -4143,7 +4112,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 1}
+      maxColor: {r: 0.6754716, g: 0.62576705, b: 0.62576705, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -4892,6 +4861,38 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!114 &8477755311527085608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 146416292059051500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71c21d5d9c71a7c4fba96e7c18365182, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  atk: 10
+  type: 3
+  element: 2
+  movementSpeed: 4
+  baseAttack: {fileID: 0}
+  strongAttack: {fileID: 0}
+  bulletDestroyTime: 4
+  damageRadius: 5
+  maxDamage: 20
+  minDamage: 5
+  bulletSpeed: 5
+  bulletElement: 2
+  enemyMask:
+    serializedVersion: 2
+    m_Bits: 64
+  blockMask:
+    serializedVersion: 2
+    m_Bits: 1
+  collisionParticle: {fileID: 198000012942003240, guid: ecdd96beb7f93494880c052dfccf9dc1,
+    type: 3}
 --- !u!199 &1536589440322809972
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -4913,7 +4914,8 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f06455b167e1b0b428c9af62d7aa6832, type: 2}
+  - {fileID: 2100000, guid: d7f098ed9997e714193be5e86df013f4, type: 2}
+  - {fileID: 2100000, guid: bd8c234372a08af408b82538314378fe, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

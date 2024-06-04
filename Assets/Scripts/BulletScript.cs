@@ -15,6 +15,7 @@ public class BulletScript : Weapon
     [SerializeField] Element bulletElement;
     [SerializeField] LayerMask enemyMask;
     [SerializeField] LayerMask blockMask;
+    [SerializeField] ParticleSystem collisionParticle;
     //[SerializeField] float explosionForce;
 
     Rigidbody rb;
@@ -26,11 +27,17 @@ public class BulletScript : Weapon
     {
         enemiesArray = new Collider[maxEnemies];
         rb = GetComponent<Rigidbody>();
+        ParticleSystem trailParticle = GetComponent<ParticleSystem>();
+        trailParticle.Play();
         Destroy(gameObject, bulletDestroyTime);
+        
     }
 
     private void OnCollisionEnter(Collision collision)
     {
+        Instantiate(collisionParticle, gameObject.transform.position, Quaternion.identity);
+        collisionParticle.Play();
+        
         if(collision.gameObject.TryGetComponent<FireInteractive>(out FireInteractive fireInteract))
         {
             fireInteract.InteractionsType(fireInteract.typeOfObjectInteraction);
@@ -59,7 +66,8 @@ public class BulletScript : Weapon
             }
         }
         //Debug.Log("Colpito");
-        Destroy(gameObject);
+        gameObject.SetActive(false);
+        Destroy(gameObject, 2);
     }
 
     // Update is called once per frame
