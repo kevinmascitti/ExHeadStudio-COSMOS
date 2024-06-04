@@ -27,15 +27,12 @@ public class BulletScript : Weapon
     {
         enemiesArray = new Collider[maxEnemies];
         rb = GetComponent<Rigidbody>();
-        ParticleSystem trailParticle = GetComponent<ParticleSystem>();
-        trailParticle.Play();
         Destroy(gameObject, bulletDestroyTime);
         
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        Instantiate(collisionParticle, gameObject.transform.position, Quaternion.identity);
         collisionParticle.Play();
         
         if(collision.gameObject.TryGetComponent<FireInteractive>(out FireInteractive fireInteract))
