@@ -34,7 +34,9 @@ public class PlayerCharacter : Character
     public float attackRate = 2f;
     [SerializeField] private float nextActionTimer = 1f;
     [SerializeField] private float speed = 5f;
-    [SerializeField] private float dodgeDistance = 10f;
+    [SerializeField] private float dodgeDistance = 1f;
+    [SerializeField] private float dodgeRightDistance = 1f;
+    [SerializeField] private float dodgeLeftDistance = 1f;
     private Vector3 movementDirection;
 
     private Element activeRxElement;//Elemento nel braccio destro
@@ -94,13 +96,13 @@ public class PlayerCharacter : Character
             {
                 LeftDodge();
             }
-            else if (Input.GetKey(KeyCode.S))
-            {
-                BackwardDodge();
-            }
             else if (Input.GetKey(KeyCode.D))
             {
                 RightDodge();
+            }
+            else if (Input.GetKey(KeyCode.S))
+            {
+                BackwardDodge();
             }
             else
             {
@@ -216,13 +218,15 @@ public class PlayerCharacter : Character
     public override void Die()
     {
         base.Die();
+        animator.SetTrigger("Death");
         OnPlayerDeath?.Invoke(this, EventArgs.Empty);
         Debug.Log("DIED");
-        Respawn();
+        StartCoroutine(Respawn());
     }
 
-    public void Respawn()
+    IEnumerator Respawn()
     {
+        yield return new WaitForSeconds(1.5f);
         UpdateHP(MAX_HP);
         currentScenario = defaultScenario;
         gameObject.transform.position = currentScenario.respawnPoint;
@@ -250,28 +254,25 @@ public class PlayerCharacter : Character
     private void RightDodge()
     {
         animator.SetTrigger("RightDodge");
-        float animationDuration = animator.GetCurrentAnimatorStateInfo(0).length;
-        Vector3.Lerp(transform.position, transform.position + movementDirection, animationDuration);
-        Debug.Log("Right Dodge done!");
+        StartCoroutine(DodgeCoroutine(dodgeRightDistance));
     }
     
     private void LeftDodge()
     {
         animator.SetTrigger("LeftDodge");
-        float animationDuration = animator.GetCurrentAnimatorStateInfo(0).length;
-        Vector3.Lerp(transform.position, transform.position + movementDirection, animationDuration);
-        Debug.Log("Left Dodge done!");
+        StartCoroutine(DodgeCoroutine(dodgeLeftDistance));
     }
     
     private void ForwardDodge()
     {
         animator.SetTrigger("ForwardDodge");
-        StartCoroutine(DodgeCoroutine());
+        StartCoroutine(DodgeCoroutine(dodgeDistance));
     }
     
-    private IEnumerator DodgeCoroutine()
+    private IEnumerator DodgeCoroutine(float dodgeDistance)
     {
-        float animationDuration = animator.GetCurrentAnimatorStateInfo(0).length-1;
+        yield return new WaitForSeconds(0.05f);
+        float animationDuration = animator.GetCurrentAnimatorStateInfo(0).length-0.5f;
         Vector3 startPosition = transform.position;
         Vector3 dodgeDirection;
         if (movementDirection == Vector3.zero)
@@ -293,17 +294,15 @@ public class PlayerCharacter : Character
         }
 
         transform.position = endPosition;
-        Debug.Log("Forward Dodge done!");
+        Debug.Log("Dodge done!");
     }
     
     private void BackwardDodge()
     {
         animator.SetTrigger("BackwardDodge");
-        float animationDuration = animator.GetCurrentAnimatorStateInfo(0).length;
-        Vector3.Lerp(transform.position, transform.position + movementDirection, animationDuration);
-        Debug.Log("Backward Dodge done!");
+        StartCoroutine(DodgeCoroutine(dodgeDistance));
     }
-
+    
 }
 
 public class ScenarioArgs : EventArgs
