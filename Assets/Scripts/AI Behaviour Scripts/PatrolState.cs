@@ -24,7 +24,7 @@ public class PatrolState : StateMachineBehaviour
         agent= animator.GetComponent<NavMeshAgent>();
         wayPoint = controller.GetWaypoint();
         timer = 0f;
-        stateDuration = controller.GetPatrollingStateDuration();
+        stateDuration = Random.Range(1f,controller.GetPatrollingStateDuration());
         chaseRange = controller.GetChaseRange();
         agent.speed = controller.GetPatrollingSpeed();
         agent.SetDestination(wayPoint);
