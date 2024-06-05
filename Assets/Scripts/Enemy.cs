@@ -43,12 +43,14 @@ public class Enemy : Character
             }
         }
         EnemyWeapon.OnPlayerCollision += DoDamage;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         base.Update();
+        
 
         defHP = Mathf.Clamp(currentHP, 0, MAX_HP);
         UpdateHPUI();
@@ -64,10 +66,9 @@ public class Enemy : Character
     {
         base.Die();
         Debug.Log("ENEMY DEAD");
-        animator.SetTrigger("Dead");
-        
-        OnEnemyDeath?.Invoke(this, EventArgs.Empty);
-        StartCoroutine(DestroyAfterAnimationEnd("Death"));
+        animator.SetBool("isDead", true);
+        //OnEnemyDeath?.Invoke(this, EventArgs.Empty);
+        StartCoroutine(DestroyAfterAnimationEnd("Nemico_Base_Morte"));
         
     }
 

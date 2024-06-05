@@ -14,7 +14,7 @@ public class StateController : MonoBehaviour
     [SerializeField] float enemyPatrollingSpeed;
     [SerializeField] float attackTime;
     [SerializeField] float repositionTime;
-    [SerializeField] List<Transform> patrolWayPoints = new List<Transform>();
+    [SerializeField] Vector3 patrolWayPoint;
 
     /*
     ChaseState chaseState;
@@ -28,6 +28,7 @@ public class StateController : MonoBehaviour
     void Awake()
     {
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        patrolWayPoint = ComputeNewDestination();
         animator = GetComponent<Animator>();
     }
 
@@ -52,9 +53,9 @@ public class StateController : MonoBehaviour
     {
         return patrollingStateDuration;
     }
-    public List<Transform> GetWaypoints()
+    public Vector3 GetWaypoint()
     {
-        return patrolWayPoints;
+        return patrolWayPoint;
     }
     public float GetDistanceFromPlayer()
     {
@@ -80,5 +81,11 @@ public class StateController : MonoBehaviour
     public float GetRepositionTime()
     {
         return repositionTime;
+    }
+    public Vector3 ComputeNewDestination()
+    {
+        Vector3 newPosition = new Vector3(transform.position.x + Random.Range(-2f, 2f), transform.position.y, transform.position.z + Random.Range(-2f, 2f));
+
+        return newPosition;
     }
 }
