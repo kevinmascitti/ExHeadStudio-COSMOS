@@ -3,7 +3,57 @@ guid: a6a40ed334bcfe04db9ac8785d969e95
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material
+    second: {fileID: 2100000, guid: 697d6c71ccd04de49967bc12dd8c9bd6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MouthInterior
+    second: {fileID: 2100000, guid: 4bca8f06ad6da184b950fe971f8f17ff, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Toon Armature
+    second: {fileID: 2100000, guid: 8ee2fae4b502ca24e8ff3616cb725e67, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Toon Eye Ball
+    second: {fileID: 2100000, guid: 48764a8e8a84e6d429260a5b75cab834, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Toon Hair
+    second: {fileID: 2100000, guid: 62278f57533afcc4daf412d887985c4d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Toon Metal
+    second: {fileID: 2100000, guid: 55cac2f7b321caf44a5f98834875dccf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Toon Metal.004
+    second: {fileID: 2100000, guid: 8f0624838188cb04db67d17dd705212d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Toon Skin
+    second: {fileID: 2100000, guid: 46dc5f638fdc71e419b29ed35e9ca974, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Toon Skin Fishman
+    second: {fileID: 2100000, guid: 66005b39b207b0c4eb10a541e076350b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Toon Skin Fishman variant
+    second: {fileID: 2100000, guid: 1a1e61cad2374fc459702a9a7f85edab, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
