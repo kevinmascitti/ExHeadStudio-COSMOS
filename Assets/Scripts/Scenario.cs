@@ -5,7 +5,6 @@ using UnityEngine;
 public class Scenario : MonoBehaviour
 {
 
-    public Vector3 spawnPoint;
     public Vector3 respawnPoint;
     
     // Start is called before the first frame update

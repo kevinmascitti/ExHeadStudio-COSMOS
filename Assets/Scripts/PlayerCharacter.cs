@@ -40,10 +40,15 @@ public class PlayerCharacter : Character
     public Animator animator;
     public float attackRange;
     [NonSerialized] public LayerMask enemyLayer;
-    public float attackRate = 2f;
-    [SerializeField] private float nextActionTimer = 1f;
+    private float lastBaseAttack = 0;
+    private int attacksDone = 0;
+    [SerializeField] private float maxComboDelay = 1f;
+    [SerializeField] private float cooldown = 0.5f;
+    [SerializeField] private float nextActionTimer = 0.3f;
     [SerializeField] private float speed = 5f;
-    [SerializeField] private float dodgeDistance = 10f;
+    [SerializeField] private float dodgeDistance = 1f;
+    [SerializeField] private float dodgeRightDistance = 1f;
+    [SerializeField] private float dodgeLeftDistance = 1f;
     private Vector3 movementDirection;
     public float maxDistanceNPC = 5f;
     public LayerMask npcLayer;
@@ -106,15 +111,51 @@ public class PlayerCharacter : Character
     {
         if(OnUpdate != null) OnUpdate();
 
-        if (Time.time >= nextActionTimer && Input.GetKeyDown(KeyCode.Z))
+        if (attacksDone != 0 && Time.time - lastBaseAttack > maxComboDelay)
         {
-            BaseAttack();
-            nextActionTimer = Time.time + 1f;
+            attacksDone = 0;
+        }
+        
+        if (animator.GetBool("BaseAttack2") && animator.GetCurrentAnimatorStateInfo(0).IsName("BaseAttack2"))
+        {
+            animator.SetBool("BaseAttack2", false);
+        } /*else if (animator.GetBool("BaseAttack3") && animator.GetCurrentAnimatorStateInfo(0).IsName("BaseAttack3"))
+        {
+            animator.SetBool("BaseAttack3", false);
+        }*/
+        
+        if (((Time.time >= nextActionTimer && attacksDone == 0) || attacksDone != 0) 
+            && Input.GetKeyDown(KeyCode.Z))
+        {
+            /*if (attacksDone == 2 && animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.5f &&
+                animator.GetCurrentAnimatorStateInfo(0).IsName("BaseAttack2"))
+            {
+                animator.SetBool("BaseAttack3", true);
+                attacksDone = 0;
+                nextActionTimer = Time.time + cooldown;
+            }
+            else */if (attacksDone == 1 && animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.5f &&
+                animator.GetCurrentAnimatorStateInfo(0).IsName("BaseAttack"))
+            {
+                // lastBaseAttack = Time.time;
+                animator.SetBool("BaseAttack2", true);
+                attacksDone = 0;
+                // attacksDone++;
+                nextActionTimer = Time.time + cooldown;
+            }
+            else if (attacksDone == 0)
+            {
+                lastBaseAttack = Time.time;
+                animator.SetTrigger("BaseAttack");
+                attacksDone++;
+                nextActionTimer = Time.time + cooldown;
+            }
+
         }
         else if (Time.time >= nextActionTimer && Input.GetKeyDown(KeyCode.X))
         {
             StrongAttack();
-            nextActionTimer = Time.time + 1f;
+            nextActionTimer = Time.time + cooldown;
         }
         else if (Time.time >= nextActionTimer && Input.GetKeyDown(KeyCode.C))
         {
@@ -122,18 +163,20 @@ public class PlayerCharacter : Character
             {
                 LeftDodge();
             }
-            else if (Input.GetKey(KeyCode.S))
-            {
-                BackwardDodge();
-            }
             else if (Input.GetKey(KeyCode.D))
             {
                 RightDodge();
+            }
+            else if (Input.GetKey(KeyCode.S))
+            {
+                BackwardDodge();
             }
             else
             {
                 ForwardDodge();
             }
+
+            nextActionTimer = Time.time + cooldown;
         }
         // Raccogliere gli input dai tasti WASD
         float moveHorizontal = 0f;
@@ -246,13 +289,15 @@ public class PlayerCharacter : Character
     public override void Die()
     {
         base.Die();
+        animator.SetTrigger("Death");
         OnPlayerDeath?.Invoke(this, EventArgs.Empty);
         Debug.Log("DIED");
-       // Respawn();
+        StartCoroutine(Respawn());
     }
 
-    public void Respawn()
+    IEnumerator Respawn()
     {
+        yield return new WaitForSeconds(1.5f);
         UpdateHP(MAX_HP);
         currentScenario = defaultScenario;
         gameObject.transform.position = currentScenario.respawnPoint;
@@ -264,13 +309,7 @@ public class PlayerCharacter : Character
         args.enemy.TakeDamage(stats.atk + args.hitter.atk - args.enemy.def, activeRxElement, args.hitter.GetComponentInParent<LayerMask>());
         //Da sistemare perché ora viene passato solo l'elemento del braccio destro
     }
-    
-    private void BaseAttack()
-    {
-        animator.SetTrigger("BaseAttack");
-        Debug.Log("Base Attack done!");
-    }
-    
+
     private void StrongAttack()
     {
         animator.SetTrigger("StrongAttack");
@@ -280,28 +319,25 @@ public class PlayerCharacter : Character
     private void RightDodge()
     {
         animator.SetTrigger("RightDodge");
-        float animationDuration = animator.GetCurrentAnimatorStateInfo(0).length;
-        Vector3.Lerp(transform.position, transform.position + movementDirection, animationDuration);
-        Debug.Log("Right Dodge done!");
+        StartCoroutine(DodgeCoroutine(dodgeRightDistance));
     }
     
     private void LeftDodge()
     {
         animator.SetTrigger("LeftDodge");
-        float animationDuration = animator.GetCurrentAnimatorStateInfo(0).length;
-        Vector3.Lerp(transform.position, transform.position + movementDirection, animationDuration);
-        Debug.Log("Left Dodge done!");
+        StartCoroutine(DodgeCoroutine(dodgeLeftDistance));
     }
     
     private void ForwardDodge()
     {
         animator.SetTrigger("ForwardDodge");
-        StartCoroutine(DodgeCoroutine());
+        StartCoroutine(DodgeCoroutine(dodgeDistance));
     }
     
-    private IEnumerator DodgeCoroutine()
+    private IEnumerator DodgeCoroutine(float dodgeDistance)
     {
-        float animationDuration = animator.GetCurrentAnimatorStateInfo(0).length-1;
+        yield return new WaitForSeconds(0.05f);
+        float animationDuration = animator.GetCurrentAnimatorStateInfo(0).length-0.5f;
         Vector3 startPosition = transform.position;
         Vector3 dodgeDirection;
         if (movementDirection == Vector3.zero)
@@ -323,15 +359,13 @@ public class PlayerCharacter : Character
         }
 
         transform.position = endPosition;
-        Debug.Log("Forward Dodge done!");
+        Debug.Log("Dodge done!");
     }
     
     private void BackwardDodge()
     {
         animator.SetTrigger("BackwardDodge");
-        float animationDuration = animator.GetCurrentAnimatorStateInfo(0).length;
-        Vector3.Lerp(transform.position, transform.position + movementDirection, animationDuration);
-        Debug.Log("Backward Dodge done!");
+        StartCoroutine(DodgeCoroutine(dodgeDistance));
     }
 
     private void ModifyComposition(object sender, ChangePieceArgs args)
