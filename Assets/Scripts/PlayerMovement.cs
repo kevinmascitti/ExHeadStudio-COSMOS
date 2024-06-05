@@ -150,7 +150,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else if(isJumpAscension && verticalVelocity <= 1f && !playerController.isGrounded)
         {
-            Debug.Log("Falling");
+            //Debug.Log("Falling");
             isJumpPeak=false;
             isJumpFalling = true;
         }

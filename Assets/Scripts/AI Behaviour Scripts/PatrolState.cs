@@ -13,7 +13,7 @@ public class PatrolState : StateMachineBehaviour
     float timer;
 
     //Transform player; //Posizione del player
-    List<Transform> wayPoints = new List<Transform>(); //Lista di punti da reaggiungere mentre è in patrol
+    Vector3 wayPoint; //Lista di punti da reaggiungere mentre è in patrol
     NavMeshAgent agent;
 
 
@@ -22,12 +22,12 @@ public class PatrolState : StateMachineBehaviour
     {
         controller = animator.GetComponent<StateController>();
         agent= animator.GetComponent<NavMeshAgent>();
-        wayPoints = controller.GetWaypoints();
+        wayPoint = controller.GetWaypoint();
         timer = 0f;
         stateDuration = controller.GetPatrollingStateDuration();
         chaseRange = controller.GetChaseRange();
         agent.speed = controller.GetPatrollingSpeed();
-        agent.SetDestination(wayPoints[Random.Range(0, wayPoints.Count)].position);
+        agent.SetDestination(wayPoint);
         
     }
 
@@ -36,7 +36,7 @@ public class PatrolState : StateMachineBehaviour
     {
         if(agent.remainingDistance <= agent.stoppingDistance)
         {
-            agent.SetDestination(wayPoints[Random.Range(0, wayPoints.Count)].position);
+            agent.SetDestination(controller.ComputeNewDestination() );
             //Debug.Log(agent.destination);
         }
         
