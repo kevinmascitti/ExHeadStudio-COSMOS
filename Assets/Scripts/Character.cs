@@ -30,7 +30,7 @@ public class Character : MonoBehaviour
     [SerializeField] private float status;
     [SerializeField] private float effect;
     public TextMeshProUGUI statusText;
-    public TextMeshProUGUI effectText;
+    // public TextMeshProUGUI effectText;
 
     [Header("Informazioni character")]
     public float currentHP;

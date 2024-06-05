@@ -136,7 +136,7 @@ public class PlayerCharacter : Character
         }
         
         if (((Time.time >= nextActionTimer && attacksDone == 0) || attacksDone != 0) 
-            && Input.GetKeyDown(KeyCode.Z))
+            && Input.GetKeyDown(KeyCode.Mouse0))
         {
             /*if (attacksDone == 2 && animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.5f &&
                 animator.GetCurrentAnimatorStateInfo(0).IsName("isBaseAttack2"))
@@ -165,13 +165,13 @@ public class PlayerCharacter : Character
             }
 
         }
-        else if (Time.time >= nextActionTimer && Input.GetKeyDown(KeyCode.X))
+        else if (Time.time >= nextActionTimer && Input.GetKeyDown(KeyCode.Mouse1))
         {
             animator.SetBool("isStrongAttack", true);
             StrongAttack();
             nextActionTimer = Time.time + cooldown;
         }
-        else if (Time.time >= nextActionTimer && Input.GetKeyDown(KeyCode.C))
+        else if (Time.time >= nextActionTimer && Input.GetKeyDown(KeyCode.LeftShift))
         {
             if (Input.GetKey(KeyCode.A))
             {
@@ -185,7 +185,7 @@ public class PlayerCharacter : Character
             {
                 BackwardDodge();
             }
-            else
+            else if(Input.GetKey(KeyCode.W))
             {
                 ForwardDodge();
             }
@@ -395,7 +395,8 @@ public class PlayerCharacter : Character
         if (Physics.Raycast(transform.position, transform.forward, out raycastHit,
                 maxDistanceNPC, npcLayer)
             && raycastHit.transform.TryGetComponent(out NPC npc)
-            && Input.GetKeyDown(KeyCode.T))
+            && Input.GetKeyDown(KeyCode.E)
+            && !choicePieceManager.isUIOpen)
         {
             OnChoicePieces?.Invoke(this, EventArgs.Empty);
             GetComponent<PlayerMovement>().enabled = false;
@@ -404,7 +405,7 @@ public class PlayerCharacter : Character
             abilitiesSection.SetActive(false);
         }
 
-        if (choicePieceManager.isUIOpen && Input.GetKeyDown(KeyCode.Y))
+        if (choicePieceManager.isUIOpen && Input.GetKeyDown(KeyCode.E))
         {
             OnEndChoicePieces?.Invoke(this, EventArgs.Empty);
             GetComponent<PlayerMovement>().enabled = true;

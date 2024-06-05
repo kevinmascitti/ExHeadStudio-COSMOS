@@ -11,12 +11,19 @@ public class FireInteractive : MonoBehaviour
 {
     [SerializeField] float disappearTime;
     [SerializeField] Light fireLight;
+    [SerializeField] ParticleSystem smokeEffect;
+    [SerializeField] ParticleSystem fireEffect;
     [SerializeField] public FireInteractions typeOfObjectInteraction;
 
     private void Awake()
     {
-        if(fireLight)
+        if (fireLight && smokeEffect && fireEffect)
+        {
             fireLight.enabled = false;
+            smokeEffect.Stop();
+            fireEffect.Stop();
+        }
+            
     }
 
     public void InteractionsType(FireInteractions interactionType)
@@ -45,5 +52,8 @@ public class FireInteractive : MonoBehaviour
     public void Lighter()
     {
         fireLight.enabled = true;
+        smokeEffect.Play();
+        fireEffect.Play();
+
     }
 }

@@ -63,6 +63,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cyrus_Cosmos_Mondo_Fantasy_LEGS
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a6a40ed334bcfe04db9ac8785d969e95,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a6a40ed334bcfe04db9ac8785d969e95,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: a6a40ed334bcfe04db9ac8785d969e95,
         type: 3}
       propertyPath: m_Controller
@@ -72,10 +82,6 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a6a40ed334bcfe04db9ac8785d969e95,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 273734748311800}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a6a40ed334bcfe04db9ac8785d969e95,
         type: 3}
       insertIndex: -1
@@ -92,10 +98,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 8346905672989226423}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a6a40ed334bcfe04db9ac8785d969e95,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1727644514353011568}
     - targetCorrespondingSourceObject: {fileID: -290255365365572834, guid: a6a40ed334bcfe04db9ac8785d969e95,
         type: 3}
       insertIndex: -1
@@ -287,27 +289,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 7103185200341268644}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &273734748311800
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7949694055651870197}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 2.1232717, z: 1}
-  m_Center: {x: 0, y: 1.1050931, z: 0}
 --- !u!114 &3439535664716550283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -323,8 +304,7 @@ MonoBehaviour:
   status: 0
   effect: 0
   statusText: {fileID: 0}
-  effectText: {fileID: 0}
-  currentHP: 0
+  currentHP: 100
   isPlayer: 1
   atk: 30
   def: 10
@@ -369,10 +349,13 @@ MonoBehaviour:
   npcLayer:
     serializedVersion: 2
     m_Bits: 128
+  choicePieceManager: {fileID: 0}
   chipSpeed: 0
   frontHealthBar: {fileID: 0}
   backHealthBar: {fileID: 0}
-  icons: []
+  icons:
+  - {fileID: 0}
+  - {fileID: 0}
   healthBar: {fileID: 0}
   abilitiesSection: {fileID: 0}
 --- !u!114 &2951848801879830382
@@ -407,12 +390,12 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 3
   m_Height: 2.4
-  m_Radius: 0.8
+  m_Radius: 0.6
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0
-  m_Center: {x: 0, y: 1.25, z: 0.12}
+  m_Center: {x: 0, y: 1.12, z: 0.05}
 --- !u!114 &8346905672989226423
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -425,39 +408,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f60f9aac96491c46a6e849189295639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 10
-  maxJumpHeight: 30
-  maxJumpTime: 20.4
+  movementSpeed: 7
+  maxJumpHeight: 10
+  maxJumpTime: 3.5
   verticalVelocity: 0
   mainCamera: {fileID: 0}
   rotationSpeed: 10
---- !u!54 &1727644514353011568
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7949694055651870197}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &8186018156351548130 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1371629118404973126, guid: a6a40ed334bcfe04db9ac8785d969e95,
