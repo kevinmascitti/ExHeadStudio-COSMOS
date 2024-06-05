@@ -52,6 +52,7 @@ public class PlayerCharacter : Character
     private Vector3 movementDirection;
     public float maxDistanceNPC = 5f;
     public LayerMask npcLayer;
+    [SerializeField] private ChoicePieceManager choicePieceManager;
 
     private Element activeRxElement;//Elemento nel braccio destro
     private Element activeSxElement;//Elemento nel braccio sinistro
@@ -102,6 +103,7 @@ public class PlayerCharacter : Character
         composition[PartType.RightArm] = completePiecesList[PartType.RightArm][0];
         composition[PartType.Body] = completePiecesList[PartType.Body][0];
         composition[PartType.Legs] = completePiecesList[PartType.Legs][0];
+        choicePieceManager = GameObject.Find("ChoicePiecesManager").GetComponent<ChoicePieceManager>();
         
         Weapon.OnEnemyCollision += DoDamage;
         ChoicePieceManager.OnChangePiece += ModifyComposition;
@@ -190,30 +192,30 @@ public class PlayerCharacter : Character
 
             nextActionTimer = Time.time + cooldown;
         }
-        // Raccogliere gli input dai tasti WASD
-        float moveHorizontal = 0f;
-        float moveVertical = 0f;
-        
-        if (Input.GetKey(KeyCode.W))
-        {
-            moveVertical += 1f;
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            moveVertical -= 1f;
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            moveHorizontal -= 1f;
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            moveHorizontal += 1f;
-        }
-        
-        // Creare il vettore di movimento combinando gli input
-        movementDirection = new Vector3(moveHorizontal, 0f, moveVertical);
-        
+        // // Raccogliere gli input dai tasti WASD
+        // float moveHorizontal = 0f;
+        // float moveVertical = 0f;
+        //
+        // if (Input.GetKey(KeyCode.W))
+        // {
+        //     moveVertical += 1f;
+        // }
+        // if (Input.GetKey(KeyCode.S))
+        // {
+        //     moveVertical -= 1f;
+        // }
+        // if (Input.GetKey(KeyCode.A))
+        // {
+        //     moveHorizontal -= 1f;
+        // }
+        // if (Input.GetKey(KeyCode.D))
+        // {
+        //     moveHorizontal += 1f;
+        // }
+        //
+        // // Creare il vettore di movimento combinando gli input
+        // movementDirection = new Vector3(moveHorizontal, 0f, moveVertical);
+        //
         // // Normalizzare il vettore per garantire una velocità costante
         // if (movementDirection.magnitude > 1)
         // {
@@ -402,7 +404,7 @@ public class PlayerCharacter : Character
             abilitiesSection.SetActive(false);
         }
 
-        if (Input.GetKeyDown(KeyCode.Y))
+        if (choicePieceManager.isUIOpen && Input.GetKeyDown(KeyCode.Y))
         {
             OnEndChoicePieces?.Invoke(this, EventArgs.Empty);
             GetComponent<PlayerMovement>().enabled = true;
