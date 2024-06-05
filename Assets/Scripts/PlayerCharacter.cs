@@ -91,16 +91,28 @@ public class PlayerCharacter : Character
         if (animator.GetBool("BaseAttack2") && animator.GetCurrentAnimatorStateInfo(0).IsName("BaseAttack2"))
         {
             animator.SetBool("BaseAttack2", false);
-        }
+        } /*else if (animator.GetBool("BaseAttack3") && animator.GetCurrentAnimatorStateInfo(0).IsName("BaseAttack3"))
+        {
+            animator.SetBool("BaseAttack3", false);
+        }*/
         
         if (((Time.time >= nextActionTimer && attacksDone == 0) || attacksDone != 0) 
             && Input.GetKeyDown(KeyCode.Z))
         {
-            if (attacksDone == 1 && animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.5f &&
+            /*if (attacksDone == 2 && animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.5f &&
+                animator.GetCurrentAnimatorStateInfo(0).IsName("BaseAttack2"))
+            {
+                animator.SetBool("BaseAttack3", true);
+                attacksDone = 0;
+                nextActionTimer = Time.time + cooldown;
+            }
+            else */if (attacksDone == 1 && animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.5f &&
                 animator.GetCurrentAnimatorStateInfo(0).IsName("BaseAttack"))
             {
+                // lastBaseAttack = Time.time;
                 animator.SetBool("BaseAttack2", true);
                 attacksDone = 0;
+                // attacksDone++;
                 nextActionTimer = Time.time + cooldown;
             }
             else if (attacksDone == 0)

@@ -5,9 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="64379580-1d6e-469a-b746-3e9f3d4f60ad" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.ExHeadStudio-COSMOS/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ExHeadStudio-COSMOS/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animators/Player.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animators/Player.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Attack System.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Attack System.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerCharacter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerCharacter.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -89,7 +86,7 @@
       <workItem from="1714493317529" duration="2131000" />
       <workItem from="1716827597891" duration="1270000" />
       <workItem from="1717539349909" duration="1939000" />
-      <workItem from="1717571983873" duration="7585000" />
+      <workItem from="1717571983873" duration="8021000" />
     </task>
     <servers />
   </component>
@@ -124,26 +121,26 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/PlayerCharacter.cs</url>
-          <line>101</line>
+          <line>104</line>
           <properties documentPath="$PROJECT_DIR$/Assets/Scripts/PlayerCharacter.cs" initialLine="101" containingFunctionPresentation="method 'Update'">
             <startOffsets>
-              <option value="2971" />
+              <option value="3157" />
             </startOffsets>
             <endOffsets>
-              <option value="3009" />
+              <option value="3195" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="19" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/PlayerCharacter.cs</url>
-          <line>107</line>
+          <line>119</line>
           <properties documentPath="$PROJECT_DIR$/Assets/Scripts/PlayerCharacter.cs" initialLine="107" containingFunctionPresentation="method 'Update'">
             <startOffsets>
-              <option value="3182" />
+              <option value="3807" />
             </startOffsets>
             <endOffsets>
-              <option value="3209" />
+              <option value="3834" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="20" />
