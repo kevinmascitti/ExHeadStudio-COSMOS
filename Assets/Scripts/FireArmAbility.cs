@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class FireArmAbility : LeftArm
 {
@@ -12,6 +13,7 @@ public class FireArmAbility : LeftArm
     [SerializeField] Transform bulletStartPosition;
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] Image frontAbilityImage;
+    [SerializeField] TMPro.TextMeshProUGUI abilityText;
 
     private float abilityTimer;
     private float abilityFraction;
@@ -27,7 +29,7 @@ public class FireArmAbility : LeftArm
     public void Start()
     {
         base.Start();
-        abilityTimer = 0; //cooldownTime;
+        //abilityTimer = 0; //cooldownTime;
         Mathf.Clamp(abilityTimer, 0, cooldownTime);
         impulseSource = GetComponent<CinemachineImpulseSource>(); //� importante che la camera abbia il tag MainCamera
 
@@ -75,9 +77,11 @@ public class FireArmAbility : LeftArm
         if(abilityTimer < cooldownTime)
         {
             abilityFraction = abilityTimer / cooldownTime;
+            abilityText.color = new Color(abilityText.color.r, abilityText.color.g, abilityText.color.b, 0.5f);
         }
         else
         {
+            abilityText.color = new Color(abilityText.color.r, abilityText.color.g, abilityText.color.b, 1);
             abilityFraction = 1;
         }
         //if(abilityFraction >= 1)
