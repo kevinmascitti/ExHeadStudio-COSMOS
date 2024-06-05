@@ -64,7 +64,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        //Ottengo gli input da tastiera e li salvo in un vettore 2D che mi servirà dopo per calcolare la direzione del player
+        //Ottengo gli input da tastiera e li salvo in un vettore 2D che mi servirï¿½ dopo per calcolare la direzione del player
 
         Vector2 inputs = new Vector2(Input.GetAxisRaw("Horizontal") ,Input.GetAxisRaw("Vertical")).normalized;
         //Vector3 inputs = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));//.normalized;
@@ -90,7 +90,7 @@ public class PlayerMovement : MonoBehaviour
         //Debug.Log("Update: " + playerVector);
         //playerVector.y = 0f;
        //Debug.Log("Right: "+ mainCamera.right);
-        // Se il player è a terra e si preme il tasto di salto, il player salta
+        // Se il player ï¿½ a terra e si preme il tasto di salto, il player salta
         if (Input.GetKeyDown(KeyCode.Space))
         {
             isJumpPressed = true;
@@ -102,9 +102,9 @@ public class PlayerMovement : MonoBehaviour
         {
             //Debug.Log("grounded");
         }
-        /*Se i valori di input del vettore 2D sono a zero, allora il player è fermo, altrimenti ruota il player nella direzione di movimento
-        ATTENZIONE: Usare un vettore 3D, con le funzionalità implementate, non fa ruotare in modo corretto, oppure se si setta y=0f, dà errore.
-        Il controllo sul vettore 2D anziché su quello 3D evita che compaia l'errore "Look Rotation Viewing Vector Is Zero" */
+        /*Se i valori di input del vettore 2D sono a zero, allora il player ï¿½ fermo, altrimenti ruota il player nella direzione di movimento
+        ATTENZIONE: Usare un vettore 3D, con le funzionalitï¿½ implementate, non fa ruotare in modo corretto, oppure se si setta y=0f, dï¿½ errore.
+        Il controllo sul vettore 2D anzichï¿½ su quello 3D evita che compaia l'errore "Look Rotation Viewing Vector Is Zero" */
         if ((inputs.x != 0) || (inputs.y != 0))//(inputs != Vector2.zero)
         {
             //playerTransform.forward = new Vector3(mainCameraX, 0f, mainCameraZ);
@@ -114,7 +114,7 @@ public class PlayerMovement : MonoBehaviour
             Quaternion targetRotation = Quaternion.Euler(0f, targetAngle, 0f);
             playerTransform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
         }
-        //Muove il player, calcola la gravità da applicare e gestisce il salto
+        //Muove il player, calcola la gravitï¿½ da applicare e gestisce il salto
 
         ComputePlayerVelocity(playerTransform.position);
         //if(!playerController.isGrounded)
@@ -130,9 +130,9 @@ public class PlayerMovement : MonoBehaviour
     {
         float timeToApex = maxJumpTime / 2;
         gravity = (-2 * maxJumpHeight) / Mathf.Pow(timeToApex, 2);
-        //Debug.Log("Gravità: " + gravity);
+        //Debug.Log("Gravitï¿½: " + gravity);
         initialJumpVelocity = (2 * maxJumpHeight) / timeToApex;
-        //Debug.Log("Velocità: " + initialJumpVelocity);
+        //Debug.Log("Velocitï¿½: " + initialJumpVelocity);
 
     }
     private void HandleJump()
@@ -145,7 +145,7 @@ public class PlayerMovement : MonoBehaviour
             isJumpAscension = true;
             isJumpPressed = false;
             playerVector.y = initialJumpVelocity;
-
+            
 
         }
         else if(isJumpAscension && verticalVelocity <= 1f && !playerController.isGrounded)

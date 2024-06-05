@@ -116,19 +116,28 @@ public class PlayerCharacter : Character
             attacksDone = 0;
         }
         
-        if (animator.GetBool("BaseAttack2") && animator.GetCurrentAnimatorStateInfo(0).IsName("BaseAttack2"))
+        if (animator.GetBool("isBaseAttack") && 
+            (animator.GetCurrentAnimatorStateInfo(0).IsName("isBaseAttack2") || 
+             animator.GetCurrentAnimatorStateInfo(0).IsName("BaseAttack")))
         {
-            animator.SetBool("BaseAttack2", false);
+            animator.SetBool("isBaseAttack", false);
+            if(animator.GetCurrentAnimatorStateInfo(0).IsName("isBaseAttack2"))
+                animator.SetBool("isBaseAttack2", false);
         } /*else if (animator.GetBool("BaseAttack3") && animator.GetCurrentAnimatorStateInfo(0).IsName("BaseAttack3"))
         {
             animator.SetBool("BaseAttack3", false);
         }*/
         
+        if (animator.GetBool("isStrongAttack") && animator.GetCurrentAnimatorStateInfo(0).IsName("StrongAttack"))
+        {
+            animator.SetBool("isStrongAttack", false);
+        }
+        
         if (((Time.time >= nextActionTimer && attacksDone == 0) || attacksDone != 0) 
             && Input.GetKeyDown(KeyCode.Z))
         {
             /*if (attacksDone == 2 && animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.5f &&
-                animator.GetCurrentAnimatorStateInfo(0).IsName("BaseAttack2"))
+                animator.GetCurrentAnimatorStateInfo(0).IsName("isBaseAttack2"))
             {
                 animator.SetBool("BaseAttack3", true);
                 attacksDone = 0;
@@ -138,13 +147,15 @@ public class PlayerCharacter : Character
                 animator.GetCurrentAnimatorStateInfo(0).IsName("BaseAttack"))
             {
                 // lastBaseAttack = Time.time;
-                animator.SetBool("BaseAttack2", true);
+                animator.SetBool("isBaseAttack", true);
+                animator.SetBool("isBaseAttack2", true);
                 attacksDone = 0;
                 // attacksDone++;
                 nextActionTimer = Time.time + cooldown;
             }
             else if (attacksDone == 0)
             {
+                animator.SetBool("isBaseAttack", true);
                 lastBaseAttack = Time.time;
                 animator.SetTrigger("BaseAttack");
                 attacksDone++;
@@ -154,6 +165,7 @@ public class PlayerCharacter : Character
         }
         else if (Time.time >= nextActionTimer && Input.GetKeyDown(KeyCode.X))
         {
+            animator.SetBool("isStrongAttack", true);
             StrongAttack();
             nextActionTimer = Time.time + cooldown;
         }
@@ -181,7 +193,7 @@ public class PlayerCharacter : Character
         // Raccogliere gli input dai tasti WASD
         float moveHorizontal = 0f;
         float moveVertical = 0f;
-
+        
         if (Input.GetKey(KeyCode.W))
         {
             moveVertical += 1f;
@@ -198,23 +210,23 @@ public class PlayerCharacter : Character
         {
             moveHorizontal += 1f;
         }
-
+        
         // Creare il vettore di movimento combinando gli input
         movementDirection = new Vector3(moveHorizontal, 0f, moveVertical);
-
-        // Normalizzare il vettore per garantire una velocità costante
-        if (movementDirection.magnitude > 1)
-        {
-            movementDirection.Normalize();
-        }
-        if (movementDirection != Vector3.zero)
-        {
-            Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, speed * Time.deltaTime);
-        }
-
-        // Muovere il personaggio
-        transform.Translate(movementDirection * speed * Time.deltaTime, Space.World);
+        
+        // // Normalizzare il vettore per garantire una velocità costante
+        // if (movementDirection.magnitude > 1)
+        // {
+        //     movementDirection.Normalize();
+        // }
+        // if (movementDirection != Vector3.zero)
+        // {
+        //     Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
+        //     transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, speed * Time.deltaTime);
+        // }
+        //
+        // // Muovere il personaggio
+        // transform.Translate(movementDirection * speed * Time.deltaTime, Space.World);
 
         def_HP = Mathf.Clamp(currentHP, 0, MAX_HP);
         UpdateHPUI();
@@ -336,8 +348,7 @@ public class PlayerCharacter : Character
     
     private IEnumerator DodgeCoroutine(float dodgeDistance)
     {
-        yield return new WaitForSeconds(0.05f);
-        float animationDuration = animator.GetCurrentAnimatorStateInfo(0).length-0.5f;
+        float animationDuration = 1f;
         Vector3 startPosition = transform.position;
         Vector3 dodgeDirection;
         if (movementDirection == Vector3.zero)
