@@ -31,8 +31,11 @@ public class PlayerCharacter : Character
     public Animator animator;
     public float attackRange;
     [NonSerialized] public LayerMask enemyLayer;
-    public float attackRate = 2f;
-    [SerializeField] private float nextActionTimer = 1f;
+    private float lastBaseAttack = 0;
+    private int attacksDone = 0;
+    [SerializeField] private float maxComboDelay = 1f;
+    [SerializeField] private float cooldown = 0.5f;
+    [SerializeField] private float nextActionTimer = 0.3f;
     [SerializeField] private float speed = 5f;
     [SerializeField] private float dodgeDistance = 1f;
     [SerializeField] private float dodgeRightDistance = 1f;
@@ -80,15 +83,39 @@ public class PlayerCharacter : Character
     {
         if(OnUpdate != null) OnUpdate();
 
-        if (Time.time >= nextActionTimer && Input.GetKeyDown(KeyCode.Z))
+        if (attacksDone != 0 && Time.time - lastBaseAttack > maxComboDelay)
         {
-            BaseAttack();
-            nextActionTimer = Time.time + 1f;
+            attacksDone = 0;
+        }
+        
+        if (animator.GetBool("BaseAttack2") && animator.GetCurrentAnimatorStateInfo(0).IsName("BaseAttack2"))
+        {
+            animator.SetBool("BaseAttack2", false);
+        }
+        
+        if (((Time.time >= nextActionTimer && attacksDone == 0) || attacksDone != 0) 
+            && Input.GetKeyDown(KeyCode.Z))
+        {
+            if (attacksDone == 1 && animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.5f &&
+                animator.GetCurrentAnimatorStateInfo(0).IsName("BaseAttack"))
+            {
+                animator.SetBool("BaseAttack2", true);
+                attacksDone = 0;
+                nextActionTimer = Time.time + cooldown;
+            }
+            else if (attacksDone == 0)
+            {
+                lastBaseAttack = Time.time;
+                animator.SetTrigger("BaseAttack");
+                attacksDone++;
+                nextActionTimer = Time.time + cooldown;
+            }
+
         }
         else if (Time.time >= nextActionTimer && Input.GetKeyDown(KeyCode.X))
         {
             StrongAttack();
-            nextActionTimer = Time.time + 1f;
+            nextActionTimer = Time.time + cooldown;
         }
         else if (Time.time >= nextActionTimer && Input.GetKeyDown(KeyCode.C))
         {
@@ -108,6 +135,8 @@ public class PlayerCharacter : Character
             {
                 ForwardDodge();
             }
+
+            nextActionTimer = Time.time + cooldown;
         }
         // Raccogliere gli input dai tasti WASD
         float moveHorizontal = 0f;
@@ -238,13 +267,7 @@ public class PlayerCharacter : Character
         args.enemy.TakeDamage(stats.atk + args.hitter.atk - args.enemy.def, activeRxElement);
         //Da sistemare perché ora viene passato solo l'elemento del braccio destro
     }
-    
-    private void BaseAttack()
-    {
-        animator.SetTrigger("BaseAttack");
-        Debug.Log("Base Attack done!");
-    }
-    
+
     private void StrongAttack()
     {
         animator.SetTrigger("StrongAttack");
