@@ -41,7 +41,7 @@ public class PlayerCharacter : Character
     public Accessory accessory;
 
     [NonSerialized] public bool isInputOn = true;
-    private bool isFighting = false;
+    [NonSerialized] public bool isFighting = false;
     public Animator animator;
     public float attackRange;
     [NonSerialized] public LayerMask enemyLayer;
@@ -347,7 +347,10 @@ public class PlayerCharacter : Character
    
     private void DoDamage(object sender, EnemyCollisionArgs args)
     {
-        args.enemy.TakeDamage(stats.atk + args.hitter.atk - args.enemy.def, activeRxElement);
+        if(stats.atk > args.enemy.def)
+            args.enemy.TakeDamage( stats.atk + args.hitter.atk - args.enemy.def, activeRxElement);
+      
+        
         //Da sistemare perché ora viene passato solo l'elemento del braccio destro
     }
 

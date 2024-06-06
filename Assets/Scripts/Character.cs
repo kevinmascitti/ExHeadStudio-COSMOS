@@ -85,7 +85,6 @@ public class Character : MonoBehaviour
             effectCountdown.Add(e, 0);
             statusTimer.Add(e, new ElementTimer(status, false, TimerType.Status, e, this.GetInstanceID()));
             effectTimer.Add(e, new ElementTimer(effect, false, TimerType.Effect, e, this.GetInstanceID()));
-
         }
         ElementTimer.Elapsed += HandleTimer;
     }

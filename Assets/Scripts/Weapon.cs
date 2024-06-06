@@ -8,7 +8,8 @@ public enum WeaponType
     Sword,
     Ax,
     Spear,
-    Projectile
+    Projectile,
+    Punch,
 }
 
 public class Weapon : Piece
@@ -18,18 +19,14 @@ public class Weapon : Piece
     public int atk;
     [SerializeField] private LayerMask enemyLayer;
     
+    
     public static EventHandler<EnemyCollisionArgs> OnEnemyCollision;
 
     public void OnTriggerEnter(Collider other)
     {
-        if ((other.gameObject.layer!= 3))
+
+        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy") && GetComponentInParent<PlayerCharacter>().isFighting)
         {
-        Debug.Log("player ha colpito: "+other.gameObject.layer);
-            
-        }
-        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
-        {
-            Debug.Log("Enemy damage!");
             OnEnemyCollision?.Invoke(this, new EnemyCollisionArgs(other.gameObject.GetComponent<Enemy>(), this));
         }
     }

@@ -69,7 +69,7 @@ public class Enemy : Character
     public override void Die()
     {
         base.Die();
-        Debug.Log("ENEMY DEAD");
+       // Debug.Log("ENEMY DEAD");
         animator.SetBool("isDead", true);
         //OnEnemyDeath?.Invoke(this, EventArgs.Empty);
         StartCoroutine(DestroyAfterAnimationEnd("Nemico_Base_Morte"));
