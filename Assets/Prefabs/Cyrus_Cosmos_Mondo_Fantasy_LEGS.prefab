@@ -628,7 +628,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 7
-  maxJumpHeight: 20
+  maxJumpHeight: 10
   maxJumpTime: 3.5
   verticalVelocity: 0
   mainCamera: {fileID: 0}

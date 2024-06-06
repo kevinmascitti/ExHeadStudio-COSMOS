@@ -166,7 +166,12 @@ public class PlayerMovement : MonoBehaviour
             isJumpFalling=false;
             StartCoroutine(WaitForJumpAgain());
         }
-       
+        else if(isJumpAscension && playerController.isGrounded)
+        {
+            isJumpAscension = false;
+            isJumpPeak = false;
+            isJumpFalling = true;
+        }
     }
 
     private void HandleGravity()

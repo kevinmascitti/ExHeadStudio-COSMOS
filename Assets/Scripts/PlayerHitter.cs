@@ -14,7 +14,7 @@ public class PlayerHitter : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
 
-            OnPlayerCollision?.Invoke(this, new PlayerCollisionArgs(other.gameObject.GetComponent<PlayerCharacter>(), this));
+            OnPlayerCollision?.Invoke(this, new PlayerCollisionArgs(other.gameObject.GetComponent<PlayerCharacter>(), this, gameObject.GetComponentInParent<Enemy>().GetInstanceID()));
         }
     }
 
@@ -22,12 +22,14 @@ public class PlayerHitter : MonoBehaviour
 
 public class PlayerCollisionArgs : EventArgs
 {
-    public PlayerCollisionArgs(PlayerCharacter p, PlayerHitter h)
+    public PlayerCollisionArgs(PlayerCharacter p, PlayerHitter h, int i)
     {
         player = p;
         hitter = h;
+        id = i;
     }
 
     public PlayerCharacter player;
     public PlayerHitter hitter;
+    public int id;
 }

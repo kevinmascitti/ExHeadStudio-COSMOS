@@ -58,12 +58,15 @@ public class Enemy : Character
 
     private void DoDamage(object sender, PlayerCollisionArgs args)
     {
-       // Debug.Log("prendi danno");
-        if(args.player.def > stats.elemAtk[enemyElement] + atk)
+        // Debug.Log("prendi danno");
+        if (this.GetInstanceID() == args.id)
         {
-            args.player.TakeDamage(0, enemyElement);
+            if (args.player.def > stats.elemAtk[enemyElement] + atk)
+            {
+                args.player.TakeDamage(0, enemyElement);
+            }
+            else args.player.TakeDamage(stats.elemAtk[enemyElement] + atk - args.player.def - args.player.stats.elemDef[enemyElement], enemyElement);
         }
-        else args.player.TakeDamage(stats.elemAtk[enemyElement]+ atk - args.player.def - args.player.stats.elemDef[enemyElement], enemyElement);
     }
 
     public override void Die()
