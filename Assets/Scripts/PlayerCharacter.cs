@@ -38,7 +38,8 @@ public class PlayerCharacter : Character
     //lista attuale dei soli pezzi attivati nel modello
     public Dictionary<PartType, Piece> composition = new Dictionary<PartType, Piece>();
     public Accessory accessory;
-    
+
+    [NonSerialized] public bool isInputOn = true;
     public Animator animator;
     public float attackRange;
     [NonSerialized] public LayerMask enemyLayer;
@@ -149,100 +150,104 @@ public class PlayerCharacter : Character
         {
             animator.SetBool("isStrongAttack", false);
         }
-        
-        if (((Time.time >= nextActionTimer && attacksDone == 0) || attacksDone != 0) 
-            && Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            /*if (attacksDone == 2 && animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.5f &&
-                animator.GetCurrentAnimatorStateInfo(0).IsName("isBaseAttack2"))
-            {
-                animator.SetBool("BaseAttack3", true);
-                attacksDone = 0;
-                nextActionTimer = Time.time + cooldown;
-            }
-            else */if (attacksDone == 1 && animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.5f &&
-                animator.GetCurrentAnimatorStateInfo(0).IsName("BaseAttack"))
-            {
-                // lastBaseAttack = Time.time;
-                // animator.SetBool("isBaseAttack", true);
-                animator.SetBool("isBaseAttack2", true);
-                attacksDone = 0;
-                // attacksDone++;
-                nextActionTimer = Time.time + cooldown;
-            }
-            else if (attacksDone == 0)
-            {
-                animator.SetBool("isBaseAttack", true);
-                lastBaseAttack = Time.time;
-                attacksDone++;
-                nextActionTimer = Time.time + cooldown;
-            }
 
-        }
-        else if (Time.time >= nextActionTimer && Input.GetKeyDown(KeyCode.Mouse1))
+        if (isInputOn)
         {
-            animator.SetBool("isStrongAttack", true);
-            StrongAttack();
-            nextActionTimer = Time.time + cooldown;
-        }
-        else if (Time.time >= nextActionTimer && Input.GetKeyDown(KeyCode.C))
-        {
-            if (Input.GetKey(KeyCode.A))
+            if (((Time.time >= nextActionTimer && attacksDone == 0) || attacksDone != 0)
+                && Input.GetKeyDown(KeyCode.Mouse0))
             {
-                LeftDodge();
-            }
-            else if (Input.GetKey(KeyCode.D))
-            {
-                RightDodge();
-            }
-            else if (Input.GetKey(KeyCode.S))
-            {
-                BackwardDodge();
-            }
-            else
-            {
-                ForwardDodge();
-            }
+                /*if (attacksDone == 2 && animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.5f &&
+                    animator.GetCurrentAnimatorStateInfo(0).IsName("isBaseAttack2"))
+                {
+                    animator.SetBool("BaseAttack3", true);
+                    attacksDone = 0;
+                    nextActionTimer = Time.time + cooldown;
+                }
+                else */
+                if (attacksDone == 1 && animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.5f &&
+                    animator.GetCurrentAnimatorStateInfo(0).IsName("BaseAttack"))
+                {
+                    // lastBaseAttack = Time.time;
+                    // animator.SetBool("isBaseAttack", true);
+                    animator.SetBool("isBaseAttack2", true);
+                    attacksDone = 0;
+                    // attacksDone++;
+                    nextActionTimer = Time.time + cooldown;
+                }
+                else if (attacksDone == 0)
+                {
+                    animator.SetBool("isBaseAttack", true);
+                    lastBaseAttack = Time.time;
+                    attacksDone++;
+                    nextActionTimer = Time.time + cooldown;
+                }
 
-            nextActionTimer = Time.time + cooldown;
+            }
+            else if (Time.time >= nextActionTimer && Input.GetKeyDown(KeyCode.Mouse1))
+            {
+                animator.SetBool("isStrongAttack", true);
+                StrongAttack();
+                nextActionTimer = Time.time + cooldown;
+            }
+            else if (Time.time >= nextActionTimer && Input.GetKeyDown(KeyCode.C))
+            {
+                if (Input.GetKey(KeyCode.A))
+                {
+                    LeftDodge();
+                }
+                else if (Input.GetKey(KeyCode.D))
+                {
+                    RightDodge();
+                }
+                else if (Input.GetKey(KeyCode.S))
+                {
+                    BackwardDodge();
+                }
+                else
+                {
+                    ForwardDodge();
+                }
+
+                nextActionTimer = Time.time + cooldown;
+            }
+            // // Raccogliere gli input dai tasti WASD
+            // float moveHorizontal = 0f;
+            // float moveVertical = 0f;
+            //
+            // if (Input.GetKey(KeyCode.W))
+            // {
+            //     moveVertical += 1f;
+            // }
+            // if (Input.GetKey(KeyCode.S))
+            // {
+            //     moveVertical -= 1f;
+            // }
+            // if (Input.GetKey(KeyCode.A))
+            // {
+            //     moveHorizontal -= 1f;
+            // }
+            // if (Input.GetKey(KeyCode.D))
+            // {
+            //     moveHorizontal += 1f;
+            // }
+            //
+            // // Creare il vettore di movimento combinando gli input
+            // movementDirection = new Vector3(moveHorizontal, 0f, moveVertical);
+            //
+            // // Normalizzare il vettore per garantire una velocità costante
+            // if (movementDirection.magnitude > 1)
+            // {
+            //     movementDirection.Normalize();
+            // }
+            // if (movementDirection != Vector3.zero)
+            // {
+            //     Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
+            //     transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, speed * Time.deltaTime);
+            // }
+            //
+            // // Muovere il personaggio
+            // transform.Translate(movementDirection * speed * Time.deltaTime, Space.World);
         }
-        // // Raccogliere gli input dai tasti WASD
-        // float moveHorizontal = 0f;
-        // float moveVertical = 0f;
-        //
-        // if (Input.GetKey(KeyCode.W))
-        // {
-        //     moveVertical += 1f;
-        // }
-        // if (Input.GetKey(KeyCode.S))
-        // {
-        //     moveVertical -= 1f;
-        // }
-        // if (Input.GetKey(KeyCode.A))
-        // {
-        //     moveHorizontal -= 1f;
-        // }
-        // if (Input.GetKey(KeyCode.D))
-        // {
-        //     moveHorizontal += 1f;
-        // }
-        //
-        // // Creare il vettore di movimento combinando gli input
-        // movementDirection = new Vector3(moveHorizontal, 0f, moveVertical);
-        //
-        // // Normalizzare il vettore per garantire una velocità costante
-        // if (movementDirection.magnitude > 1)
-        // {
-        //     movementDirection.Normalize();
-        // }
-        // if (movementDirection != Vector3.zero)
-        // {
-        //     Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
-        //     transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, speed * Time.deltaTime);
-        // }
-        //
-        // // Muovere il personaggio
-        // transform.Translate(movementDirection * speed * Time.deltaTime, Space.World);
 
         def_HP = Mathf.Clamp(currentHP, 0, MAX_HP);
         UpdateHPUI();
@@ -439,15 +444,17 @@ public class PlayerCharacter : Character
 
     void CheckForNPC()
     {
-        RaycastHit raycastHit;
-        if (Physics.Raycast(transform.position, transform.forward, out raycastHit,
-                maxDistanceNPC, npcLayer)
-            && raycastHit.transform.TryGetComponent(out NPC npc)
+        Ray ray = new Ray();
+        RaycastHit[] raycastHit;
+        raycastHit = Physics.SphereCastAll(transform.position, 2f, Vector3.forward, maxDistanceNPC, npcLayer);
+        if (raycastHit.Length > 0 && raycastHit[0].collider
+            && raycastHit[0].transform.TryGetComponent(out NPC npc)
             && Input.GetKeyDown(KeyCode.E)
             && !choicePieceManager.isUIOpen)
         {
             OnChoicePieces?.Invoke(this, EventArgs.Empty);
             GetComponent<PlayerMovement>().enabled = false;
+            isInputOn = false;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             healthBar.SetActive(false);
@@ -457,6 +464,7 @@ public class PlayerCharacter : Character
         {
             OnEndChoicePieces?.Invoke(this, EventArgs.Empty);
             GetComponent<PlayerMovement>().enabled = true;
+            isInputOn = true;
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             healthBar.SetActive(true);
@@ -469,12 +477,12 @@ public class PlayerCharacter : Character
         if (state.ToLower().Contains("true"))
         {
             Debug.Log("sta combattendo");
-            isFighting = true;
+            isInputOn = false;
         }
         else if (state.ToLower().Contains("false"))
         {
             Debug.Log("NON sta combattendo");
-            isFighting = false;
+            isInputOn = true;
         }
     }
     

@@ -67,65 +67,68 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        //Ottengo gli input da tastiera e li salvo in un vettore 2D che mi servir� dopo per calcolare la direzione del player
-       //isAttacking=player.GetIsAttacking();
-        Vector2 inputs = new Vector2(Input.GetAxisRaw("Horizontal") ,Input.GetAxisRaw("Vertical")).normalized;
-        //Vector3 inputs = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));//.normalized;
-        playerVector.x = inputs.x * movementSpeed;
-        playerVector.z = inputs.y * movementSpeed;
-        //float yMovement = playerVector.y;
-        //playerVector.x = inputs.x * movementSpeed * mainCamera.right.magnitude;
-        //playerVector.z = inputs.y * movementSpeed * mainCamera.forward.magnitude;
-
-        //Per la rotazione della camera: i valori del vettore vengono moltiplicati per la direzione della camera
-        //float mainCameraX = mainCamera.right.magnitude * playerVector.x;
-        //float mainCameraZ = mainCamera.forward.magnitude * playerVector.z;
-
-        //float mainCameraX = mainCamera.right.magnitude;
-        //float mainCameraZ = mainCamera.forward.magnitude;
-        Vector3 inputMovement = mainCamera.right*playerVector.x + mainCamera.forward*playerVector.z;
-
-        inputMovement.y = playerVector.y;
-        playerVector = inputMovement;
-        //playerVector.y=yMovement;
-        //playerVector = new Vector3();
-        //playerVector = mainCamera.right + mainCamera.forward + new Vector3(inputs.x * movementSpeed, 0f, inputs.z * movementSpeed);
-        //Debug.Log("Update: " + playerVector);
-        //playerVector.y = 0f;
-       //Debug.Log("Right: "+ mainCamera.right);
-        // Se il player � a terra e si preme il tasto di salto, il player salta
-        if (Input.GetKeyDown(KeyCode.Space) && canJumpAgain)
+        if (player.isInputOn)
         {
-            isJumpPressed = true;
-            //Debug.Log("Salto");
+            //Ottengo gli input da tastiera e li salvo in un vettore 2D che mi servir� dopo per calcolare la direzione del player
+            //isAttacking=player.GetIsAttacking();
+            Vector2 inputs = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
+            //Vector3 inputs = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));//.normalized;
+            playerVector.x = inputs.x * movementSpeed;
+            playerVector.z = inputs.y * movementSpeed;
+            //float yMovement = playerVector.y;
+            //playerVector.x = inputs.x * movementSpeed * mainCamera.right.magnitude;
+            //playerVector.z = inputs.y * movementSpeed * mainCamera.forward.magnitude;
 
-        }
-        //Debug.Log(playerVector.y);
-        
+            //Per la rotazione della camera: i valori del vettore vengono moltiplicati per la direzione della camera
+            //float mainCameraX = mainCamera.right.magnitude * playerVector.x;
+            //float mainCameraZ = mainCamera.forward.magnitude * playerVector.z;
 
-        /*Se i valori di input del vettore 2D sono a zero, allora il player � fermo, altrimenti ruota il player nella direzione di movimento
-        ATTENZIONE: Usare un vettore 3D, con le funzionalit� implementate, non fa ruotare in modo corretto, oppure se si setta y=0f, d� errore.
-        Il controllo sul vettore 2D anzich� su quello 3D evita che compaia l'errore "Look Rotation Viewing Vector Is Zero" */
-        if ((inputs.x != 0) || (inputs.y != 0))//(inputs != Vector2.zero)
-        {
-            //playerTransform.forward = new Vector3(mainCameraX, 0f, mainCameraZ);
+            //float mainCameraX = mainCamera.right.magnitude;
+            //float mainCameraZ = mainCamera.forward.magnitude;
+            Vector3 inputMovement = mainCamera.right * playerVector.x + mainCamera.forward * playerVector.z;
 
-            //Prove per la camera, con questi comandi il player punta e ruota nella stessa direzione della camera
-            float targetAngle = Mathf.Atan2(inputs.x, inputs.y) * Mathf.Rad2Deg + mainCamera.eulerAngles.y;
-            Quaternion targetRotation = Quaternion.Euler(0f, targetAngle, 0f);
-            playerTransform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
-        }
-        //Muove il player, calcola la gravit� da applicare e gestisce il salto
+            inputMovement.y = playerVector.y;
+            playerVector = inputMovement;
+            //playerVector.y=yMovement;
+            //playerVector = new Vector3();
+            //playerVector = mainCamera.right + mainCamera.forward + new Vector3(inputs.x * movementSpeed, 0f, inputs.z * movementSpeed);
+            //Debug.Log("Update: " + playerVector);
+            //playerVector.y = 0f;
+            //Debug.Log("Right: "+ mainCamera.right);
+            // Se il player � a terra e si preme il tasto di salto, il player salta
+            if (Input.GetKeyDown(KeyCode.Space) && canJumpAgain)
+            {
+                isJumpPressed = true;
+                //Debug.Log("Salto");
 
-        ComputePlayerVelocity(playerTransform.position);
-        //if(!playerController.isGrounded)
-        //  Debug.Log(verticalVelocity);
+            }
+            //Debug.Log(playerVector.y);
+
+
+            /*Se i valori di input del vettore 2D sono a zero, allora il player � fermo, altrimenti ruota il player nella direzione di movimento
+            ATTENZIONE: Usare un vettore 3D, con le funzionalit� implementate, non fa ruotare in modo corretto, oppure se si setta y=0f, d� errore.
+            Il controllo sul vettore 2D anzich� su quello 3D evita che compaia l'errore "Look Rotation Viewing Vector Is Zero" */
+            if ((inputs.x != 0) || (inputs.y != 0)) //(inputs != Vector2.zero)
+            {
+                //playerTransform.forward = new Vector3(mainCameraX, 0f, mainCameraZ);
+
+                //Prove per la camera, con questi comandi il player punta e ruota nella stessa direzione della camera
+                float targetAngle = Mathf.Atan2(inputs.x, inputs.y) * Mathf.Rad2Deg + mainCamera.eulerAngles.y;
+                Quaternion targetRotation = Quaternion.Euler(0f, targetAngle, 0f);
+                playerTransform.rotation =
+                    Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+            }
+            //Muove il player, calcola la gravit� da applicare e gestisce il salto
+
+            ComputePlayerVelocity(playerTransform.position);
+            //if(!playerController.isGrounded)
+            //  Debug.Log(verticalVelocity);
             //Debug.Log(playerVector);
-        HandleGravity();
-        HandleJump();
-        if(!isAttacking)
-            playerController.Move(playerVector * Time.deltaTime);
-        
+            HandleGravity();
+            HandleJump();
+            if (!isAttacking)
+                playerController.Move(playerVector * Time.deltaTime);
+        }
     }
 
     private void HandleJumpVariables()

@@ -105,8 +105,8 @@ public class Character : MonoBehaviour
             }
         }
 
-        if (effectsApplied[Element.Fire])
-            Debug.Log(effectTimer[Element.Fire]);
+        // if (effectsApplied[Element.Fire])
+        //     Debug.Log(effectTimer[Element.Fire]);
        
     }
 
