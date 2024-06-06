@@ -157,6 +157,7 @@ public class PlayerMovement : MonoBehaviour
         else if(isJumpAscension && verticalVelocity <= 1f && !playerController.isGrounded)
         {
             //Debug.Log("Falling");
+            isJumpAscension = false;
             isJumpPeak=false;
             isJumpFalling = true;
         }
@@ -165,13 +166,7 @@ public class PlayerMovement : MonoBehaviour
             isJumpFalling=false;
             StartCoroutine(WaitForJumpAgain());
         }
-        else if (playerController.isGrounded)
-        {
-            isJumpAscension = false;
-            isJumpPeak = false;
-            isJumpAscension = false;
-            isJumpPressed = false;
-        }
+       
     }
 
     private void HandleGravity()
