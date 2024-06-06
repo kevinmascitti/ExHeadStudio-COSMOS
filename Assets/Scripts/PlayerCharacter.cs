@@ -125,18 +125,25 @@ public class PlayerCharacter : Character
             attacksDone = 0;
         }
         
-        if (animator.GetBool("isBaseAttack") && 
-            (animator.GetCurrentAnimatorStateInfo(0).IsName("isBaseAttack2") || 
-             animator.GetCurrentAnimatorStateInfo(0).IsName("BaseAttack")))
+        // if (animator.GetBool("isBaseAttack") && 
+        //     (animator.GetCurrentAnimatorStateInfo(0).IsName("isBaseAttack2") || 
+        //      animator.GetCurrentAnimatorStateInfo(0).IsName("BaseAttack")))
+        // {
+        //     animator.SetBool("isBaseAttack", false);
+        //     if(animator.GetCurrentAnimatorStateInfo(0).IsName("isBaseAttack2"))
+        //         animator.SetBool("isBaseAttack2", false);
+        // } /*else if (animator.GetBool("BaseAttack3") && animator.GetCurrentAnimatorStateInfo(0).IsName("BaseAttack3"))
+        // {
+        //     animator.SetBool("BaseAttack3", false);
+        // }*/
+        if (animator.GetBool("isBaseAttack") && animator.GetCurrentAnimatorStateInfo(0).IsName("BaseAttack"))
         {
             animator.SetBool("isBaseAttack", false);
-            if(animator.GetCurrentAnimatorStateInfo(0).IsName("isBaseAttack2"))
-                animator.SetBool("isBaseAttack2", false);
-        } /*else if (animator.GetBool("BaseAttack3") && animator.GetCurrentAnimatorStateInfo(0).IsName("BaseAttack3"))
+        }
+        if (animator.GetBool("isBaseAttack2") && animator.GetCurrentAnimatorStateInfo(0).IsName("BaseAttack2"))
         {
-            animator.SetBool("BaseAttack3", false);
-        }*/
-        
+            animator.SetBool("isBaseAttack2", false);
+        }
         if (animator.GetBool("isStrongAttack") && animator.GetCurrentAnimatorStateInfo(0).IsName("StrongAttack"))
         {
             animator.SetBool("isStrongAttack", false);
@@ -156,7 +163,7 @@ public class PlayerCharacter : Character
                 animator.GetCurrentAnimatorStateInfo(0).IsName("BaseAttack"))
             {
                 // lastBaseAttack = Time.time;
-                animator.SetBool("isBaseAttack", true);
+                // animator.SetBool("isBaseAttack", true);
                 animator.SetBool("isBaseAttack2", true);
                 attacksDone = 0;
                 // attacksDone++;
