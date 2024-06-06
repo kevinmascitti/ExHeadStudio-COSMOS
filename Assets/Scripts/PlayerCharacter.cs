@@ -113,6 +113,7 @@ public class PlayerCharacter : Character
         
         Weapon.OnEnemyCollision += DoDamage;
         ChoicePieceManager.OnChangePiece += ModifyComposition;
+        ChoicePieceManager.OnSetPiece += SetPieceComposition;
     }
 
     public void Update()
@@ -176,7 +177,7 @@ public class PlayerCharacter : Character
             StrongAttack();
             nextActionTimer = Time.time + cooldown;
         }
-        else if (Time.time >= nextActionTimer && Input.GetKeyDown(KeyCode.LeftShift))
+        else if (Time.time >= nextActionTimer && Input.GetKeyDown(KeyCode.Q))
         {
             if (Input.GetKey(KeyCode.A))
             {
@@ -190,7 +191,7 @@ public class PlayerCharacter : Character
             {
                 BackwardDodge();
             }
-            else if(Input.GetKey(KeyCode.W))
+            else
             {
                 ForwardDodge();
             }
@@ -418,6 +419,13 @@ public class PlayerCharacter : Character
         completePiecesList[args.partType][args.oldPieceNumber].gameObject.SetActive(false);
         completePiecesList[args.partType][args.newPieceNumber].gameObject.SetActive(true);
         Piece selectedPiece = completePiecesList[args.partType][args.newPieceNumber];
+        composition[args.partType] = selectedPiece;
+    }
+    
+    private void SetPieceComposition(object sender, SetPieceArgs args)
+    {
+        completePiecesList[args.partType][args.pieceNumber].gameObject.SetActive(true);
+        Piece selectedPiece = completePiecesList[args.partType][args.pieceNumber];
         composition[args.partType] = selectedPiece;
     }
 

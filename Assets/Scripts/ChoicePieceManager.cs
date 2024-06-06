@@ -49,6 +49,7 @@ public class ChoicePieceManager : MonoBehaviour
     [SerializeField] private Dictionary<PartType, int> selectedPieceNumbers = new Dictionary<PartType, int>();
     
     public static EventHandler<ChangePieceArgs> OnChangePiece;
+    public static EventHandler<SetPieceArgs> OnSetPiece;
 
     // Start is called before the first frame update
     void Start()
@@ -95,12 +96,12 @@ public class ChoicePieceManager : MonoBehaviour
         selectedPieceNumbers.Add(PartType.Legs, 0);
         selectedPieceNumbers.Add(PartType.Weapon, 0);
         
-        OnChangePiece?.Invoke(this, new ChangePieceArgs(PartType.Head, 0, 0));
-        OnChangePiece?.Invoke(this, new ChangePieceArgs(PartType.LeftArm, 0, 0));
-        OnChangePiece?.Invoke(this, new ChangePieceArgs(PartType.RightArm, 0, 0));
-        OnChangePiece?.Invoke(this, new ChangePieceArgs(PartType.Body, 0, 0));
-        OnChangePiece?.Invoke(this, new ChangePieceArgs(PartType.Legs, 0, 0));
-        OnChangePiece?.Invoke(this, new ChangePieceArgs(PartType.Weapon, 0, 0));
+        OnSetPiece?.Invoke(this, new SetPieceArgs(PartType.Head, 0));
+        OnSetPiece?.Invoke(this, new SetPieceArgs(PartType.LeftArm, 0));
+        OnSetPiece?.Invoke(this, new SetPieceArgs(PartType.RightArm, 0));
+        OnSetPiece?.Invoke(this, new SetPieceArgs(PartType.Body, 0));
+        OnSetPiece?.Invoke(this, new SetPieceArgs(PartType.Legs, 0));
+        OnSetPiece?.Invoke(this, new SetPieceArgs(PartType.Weapon, 0));
         
         ChoicePieceButton.OnClickedArrow += UpdateUI;
         PlayerCharacter.OnChoicePieces += OpenChoicePiecesUI;
@@ -370,4 +371,16 @@ public class ChangePieceArgs : EventArgs
     public PartType partType;
     public int oldPieceNumber;
     public int newPieceNumber;
+}
+
+public class SetPieceArgs : EventArgs 
+{
+    public SetPieceArgs(PartType t, int n)
+    {
+        partType = t;
+        pieceNumber = n;
+    }
+
+    public PartType partType;
+    public int pieceNumber;
 }

@@ -16,6 +16,7 @@ public class Weapon : Piece
     public WeaponType weaponType;
     public float movementSpeed;
     public int atk;
+    [SerializeField] private LayerMask enemyLayer;
     
     public static EventHandler<EnemyCollisionArgs> OnEnemyCollision;
 

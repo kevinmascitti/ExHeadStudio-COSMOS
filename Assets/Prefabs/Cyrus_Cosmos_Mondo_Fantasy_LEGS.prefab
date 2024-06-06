@@ -126,6 +126,14 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 8722239827657675932}
+    - targetCorrespondingSourceObject: {fileID: -2938621282506013534, guid: a6a40ed334bcfe04db9ac8785d969e95,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7704000643091368312}
+    - targetCorrespondingSourceObject: {fileID: -2938621282506013534, guid: a6a40ed334bcfe04db9ac8785d969e95,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7788948828866288465}
   m_SourcePrefab: {fileID: 100100000, guid: a6a40ed334bcfe04db9ac8785d969e95, type: 3}
 --- !u!1 &1831657755943691194 stripped
 GameObject:
@@ -145,7 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d14c8f778dcc4fe589b8f3c77327211, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: 
+  name: 
   numberInList: 0
   prefab: {fileID: 8171619796911873626, guid: 87c5de12e9b7d44e9898e75dc7cd97f0, type: 3}
   type: 0
@@ -170,7 +178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d14c8f778dcc4fe589b8f3c77327211, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: 
+  name: 
   numberInList: 0
   prefab: {fileID: 3522250906993078264, guid: ff5d8e9f103f347449d05517b9d0ad2e, type: 3}
   type: 1
@@ -195,7 +203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d14c8f778dcc4fe589b8f3c77327211, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: 
+  name: 
   numberInList: 0
   prefab: {fileID: 2900243720131898268, guid: 4b2bd92d7b08342d8a523aba59121b95, type: 3}
   type: 4
@@ -208,6 +216,58 @@ Animator:
     type: 3}
   m_PrefabInstance: {fileID: 7103185200341268644}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &3865353800851438598 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -2938621282506013534, guid: a6a40ed334bcfe04db9ac8785d969e95,
+    type: 3}
+  m_PrefabInstance: {fileID: 7103185200341268644}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &7704000643091368312
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3865353800851438598}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.0016239303, y: 0.015437808, z: 0.0030789208}
+  m_Center: {x: -0.00046454908, y: 0.0032370896, z: -0.00010456628}
+--- !u!114 &7788948828866288465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3865353800851438598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fb1e0470466c44508aedd5f438bf723, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: Ascia
+  numberInList: 0
+  prefab: {fileID: 2504407334397266973, guid: 8fbc9d8b778154c1d82994c3f7471f2a, type: 3}
+  type: 5
+  isUnlocked: 1
+  element: 0
+  description: Ascia di ciro
+  weaponType: 0
+  movementSpeed: 0
+  atk: 0
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &4136516741682158750 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -2597370540435119046, guid: a6a40ed334bcfe04db9ac8785d969e95,
@@ -226,7 +286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d14c8f778dcc4fe589b8f3c77327211, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: 
+  name: 
   numberInList: 1
   prefab: {fileID: 1531152980753565087, guid: 93b4500c527d84c3699df76d685f3bd3, type: 3}
   type: 3
@@ -251,7 +311,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d14c8f778dcc4fe589b8f3c77327211, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: 
+  name: 
   numberInList: 1
   prefab: {fileID: 6945263926559255315, guid: e15b82500ee46417e995dd86c0be25c9, type: 3}
   type: 2
@@ -276,7 +336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d14c8f778dcc4fe589b8f3c77327211, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: 
+  name: 
   numberInList: 0
   prefab: {fileID: 8524294313995886163, guid: 1518b36dd03bb4b8d86c9a1e59694a58, type: 3}
   type: 3
@@ -335,6 +395,8 @@ MonoBehaviour:
   - {fileID: 1701043494078222815}
   legsList:
   - {fileID: 8722239827657675932}
+  weaponList:
+  - {fileID: 7788948828866288465}
   accessory: {fileID: 0}
   animator: {fileID: 3745025560693671221}
   attackRange: 0.1
@@ -395,7 +457,7 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0
-  m_Center: {x: 0, y: 1.12, z: 0.05}
+  m_Center: {x: 0, y: 1.21, z: 0.05}
 --- !u!114 &8346905672989226423
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -409,7 +471,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 7
-  maxJumpHeight: 10
+  maxJumpHeight: 20
   maxJumpTime: 3.5
   verticalVelocity: 0
   mainCamera: {fileID: 0}
@@ -432,7 +494,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d14c8f778dcc4fe589b8f3c77327211, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: 
+  name: 
   numberInList: 0
   prefab: {fileID: 8191235042058074654, guid: d121bbb31bf4d47c6bed145109ce70c4, type: 3}
   type: 2
