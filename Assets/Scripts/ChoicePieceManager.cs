@@ -11,6 +11,8 @@ using UnityEngine.UI;
 public class ChoicePieceManager : MonoBehaviour
 {
     [NonSerialized] public bool isUIOpen = false;
+    private float nextActionTime = 0;
+    [SerializeField] private float cooldown = 0.3f;
     [SerializeField] private GameObject canvasChoicePieces;
     
     // dizionario dei pezzi presenti nella UI di scelta pezzo
@@ -21,6 +23,11 @@ public class ChoicePieceManager : MonoBehaviour
     [SerializeField] private GameObject rightArmEmpty;
     [SerializeField] private GameObject bodyEmpty;
     [SerializeField] private GameObject legsEmpty;
+    [SerializeField] private GameObject weaponEmpty;
+
+    [SerializeField] private GameObject choicePiecesBox;
+    [SerializeField] private Dictionary<PartType, GameObject> clickButtons = new Dictionary<PartType, GameObject>();
+
     // dizionario dei box delle partType utili all'arrowIndicator
     [SerializeField] private Dictionary<PartType, GameObject> partTypeEmpties = new Dictionary<PartType, GameObject>();
 
@@ -51,12 +58,49 @@ public class ChoicePieceManager : MonoBehaviour
         partTypeEmpties[PartType.RightArm] = rightArmEmpty;
         partTypeEmpties[PartType.Body] = bodyEmpty;
         partTypeEmpties[PartType.Legs] = legsEmpty;
+        partTypeEmpties[PartType.Weapon] = weaponEmpty;
+
+        foreach (PartType partType in Enum.GetValues(typeof(PartType)))
+        {
+            clickButtons.Add(partType, choicePiecesBox.transform.Find("Click" + partType.ToString()).gameObject);
+            switch (partType)
+            {
+                case PartType.Head:
+                    clickButtons[partType].GetComponent<Button>().onClick.AddListener(SelectHead);
+                    break;
+                case PartType.LeftArm:
+                    clickButtons[partType].GetComponent<Button>().onClick.AddListener(SelectLeftArm);
+                    break;
+                case PartType.RightArm:
+                    clickButtons[partType].GetComponent<Button>().onClick.AddListener(SelectRightArm);
+                    break;
+                case PartType.Body:
+                    clickButtons[partType].GetComponent<Button>().onClick.AddListener(SelectBody);
+                    break;
+                case PartType.Legs:
+                    clickButtons[partType].GetComponent<Button>().onClick.AddListener(SelectLegs);
+                    break;
+                case PartType.Weapon:
+                    clickButtons[partType].GetComponent<Button>().onClick.AddListener(SelectWeapon);
+                    break;
+                default:
+                    break;
+            }
+        }
         
         selectedPieceNumbers.Add(PartType.Head, 0);
         selectedPieceNumbers.Add(PartType.LeftArm, 0);
         selectedPieceNumbers.Add(PartType.RightArm, 0);
         selectedPieceNumbers.Add(PartType.Body, 0);
         selectedPieceNumbers.Add(PartType.Legs, 0);
+        selectedPieceNumbers.Add(PartType.Weapon, 0);
+        
+        OnChangePiece?.Invoke(this, new ChangePieceArgs(PartType.Head, 0, 0));
+        OnChangePiece?.Invoke(this, new ChangePieceArgs(PartType.LeftArm, 0, 0));
+        OnChangePiece?.Invoke(this, new ChangePieceArgs(PartType.RightArm, 0, 0));
+        OnChangePiece?.Invoke(this, new ChangePieceArgs(PartType.Body, 0, 0));
+        OnChangePiece?.Invoke(this, new ChangePieceArgs(PartType.Legs, 0, 0));
+        OnChangePiece?.Invoke(this, new ChangePieceArgs(PartType.Weapon, 0, 0));
         
         ChoicePieceButton.OnClickedArrow += UpdateUI;
         PlayerCharacter.OnChoicePieces += OpenChoicePiecesUI;
@@ -67,21 +111,25 @@ public class ChoicePieceManager : MonoBehaviour
     {
         if (isUIOpen)
         {
-            if (Input.GetKeyDown(KeyCode.RightArrow))
+            if (Input.GetKeyDown(KeyCode.RightArrow) && Time.time > nextActionTime)
             {
                 NextPiece();
+                nextActionTime = Time.time + cooldown;
             }
-            else if (Input.GetKeyDown(KeyCode.LeftArrow))
+            else if (Input.GetKeyDown(KeyCode.LeftArrow) && Time.time > nextActionTime)
             {
                 PreviousPiece();
+                nextActionTime = Time.time + cooldown;
             }
-            else if (Input.GetKeyDown(KeyCode.DownArrow))
+            else if (Input.GetKeyDown(KeyCode.DownArrow) && Time.time > nextActionTime)
             {
                 NextPartType();
+                nextActionTime = Time.time + cooldown;
             }
-            else if (Input.GetKeyDown(KeyCode.UpArrow))
+            else if (Input.GetKeyDown(KeyCode.UpArrow) && Time.time > nextActionTime)
             {
                 PreviousPartType();
+                nextActionTime = Time.time + cooldown;
             }
         }
     }
@@ -97,6 +145,7 @@ public class ChoicePieceManager : MonoBehaviour
             selectedPieceNumbers[PartType.RightArm] = player.composition[PartType.RightArm].numberInList;
             selectedPieceNumbers[PartType.LeftArm] = player.composition[PartType.LeftArm].numberInList;
             selectedPieceNumbers[PartType.Legs] = player.composition[PartType.Legs].numberInList;
+            selectedPieceNumbers[PartType.Weapon] = player.composition[PartType.Weapon].numberInList;
 
             compositionUI[PartType.Head] = Instantiate(
                 player.completePiecesList[PartType.Head][selectedPieceNumbers[PartType.Head]].prefab,
@@ -118,6 +167,10 @@ public class ChoicePieceManager : MonoBehaviour
                 player.completePiecesList[PartType.Legs][selectedPieceNumbers[PartType.Legs]].prefab,
                 partTypeEmpties[PartType.Legs].transform.position, Quaternion.Euler(270, 180, 0),
                 partTypeEmpties[PartType.Legs].transform);
+            compositionUI[PartType.Weapon] = Instantiate(
+                player.completePiecesList[PartType.Weapon][selectedPieceNumbers[PartType.Weapon]].prefab,
+                partTypeEmpties[PartType.Weapon].transform.position, Quaternion.Euler(270, 180, 0),
+                partTypeEmpties[PartType.Weapon].transform);
 
             selectedPartType = PartType.Head;
             UpdateUIInformation(player.completePiecesList[selectedPartType][selectedPieceNumbers[selectedPartType]]);
@@ -148,6 +201,7 @@ public class ChoicePieceManager : MonoBehaviour
             Destroy(compositionUI[PartType.RightArm]);
             Destroy(compositionUI[PartType.LeftArm]);
             Destroy(compositionUI[PartType.Legs]);
+            Destroy(compositionUI[PartType.Weapon]);
 
             canvasChoicePieces.SetActive(false);
         }
@@ -169,43 +223,63 @@ public class ChoicePieceManager : MonoBehaviour
             }
         }
     }
-
-    private void PreviousPartType()
+    
+    private void SelectHead()
     {
+        SelectPartType(PartType.Head);
+    }
+    private void SelectLeftArm()
+    {
+        SelectPartType(PartType.LeftArm);
+    }
+    private void SelectRightArm()
+    {
+        SelectPartType(PartType.RightArm);
+    }
+    private void SelectBody()
+    {
+        SelectPartType(PartType.Body);
+    }
+    private void SelectLegs()
+    {
+        SelectPartType(PartType.Legs);
+    }
+    private void SelectWeapon()
+    {
+        SelectPartType(PartType.Weapon);
+    }
+
+    private void SelectPartType(PartType partType)
+    {
+        Debug.Log("Cambio parte del corpo");
+        
         partTypeEmpties[selectedPartType].GetComponent<ArrowIndicator>().HideArrows();
         
         string scriptName = "Outline";
         var scriptOld = compositionUI[selectedPartType].GetComponent(scriptName) as MonoBehaviour;
         scriptOld.enabled = false;
         
-        int newSelectedPartTypeNumber = (int) (selectedPartType - 1) % Enum.GetValues(typeof(PartType)).Length;
-        if (newSelectedPartTypeNumber == -1)
-            newSelectedPartTypeNumber = Enum.GetValues(typeof(PartType)).Length - 1;
+        int newSelectedPartTypeNumber = (int) partType;
         selectedPartType = (PartType) newSelectedPartTypeNumber;
         partTypeEmpties[selectedPartType].GetComponent<ArrowIndicator>().ShowArrows();
         
         var scriptNew = compositionUI[selectedPartType].GetComponent(scriptName) as MonoBehaviour;
         scriptNew.enabled = true;
-        
         UpdateUIInformation(player.completePiecesList[selectedPartType][selectedPieceNumbers[selectedPartType]]);
+    }
+
+    private void PreviousPartType()
+    {
+        int newSelectedPartTypeNumber = (int) (selectedPartType - 1) % Enum.GetValues(typeof(PartType)).Length;
+        if (newSelectedPartTypeNumber == -1)
+            newSelectedPartTypeNumber = Enum.GetValues(typeof(PartType)).Length - 1;
+        SelectPartType((PartType) newSelectedPartTypeNumber);
     }
     
     private void NextPartType()
     {
-        partTypeEmpties[selectedPartType].GetComponent<ArrowIndicator>().HideArrows();
-        
-        string scriptName = "Outline";
-        var scriptOld = compositionUI[selectedPartType].GetComponent(scriptName) as MonoBehaviour;
-        scriptOld.enabled = false;
-        
         int newSelectedPartTypeNumber = (int) (selectedPartType + 1) % Enum.GetValues(typeof(PartType)).Length;
-        selectedPartType = (PartType) newSelectedPartTypeNumber;
-        partTypeEmpties[selectedPartType].GetComponent<ArrowIndicator>().ShowArrows();
-        
-        var scriptNew = compositionUI[selectedPartType].GetComponent(scriptName) as MonoBehaviour;
-        scriptNew.enabled = true;
-        
-        UpdateUIInformation(player.completePiecesList[selectedPartType][selectedPieceNumbers[selectedPartType]]);
+        SelectPartType((PartType) newSelectedPartTypeNumber);
     }
     
     private void PreviousPiece()

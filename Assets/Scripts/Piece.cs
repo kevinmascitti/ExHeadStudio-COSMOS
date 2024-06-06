@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Piece : MonoBehaviour
 {
-    public string _name;
+    public string name;
     public int numberInList;
     public GameObject prefab;
     public PartType type;
@@ -15,10 +15,10 @@ public class Piece : MonoBehaviour
     public string description;
 
     // Start is called before the first frame update
-    public void Start()
+    public void Awake()
     {
-        _name = gameObject.name;
-        // prefab = (GameObject) Resources.Load("Pieces/" + name);
+        name = gameObject.name;
+        // prefab = Resources.Load<GameObject>("Pieces/" + name);
         stats = new Stats();
     }
 

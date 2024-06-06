@@ -8,14 +8,35 @@ public enum WeaponType
     Sword,
     Ax,
     Spear,
-    Projectile,
+    Projectile
 }
 
-public class Weapon : EnemyHitter
+public class Weapon : Piece
 {
-    public WeaponType type;
-    public Element element;
+    public WeaponType weaponType;
     public float movementSpeed;
-    public AnimationClip baseAttack;
-    public AnimationClip strongAttack;
+    public int atk;
+    
+    public static EventHandler<EnemyCollisionArgs> OnEnemyCollision;
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            Debug.Log("Enemy damage!");
+            OnEnemyCollision?.Invoke(this, new EnemyCollisionArgs(other.gameObject.GetComponent<Enemy>(), this));
+        }
+    }
+}
+
+public class EnemyCollisionArgs : EventArgs 
+{
+    public EnemyCollisionArgs(Enemy e, Weapon h)
+    {
+        enemy = e;
+        hitter = h;
+    }
+
+    public Enemy enemy;
+    public Weapon hitter;
 }

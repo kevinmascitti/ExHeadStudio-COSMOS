@@ -16,7 +16,8 @@ public enum PartType
     Body,
     RightArm,
     LeftArm,
-    Legs
+    Legs,
+    Weapon
 }
 
 public class PlayerCharacter : Character
@@ -30,6 +31,7 @@ public class PlayerCharacter : Character
     [SerializeField] private List<Piece> rightArmList;
     [SerializeField] private List<Piece> bodyList;
     [SerializeField] private List<Piece> legsList;
+    [SerializeField] private List<Piece> weaponList;
     // lista COMPLETA dei PEZZI presenti nel modello da disabilitare o abilitare
     public Dictionary<PartType, List<Piece>> completePiecesList = new Dictionary<PartType, List<Piece>>();
     
@@ -98,11 +100,15 @@ public class PlayerCharacter : Character
         completePiecesList[PartType.RightArm] = rightArmList;
         completePiecesList[PartType.Body] = bodyList;
         completePiecesList[PartType.Legs] = legsList;
+        completePiecesList[PartType.Weapon] = weaponList;
         composition[PartType.Head] = completePiecesList[PartType.Head][0];
         composition[PartType.LeftArm] = completePiecesList[PartType.LeftArm][0];
         composition[PartType.RightArm] = completePiecesList[PartType.RightArm][0];
         composition[PartType.Body] = completePiecesList[PartType.Body][0];
         composition[PartType.Legs] = completePiecesList[PartType.Legs][0];
+        composition[PartType.Weapon] = completePiecesList[PartType.Weapon][0];
+        InitializeComposition();
+        
         choicePieceManager = GameObject.Find("ChoicePiecesManager").GetComponent<ChoicePieceManager>();
         
         Weapon.OnEnemyCollision += DoDamage;
@@ -159,7 +165,6 @@ public class PlayerCharacter : Character
             {
                 animator.SetBool("isBaseAttack", true);
                 lastBaseAttack = Time.time;
-                animator.SetTrigger("BaseAttack");
                 attacksDone++;
                 nextActionTimer = Time.time + cooldown;
             }
@@ -326,7 +331,6 @@ public class PlayerCharacter : Character
 
     private void StrongAttack()
     {
-        animator.SetTrigger("StrongAttack");
         Debug.Log("Strong Attack done!");
     }
 
@@ -381,6 +385,34 @@ public class PlayerCharacter : Character
         StartCoroutine(DodgeCoroutine(dodgeDistance));
     }
 
+    private void InitializeComposition()
+    {
+        foreach(Piece p in completePiecesList[PartType.Head])
+            if(p != composition[PartType.Head])
+                p.gameObject.SetActive(false);
+        
+        foreach(Piece p in completePiecesList[PartType.LeftArm])
+            if(p != composition[PartType.LeftArm])
+                p.gameObject.SetActive(false);
+        
+        foreach(Piece p in completePiecesList[PartType.RightArm])
+            if(p != composition[PartType.RightArm])
+                p.gameObject.SetActive(false);
+        
+        foreach(Piece p in completePiecesList[PartType.Body])
+            if(p != composition[PartType.Body])
+                p.gameObject.SetActive(false);
+        
+        foreach(Piece p in completePiecesList[PartType.Legs])
+            if(p != composition[PartType.Legs])
+                p.gameObject.SetActive(false);
+        
+        foreach(Piece p in completePiecesList[PartType.Weapon])
+            if(p != composition[PartType.Weapon])
+                p.gameObject.SetActive(false);
+        
+    }
+    
     private void ModifyComposition(object sender, ChangePieceArgs args)
     {
         completePiecesList[args.partType][args.oldPieceNumber].gameObject.SetActive(false);
@@ -404,8 +436,7 @@ public class PlayerCharacter : Character
             healthBar.SetActive(false);
             abilitiesSection.SetActive(false);
         }
-
-        if (choicePieceManager.isUIOpen && Input.GetKeyDown(KeyCode.E))
+        else if (choicePieceManager.isUIOpen && Input.GetKeyDown(KeyCode.E))
         {
             OnEndChoicePieces?.Invoke(this, EventArgs.Empty);
             GetComponent<PlayerMovement>().enabled = true;

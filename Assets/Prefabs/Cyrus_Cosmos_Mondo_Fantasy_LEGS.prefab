@@ -282,7 +282,7 @@ MonoBehaviour:
   type: 3
   isUnlocked: 1
   element: 0
-  description: sinistor normale
+  description: sinistro normale
 --- !u!1 &7949694055651870197 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a6a40ed334bcfe04db9ac8785d969e95,
