@@ -9,6 +9,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static UnityEditor.Rendering.FilterWindow;
 
 public enum PartType
 {
@@ -61,6 +62,7 @@ public class PlayerCharacter : Character
     private Element activeRxElement;//Elemento nel braccio destro
     private Element activeSxElement;//Elemento nel braccio sinistro
 
+    private int damageTaken;
 
     [NonSerialized] public Scenario currentScenario;
     [NonSerialized] public Scenario defaultScenario;
@@ -336,10 +338,10 @@ public class PlayerCharacter : Character
         gameObject.transform.position = currentScenario.respawnPoint;
         Debug.Log("RESPAWNED");
     }
-
+   
     private void DoDamage(object sender, EnemyCollisionArgs args)
     {
-        args.enemy.TakeDamage(stats.atk + args.hitter.atk - args.enemy.def, activeRxElement, args.hitter.GetComponentInParent<LayerMask>());
+        args.enemy.TakeDamage(stats.atk + args.hitter.atk - args.enemy.def, activeRxElement);
         //Da sistemare perché ora viene passato solo l'elemento del braccio destro
     }
 

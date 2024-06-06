@@ -32,6 +32,7 @@ public class Character : MonoBehaviour
     public TextMeshProUGUI statusText;
     // public TextMeshProUGUI effectText;
 
+    private int damageTaken = 0;
     [Header("Informazioni character")]
     public float currentHP;
     public bool isPlayer = false;
@@ -158,11 +159,23 @@ public class Character : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int damage, Element element, LayerMask layer)
+    public void TakeDamage(int damage, Element element)
     {
-       // Debug.Log(layer.ToString());
+        if(damageTaken == 0 && this.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
         UpdateHP(currentHP-damage);
         TakeElementalStatus(damage, element);
+        damageTaken++;
+        StartCoroutine(CanTakeDamageAgain());
+        }
+        else if(this.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+
+            UpdateHP(currentHP - damage);
+            TakeElementalStatus(damage, element);
+        }
+
+       // Debug.Log(layer.ToString());
         if (currentHP <= 0)
         {
             Die();
@@ -237,5 +250,10 @@ public class Character : MonoBehaviour
     {
 
 
+    }
+    IEnumerator CanTakeDamageAgain()
+    {
+        yield return new WaitForSeconds(1f);
+        damageTaken = 0;
     }
 }
