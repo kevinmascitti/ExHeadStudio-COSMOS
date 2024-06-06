@@ -50758,14 +50758,14 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
-    functionName: PlayerCharacter/Methods/SetFightingState(string)
+    functionName: SetFightingState
     data: true
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 2.4666667
-    functionName: PlayerCharacter/Methods/SetFightingState(string)
+    functionName: SetFightingState
     data: false
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

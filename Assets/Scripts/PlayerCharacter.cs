@@ -40,6 +40,7 @@ public class PlayerCharacter : Character
     public Accessory accessory;
 
     [NonSerialized] public bool isInputOn = true;
+    private bool isFighting = false;
     public Animator animator;
     public float attackRange;
     [NonSerialized] public LayerMask enemyLayer;
@@ -48,7 +49,6 @@ public class PlayerCharacter : Character
     [SerializeField] private float maxComboDelay = 1f;
     [SerializeField] private float cooldown = 0.5f;
     [SerializeField] private float nextActionTimer = 0.3f;
-    private bool isFighting = false;
     [SerializeField] private float speed = 5f;
     [SerializeField] private float dodgeDistance = 1f;
     [SerializeField] private float dodgeRightDistance = 1f;
@@ -57,6 +57,7 @@ public class PlayerCharacter : Character
     public float maxDistanceNPC = 5f;
     public LayerMask npcLayer;
     [SerializeField] private ChoicePieceManager choicePieceManager;
+    [SerializeField] private PauseMenu pauseMenu;
 
     private Element activeRxElement;//Elemento nel braccio destro
     private Element activeSxElement;//Elemento nel braccio sinistro
@@ -122,6 +123,11 @@ public class PlayerCharacter : Character
     {
         if(OnUpdate != null) OnUpdate();
 
+        if (isFighting || choicePieceManager.isUIOpen || pauseMenu.isUIOpen)
+            isInputOn = false;
+        else
+            isInputOn = true;
+        
         if (attacksDone != 0 && Time.time - lastBaseAttack > maxComboDelay)
         {
             attacksDone = 0;
@@ -150,104 +156,104 @@ public class PlayerCharacter : Character
         {
             animator.SetBool("isStrongAttack", false);
         }
-
-        if (isInputOn)
+        
+        if ((isInputOn || (!isInputOn && isFighting)) 
+            && ((Time.time >= nextActionTimer && attacksDone == 0) || attacksDone != 0)
+            && Input.GetKeyDown(KeyCode.Mouse0))
         {
-            if (((Time.time >= nextActionTimer && attacksDone == 0) || attacksDone != 0)
-                && Input.GetKeyDown(KeyCode.Mouse0))
+            /*if (attacksDone == 2 && animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.5f &&
+                animator.GetCurrentAnimatorStateInfo(0).IsName("isBaseAttack2"))
             {
-                /*if (attacksDone == 2 && animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.5f &&
-                    animator.GetCurrentAnimatorStateInfo(0).IsName("isBaseAttack2"))
-                {
-                    animator.SetBool("BaseAttack3", true);
-                    attacksDone = 0;
-                    nextActionTimer = Time.time + cooldown;
-                }
-                else */
-                if (attacksDone == 1 && animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.5f &&
-                    animator.GetCurrentAnimatorStateInfo(0).IsName("BaseAttack"))
-                {
-                    // lastBaseAttack = Time.time;
-                    // animator.SetBool("isBaseAttack", true);
-                    animator.SetBool("isBaseAttack2", true);
-                    attacksDone = 0;
-                    // attacksDone++;
-                    nextActionTimer = Time.time + cooldown;
-                }
-                else if (attacksDone == 0)
-                {
-                    animator.SetBool("isBaseAttack", true);
-                    lastBaseAttack = Time.time;
-                    attacksDone++;
-                    nextActionTimer = Time.time + cooldown;
-                }
-
-            }
-            else if (Time.time >= nextActionTimer && Input.GetKeyDown(KeyCode.Mouse1))
-            {
-                animator.SetBool("isStrongAttack", true);
-                StrongAttack();
+                animator.SetBool("BaseAttack3", true);
+                attacksDone = 0;
                 nextActionTimer = Time.time + cooldown;
             }
-            else if (Time.time >= nextActionTimer && Input.GetKeyDown(KeyCode.C))
+            else */
+            if (attacksDone == 1 && animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.5f &&
+                animator.GetCurrentAnimatorStateInfo(0).IsName("BaseAttack"))
             {
-                if (Input.GetKey(KeyCode.A))
-                {
-                    LeftDodge();
-                }
-                else if (Input.GetKey(KeyCode.D))
-                {
-                    RightDodge();
-                }
-                else if (Input.GetKey(KeyCode.S))
-                {
-                    BackwardDodge();
-                }
-                else
-                {
-                    ForwardDodge();
-                }
-
+                // lastBaseAttack = Time.time;
+                // animator.SetBool("isBaseAttack", true);
+                animator.SetBool("isBaseAttack2", true);
+                attacksDone = 0;
+                // attacksDone++;
                 nextActionTimer = Time.time + cooldown;
             }
-            // // Raccogliere gli input dai tasti WASD
-            // float moveHorizontal = 0f;
-            // float moveVertical = 0f;
-            //
-            // if (Input.GetKey(KeyCode.W))
-            // {
-            //     moveVertical += 1f;
-            // }
-            // if (Input.GetKey(KeyCode.S))
-            // {
-            //     moveVertical -= 1f;
-            // }
-            // if (Input.GetKey(KeyCode.A))
-            // {
-            //     moveHorizontal -= 1f;
-            // }
-            // if (Input.GetKey(KeyCode.D))
-            // {
-            //     moveHorizontal += 1f;
-            // }
-            //
-            // // Creare il vettore di movimento combinando gli input
-            // movementDirection = new Vector3(moveHorizontal, 0f, moveVertical);
-            //
-            // // Normalizzare il vettore per garantire una velocità costante
-            // if (movementDirection.magnitude > 1)
-            // {
-            //     movementDirection.Normalize();
-            // }
-            // if (movementDirection != Vector3.zero)
-            // {
-            //     Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
-            //     transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, speed * Time.deltaTime);
-            // }
-            //
-            // // Muovere il personaggio
-            // transform.Translate(movementDirection * speed * Time.deltaTime, Space.World);
+            else if (attacksDone == 0)
+            {
+                animator.SetBool("isBaseAttack", true);
+                lastBaseAttack = Time.time;
+                attacksDone++;
+                nextActionTimer = Time.time + cooldown;
+            }
+
         }
+        else if ((isInputOn || (!isInputOn && isFighting))
+            && Time.time >= nextActionTimer && Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            animator.SetBool("isStrongAttack", true);
+            StrongAttack();
+            nextActionTimer = Time.time + cooldown;
+        }
+        
+        else if (isInputOn && Time.time >= nextActionTimer && Input.GetKeyDown(KeyCode.C))
+        {
+            if (Input.GetKey(KeyCode.A))
+            {
+                LeftDodge();
+            }
+            else if (Input.GetKey(KeyCode.D))
+            {
+                RightDodge();
+            }
+            else if (Input.GetKey(KeyCode.S))
+            {
+                BackwardDodge();
+            }
+            else
+            {
+                ForwardDodge();
+            }
+
+            nextActionTimer = Time.time + cooldown;
+        }
+        // // Raccogliere gli input dai tasti WASD
+        // float moveHorizontal = 0f;
+        // float moveVertical = 0f;
+        //
+        // if (Input.GetKey(KeyCode.W))
+        // {
+        //     moveVertical += 1f;
+        // }
+        // if (Input.GetKey(KeyCode.S))
+        // {
+        //     moveVertical -= 1f;
+        // }
+        // if (Input.GetKey(KeyCode.A))
+        // {
+        //     moveHorizontal -= 1f;
+        // }
+        // if (Input.GetKey(KeyCode.D))
+        // {
+        //     moveHorizontal += 1f;
+        // }
+        //
+        // // Creare il vettore di movimento combinando gli input
+        // movementDirection = new Vector3(moveHorizontal, 0f, moveVertical);
+        //
+        // // Normalizzare il vettore per garantire una velocità costante
+        // if (movementDirection.magnitude > 1)
+        // {
+        //     movementDirection.Normalize();
+        // }
+        // if (movementDirection != Vector3.zero)
+        // {
+        //     Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
+        //     transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, speed * Time.deltaTime);
+        // }
+        //
+        // // Muovere il personaggio
+        // transform.Translate(movementDirection * speed * Time.deltaTime, Space.World);
 
         def_HP = Mathf.Clamp(currentHP, 0, MAX_HP);
         UpdateHPUI();
@@ -454,7 +460,6 @@ public class PlayerCharacter : Character
         {
             OnChoicePieces?.Invoke(this, EventArgs.Empty);
             GetComponent<PlayerMovement>().enabled = false;
-            isInputOn = false;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             healthBar.SetActive(false);
@@ -464,7 +469,6 @@ public class PlayerCharacter : Character
         {
             OnEndChoicePieces?.Invoke(this, EventArgs.Empty);
             GetComponent<PlayerMovement>().enabled = true;
-            isInputOn = true;
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             healthBar.SetActive(true);
@@ -477,12 +481,12 @@ public class PlayerCharacter : Character
         if (state.ToLower().Contains("true"))
         {
             Debug.Log("sta combattendo");
-            isInputOn = false;
+            isFighting = true;
         }
         else if (state.ToLower().Contains("false"))
         {
             Debug.Log("NON sta combattendo");
-            isInputOn = true;
+            isFighting = false;
         }
     }
     
