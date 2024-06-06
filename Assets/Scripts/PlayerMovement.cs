@@ -26,7 +26,8 @@ public class PlayerMovement : MonoBehaviour
     private bool isJumpPressed;
     private bool isJumpAscension = false;
     private bool isJumpPeak = false;
-    private bool isJumpFalling = false; 
+    private bool isJumpFalling = false;
+    private bool canJumpAgain = true;
     float gravity = -9.81f;
     float groundedGravity = -0.5f;
     Vector3 playerVector;
@@ -35,7 +36,9 @@ public class PlayerMovement : MonoBehaviour
     private float horizontalVelocity;
     public float verticalVelocity;
     Vector3 lastPositionAcquired;
+    private bool isAttacking;
 
+    private PlayerCharacter player;
     [Header("Animazioni Movimento")]
 
 
@@ -44,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float rotationSpeed = 4f;
     private void Awake()
     {
-        
+        player=GetComponent<PlayerCharacter>();
         horizontalVelocity = 0f;
         playerController = GetComponent<CharacterController>();
         HandleJumpVariables();
@@ -65,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         //Ottengo gli input da tastiera e li salvo in un vettore 2D che mi servir� dopo per calcolare la direzione del player
-
+       //isAttacking=player.GetIsAttacking();
         Vector2 inputs = new Vector2(Input.GetAxisRaw("Horizontal") ,Input.GetAxisRaw("Vertical")).normalized;
         //Vector3 inputs = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));//.normalized;
         playerVector.x = inputs.x * movementSpeed;
@@ -91,17 +94,15 @@ public class PlayerMovement : MonoBehaviour
         //playerVector.y = 0f;
        //Debug.Log("Right: "+ mainCamera.right);
         // Se il player � a terra e si preme il tasto di salto, il player salta
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && canJumpAgain)
         {
             isJumpPressed = true;
             //Debug.Log("Salto");
 
         }
         //Debug.Log(playerVector.y);
-        if (playerController.isGrounded)
-        {
-            //Debug.Log("grounded");
-        }
+        
+
         /*Se i valori di input del vettore 2D sono a zero, allora il player � fermo, altrimenti ruota il player nella direzione di movimento
         ATTENZIONE: Usare un vettore 3D, con le funzionalit� implementate, non fa ruotare in modo corretto, oppure se si setta y=0f, d� errore.
         Il controllo sul vettore 2D anzich� su quello 3D evita che compaia l'errore "Look Rotation Viewing Vector Is Zero" */
@@ -122,7 +123,8 @@ public class PlayerMovement : MonoBehaviour
             //Debug.Log(playerVector);
         HandleGravity();
         HandleJump();
-        playerController.Move(playerVector * Time.deltaTime);
+        if(!isAttacking)
+            playerController.Move(playerVector * Time.deltaTime);
         
     }
 
@@ -143,6 +145,7 @@ public class PlayerMovement : MonoBehaviour
             //Debug.Log("Jumping");
             //StartCoroutine(JumpAnimationTimeOffset());
             isJumpAscension = true;
+            canJumpAgain = false;
             isJumpPressed = false;
             playerVector.y = initialJumpVelocity;
             
@@ -154,12 +157,17 @@ public class PlayerMovement : MonoBehaviour
             isJumpPeak=false;
             isJumpFalling = true;
         }
+        else if (playerController.isGrounded && isJumpFalling)
+        {
+            isJumpFalling=false;
+            StartCoroutine(WaitForJumpAgain());
+        }
         else if (playerController.isGrounded)
         {
-            //Debug.Log("Stop jump");
             isJumpAscension = false;
             isJumpPeak = false;
-            isJumpFalling=false;
+            isJumpAscension = false;
+            isJumpPressed = false;
         }
     }
 
@@ -188,10 +196,10 @@ public class PlayerMovement : MonoBehaviour
         lastPositionAcquired = newPosition;
     }
 
-    IEnumerator JumpAnimationTimeOffset()
+    IEnumerator WaitForJumpAgain()
     {
         yield return new WaitForSeconds(1f);
-        playerVector.y = initialJumpVelocity;
+        canJumpAgain = true;
     }
 
     public bool GetIsJumpAscension()
