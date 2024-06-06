@@ -22,7 +22,7 @@ public class Weapon : Piece
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        if (other.gameObject.layer == enemyLayer)
         {
             Debug.Log("Enemy damage!");
             OnEnemyCollision?.Invoke(this, new EnemyCollisionArgs(other.gameObject.GetComponent<Enemy>(), this));
