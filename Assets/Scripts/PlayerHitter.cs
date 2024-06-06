@@ -11,6 +11,7 @@ public class PlayerHitter : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
+        Debug.Log("l'enemy ha colpito: " + other.gameObject.layer);
         if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
 
