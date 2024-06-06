@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7815288354339097941
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2548765621524604317}
+  m_Layer: 0
+  m_Name: BulletStart Position
+  m_TagString: Untagged
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2548765621524604317
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7815288354339097941}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.0055, y: -0.0054, z: 0.0128}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6710125978317852401}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &7103185200341268644
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11,17 +42,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: a6a40ed334bcfe04db9ac8785d969e95,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.8
+      value: 54.618134
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a6a40ed334bcfe04db9ac8785d969e95,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.018
+      value: 0.85
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a6a40ed334bcfe04db9ac8785d969e95,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8
+      value: 19.022333
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a6a40ed334bcfe04db9ac8785d969e95,
         type: 3}
@@ -80,7 +111,11 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: 8d7f565b0990e4aa19227d03a96aa8c7, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 4579243041149597269, guid: a6a40ed334bcfe04db9ac8785d969e95,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2548765621524604317}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a6a40ed334bcfe04db9ac8785d969e95,
         type: 3}
@@ -110,6 +145,14 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 8242594134886740273}
+    - targetCorrespondingSourceObject: {fileID: -2597370540435119046, guid: a6a40ed334bcfe04db9ac8785d969e95,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9148480872172495520}
+    - targetCorrespondingSourceObject: {fileID: -2597370540435119046, guid: a6a40ed334bcfe04db9ac8785d969e95,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7175400860131133690}
     - targetCorrespondingSourceObject: {fileID: 1371629118404973126, guid: a6a40ed334bcfe04db9ac8785d969e95,
         type: 3}
       insertIndex: -1
@@ -293,6 +336,78 @@ MonoBehaviour:
   isUnlocked: 1
   element: 2
   description: sinistro di fuoco
+--- !u!114 &9148480872172495520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4136516741682158750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6afb001b8e2b1924ca7074323019dffe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownTime: 2
+  bulletStartPosition: {fileID: 2548765621524604317}
+  bulletPrefab: {fileID: 146416292059051500, guid: c370b60197b50344aade3d8246fb8d9e,
+    type: 3}
+  frontAbilityImage: {fileID: 0}
+  abilityText: {fileID: 0}
+  impulseSource: {fileID: 7175400860131133690}
+--- !u!114 &7175400860131133690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4136516741682158750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ImpulseDefinition:
+    m_ImpulseChannel: 1
+    m_ImpulseShape: 3
+    m_CustomImpulseShape:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_ImpulseDuration: 0.2
+    m_ImpulseType: 0
+    m_DissipationRate: 0.25
+    m_RawSignal: {fileID: 0}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_RepeatMode: 0
+    m_Randomize: 1
+    m_TimeEnvelope:
+      m_AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_AttackTime: 0
+      m_SustainTime: 0.2
+      m_DecayTime: 0.7
+      m_ScaleWithImpact: 1
+      m_HoldForever: 0
+    m_ImpactRadius: 100
+    m_DirectionMode: 0
+    m_DissipationMode: 2
+    m_DissipationDistance: 100
+    m_PropagationSpeed: 343
+  m_DefaultVelocity: {x: 0, y: -1, z: 0}
 --- !u!1 &4151487690309334651 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -2662021824230175009, guid: a6a40ed334bcfe04db9ac8785d969e95,
@@ -343,6 +458,12 @@ MonoBehaviour:
   isUnlocked: 1
   element: 0
   description: sinistro normale
+--- !u!4 &6710125978317852401 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4579243041149597269, guid: a6a40ed334bcfe04db9ac8785d969e95,
+    type: 3}
+  m_PrefabInstance: {fileID: 7103185200341268644}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7949694055651870197 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a6a40ed334bcfe04db9ac8785d969e95,
@@ -412,7 +533,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   choicePieceManager: {fileID: 0}
-  chipSpeed: 0
+  chipSpeed: 2
   frontHealthBar: {fileID: 0}
   backHealthBar: {fileID: 0}
   icons:
