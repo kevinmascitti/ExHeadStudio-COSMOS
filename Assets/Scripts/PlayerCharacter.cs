@@ -9,7 +9,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using static UnityEditor.Rendering.FilterWindow;
+//using static UnityEditor.Rendering.FilterWindow;
 
 public enum PartType
 {

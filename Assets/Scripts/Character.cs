@@ -162,10 +162,10 @@ public class Character : MonoBehaviour
     {
         if(damageTaken == 0 && this.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-        UpdateHP(currentHP-damage);
-        TakeElementalStatus(damage, element);
-        damageTaken++;
-        StartCoroutine(CanTakeDamageAgain());
+            UpdateHP(currentHP-damage);
+            TakeElementalStatus(damage, element);
+            damageTaken++;
+            StartCoroutine(CanTakeDamageAgain());
         }
         else if(this.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {

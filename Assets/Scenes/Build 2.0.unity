@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.031163083, g: 0.009459269, b: 0.013044128, a: 1}
+  m_IndirectSpecularColor: {r: 0.031109842, g: 0.009448584, b: 0.0129861, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -9799,7 +9799,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1017469688}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.017490191, y: 0.5387818, z: -0.011189165, w: 0.84218943}
+  m_LocalRotation: {x: 0.017490173, y: 0.5387818, z: -0.0111891525, w: 0.84218943}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -11552,7 +11552,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1112001760}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.017490184, y: 0.5387818, z: -0.01118916, w: 0.84218943}
+  m_LocalRotation: {x: 0.01749018, y: 0.5387818, z: -0.011189159, w: 0.84218943}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -13287,6 +13287,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2548765621524604317, guid: c4ae48bd17e5421478d93e30ed9ef8e4,
         type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.0014
+      objectReference: {fileID: 0}
+    - target: {fileID: 2548765621524604317, guid: c4ae48bd17e5421478d93e30ed9ef8e4,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.0082
+      objectReference: {fileID: 0}
+    - target: {fileID: 2548765621524604317, guid: c4ae48bd17e5421478d93e30ed9ef8e4,
+        type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.70710796
       objectReference: {fileID: 0}
@@ -13410,6 +13420,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7788948828866288465, guid: c4ae48bd17e5421478d93e30ed9ef8e4,
+        type: 3}
+      propertyPath: atk
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7949694055651870197, guid: c4ae48bd17e5421478d93e30ed9ef8e4,
         type: 3}
       propertyPath: m_Name
@@ -13439,7 +13454,7 @@ PrefabInstance:
         type: 3}
       propertyPath: frontAbilityImage
       value: 
-      objectReference: {fileID: 1980339927}
+      objectReference: {fileID: 801326616}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13937,7 +13952,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1252855588}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.017490184, y: 0.5387818, z: -0.01118916, w: 0.84218943}
+  m_LocalRotation: {x: 0.01749018, y: 0.5387818, z: -0.011189159, w: 0.84218943}
   m_LocalPosition: {x: 48.94049, y: 2.7098544, z: 17.200974}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
