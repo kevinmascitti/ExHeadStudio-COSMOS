@@ -47,6 +47,7 @@ public class PlayerCharacter : Character
     [SerializeField] private float maxComboDelay = 1f;
     [SerializeField] private float cooldown = 0.5f;
     [SerializeField] private float nextActionTimer = 0.3f;
+    private bool isFighting = false;
     [SerializeField] private float speed = 5f;
     [SerializeField] private float dodgeDistance = 1f;
     [SerializeField] private float dodgeRightDistance = 1f;
@@ -460,6 +461,20 @@ public class PlayerCharacter : Character
             Cursor.visible = false;
             healthBar.SetActive(true);
             abilitiesSection.SetActive(true);
+        }
+    }
+
+    public void SetFightingState(string state)
+    {
+        if (state.ToLower().Contains("true"))
+        {
+            Debug.Log("sta combattendo");
+            isFighting = true;
+        }
+        else if (state.ToLower().Contains("false"))
+        {
+            Debug.Log("NON sta combattendo");
+            isFighting = false;
         }
     }
     
