@@ -67,7 +67,7 @@ public class BulletScript : Weapon
         }
         //Debug.Log("Colpito");
         gameObject.SetActive(false);
-        collisionParticle.Stop();
+        //collisionParticle.Stop();
         Destroy(gameObject, 2);
     }
 

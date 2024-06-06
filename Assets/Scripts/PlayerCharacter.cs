@@ -433,6 +433,7 @@ public class PlayerCharacter : Character
             OnChoicePieces?.Invoke(this, EventArgs.Empty);
             GetComponent<PlayerMovement>().enabled = false;
             Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
             healthBar.SetActive(false);
             abilitiesSection.SetActive(false);
         }
@@ -441,6 +442,7 @@ public class PlayerCharacter : Character
             OnEndChoicePieces?.Invoke(this, EventArgs.Empty);
             GetComponent<PlayerMovement>().enabled = true;
             Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
             healthBar.SetActive(true);
             abilitiesSection.SetActive(true);
         }

@@ -12,7 +12,7 @@ public class LeftArm : MonoBehaviour
     }
     public void Update()
     {
-        if (Input.GetKey(KeyCode.Q))//da sostituire con il tasto del mouse
+        if (Input.GetKey(KeyCode.Q))
         {
             LeftArmAbility();
         }
