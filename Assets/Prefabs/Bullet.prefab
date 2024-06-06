@@ -150,17 +150,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c21d5d9c71a7c4fba96e7c18365182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atk: 10
+  name: 
+  numberInList: 0
+  prefab: {fileID: 0}
   type: 3
+  isUnlocked: 1
   element: 2
+  description: 
+  weaponType: 0
   movementSpeed: 10
-  baseAttack: {fileID: 0}
-  strongAttack: {fileID: 0}
+  atk: 10
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
   bulletDestroyTime: 5
   damageRadius: 5
   maxDamage: 20
   minDamage: 5
-  bulletSpeed: 8
+  bulletSpeed: 6
   bulletElement: 2
   enemyMask:
     serializedVersion: 2

@@ -185,7 +185,7 @@ public class PlayerCharacter : Character
             StrongAttack();
             nextActionTimer = Time.time + cooldown;
         }
-        else if (Time.time >= nextActionTimer && Input.GetKeyDown(KeyCode.Q))
+        else if (Time.time >= nextActionTimer && Input.GetKeyDown(KeyCode.C))
         {
             if (Input.GetKey(KeyCode.A))
             {

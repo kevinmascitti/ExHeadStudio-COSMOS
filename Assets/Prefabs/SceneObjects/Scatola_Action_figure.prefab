@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5197295968764010336}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Scatola_Action_figure
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,8 +26,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.06, y: 4.141524, z: 2.973832}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.1, y: 0.6077298, z: 0.05135078}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5116779036538707126}
   - {fileID: 6985541660309269306}
@@ -96,6 +96,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8153468022190502949, guid: e7d176883c7d6de499460d6b22aacd29,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: e7d176883c7d6de499460d6b22aacd29,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -105,6 +110,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Ascia
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e7d176883c7d6de499460d6b22aacd29,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6512510688612296998, guid: e7d176883c7d6de499460d6b22aacd29,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8089062573417005363, guid: e7d176883c7d6de499460d6b22aacd29,
         type: 3}
@@ -200,10 +215,20 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[2]
       value: 
       objectReference: {fileID: 2100000, guid: 46dc5f638fdc71e419b29ed35e9ca974, type: 2}
+    - target: {fileID: -720472438325490187, guid: 278329e682408724dbfe25595e502127,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 278329e682408724dbfe25595e502127,
         type: 3}
       propertyPath: m_Name
       value: Braccio_SX_Cyrus
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 278329e682408724dbfe25595e502127,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5630777339582203320, guid: 278329e682408724dbfe25595e502127,
         type: 3}
@@ -284,6 +309,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8391222552659086748, guid: 48d91415f8df7ab469c8d558618b6cff,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: -4683669308469848369, guid: 48d91415f8df7ab469c8d558618b6cff,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -296,6 +326,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 011c9704792f7f246ad095f7bba1dbe6, type: 2}
     - target: {fileID: -516098083770646512, guid: 48d91415f8df7ab469c8d558618b6cff,
         type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -516098083770646512, guid: 48d91415f8df7ab469c8d558618b6cff,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -304,10 +339,23 @@ PrefabInstance:
       propertyPath: m_Name
       value: Scatola_Action_Figure
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 48d91415f8df7ab469c8d558618b6cff,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 48d91415f8df7ab469c8d558618b6cff,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8145761878534603087}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 48d91415f8df7ab469c8d558618b6cff,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1223957087401889514}
   m_SourcePrefab: {fileID: 100100000, guid: 48d91415f8df7ab469c8d558618b6cff, type: 3}
 --- !u!4 &5116779036538707126 stripped
 Transform:
@@ -315,6 +363,45 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4650188793879690077}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5497104865643349516 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 48d91415f8df7ab469c8d558618b6cff,
+    type: 3}
+  m_PrefabInstance: {fileID: 4650188793879690077}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &8145761878534603087
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5497104865643349516}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.059225995, y: 0.033120092, z: 0.05587596}
+  m_Center: {x: 0, y: -0.008703133, z: 0.022062048}
+--- !u!114 &1223957087401889514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5497104865643349516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e754d0563fc634df4a6c1dc974200023, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6061751118943980027
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -373,6 +460,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8076345087569252834, guid: bc1bf466d6ac2e74f9d745711a0760ad,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: -7871381426963223844, guid: bc1bf466d6ac2e74f9d745711a0760ad,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -383,6 +475,16 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: 55cac2f7b321caf44a5f98834875dccf, type: 2}
+    - target: {fileID: -7206528446358462380, guid: bc1bf466d6ac2e74f9d745711a0760ad,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -6058042686221043474, guid: bc1bf466d6ac2e74f9d745711a0760ad,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: -2039581461524892958, guid: bc1bf466d6ac2e74f9d745711a0760ad,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -398,6 +500,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gambe_Cyrus
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: bc1bf466d6ac2e74f9d745711a0760ad,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 7460820154328420434, guid: bc1bf466d6ac2e74f9d745711a0760ad,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -408,6 +515,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: 55cac2f7b321caf44a5f98834875dccf, type: 2}
+    - target: {fileID: 7943044396825750096, guid: bc1bf466d6ac2e74f9d745711a0760ad,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -532,10 +644,25 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[2]
       value: 
       objectReference: {fileID: 2100000, guid: 62278f57533afcc4daf412d887985c4d, type: 2}
+    - target: {fileID: -2540086839560193113, guid: 34d56e7ff06712e4487760fdc6a92bf2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 34d56e7ff06712e4487760fdc6a92bf2,
         type: 3}
       propertyPath: m_Name
       value: Testa_Cyrus
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 34d56e7ff06712e4487760fdc6a92bf2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8910033932206673056, guid: 34d56e7ff06712e4487760fdc6a92bf2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -656,10 +783,20 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[2]
       value: 
       objectReference: {fileID: 2100000, guid: 46dc5f638fdc71e419b29ed35e9ca974, type: 2}
+    - target: {fileID: 649222988948553641, guid: 9eb90ae1504e9ca40902950b0e0eb203,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 9eb90ae1504e9ca40902950b0e0eb203,
         type: 3}
       propertyPath: m_Name
       value: Braccio_DX_Cyrus
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9eb90ae1504e9ca40902950b0e0eb203,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6557474685009850765, guid: 9eb90ae1504e9ca40902950b0e0eb203,
         type: 3}
@@ -754,6 +891,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Torso_Cyrus
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: dda2598c69465f74eb232aeab2a92333,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
