@@ -38,7 +38,6 @@ public class CureObject : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             StopAllCoroutines();
-
         }    
     }
 

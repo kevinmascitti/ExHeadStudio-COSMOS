@@ -63,7 +63,7 @@ public class PlayerCharacter : Character
     private Element activeRxElement;//Elemento nel braccio destro
     private Element activeSxElement;//Elemento nel braccio sinistro
 
-    private int damageTaken;
+    //private int damageTaken;
 
     [NonSerialized] public Scenario currentScenario;
     [NonSerialized] public Scenario defaultScenario;
@@ -149,17 +149,20 @@ public class PlayerCharacter : Character
         if (animator.GetBool("isBaseAttack") && animator.GetCurrentAnimatorStateInfo(0).IsName("BaseAttack"))
         {
             animator.SetBool("isBaseAttack", false);
+            //SetFightingState("False");
         }
         if (animator.GetBool("isBaseAttack2") && animator.GetCurrentAnimatorStateInfo(0).IsName("BaseAttack2"))
         {
             animator.SetBool("isBaseAttack2", false);
+            //SetFightingState("False");
         }
         if (animator.GetBool("isStrongAttack") && animator.GetCurrentAnimatorStateInfo(0).IsName("StrongAttack"))
         {
             animator.SetBool("isStrongAttack", false);
+            //SetFightingState("False");
         }
         
-        if ((isInputOn || (!isInputOn && isFighting)) 
+        if ((isInputOn || isFighting)                    //(isInputOn || (!isInputOn && isFighting)) 
             && ((Time.time >= nextActionTimer && attacksDone == 0) || attacksDone != 0)
             && Input.GetKeyDown(KeyCode.Mouse0))
         {
@@ -171,12 +174,33 @@ public class PlayerCharacter : Character
                 nextActionTimer = Time.time + cooldown;
             }
             else */
-            if (attacksDone == 1 && animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.5f &&
+            if (attacksDone == 0)
+            {
+                animator.SetBool("isBaseAttack", true);
+                // SetFightingState("True");
+                lastBaseAttack = Time.time;
+                attacksDone++;
+                nextActionTimer = Time.time + cooldown;
+            }
+            else if (attacksDone == 1 && animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.5f &&
                 animator.GetCurrentAnimatorStateInfo(0).IsName("BaseAttack"))
             {
                 // lastBaseAttack = Time.time;
                 // animator.SetBool("isBaseAttack", true);
                 animator.SetBool("isBaseAttack2", true);
+                //SetFightingState("True");
+                attacksDone = 0;
+                // attacksDone++;
+                nextActionTimer = Time.time + cooldown;
+            }
+
+            /*if (attacksDone == 1 && animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.5f &&
+                animator.GetCurrentAnimatorStateInfo(0).IsName("BaseAttack"))
+            {
+                // lastBaseAttack = Time.time;
+                // animator.SetBool("isBaseAttack", true);
+                animator.SetBool("isBaseAttack2", true);
+                //SetFightingState("True");
                 attacksDone = 0;
                 // attacksDone++;
                 nextActionTimer = Time.time + cooldown;
@@ -184,16 +208,18 @@ public class PlayerCharacter : Character
             else if (attacksDone == 0)
             {
                 animator.SetBool("isBaseAttack", true);
+               // SetFightingState("True");
                 lastBaseAttack = Time.time;
                 attacksDone++;
                 nextActionTimer = Time.time + cooldown;
-            }
+            }*/
 
         }
-        else if ((isInputOn || (!isInputOn && isFighting))
+        else if ((isInputOn || isFighting)//((isInputOn || (!isInputOn && isFighting))
             && Time.time >= nextActionTimer && Input.GetKeyDown(KeyCode.Mouse1))
         {
             animator.SetBool("isStrongAttack", true);
+            //SetFightingState("True");
             StrongAttack();
             nextActionTimer = Time.time + cooldown;
         }
@@ -281,18 +307,18 @@ public class PlayerCharacter : Character
             {
                 //characterIcon.color = new Color(characterIcon.color.r, characterIcon.color.g, characterIcon.color.b, 1f); //Cambio trasparenza
                 //characterIcon.color = Color.green; //Cambio colore
-                icons[0].enabled = true; //Cambio sprite
-                icons[1].enabled = false;
+                //icons[0].enabled = true; //Cambio sprite
+                //icons[1].enabled = false;
 
             }
 
-            else if (healthFraction >= 0.50f && healthFraction < 0.75f)
-            {
-                //characterIcon.color = new Color(characterIcon.color.r, characterIcon.color.g, characterIcon.color.b, 0.8f);
-                //characterIcon.color = Color.yellow;
-                icons[0].enabled = false; //Cambio sprite
-                icons[1].enabled = true;
-            }
+            //else if (healthFraction >= 0.50f && healthFraction < 0.75f)
+            //{
+            //    characterIcon.color = new Color(characterIcon.color.r, characterIcon.color.g, characterIcon.color.b, 0.8f);
+            //    characterIcon.color = Color.yellow;
+            //    icons[0].enabled = false; //Cambio sprite
+            //    icons[1].enabled = true;
+            //}
             //else if (healthFraction >= 0.25f && healthFraction < 0.50f)
             //{
             //    characterIcon.color.WithAlpha(healthFraction);
@@ -348,7 +374,12 @@ public class PlayerCharacter : Character
     private void DoDamage(object sender, EnemyCollisionArgs args)
     {
         if(stats.atk > args.enemy.def)
-            args.enemy.TakeDamage( stats.atk + args.hitter.atk - args.enemy.def, activeRxElement);
+        {
+            Debug.Log(stats.atk + args.hitter.atk - args.enemy.def + activeRxElement);
+            args.enemy.TakeDamage(stats.atk + args.hitter.atk - args.enemy.def, activeRxElement);
+        }
+            
+       
       
         
         //Da sistemare perché ora viene passato solo l'elemento del braccio destro

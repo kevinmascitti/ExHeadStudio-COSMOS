@@ -5,8 +5,9 @@ using UnityEngine;
 public class PlayerStateController : MonoBehaviour
 {
 
-    PlayerMovement player;
-    private Animator playerAnimator;
+    //PlayerMovement player;
+    [SerializeField] CamMovementTest player;
+    [SerializeField] private Animator playerAnimator;
 
     private bool isJumpAscension;
     private bool isJumpPeak;
@@ -15,7 +16,8 @@ public class PlayerStateController : MonoBehaviour
     private bool isIdling;
     void Awake()
     {
-        player = GetComponent<PlayerMovement>();
+        //player = GetComponent<PlayerMovement>();
+        player = GetComponent<CamMovementTest>();
         playerAnimator = GetComponent<Animator>();
     }
 
@@ -27,7 +29,10 @@ public class PlayerStateController : MonoBehaviour
         isJumpPeak = player.GetIsJumpPeak();
         isJumpFalling = player.GetIsJumpFalling();
 
-        isIdling = !isMoving && !isJumpAscension && !isJumpPeak && !isJumpFalling;
+        //isIdling = !isMoving && !isJumpAscension && !isJumpPeak && !isJumpFalling;
+        if(isMoving == false && isJumpAscension == false && isJumpPeak == false && isJumpFalling == false)
+        isIdling = true;
+        else isIdling = false;
         playerAnimator.SetBool("isJumpAscension", isJumpAscension);
         playerAnimator.SetBool("isJumpPeak", isJumpPeak);
         playerAnimator.SetBool("isJumpFalling", isJumpFalling);

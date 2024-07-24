@@ -14,6 +14,10 @@ public enum WeaponType
 
 public class Weapon : Piece
 {
+
+    //test
+    [SerializeField] PlayerCharacter playerCharacter;
+    //
     public WeaponType weaponType;
     public float movementSpeed;
     public int atk;
@@ -25,8 +29,9 @@ public class Weapon : Piece
     public void OnTriggerEnter(Collider other)
     {
 
-        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy") && GetComponentInParent<PlayerCharacter>().isFighting)
+        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy") && playerCharacter.isFighting)//GetComponentInParent<PlayerCharacter>().isFighting)
         {
+            Debug.Log("Preso");
             OnEnemyCollision?.Invoke(this, new EnemyCollisionArgs(other.gameObject.GetComponent<Enemy>(), this));
         }
     }

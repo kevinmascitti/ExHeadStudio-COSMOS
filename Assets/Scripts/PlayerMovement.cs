@@ -11,8 +11,6 @@ using UnityEngine.UIElements;
 public class PlayerMovement : MonoBehaviour
 {
 
-    
-
     [Header("Controlli Movimento")]
     [SerializeField, Range(0f, 100f)] float movementSpeed;
     //[SerializeField, Range(0f, 10f)] float speedMultiplier;
@@ -47,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float rotationSpeed = 4f;
     private void Awake()
     {
-        player=GetComponent<PlayerCharacter>();
+        player = GetComponent<PlayerCharacter>();
         horizontalVelocity = 0f;
         playerController = GetComponent<CharacterController>();
         HandleJumpVariables();
@@ -151,22 +149,22 @@ public class PlayerMovement : MonoBehaviour
             canJumpAgain = false;
             isJumpPressed = false;
             playerVector.y = initialJumpVelocity;
-            
+
 
         }
-        else if(isJumpAscension && verticalVelocity <= 1f && !playerController.isGrounded)
+        else if (isJumpAscension && verticalVelocity <= 1f && !playerController.isGrounded)
         {
             //Debug.Log("Falling");
             isJumpAscension = false;
-            isJumpPeak=false;
+            isJumpPeak = false;
             isJumpFalling = true;
         }
         else if (playerController.isGrounded && isJumpFalling)
         {
-            isJumpFalling=false;
+            isJumpFalling = false;
             StartCoroutine(WaitForJumpAgain());
         }
-        else if(isJumpAscension && playerController.isGrounded)
+        else if (isJumpAscension && playerController.isGrounded)
         {
             isJumpAscension = false;
             isJumpPeak = false;
@@ -190,7 +188,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void ComputePlayerVelocity(Vector3 newPosition)
     {
-        Vector2 playerPosition =  new Vector2(newPosition.x, newPosition.z);
+        Vector2 playerPosition = new Vector2(newPosition.x, newPosition.z);
         Vector2 lastPlayerPos = new Vector2(lastPositionAcquired.x, lastPositionAcquired.z);
         float playerPositionY = newPosition.y;
         float lastPlayerPosY = lastPositionAcquired.y;
