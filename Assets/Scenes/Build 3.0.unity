@@ -3960,6 +3960,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0e64a6e72d123948afec42001c7466c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  playerAnimator: {fileID: 0}
 --- !u!114 &617263787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13236,7 +13238,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1187846765}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.05342428, y: 0.5351895, z: -0.033942975, w: 0.84235734}
+  m_LocalRotation: {x: 0.05342427, y: 0.5351895, z: -0.033942964, w: 0.84235734}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -16210,6 +16212,7 @@ MonoBehaviour:
   isUnlocked: 1
   element: 0
   description: Pugno di Ciro
+  playerCharacter: {fileID: 0}
   weaponType: 4
   movementSpeed: 0
   atk: 0
@@ -25036,6 +25039,11 @@ MonoBehaviour:
   movementSpeed: 2
   maxJumpHeight: 1
   turnSmoothTime: 0.05
+  isJumpPressed: 0
+  isJumpAscension: 0
+  isJumpPeak: 0
+  isJumpFalling: 0
+  isMoving: 0
   mainCamera: {fileID: 1252855589}
   rotationSpeed: 4
   groundCheck: {fileID: 0}
