@@ -928,6 +928,7 @@ MonoBehaviour:
   mainCamera: {fileID: 480214636}
   rotationSpeed: 10
   velocity: {x: 0, y: 0, z: 0}
+  moveDir: {x: 0, y: 0, z: 0}
   playerController: {fileID: 0}
 --- !u!143 &72092970
 CharacterController:
@@ -3124,12 +3125,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldownTime: 2
+  frontAbilityImage: {fileID: 0}
+  abilityText: {fileID: 0}
   bulletStartPosition: {fileID: 1079114598}
   bulletPrefab: {fileID: 146416292059051500, guid: c370b60197b50344aade3d8246fb8d9e,
     type: 3}
-  frontAbilityImage: {fileID: 0}
-  abilityText: {fileID: 0}
-  impulseSource: {fileID: 1453980233}
 --- !u!1 &254179038 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2687441218853788600, guid: beca112bdd1abc148b425dfc0241e646,
@@ -5401,12 +5401,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldownTime: 2
+  frontAbilityImage: {fileID: 0}
+  abilityText: {fileID: 0}
   bulletStartPosition: {fileID: 1293724323}
   bulletPrefab: {fileID: 146416292059051500, guid: c370b60197b50344aade3d8246fb8d9e,
     type: 3}
-  frontAbilityImage: {fileID: 0}
-  abilityText: {fileID: 0}
-  impulseSource: {fileID: 292851075}
 --- !u!114 &292851077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8941,6 +8940,7 @@ MonoBehaviour:
   mainCamera: {fileID: 1252855589}
   rotationSpeed: 10
   velocity: {x: 0, y: 0, z: 0}
+  moveDir: {x: 0, y: 0, z: 0}
   playerController: {fileID: 0}
 --- !u!143 &617263788
 CharacterController:
@@ -19335,22 +19335,22 @@ PrefabInstance:
     - target: {fileID: 2175219430438393066, guid: c4ae48bd17e5421478d93e30ed9ef8e4,
         type: 3}
       propertyPath: m_FollowOffset.y
-      value: 2.498476
+      value: 3.286825
       objectReference: {fileID: 0}
     - target: {fileID: 2175219430438393066, guid: c4ae48bd17e5421478d93e30ed9ef8e4,
         type: 3}
       propertyPath: m_FollowOffset.z
-      value: -6.373144
+      value: -6.756475
       objectReference: {fileID: 0}
     - target: {fileID: 2217720759365923994, guid: c4ae48bd17e5421478d93e30ed9ef8e4,
         type: 3}
       propertyPath: m_FollowOffset.y
-      value: 4.516402
+      value: 3.286825
       objectReference: {fileID: 0}
     - target: {fileID: 2217720759365923994, guid: c4ae48bd17e5421478d93e30ed9ef8e4,
         type: 3}
       propertyPath: m_FollowOffset.z
-      value: -7.190415
+      value: -6.756475
       objectReference: {fileID: 0}
     - target: {fileID: 2548765621524604317, guid: c4ae48bd17e5421478d93e30ed9ef8e4,
         type: 3}
@@ -19450,12 +19450,12 @@ PrefabInstance:
     - target: {fileID: 6609116457461866192, guid: c4ae48bd17e5421478d93e30ed9ef8e4,
         type: 3}
       propertyPath: m_FollowOffset.y
-      value: 2.498476
+      value: 3.286825
       objectReference: {fileID: 0}
     - target: {fileID: 6609116457461866192, guid: c4ae48bd17e5421478d93e30ed9ef8e4,
         type: 3}
       propertyPath: m_FollowOffset.z
-      value: -6.373144
+      value: -6.756475
       objectReference: {fileID: 0}
     - target: {fileID: 7284902471122181967, guid: c4ae48bd17e5421478d93e30ed9ef8e4,
         type: 3}
@@ -20922,12 +20922,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldownTime: 2
+  frontAbilityImage: {fileID: 0}
+  abilityText: {fileID: 0}
   bulletStartPosition: {fileID: 1079114598}
   bulletPrefab: {fileID: 146416292059051500, guid: c370b60197b50344aade3d8246fb8d9e,
     type: 3}
-  frontAbilityImage: {fileID: 0}
-  abilityText: {fileID: 0}
-  impulseSource: {fileID: 1453980233}
 --- !u!114 &1453980232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29184,17 +29183,17 @@ PrefabInstance:
     - target: {fileID: 2307498434715278555, guid: c4ae48bd17e5421478d93e30ed9ef8e4,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.15984888
+      value: 0.15984887
       objectReference: {fileID: 0}
     - target: {fileID: 2307498434715278555, guid: c4ae48bd17e5421478d93e30ed9ef8e4,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.5949903
+      value: -0.5949904
       objectReference: {fileID: 0}
     - target: {fileID: 2307498434715278555, guid: c4ae48bd17e5421478d93e30ed9ef8e4,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.12222609
+      value: 0.1222261
       objectReference: {fileID: 0}
     - target: {fileID: 2991020178807150424, guid: c4ae48bd17e5421478d93e30ed9ef8e4,
         type: 3}
