@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-//using static UnityEditor.Rendering.FilterWindow;
 
 public class Enemy : Character
 {
@@ -17,20 +16,18 @@ public class Enemy : Character
     [SerializeField] float defHP = 100;
     [SerializeField] float MAX_HP = 100;
 
-    //healthbar nemcio
+    [Header("HelthBar nemico")]
     [SerializeField] private Image frontSprite;
     [SerializeField] private Image backSprite;
+    [Tooltip("Velocità con cui diminuisce la salute")]
     [SerializeField] float chipSpeed;
     private float lerpTimer;
 
 
-
-    // Start is called before the first frame update
     void Awake()
     {
         base.Awake();
         UpdateHP(defHP);
-        //currentHP = defHP;
         OnEnemySpawn?.Invoke(this, EventArgs.Empty);
         gameObject.layer = LayerMask.NameToLayer("Enemy");
         animator = GetComponent<Animator>();
@@ -50,7 +47,6 @@ public class Enemy : Character
     void Update()
     {
         base.Update();
-        
 
         defHP = Mathf.Clamp(currentHP, 0, MAX_HP);
         UpdateHPUI();
@@ -58,7 +54,6 @@ public class Enemy : Character
 
     private void DoDamage(object sender, PlayerCollisionArgs args)
     {
-        // Debug.Log("prendi danno");
         if (this.GetInstanceID() == args.id)
         {
             if (args.player.def > stats.elemAtk[enemyElement] + atk)
@@ -72,9 +67,7 @@ public class Enemy : Character
     public override void Die()
     {
         base.Die();
-       // Debug.Log("ENEMY DEAD");
         animator.SetBool("isDead", true);
-        //OnEnemyDeath?.Invoke(this, EventArgs.Empty);
         StartCoroutine(DestroyAfterAnimationEnd("Nemico_Base_Morte"));
         
     }

@@ -137,6 +137,7 @@ public class Character : MonoBehaviour
         else
         {
             currentHP = 0;
+            Die();
         }
     }
 

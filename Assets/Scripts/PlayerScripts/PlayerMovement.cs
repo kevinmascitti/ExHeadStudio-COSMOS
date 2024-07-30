@@ -315,7 +315,6 @@ public class PlayerMovement : MonoBehaviour
 
             if (Input.GetButtonDown("Jump") && isGrounded)
             {
-                Debug.Log("Yes");
                 velocity.y = Mathf.Sqrt(maxJumpHeight);
             }
             else

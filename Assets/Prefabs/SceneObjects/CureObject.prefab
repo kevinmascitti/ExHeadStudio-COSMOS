@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1688712856825132182}
   - component: {fileID: 8786546377435765623}
   - component: {fileID: 7354964268035459992}
-  - component: {fileID: 7697662845880025053}
+  - component: {fileID: 4130316543114913793}
   m_Layer: 0
   m_Name: CureObject
   m_TagString: Untagged
@@ -106,7 +106,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7697662845880025053
+--- !u!114 &4130316543114913793
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -118,4 +118,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ddd50220b2e7e24cac88d499be07fda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthAmount: 50
+  healthAmount: 20
+  isContinous: 0
+  continuousTimer: 0

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3317979504580894440}
   - component: {fileID: 196062460518739984}
   - component: {fileID: 4487178518869903362}
-  - component: {fileID: 8477755311527085608}
+  - component: {fileID: 6240793585548019077}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Untagged
@@ -138,7 +138,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!114 &8477755311527085608
+--- !u!114 &6240793585548019077
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -147,28 +147,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 146416292059051500}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71c21d5d9c71a7c4fba96e7c18365182, type: 3}
+  m_Script: {fileID: 11500000, guid: cae785d5e35fa434186afd2c67e78ca1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   name: 
   numberInList: 0
-  prefab: {fileID: 0}
-  type: 3
+  prefab: {fileID: 146416292059051500}
+  type: 0
   isUnlocked: 1
   element: 2
   description: 
   playerCharacter: {fileID: 0}
-  weaponType: 3
-  movementSpeed: 10
-  atk: 10
+  weaponType: 0
+  movementSpeed: 0
+  atk: 0
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   bulletDestroyTime: 5
-  damageRadius: 5
+  damageRadius: 1.5
   maxDamage: 20
-  minDamage: 5
-  bulletSpeed: 6
+  minDamage: 0
+  bulletSpeed: 5
   bulletElement: 2
   enemyMask:
     serializedVersion: 2
@@ -176,10 +176,8 @@ MonoBehaviour:
   blockMask:
     serializedVersion: 2
     m_Bits: 1
-  bulletSmokeEffect: {fileID: 198000011441735220, guid: 85a8865d1bf4a63478038fae23776de8,
-    type: 3}
-  collisionParticle: {fileID: 198000012942003240, guid: ecdd96beb7f93494880c052dfccf9dc1,
-    type: 3}
+  bulletSmokeEffect: {fileID: 1582552114868158956}
+  collisionParticle: {fileID: 4040633129275233845}
 --- !u!1001 &1677930840585177048
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -361,6 +359,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85a8865d1bf4a63478038fae23776de8, type: 3}
+--- !u!198 &1582552114868158956 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 198000011441735220, guid: 85a8865d1bf4a63478038fae23776de8,
+    type: 3}
+  m_PrefabInstance: {fileID: 1677930840585177048}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1677310248294710472 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4000011112872720, guid: 85a8865d1bf4a63478038fae23776de8,
@@ -495,6 +499,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ecdd96beb7f93494880c052dfccf9dc1, type: 3}
+--- !u!198 &4040633129275233845 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 198000012942003240, guid: ecdd96beb7f93494880c052dfccf9dc1,
+    type: 3}
+  m_PrefabInstance: {fileID: 4227852669073381917}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4225058590240894981 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4000011428506136, guid: ecdd96beb7f93494880c052dfccf9dc1,

@@ -7,18 +7,16 @@ public class CureObject : MonoBehaviour
 {
     [SerializeField] float healthAmount;
     [SerializeField] bool isContinous;
+    [Tooltip("Dopo qunato tempo inizia l'effetto")]
     [SerializeField] float continuousTimer;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && !isContinous)     
+        if (other.CompareTag("Player") && !isContinous)
         {
-                //Debug.Log("Oggetto Cura: " + healthAmount.ToString());
-                float actual = other.gameObject.GetComponent<PlayerCharacter>().currentHP;
-                actual += healthAmount;
-                //Debug.Log("Actual: " + actual.ToString());
-                //Debug.Log("Actual + amount: " + (actual + healthAmount).ToString());
-                other.gameObject.GetComponent<PlayerCharacter>().UpdateHP(actual);
+            float actual = other.gameObject.GetComponent<PlayerCharacter>().currentHP;
+            actual += healthAmount;
+            other.gameObject.GetComponent<PlayerCharacter>().UpdateHP(actual);
             Destroy(this.gameObject);
         }
 
@@ -29,7 +27,6 @@ public class CureObject : MonoBehaviour
         if (other.CompareTag("Player") && isContinous)
         {
             StartCoroutine("DamageOverTime", other);
-
         }
     }
 
@@ -38,7 +35,7 @@ public class CureObject : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             StopAllCoroutines();
-        }    
+        }
     }
 
 
@@ -48,5 +45,5 @@ public class CureObject : MonoBehaviour
         float actual = playerCollider.gameObject.GetComponent<PlayerCharacter>().currentHP;
         actual += healthAmount;
         playerCollider.gameObject.GetComponent<PlayerCharacter>().UpdateHP(actual);
-    }    
+    }
 }

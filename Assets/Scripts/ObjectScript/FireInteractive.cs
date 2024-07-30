@@ -23,7 +23,7 @@ public class FireInteractive : MonoBehaviour
             smokeEffect.Stop();
             fireEffect.Stop();
         }
-            
+
     }
 
     public void InteractionsType(FireInteractions interactionType)
@@ -35,7 +35,7 @@ public class FireInteractive : MonoBehaviour
                 break;
 
             case FireInteractions.Lighter:
-                Lighter(); 
+                Lighter();
                 break;
 
             default: break;
