@@ -26,6 +26,13 @@ public class Weapon : Piece
     
     public static EventHandler<EnemyCollisionArgs> OnEnemyCollision;
 
+    public void Awake()
+    {
+        if ((weaponType == WeaponType.Ax))
+        {
+            GetComponent<BoxCollider>().enabled = false;
+        }
+    }
     public void OnTriggerEnter(Collider other)
     {
 

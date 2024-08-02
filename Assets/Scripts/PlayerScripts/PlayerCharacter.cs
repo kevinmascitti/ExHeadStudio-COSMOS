@@ -130,11 +130,11 @@ public class PlayerCharacter : Character
             attacksDone = 0;
         }
         
-        if (animator.GetBool("isBaseAttack") && animator.GetCurrentAnimatorStateInfo(0).IsName("BaseAttack"))
+        if (animator.GetBool("isBaseAttack") && animator.GetCurrentAnimatorStateInfo(0).IsName("Cyrus_Cosmos_Rig_Cyrus_Attacco_Leggero#1_Anticipation"))
         {
             animator.SetBool("isBaseAttack", false);
         }
-        if (animator.GetBool("isBaseAttack2") && animator.GetCurrentAnimatorStateInfo(0).IsName("BaseAttack2"))
+        if (animator.GetBool("isBaseAttack2") && animator.GetCurrentAnimatorStateInfo(0).IsName("Cyrus_Cosmos_Rig_Cyrus_Attacco_Leggero#2_Recovery"))
         {
             animator.SetBool("isBaseAttack2", false);
         }
@@ -156,7 +156,7 @@ public class PlayerCharacter : Character
                 nextActionTimer = Time.time + cooldown;
             }
             else if (attacksDone == 1 && animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.5f &&
-                animator.GetCurrentAnimatorStateInfo(0).IsName("BaseAttack"))
+                animator.GetCurrentAnimatorStateInfo(0).IsName("Cyrus_Cosmos_Rig_Cyrus_Attacco_Leggero#1_Action"))
             {
                 animator.SetBool("isBaseAttack2", true);
                 attacksDone = 0;

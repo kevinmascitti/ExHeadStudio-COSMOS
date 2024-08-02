@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.031109842, g: 0.009448584, b: 0.0129861, a: 1}
+  m_IndirectSpecularColor: {r: 0.031163083, g: 0.009459269, b: 0.013044128, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2655,7 +2655,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   status: 0
   effect: 0
-  statusText: {fileID: 971650768}
   currentHP: 100
   isPlayer: 0
   atk: 0
@@ -2670,9 +2669,7 @@ MonoBehaviour:
   lightningDef: 0
   earthAtk: 0
   earthDef: 0
-  walkSpeed: 0
-  runSpeed: 0
-  atkSpeed: 0
+  canTakeDamageAgainTimer: 1
   enemyElement: 0
   defHP: 100
   MAX_HP: 100
@@ -3960,8 +3957,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0e64a6e72d123948afec42001c7466c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  playerAnimator: {fileID: 0}
 --- !u!114 &617263787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3976,10 +3971,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 7
   maxJumpHeight: 10
-  maxJumpTime: 3.5
-  verticalVelocity: 0
+  turnSmoothTime: 0.1
+  groundCheck: {fileID: 0}
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 0
+  groundDistance: 0.4
+  isJumpPressed: 0
+  isGrounded: 0
+  isJumpAscension: 0
+  isJumpPeak: 0
+  isJumpFalling: 0
+  isMoving: 0
+  gravity: -9.81
   mainCamera: {fileID: 1252855589}
   rotationSpeed: 10
+  velocity: {x: 0, y: 0, z: 0}
+  playerController: {fileID: 0}
 --- !u!143 &617263788
 CharacterController:
   m_ObjectHideFlags: 0
@@ -4040,7 +4048,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   status: 0
   effect: 0
-  statusText: {fileID: 898948706}
   currentHP: 1
   isPlayer: 1
   atk: 0
@@ -4055,9 +4062,7 @@ MonoBehaviour:
   lightningDef: 0
   earthAtk: 0
   earthDef: 0
-  walkSpeed: 0
-  runSpeed: 0
-  atkSpeed: 0
+  canTakeDamageAgainTimer: 1
   MAX_HP: 100
   def_HP: 100
   headList:
@@ -8993,7 +8998,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   status: 0
   effect: 0
-  statusText: {fileID: 971650768}
   currentHP: 100
   isPlayer: 0
   atk: 0
@@ -9008,9 +9012,7 @@ MonoBehaviour:
   lightningDef: 0
   earthAtk: 0
   earthDef: 0
-  walkSpeed: 0
-  runSpeed: 0
-  atkSpeed: 0
+  canTakeDamageAgainTimer: 1
   enemyElement: 0
   defHP: 100
   MAX_HP: 100
@@ -13047,7 +13049,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   status: 0
   effect: 0
-  statusText: {fileID: 971650768}
   currentHP: 100
   isPlayer: 0
   atk: 0
@@ -13062,9 +13063,7 @@ MonoBehaviour:
   lightningDef: 0
   earthAtk: 0
   earthDef: 0
-  walkSpeed: 0
-  runSpeed: 0
-  atkSpeed: 0
+  canTakeDamageAgainTimer: 1
   enemyElement: 0
   defHP: 100
   MAX_HP: 100
@@ -13254,6 +13253,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1038884284526949832, guid: c4ae48bd17e5421478d93e30ed9ef8e4,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.502666
+      objectReference: {fileID: 0}
+    - target: {fileID: 2307498434715278555, guid: c4ae48bd17e5421478d93e30ed9ef8e4,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.1222261
+      objectReference: {fileID: 0}
     - target: {fileID: 2548765621524604317, guid: c4ae48bd17e5421478d93e30ed9ef8e4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -13288,6 +13297,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 2991020178807150424, guid: c4ae48bd17e5421478d93e30ed9ef8e4,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.1357117
+      objectReference: {fileID: 0}
+    - target: {fileID: 2991020178807150424, guid: c4ae48bd17e5421478d93e30ed9ef8e4,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.10376996
       objectReference: {fileID: 0}
     - target: {fileID: 3439535664716550283, guid: c4ae48bd17e5421478d93e30ed9ef8e4,
         type: 3}
@@ -13334,6 +13353,51 @@ PrefabInstance:
       propertyPath: icons.Array.data[1]
       value: 
       objectReference: {fileID: 1472621898}
+    - target: {fileID: 4311064120783178247, guid: c4ae48bd17e5421478d93e30ed9ef8e4,
+        type: 3}
+      propertyPath: far clip plane
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 4805351963483314058, guid: c4ae48bd17e5421478d93e30ed9ef8e4,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -6.61055
+      objectReference: {fileID: 0}
+    - target: {fileID: 4805351963483314058, guid: c4ae48bd17e5421478d93e30ed9ef8e4,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.8000002
+      objectReference: {fileID: 0}
+    - target: {fileID: 4805351963483314058, guid: c4ae48bd17e5421478d93e30ed9ef8e4,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.3023148
+      objectReference: {fileID: 0}
+    - target: {fileID: 4805351963483314058, guid: c4ae48bd17e5421478d93e30ed9ef8e4,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.8420963
+      objectReference: {fileID: 0}
+    - target: {fileID: 4805351963483314058, guid: c4ae48bd17e5421478d93e30ed9ef8e4,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.057391755
+      objectReference: {fileID: 0}
+    - target: {fileID: 4805351963483314058, guid: c4ae48bd17e5421478d93e30ed9ef8e4,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.5350238
+      objectReference: {fileID: 0}
+    - target: {fileID: 4805351963483314058, guid: c4ae48bd17e5421478d93e30ed9ef8e4,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.036463704
+      objectReference: {fileID: 0}
+    - target: {fileID: 5878696688253371522, guid: c4ae48bd17e5421478d93e30ed9ef8e4,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6223972453246361476, guid: c4ae48bd17e5421478d93e30ed9ef8e4,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -13404,6 +13468,11 @@ PrefabInstance:
       propertyPath: atk
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 7788948828866288465, guid: c4ae48bd17e5421478d93e30ed9ef8e4,
+        type: 3}
+      propertyPath: weaponType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7949694055651870197, guid: c4ae48bd17e5421478d93e30ed9ef8e4,
         type: 3}
       propertyPath: m_Name
@@ -13419,6 +13488,16 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 1252855589}
+    - target: {fileID: 8751411667287440215, guid: c4ae48bd17e5421478d93e30ed9ef8e4,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.1357117
+      objectReference: {fileID: 0}
+    - target: {fileID: 8751411667287440215, guid: c4ae48bd17e5421478d93e30ed9ef8e4,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.10376996
+      objectReference: {fileID: 0}
     - target: {fileID: 9148480872172495520, guid: c4ae48bd17e5421478d93e30ed9ef8e4,
         type: 3}
       propertyPath: abilityText
@@ -22670,7 +22749,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   status: 0
   effect: 0
-  statusText: {fileID: 971650768}
   currentHP: 100
   isPlayer: 0
   atk: 0
@@ -22685,9 +22763,7 @@ MonoBehaviour:
   lightningDef: 0
   earthAtk: 0
   earthDef: 0
-  walkSpeed: 0
-  runSpeed: 0
-  atkSpeed: 0
+  canTakeDamageAgainTimer: 1
   enemyElement: 0
   defHP: 100
   MAX_HP: 100
@@ -24186,7 +24262,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   status: 0
   effect: 0
-  statusText: {fileID: 971650768}
   currentHP: 100
   isPlayer: 0
   atk: 0
@@ -24201,9 +24276,7 @@ MonoBehaviour:
   lightningDef: 0
   earthAtk: 0
   earthDef: 0
-  walkSpeed: 0
-  runSpeed: 0
-  atkSpeed: 0
+  canTakeDamageAgainTimer: 1
   enemyElement: 0
   defHP: 100
   MAX_HP: 100
@@ -25030,7 +25103,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2063699155}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4583cdf9607154c45a5bd2a841ca980b, type: 3}
   m_Name: 
