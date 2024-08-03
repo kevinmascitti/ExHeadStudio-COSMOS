@@ -32,6 +32,8 @@ public class Weapon : Piece
         {
             GetComponent<BoxCollider>().enabled = false;
         }
+        BaseAttack1State.OnAttackBase1 += ActivateRxPiece;
+        BaseAttack1State.OnAttackBase1Finished += DeactivateRxPiece;
     }
     public void OnTriggerEnter(Collider other)
     {
@@ -40,6 +42,20 @@ public class Weapon : Piece
         {
             Debug.Log("Preso");
             OnEnemyCollision?.Invoke(this, new EnemyCollisionArgs(other.gameObject.GetComponent<Enemy>(), this));
+        }
+    }
+    private void ActivateRxPiece(object sender, EventArgs args)
+    {
+        if(weaponType == WeaponType.Ax)
+        {
+            GetComponent<BoxCollider>().enabled = true;
+        }
+    }
+    private void DeactivateRxPiece(object sender, EventArgs args)
+    {
+        if(weaponType == WeaponType.Ax)
+        {
+            GetComponent<BoxCollider>().enabled = false;
         }
     }
 }
