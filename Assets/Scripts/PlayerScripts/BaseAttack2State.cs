@@ -1,13 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BaseAttack2State : StateMachineBehaviour
 {
+
+    public static EventHandler OnAttackBase2;
+    public static EventHandler OnAttackBase2Exit;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-       
+       OnAttackBase2.Invoke(this, EventArgs.Empty);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -19,7 +23,7 @@ public class BaseAttack2State : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-       
+        OnAttackBase2Exit.Invoke(this, EventArgs.Empty);
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
