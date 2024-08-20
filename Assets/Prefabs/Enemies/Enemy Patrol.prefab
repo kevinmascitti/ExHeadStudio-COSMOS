@@ -29,7 +29,7 @@ RectTransform:
   m_GameObject: {fileID: 4367295755026856686}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.08, y: 0.08, z: 0}
+  m_LocalScale: {x: 0.08, y: 0.08, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5646745516478447703}
@@ -1437,17 +1437,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: be7aef2f724394e7cb76b0c29f796e70,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 67.5846
+      value: 38.71
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: be7aef2f724394e7cb76b0c29f796e70,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.84000015
+      value: 0.80000305
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: be7aef2f724394e7cb76b0c29f796e70,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 49.642864
+      value: 71.05
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: be7aef2f724394e7cb76b0c29f796e70,
         type: 3}
@@ -1900,7 +1900,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   status: 5
   effect: 5
-  statusText: {fileID: 0}
   currentHP: 0
   isPlayer: 0
   atk: 15
@@ -1915,9 +1914,7 @@ MonoBehaviour:
   lightningDef: 0
   earthAtk: 0
   earthDef: 0
-  walkSpeed: 0
-  runSpeed: 0
-  atkSpeed: 0
+  canTakeDamageAgainTimer: 1
   enemyElement: 2
   defHP: 100
   MAX_HP: 100
@@ -1986,8 +1983,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.62192035, y: 1.5202863, z: 0.5910488}
+  m_Center: {x: 0.02758684, y: 0.7135245, z: 0.10202096}
 --- !u!4 &4555235420777895157 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: be7aef2f724394e7cb76b0c29f796e70,

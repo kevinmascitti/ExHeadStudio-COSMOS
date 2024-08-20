@@ -7,7 +7,7 @@ public class BulletScript : Weapon
 {
 
 
-    [SerializeField] float bulletDestroyTime;
+    [SerializeField] private float bulletDestroyTime;
     [SerializeField] float damageRadius;
     [SerializeField] int maxDamage;
     [SerializeField] int minDamage;
@@ -17,7 +17,6 @@ public class BulletScript : Weapon
     [SerializeField] LayerMask blockMask;
     [SerializeField] ParticleSystem bulletSmokeEffect;
     [SerializeField] ParticleSystem collisionParticle;
-
 
     Rigidbody rb;
 
@@ -30,6 +29,7 @@ public class BulletScript : Weapon
         enemiesArray = new Collider[maxEnemies];
         rb = GetComponent<Rigidbody>();
         Destroy(gameObject, bulletDestroyTime);
+        rb.velocity = transform.forward * bulletSpeed;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -60,8 +60,45 @@ public class BulletScript : Weapon
         gameObject.SetActive(false);
         //Destroy(gameObject, 2);
     }
-    void Update()
-    {
-        rb.velocity = transform.forward * bulletSpeed;
-    }
+    //void Update()
+    //{
+    //    rb.velocity = transform.forward * bulletSpeed;
+    //}
 }
+
+
+////nella classe del proiettile
+//[SerializeField] private float travelSpeed;
+//[SerializeField] private float destroyDelay;
+//[SerializeField] private bool useGravity, updateTravel, useVelocity;
+
+//private RigidBody rig;
+//void Start()
+//{
+//    Destroy(this, destroyDelay);
+//    rig.useGravity = useGravity;
+//    if (!updateTravel) rig.velocity – transform.forward* travelSpeed;
+//}
+
+//void Update()
+//{
+//    If(updateTravel)
+
+//    {
+//        If(useVelocity)
+
+//        {
+//            rig.velocity = transform.forward * travelspeed;
+//        }
+//        Else
+
+//        {
+//            Transform.position += transform.forward * travelspeed * time.DeltaTime;
+//        }
+//    }
+//}
+//Public bool IsUpdatingTravel()
+//{
+//    Return isUpdatingTravel;
+//}
+

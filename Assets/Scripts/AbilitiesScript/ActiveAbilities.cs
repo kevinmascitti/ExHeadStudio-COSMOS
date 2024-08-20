@@ -24,7 +24,7 @@ public abstract class ActiveAbilities : MonoBehaviour
         Mathf.Clamp(abilityTimer, 0, cooldownTime);
     }
 
-    public void Update()
+    public virtual void Update()
     {
         if(Input.GetKey(KeyCode.Q) && !cooldown)
         {

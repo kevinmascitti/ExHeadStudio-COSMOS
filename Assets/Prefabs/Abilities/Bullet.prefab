@@ -127,10 +127,10 @@ Rigidbody:
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
@@ -153,22 +153,22 @@ MonoBehaviour:
   name: 
   numberInList: 0
   prefab: {fileID: 146416292059051500}
-  type: 0
+  type: 5
   isUnlocked: 1
   element: 2
   description: 
   playerCharacter: {fileID: 0}
-  weaponType: 0
+  weaponType: 3
   movementSpeed: 0
   atk: 0
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   bulletDestroyTime: 5
-  damageRadius: 1.5
-  maxDamage: 20
+  damageRadius: 10
+  maxDamage: 30
   minDamage: 0
-  bulletSpeed: 5
+  bulletSpeed: 10
   bulletElement: 2
   enemyMask:
     serializedVersion: 2
