@@ -18,7 +18,6 @@ public class ShieldArmAbility : ActiveAbilities
     {
         if (Input.GetKey(KeyCode.Q))
         {
-            Debug.Log("Preso");
             Ability();
         }
         else
