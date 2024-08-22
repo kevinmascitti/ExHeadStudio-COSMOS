@@ -45,6 +45,7 @@ public abstract class ActiveAbilities : MonoBehaviour
             }
             else
             {
+                StopAbility();
                 if(abilityTimer < 0.1f && !cooldown)
                 {
                     cooldown = true;
@@ -72,6 +73,8 @@ public abstract class ActiveAbilities : MonoBehaviour
     }
 
     public abstract void Ability();
+
+    public virtual void StopAbility(){} //la funzione serve a gestire l'abilità dello scudo
 
     private IEnumerator AbilityCooldown()
     {
