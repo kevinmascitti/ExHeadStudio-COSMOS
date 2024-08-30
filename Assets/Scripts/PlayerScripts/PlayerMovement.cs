@@ -260,6 +260,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float rotationSpeed = 4f;
 
     public Vector3 velocity;
+    [SerializeField] private Vector3 moveDir;
 
 
     public CharacterController playerController;
@@ -275,8 +276,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask); //controllo sul terreno
+        
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask); //controllo sul terreno, provare a sostituire con un capsule o un box
 
 
         if (isGrounded == true && velocity.y < 0)
@@ -305,7 +306,7 @@ public class PlayerMovement : MonoBehaviour
                 float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
                 transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
-                Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+                moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
                 playerController.Move(moveDir.normalized * movementSpeed * Time.deltaTime);
             }
             else
@@ -360,6 +361,11 @@ public class PlayerMovement : MonoBehaviour
     public bool GetIsMoving()
     {
         return isMoving && playerController.isGrounded;
+    }
+
+    public Vector3 getMoveDir()
+    {
+        return moveDir;
     }
 
 }
