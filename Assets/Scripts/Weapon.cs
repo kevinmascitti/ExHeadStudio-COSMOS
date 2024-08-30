@@ -26,6 +26,17 @@ public class Weapon : Piece
     
     public static EventHandler<EnemyCollisionArgs> OnEnemyCollision;
 
+    public void Awake()
+    {
+        if ((weaponType == WeaponType.Ax))
+        {
+            //GetComponent<BoxCollider>().enabled = false;
+        }
+        BaseAttack1State.OnAttackBase1 += ActivateRxPiece;
+        BaseAttack1State.OnAttackBase1Finished += DeactivateRxPiece;
+        BaseAttack2State.OnAttackBase2 += ActivateSxPiece;
+        BaseAttack2State.OnAttackBase2Exit += DeactivateSxPiece;
+    }
     public void OnTriggerEnter(Collider other)
     {
 
@@ -33,6 +44,37 @@ public class Weapon : Piece
         {
             Debug.Log("Preso");
             OnEnemyCollision?.Invoke(this, new EnemyCollisionArgs(other.gameObject.GetComponent<Enemy>(), this));
+        }
+    }
+    private void ActivateRxPiece(object sender, EventArgs args)
+    {
+        if(weaponType == WeaponType.Ax)
+        {
+            
+            GetComponent<BoxCollider>().enabled = true;
+        }
+    }
+    private void DeactivateRxPiece(object sender, EventArgs args)
+    {
+        if(weaponType == WeaponType.Ax)
+        {
+            
+            GetComponent<BoxCollider>().enabled = false;
+        }
+    }
+
+    private void ActivateSxPiece(object sender, EventArgs args)
+    {
+        if(weaponType == WeaponType.Punch)
+        {
+            GetComponent<BoxCollider>().enabled = true;
+        }
+    }
+    private void DeactivateSxPiece(object sender, EventArgs args)
+    {
+        if (weaponType == WeaponType.Punch)
+        {
+            GetComponent<BoxCollider>().enabled = false;
         }
     }
 }
