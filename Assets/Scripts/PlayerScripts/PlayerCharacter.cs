@@ -1,3 +1,4 @@
+
 using JetBrains.Annotations;
 using System;
 using System.Collections;
@@ -41,6 +42,7 @@ public class PlayerCharacter : Character
     [NonSerialized] public bool isInputOn = true;
     [NonSerialized] public bool isFighting = false;
     [NonSerialized] public LayerMask enemyLayer;
+    public HashSet<int> enemiesHit = new HashSet<int>();
 
     public Animator animator;
     public float attackRange;
@@ -114,6 +116,8 @@ public class PlayerCharacter : Character
         Weapon.OnEnemyCollision += DoDamage;
         ChoicePieceManager.OnChangePiece += ModifyComposition;
         ChoicePieceManager.OnSetPiece += SetPieceComposition;
+        BaseAttack1State.OnClearEnemyHitList += ClearEnemyHitList;
+        BaseAttack2State.OnClearEnemyHitList += ClearEnemyHitList;
     }
 
     public void Update()
@@ -133,14 +137,17 @@ public class PlayerCharacter : Character
         if (animator.GetBool("isBaseAttack") && animator.GetCurrentAnimatorStateInfo(0).IsName("Cyrus_Cosmos_Rig_Cyrus_Attacco_Leggero#1_Anticipation"))
         {
             animator.SetBool("isBaseAttack", false);
+            SetFightingState("False");
         }
         if (animator.GetBool("isBaseAttack2") && animator.GetCurrentAnimatorStateInfo(0).IsName("Cyrus_Cosmos_Rig_Cyrus_Attacco_Leggero#2_Recovery"))
         {
             animator.SetBool("isBaseAttack2", false);
+            SetFightingState("False");
         }
         if (animator.GetBool("isStrongAttack") && animator.GetCurrentAnimatorStateInfo(0).IsName("StrongAttack"))
         {
             animator.SetBool("isStrongAttack", false);
+            SetFightingState("False");
         }
         
         if ((isInputOn || isFighting)
@@ -150,7 +157,8 @@ public class PlayerCharacter : Character
 
             if (attacksDone == 0)
             {
-                animator.SetBool("isBaseAttack", true);
+                animator.SetBool("isBaseAttack", true); 
+                SetFightingState("True");
                 lastBaseAttack = Time.time;
                 attacksDone++;
                 nextActionTimer = Time.time + cooldown;
@@ -159,6 +167,7 @@ public class PlayerCharacter : Character
                 animator.GetCurrentAnimatorStateInfo(0).IsName("Cyrus_Cosmos_Rig_Cyrus_Attacco_Leggero#1_Action"))
             {
                 animator.SetBool("isBaseAttack2", true);
+                SetFightingState("True");
                 attacksDone = 0;
                 nextActionTimer = Time.time + cooldown;
             }
@@ -168,6 +177,7 @@ public class PlayerCharacter : Character
             && Time.time >= nextActionTimer && Input.GetKeyDown(KeyCode.Mouse1))
         {
             animator.SetBool("isStrongAttack", true);
+            SetFightingState("True");
             StrongAttack();
             nextActionTimer = Time.time + cooldown;
         }
@@ -266,6 +276,11 @@ public class PlayerCharacter : Character
       
         
         //Da sistemare perché ora viene passato solo l'elemento del braccio destro
+    }
+
+    private void ClearEnemyHitList()
+    {
+        enemiesHit.Clear();
     }
 
     private void StrongAttack()
@@ -399,12 +414,12 @@ public class PlayerCharacter : Character
     {
         if (state.ToLower().Contains("true"))
         {
-            Debug.Log("sta combattendo");
+            //Debug.Log("sta combattendo");
             isFighting = true;
         }
         else if (state.ToLower().Contains("false"))
         {
-            Debug.Log("NON sta combattendo");
+            //Debug.Log("NON sta combattendo");
             isFighting = false;
         }
     }
@@ -419,6 +434,8 @@ public class ScenarioArgs : EventArgs
     }
     public Scenario scenario;
 }
+
+
 
 //VERSIONE PRECEDENTE
 //using JetBrains.Annotations;

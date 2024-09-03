@@ -25,10 +25,10 @@ public class Weapon : Piece
     
     
     public static EventHandler<EnemyCollisionArgs> OnEnemyCollision;
-
+ 
     public void Awake()
     {
-        if ((weaponType == WeaponType.Ax))
+        if ((weaponType == WeaponType.Ax) || weaponType == WeaponType.Punch)
         {
             //GetComponent<BoxCollider>().enabled = false;
         }
@@ -40,8 +40,10 @@ public class Weapon : Piece
     public void OnTriggerEnter(Collider other)
     {
 
-        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy") && playerCharacter.isFighting)//GetComponentInParent<PlayerCharacter>().isFighting)
+        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy") && playerCharacter.isFighting && !playerCharacter.enemiesHit.Contains(other.gameObject.GetInstanceID()))//GetComponentInParent<PlayerCharacter>().isFighting)
         {
+            playerCharacter.enemiesHit.Add(other.gameObject.GetInstanceID());
+            //TimeResume();
             Debug.Log("Preso");
             OnEnemyCollision?.Invoke(this, new EnemyCollisionArgs(other.gameObject.GetComponent<Enemy>(), this));
         }
@@ -76,6 +78,12 @@ public class Weapon : Piece
         {
             GetComponent<BoxCollider>().enabled = false;
         }
+    }
+
+    private IEnumerator TimeResume()
+    {
+        yield return new WaitForSeconds(0.01f);
+        Time.timeScale = 1f;
     }
 }
 
