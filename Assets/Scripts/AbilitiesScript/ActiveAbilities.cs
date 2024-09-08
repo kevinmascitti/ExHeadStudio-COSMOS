@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Unity.VisualScripting;
+using System;
 
 public abstract class ActiveAbilities : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public abstract class ActiveAbilities : MonoBehaviour
     [SerializeField] Image frontAbilityImage;
     [SerializeField] TMPro.TextMeshProUGUI abilityText;
     [SerializeField] private bool isContinous = false;
+    [NonSerialized] public Animator playerAnimator;
     private float abilityTimer;
     private float abilityFraction;
     private bool cooldown = false;
@@ -19,8 +21,9 @@ public abstract class ActiveAbilities : MonoBehaviour
     private void Awake()
     {
         frontAbilityImage.fillAmount = 1;
+        playerAnimator = GetComponentInParent<Animator>();
     }
-    public void Start()
+    public virtual void Start()
     {
         if (isContinous)
         {

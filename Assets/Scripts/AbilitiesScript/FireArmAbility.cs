@@ -5,25 +5,32 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.UIElements.Experimental;
+using UnityStandardAssets.Cameras;
 
 public class FireArmAbility : ActiveAbilities
 {
-
     [SerializeField] Transform bulletStartPosition;
     [SerializeField] GameObject bulletPrefab;
 
+    private CinemachineImpulseSource cameraShake; //impulso per muovere la camera allo sparo
+
+    private int triggerID = Animator.StringToHash("isFireballShoot");
+
     public override void Ability()
     {
-        ShootBullet();
+        playerAnimator.SetBool(triggerID, true);       
     }
 
-    public void ShootBullet()
+    public void ShootBullet() //la funzione viene chiamata da un animation event, che accede a PlayerStateController
     {
-        //Debug.Log("Ho sparato");
         Instantiate(bulletPrefab, bulletStartPosition.position, bulletStartPosition.rotation);
-        //cameraShake.GenerateImpulse();
+        playerAnimator.SetBool(triggerID, false);
+        if ((cameraShake = GetComponent<CinemachineImpulseSource>()) != null )
+        {
+            cameraShake.GenerateImpulse();
+        }
     }
-
 }
 
 

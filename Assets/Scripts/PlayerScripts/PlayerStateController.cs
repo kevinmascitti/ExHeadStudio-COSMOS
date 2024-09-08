@@ -6,6 +6,7 @@ public class PlayerStateController : MonoBehaviour
 {
     private PlayerMovement player;
     private Animator playerAnimator;
+    private FireArmAbility fireArmReference; //la reference è necessaria per usare gli eventi da animator
 
     private bool isJumpAscension;
     private bool isJumpPeak;
@@ -16,6 +17,7 @@ public class PlayerStateController : MonoBehaviour
     {
         player = GetComponent<PlayerMovement>();
         playerAnimator = GetComponent<Animator>();
+
     }
 
     // Update is called once per frame
@@ -36,6 +38,15 @@ public class PlayerStateController : MonoBehaviour
         playerAnimator.SetBool("isJumpFalling", isJumpFalling);
         playerAnimator.SetBool("isMoving", isMoving);
         playerAnimator.SetBool("isIdle", isIdling);
+    }
+
+
+    public void OnAnimationEvent()
+    {
+        if ((fireArmReference = GetComponentInChildren<FireArmAbility>()) != null)
+        {
+            fireArmReference.ShootBullet();
+        }
     }
 }
 
