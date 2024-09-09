@@ -6,7 +6,15 @@ public class FireLegsAbility : ActiveAbilities
 {
     [SerializeField] private float dashTime;
     [SerializeField] private float dashSpeed;
-    [SerializeField] private PlayerMovement movementScript;
+
+    private PlayerMovement movementScript;
+
+    public override void Start()
+    {
+        base.Start();
+        movementScript = GameObject.Find("Player").GetComponent<PlayerMovement>();
+
+    }
 
     public override void Ability()
     {

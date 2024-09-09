@@ -253,6 +253,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private bool isMoving;
     [Tooltip("La gravità deve restare negativa!")]
     [SerializeField] private float gravity = -9.81f;
+    [Header("Coyote time")]
+    [SerializeField] private float coyoteTime = 0.2f;
+    private float coyoteTimeCounter;
 
     [Header("Camera")]
     [Tooltip("Assegnare la Main")]
@@ -284,10 +287,12 @@ public class PlayerMovement : MonoBehaviour
         {
             isJumpFalling = false;
             velocity.y = -0.5f; //serve ad essere sicuri che "senta" il terreno, vale come la gravità
+            coyoteTimeCounter = coyoteTime;
         }
         else if (isGrounded == false && velocity.y < 0)
         {
             isJumpFalling = true; //condizione per la caduta
+            coyoteTimeCounter -= Time.deltaTime;
         }
 
         
@@ -314,13 +319,14 @@ public class PlayerMovement : MonoBehaviour
                 isMoving = false;
             }
 
-            if (Input.GetButtonDown("Jump") && isGrounded)
+            if (Input.GetButtonDown("Jump") && coyoteTimeCounter > 0 && velocity.y < 0)// && isGrounded)
             {
                 velocity.y = Mathf.Sqrt(maxJumpHeight);
             }
             else
             {
                 velocity.y += gravity * Time.deltaTime * Time.deltaTime;
+
             }
 
             playerController.Move(velocity);
