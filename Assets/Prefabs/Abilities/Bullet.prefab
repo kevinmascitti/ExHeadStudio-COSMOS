@@ -164,7 +164,7 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64
-  bulletDestroyTime: 5
+  bulletDestroyTime: 2.5
   damageRadius: 10
   maxDamage: 30
   minDamage: 0

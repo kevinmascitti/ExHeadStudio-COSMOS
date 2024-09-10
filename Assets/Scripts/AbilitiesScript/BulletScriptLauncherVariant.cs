@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class BulletScript : Weapon
+public class BulletScriptLauncherVariant : Weapon
 {
 
 
@@ -29,7 +28,7 @@ public class BulletScript : Weapon
         enemiesArray = new Collider[maxEnemies];
         rb = GetComponent<Rigidbody>();
         Destroy(gameObject, bulletDestroyTime);
-            rb.velocity = (Camera.main.transform.forward.normalized * bulletSpeed + new Vector3(0f, 1f, 0f));
+        rb.velocity = transform.forward * bulletSpeed; //UNICO CAMBIAMENTO
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -61,46 +60,4 @@ public class BulletScript : Weapon
         gameObject.SetActive(false);
         Destroy(gameObject, 2);
     }
-
-    //void Update()
-    //{
-    //    rb.velocity = transform.forward * bulletSpeed;
-    //}
 }
-
-
-////nella classe del proiettile
-//[SerializeField] private float travelSpeed;
-//[SerializeField] private float destroyDelay;
-//[SerializeField] private bool useGravity, updateTravel, useVelocity;
-
-//private RigidBody rig;
-//void Start()
-//{
-//    Destroy(this, destroyDelay);
-//    rig.useGravity = useGravity;
-//    if (!updateTravel) rig.velocity – transform.forward* travelSpeed;
-//}
-
-//void Update()
-//{
-//    If(updateTravel)
-
-//    {
-//        If(useVelocity)
-
-//        {
-//            rig.velocity = transform.forward * travelspeed;
-//        }
-//        Else
-
-//        {
-//            Transform.position += transform.forward * travelspeed * time.DeltaTime;
-//        }
-//    }
-//}
-//Public bool IsUpdatingTravel()
-//{
-//    Return isUpdatingTravel;
-//}
-

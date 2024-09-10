@@ -6,9 +6,10 @@ public class ShieldObj : MonoBehaviour
 {
 
     private BulletScript bulletScript;
+    private BulletScriptLauncherVariant bulletScriptLauncherVariant;
     void OnTriggerEnter(Collider other)
     {
-        if(other.TryGetComponent<BulletScript>(out bulletScript))
+        if(other.TryGetComponent<BulletScript>(out bulletScript) || other.TryGetComponent<BulletScriptLauncherVariant>(out bulletScriptLauncherVariant))
         {
             Vector3 direction = (other.transform.forward).normalized; //acquisisce la direzione di movimento
             Vector3 inverse = direction * -1;

@@ -15,7 +15,7 @@ public class BulletLauncher : MonoBehaviour
     }
 
     private void InstantiateBullet()
-    {
+    {  
         Instantiate(bulletPrefab, startPosition);
     }
 }
