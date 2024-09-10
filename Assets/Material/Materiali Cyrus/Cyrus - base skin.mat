@@ -31,13 +31,13 @@ Material:
     m_Floats:
     - Step1: 1
     - _Gloss: 10
-    - _OutlineWidth: 0
+    - _OutlineWidth: 0.001
     - _RimPower: 2.2
     - _RimStep: 0
     - _RimStepSmooth: 0
-    - _ShadowStep: 0.64
+    - _ShadowStep: 0.716
     - _ShadowStepSmooth: 0
-    - _SpecularStep: 0.17
+    - _SpecularStep: 0
     - _SpecularStepSmooth: 0
     - _Step: 0.432
     - _Step1: 0.537
@@ -45,7 +45,7 @@ Material:
     - _Step3: 0.97
     - _Step4: 0.025
     m_Colors:
-    - _BaseColor: {r: 1, g: 0.65097713, b: 0.6117647, a: 1}
+    - _BaseColor: {r: 0.8113208, g: 0.5501606, b: 0.5179186, a: 1}
     - _HighColor: {r: 1, g: 1, b: 1, a: 1}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _RimColor: {r: 0.9622641, g: 0.8449212, b: 0.16794229, a: 1}
