@@ -29,7 +29,7 @@ public class BulletScript : Weapon
         enemiesArray = new Collider[maxEnemies];
         rb = GetComponent<Rigidbody>();
         Destroy(gameObject, bulletDestroyTime);
-            rb.velocity = (Camera.main.transform.forward.normalized * bulletSpeed + new Vector3(0f, 1f, 0f));
+            rb.velocity = (Camera.main.transform.forward.normalized * bulletSpeed + new Vector3(0f, 1f, 0f));//ho aggiunto un offset per non sparare troppo in basso
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -62,6 +62,10 @@ public class BulletScript : Weapon
         Destroy(gameObject, 2);
     }
 
+    public void SetVelocity(Vector3 newVelocity)
+    {
+        this.rb.velocity = newVelocity;
+    }
     //void Update()
     //{
     //    rb.velocity = transform.forward * bulletSpeed;

@@ -60,4 +60,9 @@ public class BulletScriptLauncherVariant : Weapon
         gameObject.SetActive(false);
         Destroy(gameObject, 2);
     }
+
+    public void SetVelocity(Vector3 newVelocity)
+    {
+        this.rb.velocity = newVelocity;
+    }
 }

@@ -13,6 +13,46 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bullet Launcher Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 196062460518739984, guid: c370b60197b50344aade3d8246fb8d9e,
+        type: 3}
+      propertyPath: m_Height
+      value: 5.0967093
+      objectReference: {fileID: 0}
+    - target: {fileID: 196062460518739984, guid: c370b60197b50344aade3d8246fb8d9e,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.6950057
+      objectReference: {fileID: 0}
+    - target: {fileID: 196062460518739984, guid: c370b60197b50344aade3d8246fb8d9e,
+        type: 3}
+      propertyPath: m_Center.x
+      value: 0.03106174
+      objectReference: {fileID: 0}
+    - target: {fileID: 196062460518739984, guid: c370b60197b50344aade3d8246fb8d9e,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.07608136
+      objectReference: {fileID: 0}
+    - target: {fileID: 196062460518739984, guid: c370b60197b50344aade3d8246fb8d9e,
+        type: 3}
+      propertyPath: m_Center.z
+      value: -0.13624102
+      objectReference: {fileID: 0}
+    - target: {fileID: 1678356894646168232, guid: c370b60197b50344aade3d8246fb8d9e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4228831791613153151, guid: c370b60197b50344aade3d8246fb8d9e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5101377931778459304, guid: c370b60197b50344aade3d8246fb8d9e,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 5101377931778459304, guid: c370b60197b50344aade3d8246fb8d9e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -65,6 +105,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6240793585548019077, guid: c370b60197b50344aade3d8246fb8d9e, type: 3}
+    - {fileID: 196062460518739984, guid: c370b60197b50344aade3d8246fb8d9e, type: 3}
+    - {fileID: 1561501062356804729, guid: c370b60197b50344aade3d8246fb8d9e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -72,6 +114,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 8625366577516497231}
+    - targetCorrespondingSourceObject: {fileID: 146416292059051500, guid: c370b60197b50344aade3d8246fb8d9e,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5136481307226349950}
   m_SourcePrefab: {fileID: 100100000, guid: c370b60197b50344aade3d8246fb8d9e, type: 3}
 --- !u!198 &5538399777663993445 stripped
 ParticleSystem:
@@ -125,6 +171,27 @@ MonoBehaviour:
     m_Bits: 1
   bulletSmokeEffect: {fileID: 5538399777663993445}
   collisionParticle: {fileID: 7005689995103130044}
+--- !u!65 &5136481307226349950
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6566863248963088997}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.5, y: 2, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!198 &7005689995103130044 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 4040633129275233845, guid: c370b60197b50344aade3d8246fb8d9e,
