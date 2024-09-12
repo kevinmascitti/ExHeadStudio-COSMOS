@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1422622077420290870
 Transform:
   m_ObjectHideFlags: 0
@@ -60,7 +60,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: e3b5a799164d644d4a2b40167e48064e, type: 3}
   - {fileID: 21300000, guid: 2abd15607bb1441608ced2f271e0b546, type: 3}
   - {fileID: 21300000, guid: 109c62c619cef4fe4b138a746a9ee524, type: 3}
-  player: {fileID: 3439535664716550283, guid: c4ae48bd17e5421478d93e30ed9ef8e4, type: 3}
+  player: {fileID: 0}
   choicePiecesCamera: {fileID: 0}
   TMP_title: {fileID: 0}
   TMP_element: {fileID: 0}

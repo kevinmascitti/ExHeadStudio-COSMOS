@@ -41,6 +41,7 @@ public class PlayerCharacter : Character
 
     [NonSerialized] public bool isInputOn = true;
     [NonSerialized] public bool isFighting = false;
+    private int attackIndex = 0;
     [NonSerialized] public LayerMask enemyLayer;
     public HashSet<int> enemiesHit = new HashSet<int>();
 
@@ -118,6 +119,8 @@ public class PlayerCharacter : Character
         ChoicePieceManager.OnSetPiece += SetPieceComposition;
         BaseAttack1State.OnClearEnemyHitList += ClearEnemyHitList;
         BaseAttack2State.OnClearEnemyHitList += ClearEnemyHitList;
+
+        animator.SetInteger("strongAttackIndex", 0);
     }
 
     public void Update()
@@ -144,7 +147,9 @@ public class PlayerCharacter : Character
             animator.SetBool("isBaseAttack2", false);
             SetFightingState("False");
         }
-        if (animator.GetBool("isStrongAttack") && animator.GetCurrentAnimatorStateInfo(0).IsName("StrongAttack"))
+        if (animator.GetBool("isStrongAttack") && 
+            (   animator.GetCurrentAnimatorStateInfo(0).IsName("Cyrus_Cosmos_Rig_Cyrus_Attacco_Pesante_#2_Anticipation")
+            || animator.GetCurrentAnimatorStateInfo(0).IsName("Cyrus_Cosmos_Rig_Cyrus_Attacco_Pesante_v2_Anticipation"))) // animator.GetCurrentAnimatorStateInfo(0).IsName("StrongAttack"))
         {
             animator.SetBool("isStrongAttack", false);
             SetFightingState("False");
@@ -175,11 +180,16 @@ public class PlayerCharacter : Character
         }
         else if ((isInputOn || isFighting)
             && Time.time >= nextActionTimer && Input.GetKeyDown(KeyCode.Mouse1))
+               // && animator.GetCurrentAnimatorStateInfo(0).IsName("Cyrus_Cosmos_Rig_Cyrus_Attacco_Pesante_#2_Anticipation"))
         {
+            Debug.Log(attackIndex);
+            animator.SetInteger("strongAttackIndex", attackIndex);
             animator.SetBool("isStrongAttack", true);
             SetFightingState("True");
             StrongAttack();
             nextActionTimer = Time.time + cooldown;
+            attackIndex++; //soluzione provvisoria per scegliere uno dei due attacchi pesanti a caso, non riesco ad importare numeri random
+            if (attackIndex == 2) attackIndex = 0;
         }
         
         else if (isInputOn && Time.time >= nextActionTimer && Input.GetKeyDown(KeyCode.C))
@@ -305,7 +315,12 @@ public class PlayerCharacter : Character
         animator.SetTrigger("ForwardDodge");
         StartCoroutine(DodgeCoroutine(dodgeDistance));
     }
-    
+
+    private void BackwardDodge()
+    {
+        animator.SetTrigger("BackwardDodge");
+        StartCoroutine(DodgeCoroutine(dodgeDistance));
+    }
     private IEnumerator DodgeCoroutine(float dodgeDistance)
     {
         float animationDuration = 1f;
@@ -332,13 +347,7 @@ public class PlayerCharacter : Character
         transform.position = endPosition;
         Debug.Log("Dodge done!");
     }
-    
-    private void BackwardDodge()
-    {
-        animator.SetTrigger("BackwardDodge");
-        StartCoroutine(DodgeCoroutine(dodgeDistance));
-    }
-
+ 
     private void InitializeComposition()
     {
         foreach(Piece p in completePiecesList[PartType.Head])
