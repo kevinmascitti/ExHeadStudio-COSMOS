@@ -21,15 +21,14 @@ public class PlayerStateController : MonoBehaviour
 
     void Update()
     {
-        isMoving = player.GetIsMoving();
-        isJumpAscension = player.GetIsJumpAscension();
-        isJumpPeak = player.GetIsJumpPeak();
-        isJumpFalling = player.GetIsJumpFalling();
+        isMoving = player.isMoving;
+        isJumpAscension = player.isJumpAscension;
+        isJumpPeak = player.isJumpPeak;
+        isJumpFalling = player.isJumpFalling;
 
-        //isIdling = !isMoving && !isJumpAscension && !isJumpPeak && !isJumpFalling;
-        if(isMoving == false && isJumpAscension == false && isJumpPeak == false && isJumpFalling == false)
-        isIdling = true;
-        else isIdling = false;
+        isIdling = !isMoving && !isJumpAscension && !isJumpPeak && !isJumpFalling; //NON TOCCARE
+
+        Debug.Log(isIdling);
 
         playerAnimator.SetBool("isJumpAscension", isJumpAscension);
         playerAnimator.SetBool("isJumpPeak", isJumpPeak);

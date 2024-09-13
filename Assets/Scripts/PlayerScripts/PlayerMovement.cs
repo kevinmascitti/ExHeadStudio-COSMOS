@@ -247,10 +247,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float groundDistance = 0.4f;
     [SerializeField] private bool isJumpPressed;
     [SerializeField] private bool isGrounded;
-    [SerializeField] private bool isJumpAscension = false;
-    [SerializeField] private bool isJumpPeak = false;
-    [SerializeField] private bool isJumpFalling = false;
-    [SerializeField] private bool isMoving;
+    [SerializeField] public bool isJumpAscension = false;
+    [SerializeField] public bool isJumpPeak = false;
+    [SerializeField] public bool isJumpFalling = false;
+    [SerializeField] public bool isMoving;
     [Tooltip("La gravità deve restare negativa!")]
     [SerializeField] private float gravity = -9.81f;
     [Header("Coyote time")]
@@ -281,7 +281,7 @@ public class PlayerMovement : MonoBehaviour
     {
         
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask); //controllo sul terreno, provare a sostituire con un capsule o un box
-
+        
 
         if (isGrounded == true && velocity.y < 0)
         {
@@ -332,6 +332,7 @@ public class PlayerMovement : MonoBehaviour
             playerController.Move(velocity);
 
         }
+        
     }
 
 

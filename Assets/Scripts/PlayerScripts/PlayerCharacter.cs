@@ -75,7 +75,7 @@ public class PlayerCharacter : Character
     public static EventHandler OnChoicePieces;
     public static EventHandler OnEndChoicePieces;
 
-    public static System.Action OnUpdate;
+    public static Action OnUpdate;
 
 
     [Header("HealthBar")]
@@ -127,11 +127,14 @@ public class PlayerCharacter : Character
     {
         if(OnUpdate != null) OnUpdate();
 
-        if (isFighting || choicePieceManager.isUIOpen || pauseMenu.isUIOpen)
-            isInputOn = false;
+        isInputOn = !isFighting && !choicePieceManager.isUIOpen && !pauseMenu.isUIOpen; //UGUALE A SCRIVERE IF( isFightin == false && choice... == false && pause... == false) isInputOn=true else isInputOn =false;
+        
+        /*if (isFighting || choicePieceManager.isUIOpen || pauseMenu.isUIOpen)
+            isInputOn = false;                                                  CONVENIVA METTERE LA CONDIZIONE SUL TRUE CON &&, COME FATTO 2 RIGHE SOPRA
         else
             isInputOn = true;
-        
+        */
+        //Debug.Log(isFighting);
         if (attacksDone != 0 && Time.time - lastBaseAttack > maxComboDelay)
         {
             attacksDone = 0;
@@ -140,19 +143,19 @@ public class PlayerCharacter : Character
         if (animator.GetBool("isBaseAttack") && animator.GetCurrentAnimatorStateInfo(0).IsName("Cyrus_Cosmos_Rig_Cyrus_Attacco_Leggero#1_Anticipation"))
         {
             animator.SetBool("isBaseAttack", false);
-            SetFightingState("False");
+           // SetFightingState("False");
         }
         if (animator.GetBool("isBaseAttack2") && animator.GetCurrentAnimatorStateInfo(0).IsName("Cyrus_Cosmos_Rig_Cyrus_Attacco_Leggero#2_Recovery"))
         {
             animator.SetBool("isBaseAttack2", false);
-            SetFightingState("False");
+            //SetFightingState("False");
         }
         if (animator.GetBool("isStrongAttack") && 
             (   animator.GetCurrentAnimatorStateInfo(0).IsName("Cyrus_Cosmos_Rig_Cyrus_Attacco_Pesante_#2_Anticipation")
             || animator.GetCurrentAnimatorStateInfo(0).IsName("Cyrus_Cosmos_Rig_Cyrus_Attacco_Pesante_v2_Anticipation"))) // animator.GetCurrentAnimatorStateInfo(0).IsName("StrongAttack"))
         {
             animator.SetBool("isStrongAttack", false);
-            SetFightingState("False");
+            //SetFightingState("False");
         }
         
         if ((isInputOn || isFighting)
@@ -163,7 +166,7 @@ public class PlayerCharacter : Character
             if (attacksDone == 0)
             {
                 animator.SetBool("isBaseAttack", true); 
-                SetFightingState("True");
+                SetFightingState(true);
                 lastBaseAttack = Time.time;
                 attacksDone++;
                 nextActionTimer = Time.time + cooldown;
@@ -172,7 +175,7 @@ public class PlayerCharacter : Character
                 animator.GetCurrentAnimatorStateInfo(0).IsName("Cyrus_Cosmos_Rig_Cyrus_Attacco_Leggero#1_Action"))
             {
                 animator.SetBool("isBaseAttack2", true);
-                SetFightingState("True");
+                //SetFightingState(true);
                 attacksDone = 0;
                 nextActionTimer = Time.time + cooldown;
             }
@@ -185,7 +188,7 @@ public class PlayerCharacter : Character
            // Debug.Log(strongAttackIndex);
             animator.SetInteger("strongAttackIndex", strongAttackIndex);
             animator.SetBool("isStrongAttack", true);
-            SetFightingState("True");
+            //SetFightingState(true);
             StrongAttack();
             nextActionTimer = Time.time + cooldown;
             strongAttackIndex++; //soluzione provvisoria per scegliere uno dei due attacchi pesanti a caso, non riesco ad importare numeri random
@@ -220,6 +223,7 @@ public class PlayerCharacter : Character
         CheckForNPC();
     }
 
+    
     public override void UpdateHP(float newHP)
     {
         base.UpdateHP(newHP);
@@ -419,18 +423,9 @@ public class PlayerCharacter : Character
         }
     }
 
-    public void SetFightingState(string state)
+    public void SetFightingState(bool state)
     {
-        if (state.ToLower().Contains("true"))
-        {
-            //Debug.Log("sta combattendo");
-            isFighting = true;
-        }
-        else if (state.ToLower().Contains("false"))
-        {
-            //Debug.Log("NON sta combattendo");
-            isFighting = false;
-        }
+        isFighting = state;
     }
     
 }
