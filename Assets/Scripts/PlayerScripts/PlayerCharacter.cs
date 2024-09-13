@@ -41,7 +41,7 @@ public class PlayerCharacter : Character
 
     [NonSerialized] public bool isInputOn = true;
     [NonSerialized] public bool isFighting = false;
-    private int attackIndex = 0;
+    private int strongAttackIndex = 0;
     [NonSerialized] public LayerMask enemyLayer;
     public HashSet<int> enemiesHit = new HashSet<int>();
 
@@ -182,14 +182,14 @@ public class PlayerCharacter : Character
             && Time.time >= nextActionTimer && Input.GetKeyDown(KeyCode.Mouse1))
                // && animator.GetCurrentAnimatorStateInfo(0).IsName("Cyrus_Cosmos_Rig_Cyrus_Attacco_Pesante_#2_Anticipation"))
         {
-            Debug.Log(attackIndex);
-            animator.SetInteger("strongAttackIndex", attackIndex);
+           // Debug.Log(strongAttackIndex);
+            animator.SetInteger("strongAttackIndex", strongAttackIndex);
             animator.SetBool("isStrongAttack", true);
             SetFightingState("True");
             StrongAttack();
             nextActionTimer = Time.time + cooldown;
-            attackIndex++; //soluzione provvisoria per scegliere uno dei due attacchi pesanti a caso, non riesco ad importare numeri random
-            if (attackIndex == 2) attackIndex = 0;
+            strongAttackIndex++; //soluzione provvisoria per scegliere uno dei due attacchi pesanti a caso, non riesco ad importare numeri random
+            if (strongAttackIndex == 2) strongAttackIndex = 0;
         }
         
         else if (isInputOn && Time.time >= nextActionTimer && Input.GetKeyDown(KeyCode.C))

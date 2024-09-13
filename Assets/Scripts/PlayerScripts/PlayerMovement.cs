@@ -266,7 +266,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Vector3 moveDir;
 
 
-    public CharacterController playerController;
+    [NonSerialized] public CharacterController playerController;
     private PlayerCharacter player;
 
     private void Awake()

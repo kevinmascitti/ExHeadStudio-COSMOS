@@ -17,10 +17,8 @@ public class PlayerStateController : MonoBehaviour
     {
         player = GetComponent<PlayerMovement>();
         playerAnimator = GetComponent<Animator>();
-
     }
 
-    // Update is called once per frame
     void Update()
     {
         isMoving = player.GetIsMoving();
