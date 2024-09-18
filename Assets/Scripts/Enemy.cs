@@ -1,3 +1,4 @@
+using FMODUnity;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,8 +12,8 @@ public class Enemy : Character
     public Element enemyElement;
     public Type type;
     private Animator animator;
-    public EventHandler OnEnemySpawn;
-    public EventHandler OnEnemyDeath;
+    public System.EventHandler OnEnemySpawn;
+    public System.EventHandler OnEnemyDeath;
 
     [SerializeField] float defHP = 100;
     [SerializeField] float MAX_HP = 100;
@@ -23,7 +24,9 @@ public class Enemy : Character
     [SerializeField] float chipSpeed;
     private float lerpTimer;
 
+    [SerializeField] private EventReference deathSample;
 
+    private bool dead = false;
 
     // Start is called before the first frame update
     void Awake()
@@ -71,9 +74,13 @@ public class Enemy : Character
 
     public override void Die()
     {
+        if (dead) return;
+
         base.Die();
        // Debug.Log("ENEMY DEAD");
         animator.SetBool("isDead", true);
+        AudioManager.PlayOneShot(deathSample, transform.position);
+        dead = true;
         //OnEnemyDeath?.Invoke(this, EventArgs.Empty);
         StartCoroutine(DestroyAfterAnimationEnd("Nemico_Base_Morte"));
         
