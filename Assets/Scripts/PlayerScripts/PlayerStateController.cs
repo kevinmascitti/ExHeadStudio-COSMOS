@@ -28,7 +28,7 @@ public class PlayerStateController : MonoBehaviour
 
         isIdling = !isMoving && !isJumpAscension && !isJumpPeak && !isJumpFalling; //NON TOCCARE
 
-        Debug.Log(isIdling);
+        //Debug.Log(isIdling);
 
         playerAnimator.SetBool("isJumpAscension", isJumpAscension);
         playerAnimator.SetBool("isJumpPeak", isJumpPeak);
