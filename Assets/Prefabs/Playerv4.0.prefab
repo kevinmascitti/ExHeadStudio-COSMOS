@@ -12234,6 +12234,7 @@ MonoBehaviour:
   movementSpeed: 7
   maxJumpHeight: 0.5
   turnSmoothTime: 0.1
+  maxJumpTime: 0.5
   groundCheck: {fileID: 3499369404600226852}
   groundMask:
     serializedVersion: 2
