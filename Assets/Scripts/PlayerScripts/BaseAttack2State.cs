@@ -13,7 +13,7 @@ public class BaseAttack2State : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
        OnAttackBase2.Invoke(this, EventArgs.Empty);
-        OnClearEnemyHitList.Invoke();
+        //OnClearEnemyHitList.Invoke();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

@@ -143,19 +143,19 @@ public class PlayerCharacter : Character
         if (animator.GetBool("isBaseAttack") && animator.GetCurrentAnimatorStateInfo(0).IsName("Cyrus_Cosmos_Rig_Cyrus_Attacco_Leggero#1_Anticipation"))
         {
             animator.SetBool("isBaseAttack", false);
-           // SetFightingState("False");
+           SetFightingState(false);
         }
         if (animator.GetBool("isBaseAttack2") && animator.GetCurrentAnimatorStateInfo(0).IsName("Cyrus_Cosmos_Rig_Cyrus_Attacco_Leggero#2_Recovery"))
         {
             animator.SetBool("isBaseAttack2", false);
-            //SetFightingState("False");
+            SetFightingState(false);
         }
         if (animator.GetBool("isStrongAttack") && 
             (   animator.GetCurrentAnimatorStateInfo(0).IsName("Cyrus_Cosmos_Rig_Cyrus_Attacco_Pesante_#2_Anticipation")
             || animator.GetCurrentAnimatorStateInfo(0).IsName("Cyrus_Cosmos_Rig_Cyrus_Attacco_Pesante_v2_Anticipation"))) // animator.GetCurrentAnimatorStateInfo(0).IsName("StrongAttack"))
         {
             animator.SetBool("isStrongAttack", false);
-            //SetFightingState("False");
+            SetFightingState(false);
         }
         
         if ((isInputOn || isFighting)
@@ -175,7 +175,7 @@ public class PlayerCharacter : Character
                 animator.GetCurrentAnimatorStateInfo(0).IsName("Cyrus_Cosmos_Rig_Cyrus_Attacco_Leggero#1_Action"))
             {
                 animator.SetBool("isBaseAttack2", true);
-                //SetFightingState(true);
+                SetFightingState(true);
                 attacksDone = 0;
                 nextActionTimer = Time.time + cooldown;
             }
@@ -188,7 +188,7 @@ public class PlayerCharacter : Character
            // Debug.Log(strongAttackIndex);
             animator.SetInteger("strongAttackIndex", strongAttackIndex);
             animator.SetBool("isStrongAttack", true);
-            //SetFightingState(true);
+            SetFightingState(true);
             StrongAttack();
             nextActionTimer = Time.time + cooldown;
             strongAttackIndex++; //soluzione provvisoria per scegliere uno dei due attacchi pesanti a caso, non riesco ad importare numeri random

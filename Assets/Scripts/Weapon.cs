@@ -28,19 +28,17 @@ public class Weapon : Piece
  
     public void Awake()
     {
-        if ((weaponType == WeaponType.Ax) || weaponType == WeaponType.Punch)
-        {
-            //GetComponent<BoxCollider>().enabled = false;
-        }
         BaseAttack1State.OnAttackBase1 += ActivateRxPiece;
         BaseAttack1State.OnAttackBase1Finished += DeactivateRxPiece;
         BaseAttack2State.OnAttackBase2 += ActivateSxPiece;
         BaseAttack2State.OnAttackBase2Exit += DeactivateSxPiece;
+        GetComponent<BoxCollider>().enabled = false;
     }
+    
     public void OnTriggerEnter(Collider other)
     {
 
-        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy") && playerCharacter.isFighting && !playerCharacter.enemiesHit.Contains(other.gameObject.GetInstanceID()))//GetComponentInParent<PlayerCharacter>().isFighting)
+        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy") /*&& playerCharacter.isFighting*/ && !playerCharacter.enemiesHit.Contains(other.gameObject.GetInstanceID()))//GetComponentInParent<PlayerCharacter>().isFighting)
         {
             playerCharacter.enemiesHit.Add(other.gameObject.GetInstanceID());
             //TimeResume();
@@ -53,14 +51,14 @@ public class Weapon : Piece
         if(weaponType == WeaponType.Ax)
         {
             
-            GetComponent<BoxCollider>().enabled = true;
+             GetComponent<BoxCollider>().enabled = true;
+           //Debug.Log(GetComponent<BoxCollider>().enabled);
         }
     }
     private void DeactivateRxPiece(object sender, EventArgs args)
     {
         if(weaponType == WeaponType.Ax)
         {
-            
             GetComponent<BoxCollider>().enabled = false;
         }
     }
@@ -79,12 +77,13 @@ public class Weapon : Piece
             GetComponent<BoxCollider>().enabled = false;
         }
     }
-
+/*
     private IEnumerator TimeResume()
     {
         yield return new WaitForSeconds(0.01f);
         Time.timeScale = 1f;
     }
+*/
 }
 
 public class EnemyCollisionArgs : EventArgs 
