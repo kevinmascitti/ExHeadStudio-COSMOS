@@ -1437,17 +1437,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: be7aef2f724394e7cb76b0c29f796e70,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 27.409294
+      value: -11.59
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: be7aef2f724394e7cb76b0c29f796e70,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.79999924
+      value: -24.765947
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: be7aef2f724394e7cb76b0c29f796e70,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 65.01039
+      value: 9.649048
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: be7aef2f724394e7cb76b0c29f796e70,
         type: 3}
@@ -1862,6 +1862,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 7758486518888627898}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: be7aef2f724394e7cb76b0c29f796e70,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6346267623129494152}
   m_SourcePrefab: {fileID: 100100000, guid: be7aef2f724394e7cb76b0c29f796e70, type: 3}
 --- !u!1 &3782076833953877583 stripped
 GameObject:
@@ -1906,7 +1910,7 @@ MonoBehaviour:
   effect: 5
   currentHP: 0
   isPlayer: 0
-  atk: 15
+  atk: 20
   def: 10
   normalAtk: 0
   normalDef: 0
@@ -2016,6 +2020,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &6346267623129494152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3782076833953877583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7c8231a76959054a845352ecf8e91a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &4555235420777895157 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: be7aef2f724394e7cb76b0c29f796e70,
