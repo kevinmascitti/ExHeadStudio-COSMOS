@@ -304,13 +304,13 @@ public class PlayerMovement : MonoBehaviour
         
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask); //controllo sul terreno, provare a sostituire con un capsule o un box
        
-        if (isGrounded == true && velocity.y <= 0)
+        if (isGrounded == true && playerVector.y <= 0)
         {
             isJumpFalling = false;
             //velocity.y = -0.5f; //serve ad essere sicuri che "senta" il terreno, vale come la gravità
             coyoteTimeCounter = coyoteTime;
         }
-        else if (isGrounded == false && velocity.y <= 0)
+        else if (isGrounded == false && playerVector.y <= 0)
         {
             isJumpFalling = true; //condizione per la caduta
             coyoteTimeCounter -= Time.deltaTime;
@@ -319,10 +319,10 @@ public class PlayerMovement : MonoBehaviour
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
-
+        /*
         playerVector.x = direction.x * movementSpeed;
         playerVector.z = direction.y * movementSpeed;
-
+        */
 
         if (player.isInputOn)
         {
@@ -333,21 +333,25 @@ public class PlayerMovement : MonoBehaviour
                 float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
                 transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
-                moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-                playerController.Move(moveDir.normalized * movementSpeed * Time.deltaTime);
+                moveDir = (Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward).normalized * movementSpeed;
+                moveDir.y=playerVector.y;
+                playerController.Move(moveDir * Time.deltaTime);
+               // Debug.Log("moveDir: " + moveDir.normalized);
             }
             else
             {
                 isMoving = false;
             }
         }
-        playerController.Move(playerVector * Time.deltaTime);
+        //playerController.Move(playerVector * Time.deltaTime);
+        //Debug.Log("playerVector: " + playerVector);
         if (Input.GetButtonDown("Jump"))
         {
-            if (coyoteTimeCounter > 0 && isGrounded)
+            if (coyoteTimeCounter > 0 && canJumpAgain)
             {
                 //velocity.y = Mathf.Sqrt(maxJumpHeight);
                 isJumpPressed = true;
+                canJumpAgain = false;
                 //Debug.Log(isJumpPressed);
 
             }
@@ -359,6 +363,7 @@ public class PlayerMovement : MonoBehaviour
         HandleGravity();
         HandleJump();
     }
+    //In Awake viene chiamata la funzione per settare definitivamente le variabili del salto.
     private void HandleJumpVariables()
     {
         float timeToApex = maxJumpTime / 2;
@@ -368,6 +373,8 @@ public class PlayerMovement : MonoBehaviour
         //Debug.Log("Velocit�: " + initialJumpVelocity);
 
     }
+
+    //In HandleGravity viene applicata tutta la funzionalità lungo l'asse y per salto e in ground.
     private void HandleGravity()
     {
         if (playerController.isGrounded)
@@ -384,12 +391,12 @@ public class PlayerMovement : MonoBehaviour
     private void HandleJump()
     {
         //Debug.Log("handleJump");
-        if (isJumpPressed && playerController.isGrounded)
+        if (isJumpPressed)// && playerController.isGrounded)
         {
             //Debug.Log("Jumping");
             //StartCoroutine(JumpAnimationTimeOffset());
             isJumpAscension = true;
-            canJumpAgain = false;
+            //canJumpAgain = false;
             isJumpPressed = false;
             playerVector.y = initialJumpVelocity;
 
@@ -416,7 +423,7 @@ public class PlayerMovement : MonoBehaviour
     }
     IEnumerator WaitForJumpAgain()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(coyoteTime);
         canJumpAgain = true;
     }
     public bool GetIsJumpAscension()

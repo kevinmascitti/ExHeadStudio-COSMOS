@@ -14,6 +14,6 @@ public class EnemyPatrolSounds : MonoBehaviour
         goblinAttack.start();
         goblinAttack.release();
 
-        Debug.Log("Lmao");
+       // Debug.Log("Lmao");
     }
 }
