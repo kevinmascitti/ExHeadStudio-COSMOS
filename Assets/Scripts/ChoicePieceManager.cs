@@ -11,7 +11,8 @@ using UnityEngine.UI;
 //Per vedere ctrl+sfhift+f per vedere chi riceve gli eventi (impostazione find all), in generale sulla
 //tenda cercare project invece di solution
 
-//TUTTI I MODELLI devono avere la proprietà read/write attivata 
+//TUTTI I MODELLI devono avere la proprietà read/write attivata ; i nome diei prefab devono corrsipondere a quelli dei modelli in scena
+
 
 public class ChoicePieceManager : MonoBehaviour
 {
