@@ -123,6 +123,13 @@ public class PlayerCharacter : Character
         animator.SetInteger("strongAttackIndex", 0);
     }
 
+    void OnDestroy()
+    {
+        Weapon.OnEnemyCollision -= DoDamage;
+        ChoicePieceManager.OnChangePiece -= ModifyComposition;
+        ChoicePieceManager.OnSetPiece -= SetPieceComposition;
+    }
+
     public void Update()
     {
         if(OnUpdate != null) OnUpdate();

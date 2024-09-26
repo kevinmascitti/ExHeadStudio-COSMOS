@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -88,6 +89,11 @@ public class Character : MonoBehaviour
             effectTimer.Add(e, new ElementTimer(effect, false, TimerType.Effect, e, this.GetInstanceID()));
         }
         ElementTimer.Elapsed += HandleTimer;
+    }
+
+    private void OnDestroy()
+    {
+        ElementTimer.Elapsed -= HandleTimer;
     }
 
     public virtual void Update()

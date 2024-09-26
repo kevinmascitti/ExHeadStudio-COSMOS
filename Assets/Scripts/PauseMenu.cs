@@ -23,6 +23,11 @@ public class PauseMenu : MonoBehaviour
         PlayerCharacter.OnPlayerDeath += DeathScreen;
     }
 
+    private void OnDestroy()
+    {
+        PlayerCharacter.OnPlayerDeath -= DeathScreen;
+    }
+
 
     private void Update()
     {

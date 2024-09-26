@@ -108,6 +108,13 @@ public class ChoicePieceManager : MonoBehaviour
         PlayerCharacter.OnEndChoicePieces += CloseChoicePiecesUI;
     }
 
+    private void OnDestroy()
+    {
+        ChoicePieceButton.OnClickedArrow -= UpdateUI;
+        PlayerCharacter.OnChoicePieces -= OpenChoicePiecesUI;
+        PlayerCharacter.OnEndChoicePieces -= CloseChoicePiecesUI;
+    }
+
     void Update()
     {
         if (isUIOpen)
