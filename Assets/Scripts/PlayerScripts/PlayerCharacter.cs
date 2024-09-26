@@ -11,7 +11,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public enum PartType
+public enum PartType //GUAI A CHI CAMBIA L'ORDINE
 {
     Head,
     Body,
@@ -387,12 +387,12 @@ public class PlayerCharacter : Character
         
     }
     
-    private void ModifyComposition(object sender, ChangePieceArgs args)
+    private void ModifyComposition(object sender, ChangePieceArgs args) //evento invocato quando viene cambiato un pezzo
     {
         completePiecesList[args.partType][args.oldPieceNumber].gameObject.SetActive(false);
-        completePiecesList[args.partType][args.newPieceNumber].gameObject.SetActive(true);
+        completePiecesList[args.partType][args.newPieceNumber].gameObject.SetActive(true); //questi lavorano sui modelli
         Piece selectedPiece = completePiecesList[args.partType][args.newPieceNumber];
-        composition[args.partType] = selectedPiece;
+        composition[args.partType] = selectedPiece;///quale pezzo corrisponde al tipo di parte del corpo
     }
     
     private void SetPieceComposition(object sender, SetPieceArgs args)

@@ -8,6 +8,9 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.HID;
 using UnityEngine.UI;
 
+//Per vedere ctrl+sfhift+f per vedere chi riceve gli eventi (impostazione find all), in generale sulla
+//tenda cercare project invece di solution
+
 public class ChoicePieceManager : MonoBehaviour
 {
     [NonSerialized] public bool isUIOpen = false;
@@ -96,7 +99,7 @@ public class ChoicePieceManager : MonoBehaviour
         selectedPieceNumbers.Add(PartType.Legs, 0);
         selectedPieceNumbers.Add(PartType.Weapon, 0);
         
-        OnSetPiece?.Invoke(this, new SetPieceArgs(PartType.Head, 0));
+        OnSetPiece?.Invoke(this, new SetPieceArgs(PartType.Head, 0)); //qui scelgo la congifurazione iniziale
         OnSetPiece?.Invoke(this, new SetPieceArgs(PartType.LeftArm, 0));
         OnSetPiece?.Invoke(this, new SetPieceArgs(PartType.RightArm, 0));
         OnSetPiece?.Invoke(this, new SetPieceArgs(PartType.Body, 0));
@@ -355,7 +358,7 @@ public class ChoicePieceManager : MonoBehaviour
             selectedPieceNumbers[selectedPartType] = (selectedPieceNumbers[selectedPartType] + 1) % player.completePiecesList[selectedPartType].Count;
     }
 
-    private void UpdateUIInformation(Piece piece)
+    private void UpdateUIInformation(Piece piece)//Aggiorna le informazioni di ogni pezzo
     {
         TMP_title.text = piece.name;
         TMP_element.text = piece.element.ToString();
@@ -366,7 +369,7 @@ public class ChoicePieceManager : MonoBehaviour
 
 }
 
-public class ChangePieceArgs : EventArgs 
+public class ChangePieceArgs : EventArgs  //Serve a modificare la composizione del personaggio tramite il mouse che clicca sulla UI
 {
     public ChangePieceArgs(PartType t, int old, int n)
     {
@@ -380,7 +383,7 @@ public class ChangePieceArgs : EventArgs
     public int newPieceNumber;
 }
 
-public class SetPieceArgs : EventArgs 
+public class SetPieceArgs : EventArgs //
 {
     public SetPieceArgs(PartType t, int n)
     {
