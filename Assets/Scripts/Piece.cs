@@ -14,11 +14,14 @@ public class Piece : MonoBehaviour
     public Element element;
     public string description;
 
+    //METTERE OUTLINE A 20
+    //Layer UI per i pezzi da assegnare, tali pezzi sono nella cartella Resources/Pieces, come prefab dei pezzi di Cyrus che hanno gli script UIpiece e Outline
+
     // Start is called before the first frame update
     public void Awake()
     {
         name = gameObject.name;
-        // prefab = Resources.Load<GameObject>("Pieces/" + name);
+        prefab = Resources.Load<GameObject>("Pieces/" + name);
         stats = new Stats();
     }
 

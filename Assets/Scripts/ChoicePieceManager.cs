@@ -11,6 +11,8 @@ using UnityEngine.UI;
 //Per vedere ctrl+sfhift+f per vedere chi riceve gli eventi (impostazione find all), in generale sulla
 //tenda cercare project invece di solution
 
+//TUTTI I MODELLI devono avere la proprietà read/write attivata 
+
 public class ChoicePieceManager : MonoBehaviour
 {
     [NonSerialized] public bool isUIOpen = false;
@@ -183,6 +185,18 @@ public class ChoicePieceManager : MonoBehaviour
                 partTypeEmpties[PartType.Weapon].transform.position, Quaternion.Euler(270, 180, 0),
                 partTypeEmpties[PartType.Weapon].transform);
 
+            /*compositionUI[PartType.Head].AddComponent<Outline>();
+            compositionUI[PartType.Head].SetActive(false);
+            compositionUI[PartType.RightArm].AddComponent<Outline>();
+            compositionUI[PartType.RightArm].SetActive(false);
+            compositionUI[PartType.Body].AddComponent<Outline>();
+            compositionUI[PartType.Body].SetActive(false);
+            compositionUI[PartType.LeftArm].AddComponent<Outline>();
+            compositionUI[PartType.LeftArm].SetActive(false);
+            compositionUI[PartType.Legs].AddComponent<Outline>();
+            compositionUI[PartType.Legs].SetActive(false);
+            compositionUI[PartType.Weapon].AddComponent<Outline>();*/
+
             selectedPartType = PartType.Head;
             UpdateUIInformation(player.completePiecesList[selectedPartType][selectedPieceNumbers[selectedPartType]]);
             partTypeEmpties[selectedPartType].GetComponent<ArrowIndicator>().ShowArrows();
@@ -190,7 +204,7 @@ public class ChoicePieceManager : MonoBehaviour
             string scriptName = "Outline";
             var script = compositionUI[selectedPartType].GetComponent(scriptName) as MonoBehaviour;
             script.enabled = true;
-
+        
             canvasChoicePieces.SetActive(true);
         }
     }
@@ -304,7 +318,7 @@ public class ChoicePieceManager : MonoBehaviour
         FindPreviousUnlockedPieceNumber();
         int newPieceNumber = selectedPieceNumbers[selectedPartType];
         OnChangePiece?.Invoke(this, new ChangePieceArgs(selectedPartType, oldPieceNumber, newPieceNumber));
-        
+
         compositionUI[selectedPartType].GetComponent<UIPiece>().Deselect(partTypeEmpties[selectedPartType].transform.position, partTypeEmpties[selectedPartType].transform.position + new Vector3 (2,0,0));
         compositionUI[selectedPartType] = Instantiate(player.completePiecesList[selectedPartType][newPieceNumber].prefab, partTypeEmpties[selectedPartType].transform.position - new Vector3 (2,0,0), Quaternion.Euler(270, 180,0), partTypeEmpties[selectedPartType].transform);
         compositionUI[selectedPartType].GetComponent<UIPiece>().Select(partTypeEmpties[selectedPartType].transform.position - new Vector3 (2,0,0), partTypeEmpties[selectedPartType].transform.position);
