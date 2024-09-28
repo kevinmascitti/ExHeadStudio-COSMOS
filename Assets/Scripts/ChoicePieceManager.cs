@@ -195,8 +195,10 @@ public class ChoicePieceManager : MonoBehaviour
             compositionUI[PartType.LeftArm].AddComponent<Outline>();
             compositionUI[PartType.LeftArm].SetActive(false);
             compositionUI[PartType.Legs].AddComponent<Outline>();
-            compositionUI[PartType.Legs].SetActive(false);
-            compositionUI[PartType.Weapon].AddComponent<Outline>();*/
+            compositionUI[PartType.Legs].SetActive(false);*/
+            compositionUI[PartType.Weapon].AddComponent<Outline>();
+            compositionUI[PartType.Weapon].AddComponent<UIPiece>();
+            //compositionUI[PartType.Weapon].SetActive(false);
 
             selectedPartType = PartType.Head;
             UpdateUIInformation(player.completePiecesList[selectedPartType][selectedPieceNumbers[selectedPartType]]);

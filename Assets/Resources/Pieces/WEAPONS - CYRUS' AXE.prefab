@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &6919154276707812420
+--- !u!1001 &2653845133667926894
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -11,17 +11,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 1c6a822c2f1515e479ed29a2a1a42317,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.0417428
+      value: 1794.0609
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1c6a822c2f1515e479ed29a2a1a42317,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1219.0461
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1c6a822c2f1515e479ed29a2a1a42317,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.0289435
+      value: -830.57794
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1c6a822c2f1515e479ed29a2a1a42317,
         type: 3}
@@ -63,11 +63,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: WEAPONS - CYRUS' AXE
       objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 1c6a822c2f1515e479ed29a2a1a42317,
-        type: 3}
-      propertyPath: m_Layer
-      value: 5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -75,37 +70,37 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1c6a822c2f1515e479ed29a2a1a42317,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3544400890975697162}
+      addedObject: {fileID: -6405080188866640525}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1c6a822c2f1515e479ed29a2a1a42317,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5197566668299804515}
+      addedObject: {fileID: -5024370853381806612}
   m_SourcePrefab: {fileID: 100100000, guid: 1c6a822c2f1515e479ed29a2a1a42317, type: 3}
---- !u!1 &7837582723387914517 stripped
+--- !u!1 &2888271666979290687 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 1c6a822c2f1515e479ed29a2a1a42317,
     type: 3}
-  m_PrefabInstance: {fileID: 6919154276707812420}
+  m_PrefabInstance: {fileID: 2653845133667926894}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3544400890975697162
+--- !u!114 &-6405080188866640525
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7837582723387914517}
+  m_GameObject: {fileID: 2888271666979290687}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5bde268562f3c4e15b1574f3eb5b1abf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5197566668299804515
+--- !u!114 &-5024370853381806612
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7837582723387914517}
+  m_GameObject: {fileID: 2888271666979290687}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
