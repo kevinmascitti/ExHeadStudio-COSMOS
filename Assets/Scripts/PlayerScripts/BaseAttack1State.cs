@@ -13,6 +13,7 @@ public class BaseAttack1State : StateMachineBehaviour
     {
         //OnClearEnemyHitList.Invoke();
         
+        animator.SetBool("isBaseAttack", false);
         OnAttackBase1.Invoke(this, EventArgs.Empty);
     }
 
@@ -25,7 +26,6 @@ public class BaseAttack1State : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.SetBool("isBaseAttack", false);
         OnAttackBase1Finished.Invoke(this,EventArgs.Empty);
         OnClearEnemyHitList.Invoke();
     }

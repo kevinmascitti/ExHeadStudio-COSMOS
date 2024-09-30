@@ -12295,6 +12295,7 @@ MonoBehaviour:
   isJumpAscension: 0
   isJumpPeak: 0
   isJumpFalling: 0
+  canJumpAgain: 1
   isMoving: 0
   gravity: -9.81
   coyoteTime: 0.2

@@ -267,9 +267,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] public bool isJumpAscension = false;
     [SerializeField] public bool isJumpPeak = false;
     [SerializeField] public bool isJumpFalling = false;
+    public bool canJumpAgain = true;
 
     float initialJumpVelocity;
-    private bool canJumpAgain = true;
     [SerializeField] public bool isMoving;
     [Tooltip("La gravità deve restare negativa!")]
     [SerializeField] private float gravity = -9.81f;
@@ -326,16 +326,24 @@ public class PlayerMovement : MonoBehaviour
 
         if (player.isInputOn)
         {
-            if (direction.magnitude >= 0.1f)
+            if (direction.magnitude >= 0.1f || playerVector.y > 5f)
             {
-                isMoving = true;
                 float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + mainCamera.eulerAngles.y;
                 float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
                 transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
                 moveDir = (Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward).normalized * movementSpeed;
                 moveDir.y=playerVector.y;
-                playerController.Move(moveDir * Time.deltaTime);
+                if (direction.magnitude >= 0.1f)
+                {
+                    isMoving = true;
+                    playerController.Move(moveDir * Time.deltaTime);
+                }
+                else
+                {
+                    isMoving = false;
+                    playerController.Move(playerVector * Time.deltaTime);
+                }
                // Debug.Log("moveDir: " + moveDir.normalized);
             }
             else
@@ -404,21 +412,25 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (isJumpAscension && playerVector.y <= 1f && !playerController.isGrounded)
         {
-            //Debug.Log("Falling");
-            isJumpAscension = false;
-            isJumpPeak = false;
+           
             isJumpFalling = true;
         }
         else if (playerController.isGrounded && isJumpFalling)
         {
             isJumpFalling = false;
-            StartCoroutine(WaitForJumpAgain());
+            canJumpAgain = true;
+            //StartCoroutine(WaitForJumpAgain());
         }
         else if (isJumpAscension && playerController.isGrounded)
         {
             isJumpAscension = false;
             isJumpPeak = false;
-            isJumpFalling = true;
+            isJumpFalling = false;
+            canJumpAgain = true;
+        }
+        else if (playerController.isGrounded && !canJumpAgain)
+        {
+            canJumpAgain = true;
         }
     }
     IEnumerator WaitForJumpAgain()
