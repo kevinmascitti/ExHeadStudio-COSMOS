@@ -32,9 +32,21 @@ public class Weapon : Piece
         BaseAttack1State.OnAttackBase1Finished += DeactivateRxPiece;
         BaseAttack2State.OnAttackBase2 += ActivateSxPiece;
         BaseAttack2State.OnAttackBase2Exit += DeactivateSxPiece;
+        StrongAttackState.OnStrongAttack += ActivateRxPiece;
+        StrongAttackState.OnStrongAttackFinished += DeactivateRxPiece;
         GetComponent<BoxCollider>().enabled = false;
     }
-    
+
+    private void OnDestroy() //Funzione aggiunta perchè dopo aver ricaricato la scena gli ascoltatori non si erano disiscritti
+    {
+        BaseAttack1State.OnAttackBase1 -= ActivateRxPiece;
+        BaseAttack1State.OnAttackBase1Finished -= DeactivateRxPiece;
+        BaseAttack2State.OnAttackBase2 -= ActivateSxPiece;
+        BaseAttack2State.OnAttackBase2Exit -= DeactivateSxPiece;
+        StrongAttackState.OnStrongAttack -= ActivateRxPiece;
+        StrongAttackState.OnStrongAttack -= DeactivateRxPiece;
+    }
+
     public void OnTriggerEnter(Collider other)
     {
 
@@ -51,7 +63,7 @@ public class Weapon : Piece
         if(weaponType == WeaponType.Ax)
         {
             
-             GetComponent<BoxCollider>().enabled = true;
+             GetComponent<BoxCollider>().enabled = true; 
            //Debug.Log(GetComponent<BoxCollider>().enabled);
         }
     }

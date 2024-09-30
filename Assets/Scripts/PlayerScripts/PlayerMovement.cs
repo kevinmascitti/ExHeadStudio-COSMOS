@@ -435,7 +435,7 @@ public class PlayerMovement : MonoBehaviour
     }
     IEnumerator WaitForJumpAgain()
     {
-        yield return new WaitForSeconds(coyoteTime);
+        yield return new WaitForSeconds(0.5f);
         canJumpAgain = true;
     }
     public bool GetIsJumpAscension()

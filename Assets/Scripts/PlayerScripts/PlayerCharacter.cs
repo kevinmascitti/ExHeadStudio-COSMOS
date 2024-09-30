@@ -119,6 +119,7 @@ public class PlayerCharacter : Character
         ChoicePieceManager.OnSetPiece += SetPieceComposition;
         BaseAttack1State.OnClearEnemyHitList += ClearEnemyHitList;
         BaseAttack2State.OnClearEnemyHitList += ClearEnemyHitList;
+        StrongAttackState.OnClearEnemyHitList += ClearEnemyHitList;
 
         animator.SetInteger("strongAttackIndex", 0);
     }
@@ -128,6 +129,9 @@ public class PlayerCharacter : Character
         Weapon.OnEnemyCollision -= DoDamage;
         ChoicePieceManager.OnChangePiece -= ModifyComposition;
         ChoicePieceManager.OnSetPiece -= SetPieceComposition;
+        BaseAttack1State.OnClearEnemyHitList -= ClearEnemyHitList;
+        BaseAttack2State.OnClearEnemyHitList -= ClearEnemyHitList;
+        StrongAttackState.OnClearEnemyHitList -= ClearEnemyHitList;
     }
 
     public void Update()
@@ -196,7 +200,7 @@ public class PlayerCharacter : Character
             animator.SetInteger("strongAttackIndex", strongAttackIndex);
             animator.SetBool("isStrongAttack", true);
             SetFightingState(true);
-            StrongAttack();
+            //StrongAttack(); questa è solo u debug
             nextActionTimer = Time.time + cooldown;
             strongAttackIndex++; //soluzione provvisoria per scegliere uno dei due attacchi pesanti a caso, non riesco ad importare numeri random
             if (strongAttackIndex == 2) strongAttackIndex = 0;
