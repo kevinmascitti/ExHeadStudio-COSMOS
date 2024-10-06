@@ -12301,6 +12301,7 @@ MonoBehaviour:
   coyoteTime: 0.2
   mainCamera: {fileID: 8364804037854593492}
   rotationSpeed: 4
+  targetGroup: {fileID: 0}
   velocity: {x: 0, y: 0, z: 0}
   moveDir: {x: 0, y: 0, z: 0}
 --- !u!114 &4941571995572082979
