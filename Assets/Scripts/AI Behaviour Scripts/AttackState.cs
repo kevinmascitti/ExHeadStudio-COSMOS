@@ -9,37 +9,43 @@ public class AttackState : StateMachineBehaviour
     float attackRange;
     float distanceFromPlayer;
     float chaseRange;
-
+    Transform playerTransform;
     float attackTime;
     float attackTimer;
-
+    Transform enemyTransform;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        attackTimer = 0f;
         controller = animator.GetComponent<StateController>();
+        
+        attackTimer = 0f;
         attackRange = controller.GetAttackRange();
         chaseRange = controller.GetChaseRange();
+        enemyTransform = controller.GetComponent<Transform>();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if(attackTimer >= attackTime)
+        playerTransform = controller.GetPlayerTransform();
+        //animator.transform.LookAt( playerTransform, new Vector3(playerTransform.position.x, 0f, playerTransform.position.z));
+        if (attackTimer >= attackTime)
         {
             animator.SetBool("isAttacking", false);
             animator.SetBool("isRepositioning", true);
         }
-        animator.transform.LookAt(null ,new Vector3(controller.GetPlayerTransform().position.x, 0f, controller.GetPlayerTransform().position.z));
+        controller.transform.LookAt(null ,new Vector3(playerTransform.position.x, 0f, playerTransform.position.z));
         distanceFromPlayer = controller.GetDistanceFromPlayer();
 
         if (distanceFromPlayer > attackRange && distanceFromPlayer < chaseRange)
         {
             animator.SetBool("isAttacking", false);
             animator.SetBool("isChasing", true);
+            animator.SetBool("isPatrolling", false);
         }
         else if(distanceFromPlayer > chaseRange)
         {
+            animator.SetBool("isChasing", false);
             animator.SetBool("isPatrolling", true);
             animator.SetBool("isAttacking", false);
         }

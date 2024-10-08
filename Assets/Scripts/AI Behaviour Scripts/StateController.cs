@@ -15,7 +15,8 @@ public class StateController : MonoBehaviour
     [SerializeField] float attackTime;
     [SerializeField] float repositionTime;
     [SerializeField] Vector3 patrolWayPoint;
-
+    [SerializeField] bool isShooter;
+    [SerializeField] float shootingRange;
     /*
     ChaseState chaseState;
     IdleState idleState;
@@ -81,6 +82,11 @@ public class StateController : MonoBehaviour
     public float GetRepositionTime()
     {
         return repositionTime;
+    }
+
+    public bool GetIsShooter()
+    {
+        return isShooter;
     }
     public Vector3 ComputeNewDestination()
     {
