@@ -10,7 +10,7 @@ public class RepositionState : StateMachineBehaviour
     private float repositionTime;
     private float attackRange;
     private float chaseRange;
-
+    private Transform playerTransform;
     private float repositionTimer;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -25,6 +25,8 @@ public class RepositionState : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+       // playerTransform = controller.GetPlayerTransform();
+        //controller.transform.LookAt(null, new Vector3(playerTransform.position.x, 0f, playerTransform.position.z));
         float distance=controller.GetDistanceFromPlayer();
         if (repositionTimer >= repositionTime)
         {

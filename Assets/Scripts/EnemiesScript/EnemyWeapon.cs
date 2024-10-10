@@ -7,7 +7,8 @@ public enum EnemyWeaponType
 {
     Punch,
     Sword,
-    Claws
+    Claws,
+    Cannon
 }
 public class EnemyWeapon : PlayerHitter
 {

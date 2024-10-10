@@ -452,6 +452,7 @@ public class ScenarioArgs : EventArgs
 
 
 
+
 //VERSIONE PRECEDENTE
 //using JetBrains.Annotations;
 //using System;

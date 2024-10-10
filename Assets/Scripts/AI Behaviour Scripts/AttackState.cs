@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class AttackState : StateMachineBehaviour
@@ -13,6 +15,7 @@ public class AttackState : StateMachineBehaviour
     float attackTime;
     float attackTimer;
     Transform enemyTransform;
+    public static EventHandler<EventArgs> EnemyShootEvent;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -28,6 +31,8 @@ public class AttackState : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         playerTransform = controller.GetPlayerTransform();
+
+        
         //animator.transform.LookAt( playerTransform, new Vector3(playerTransform.position.x, 0f, playerTransform.position.z));
         if (attackTimer >= attackTime)
         {
@@ -56,8 +61,12 @@ public class AttackState : StateMachineBehaviour
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    { 
+    {
+        if (enemyTransform.gameObject.tag.Equals("ShootingEnemy"))
+        {
+            EnemyShootEvent?.Invoke(this, EventArgs.Empty); //DA METTERE NELL'ANIMAZIONE VERA E PROPRIA
     
+        }
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
