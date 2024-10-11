@@ -3,7 +3,12 @@ guid: 9f13a87f13b745143887edf1384786d3
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Curved_Stair_Stone
+    second: {fileID: 2100000, guid: 06b983e749730b44a87cfe753d366662, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

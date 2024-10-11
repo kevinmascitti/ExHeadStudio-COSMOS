@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: caf6aefba540c1c49a56173becfcb29c
+guid: ff07906d44348804694448b3b3be40ef
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -8,7 +8,12 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Ancient_Stone
-    second: {fileID: 2100000, guid: e0ff4ff4deb36904d9440f769943e383, type: 2}
+    second: {fileID: 2100000, guid: 1efa18ca5fbbbf74f879688f6808a776, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.001
+    second: {fileID: 2100000, guid: b985c6e4121ee1340a94e715289f77a0, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
