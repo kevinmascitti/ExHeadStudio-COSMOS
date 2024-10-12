@@ -146,6 +146,8 @@ public class PlayerCharacter : Character
             isInputOn = true;
         */
         //Debug.Log(isFighting);
+
+        //DA SISTEMARE POI CON UN ENUM E UNO SWITCH SE ABBIAMO TEMPO
         if (attacksDone != 0 && Time.time - lastBaseAttack > maxComboDelay)
         {
             attacksDone = 0;
@@ -185,7 +187,8 @@ public class PlayerCharacter : Character
             else if (attacksDone == 1 && animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.5f &&
                 animator.GetCurrentAnimatorStateInfo(0).IsName("Cyrus_Cosmos_Rig_Cyrus_Attacco_Leggero#1_Action"))
             {
-                animator.SetBool("isBaseAttack2", true);
+               // animator.SetBool("isBaseAttack2", true);
+                animator.Play("Cyrus_Cosmos_Rig_Cyrus_Attacco_Leggero#2_Anticipation");
                 SetFightingState(true);
                 attacksDone = 0;
                 nextActionTimer = Time.time + cooldown;
