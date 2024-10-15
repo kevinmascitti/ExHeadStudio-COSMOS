@@ -9,10 +9,12 @@ using UnityEngine.Rendering;
 public class LockOnCamSwitcher : MonoBehaviour
 {
     // Occhio a rinominare gli oggetti che altrimenti lo script non funziona
+    // tutti gli oggetti che possono avere il lock devono avere un rigidbody con collisioni discrete
     [SerializeField] CinemachineFreeLook playerFreeLookCam;
     [SerializeField] CinemachineFreeLook lockOnCam;
     [SerializeField] CinemachineTargetGroup targetGroup;
     [Tooltip("Inserire l'oggetto che viene usato come cross-hair per gli oggeti lockati")]
+    [SerializeField] GameObject lockOnEmpty;
     [SerializeField] GameObject lockOnIcon;
     [SerializeField] private LayerMask lockOnMask;
     [Tooltip("Il vettore serve a dare le dimensioni del raycast che rileva i nemici")]
@@ -24,7 +26,8 @@ public class LockOnCamSwitcher : MonoBehaviour
 
     private RaycastHit[] enemyArray;
 
-    private string lockOnName; //questa serve per identificare gli oggetti nella hierarchy
+    private string lockOnObjName; //questa serve per identificare gli oggetti nella hierarchy
+    private string lockOnEmptyName;
 
     private bool lockOnSwitcher = true;
     public bool lockOn = false;
@@ -34,7 +37,8 @@ public class LockOnCamSwitcher : MonoBehaviour
     void Start()
     {
 
-        lockOnName = lockOnIcon.name;
+        lockOnObjName = lockOnIcon.name;
+        lockOnEmptyName = lockOnEmpty.name;
         playerFreeLookCam.Priority = 11;
         lockOnCam.Priority = 10;
         Enemy.OnEnemyDestroyed += RemoveEnemy;
@@ -54,7 +58,7 @@ public class LockOnCamSwitcher : MonoBehaviour
                 {
                     if(targetGroup.FindMember(enemy.transform) == -1)//condizione del metodo, aggiungo solo se non sono già presenti
                     {
-                        targetGroup.AddMember(enemy.transform, 1.5f, 2f);
+                        targetGroup.AddMember(enemy.transform, 2f, 2f);
                     }
 
                 }
@@ -79,18 +83,18 @@ public class LockOnCamSwitcher : MonoBehaviour
 
             if (targetGroup.m_Targets.Length == 1 || Vector3.Distance(targetGroup.m_Targets[enemyIndex].target.position, transform.position) >= maxTargetDistance)
             {
-                if(targetGroup.m_Targets[enemyIndex].target == null)
+                if(targetGroup.m_Targets.Length >1 && targetGroup.m_Targets[enemyIndex].target == null)
                     targetGroup.RemoveMember(targetGroup.m_Targets[enemyIndex].target);
-                else
-                    targetGroup.m_Targets[enemyIndex].target.Find("LockOnEmpty/" + lockOnName).gameObject.SetActive(false);
+                else if(targetGroup.m_Targets.Length > 1)
+                    targetGroup.m_Targets[enemyIndex].target.Find(lockOnEmptyName + "/" + lockOnObjName).gameObject.SetActive(false);
                 ChangeToFree();
                 return;
             }
 
-            if (Input.GetKeyDown(KeyCode.U))//(Input.GetKeyDown(KeyCode.Mouse2)) //TASTO CENTRALE DEL MOUSE
+            if (Input.GetKeyDown(KeyCode.Mouse2)) //TASTO CENTRALE DEL MOUSE
             {
                 if (targetGroup.m_Targets[enemyIndex].target != null)
-                    targetGroup.m_Targets[enemyIndex].target.Find("LockOnEmpty/" + lockOnName).gameObject.SetActive(false);
+                    targetGroup.m_Targets[enemyIndex].target.Find(lockOnEmptyName + "/" + lockOnObjName).gameObject.SetActive(false);
                 else
                     targetGroup.RemoveMember(targetGroup.m_Targets[enemyIndex].target);
 
@@ -113,7 +117,7 @@ public class LockOnCamSwitcher : MonoBehaviour
                 if (enemyIndex >= targetGroup.m_Targets.Length)
                     enemyIndex = 1;
 
-                targetGroup.m_Targets[GetEnemyIndex()].target.Find("LockOnEmpty/" + lockOnName).gameObject.SetActive(true);
+                targetGroup.m_Targets[GetEnemyIndex()].target.Find(lockOnEmptyName + "/" + lockOnObjName).gameObject.SetActive(true);
 
 
             }
@@ -128,7 +132,7 @@ public class LockOnCamSwitcher : MonoBehaviour
         for (int i = 1; i < targetGroup.m_Targets.Length; i++)
         {
             if (targetGroup.m_Targets[i].target != null)
-                targetGroup.m_Targets[i].target.Find("LockOnEmpty/" + lockOnName).gameObject.SetActive(false); //spengo a tutti l'indicatore
+                targetGroup.m_Targets[i].target.Find(lockOnEmptyName + "/" + lockOnObjName).gameObject.SetActive(false); //spengo a tutti l'indicatore
 
             targetGroup.RemoveMember(targetGroup.m_Targets[i].target);
         }
@@ -141,7 +145,7 @@ public class LockOnCamSwitcher : MonoBehaviour
 
         if (targetGroup.m_Targets.Length > 1 && targetGroup.m_Targets[enemyIndex].target != null) //spengo l'indicatore del nemico corrente
         {
-            targetGroup.m_Targets[enemyIndex].target.Find("LockOnEmpty/" + lockOnName).gameObject.SetActive(false);
+            targetGroup.m_Targets[enemyIndex].target.Find(lockOnEmptyName + "/" + lockOnObjName).gameObject.SetActive(false);
         }
 
         enemyIndex = 1;
@@ -160,20 +164,24 @@ public class LockOnCamSwitcher : MonoBehaviour
 
         lockOnSwitcher = false;
         lockOn = true;
-
-        targetGroup.m_Targets[enemyIndex].target.Find("LockOnEmpty/" + lockOnName).gameObject.SetActive(true);
+        targetGroup.m_Targets[enemyIndex].target.Find(lockOnEmptyName + "/" + lockOnObjName).gameObject.SetActive(true);
+        //targetGroup.m_Targets[enemyIndex].target.Find(lockOnObjName).gameObject.SetActive(true);
     }
     private void RemoveEnemy(object sender, EnemyTr args)
     {
         if(targetGroup.FindMember(args.tr) != -1)
         {
+            if(targetGroup.FindMember(args.tr) == enemyIndex)
+            {
+                enemyIndex++;
+            }
             targetGroup.RemoveMember(args.tr); //quando un nemico viene distrutto, lo elimino
-        }
 
-        enemyIndex++;
+        }
         if (enemyIndex >= targetGroup.m_Targets.Length)
             enemyIndex = 1;
-        targetGroup.m_Targets[GetEnemyIndex()].target.Find("LockOnEmpty/" + lockOnName).gameObject.SetActive(true);
+        if(targetGroup.m_Targets.Length >1)
+            targetGroup.m_Targets[enemyIndex].target.Find(lockOnEmptyName + "/" + lockOnObjName).gameObject.SetActive(true);
 
 
     }

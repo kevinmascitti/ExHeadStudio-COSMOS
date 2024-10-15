@@ -51,6 +51,7 @@ public class FireInteractive : MonoBehaviour
 
     public void Lighter()
     {
+        Debug.Log("Ho acceso un braciere");
         fireLight.enabled = true;
         smokeEffect.Play();
         fireEffect.Play();
