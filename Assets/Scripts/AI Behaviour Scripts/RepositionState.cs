@@ -12,10 +12,12 @@ public class RepositionState : StateMachineBehaviour
     private float chaseRange;
     private Transform playerTransform;
     private float repositionTimer;
+    bool canChase;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         controller = animator.GetComponent<StateController>();
+        canChase= controller.canChase;
         repositionTime = controller.GetRepositionTime();
         attackRange = controller.GetAttackRange();  
         chaseRange = controller.GetChaseRange();
@@ -36,7 +38,7 @@ public class RepositionState : StateMachineBehaviour
             {
                 animator.SetBool("isAttacking", true);
             }
-            else if (distance <= chaseRange)
+            else if (canChase)
             {
                 animator.SetBool("isChasing", true);
             }

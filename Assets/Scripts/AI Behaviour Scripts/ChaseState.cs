@@ -12,10 +12,12 @@ public class ChaseState : StateMachineBehaviour
     NavMeshAgent agent;
     Transform playerPosition;
     private bool isShooter;
+    private bool canChase;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     { 
-        controller=animator.GetComponent<StateController>();
+        controller = animator.GetComponent<StateController>();
+        //canChase = controller.canChase;
         chaseRange = controller.GetChaseRange();
         agent = animator.GetComponent<NavMeshAgent>();
         agent.speed = controller.GetChasingSpeed();
@@ -30,11 +32,10 @@ public class ChaseState : StateMachineBehaviour
         agent.SetDestination(playerPosition.position);
         //animator.transform.LookAt(null, new Vector3(controller.GetPlayerTransform().position.x, 0f, controller.GetPlayerTransform().position.z));
         float distance = controller.GetDistanceFromPlayer();
-        if (distance > chaseRange)
+        if (!controller.canChase)
         {
             animator.SetBool("isChasing", false);
             animator.SetBool("isPatrolling", true);
-            animator.SetBool("isAttacking", false);
         }
         if (distance <= attackRange)
         {

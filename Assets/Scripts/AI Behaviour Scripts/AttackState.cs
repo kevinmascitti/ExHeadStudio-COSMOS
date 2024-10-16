@@ -16,11 +16,12 @@ public class AttackState : StateMachineBehaviour
     float attackTimer;
     Transform enemyTransform;
     public static EventHandler<EventArgs> EnemyShootEvent;
+    bool canChase;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         controller = animator.GetComponent<StateController>();
-        
+        canChase = controller.canChase;
         attackTimer = 0f;
         attackRange = controller.GetAttackRange();
         chaseRange = controller.GetChaseRange();
@@ -42,13 +43,13 @@ public class AttackState : StateMachineBehaviour
         controller.transform.LookAt(null ,new Vector3(playerTransform.position.x, 0f, playerTransform.position.z));
         distanceFromPlayer = controller.GetDistanceFromPlayer();
 
-        if (distanceFromPlayer > attackRange && distanceFromPlayer < chaseRange)
+        if (distanceFromPlayer > attackRange && canChase)
         {
             animator.SetBool("isAttacking", false);
             animator.SetBool("isChasing", true);
             animator.SetBool("isPatrolling", false);
         }
-        else if(distanceFromPlayer > chaseRange)
+        else 
         {
             animator.SetBool("isChasing", false);
             animator.SetBool("isPatrolling", true);

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -17,6 +18,9 @@ public class StateController : MonoBehaviour
     [SerializeField] Vector3 patrolWayPoint;
     [SerializeField] bool isShooter;
     [SerializeField] float shootingRange;
+    private Collider areaBounds;
+    public int areaID;
+    public bool canChase=true;
     /*
     ChaseState chaseState;
     IdleState idleState;
@@ -31,6 +35,8 @@ public class StateController : MonoBehaviour
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         patrolWayPoint = ComputeNewDestination();
         animator = GetComponent<Animator>();
+        AIArea.OnPlayerEnter += CanChase;
+        AIArea.OnPlayerExit += StopChasing;
     }
 
     // Update is called once per frame
@@ -90,8 +96,37 @@ public class StateController : MonoBehaviour
     }
     public Vector3 ComputeNewDestination()
     {
-        Vector3 newPosition = new Vector3(transform.position.x + Random.Range(-2f, 2f), transform.position.y, transform.position.z + Random.Range(-2f, 2f));
+        if (areaBounds != null)
+        {
+            Vector3 newPosition = new Vector3(UnityEngine.Random.Range(areaBounds.bounds.min.x, areaBounds.bounds.max.x), transform.position.y, UnityEngine.Random.Range(areaBounds.bounds.min.z, areaBounds.bounds.max.z));
+            return newPosition;
+        }
 
-        return newPosition;
+        return transform.position;
+    }
+    public void SetAreaBounds(Collider aB)
+    {
+        areaBounds = aB;
+        Debug.Log(gameObject.name + ", " + aB.gameObject.name);
+    }
+    private void StopChasing(object sender, OnPlayerArg e)
+    {
+        if(e.areaId == areaID)
+        {
+            canChase = false;
+        }
+    }
+    private void CanChase(object sender, OnPlayerArg e)
+    {
+        if(e.areaId == areaID)
+        {
+            canChase = true;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        AIArea.OnPlayerEnter -= CanChase;
+        AIArea.OnPlayerExit -= StopChasing;
     }
 }
