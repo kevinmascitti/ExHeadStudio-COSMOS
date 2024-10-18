@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Waypoints
   - PlayerCamera
+  - sceneObj
   layers:
   - Default
   - TransparentFX

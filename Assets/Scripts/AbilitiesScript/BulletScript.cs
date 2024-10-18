@@ -41,12 +41,10 @@ public class BulletScript : Weapon
         {
             //aggiungo un offset perchè altrimenti spara in basso
             rb.velocity = ((lockOnScript.GetCurrentEnemyTr().position - GameObject.Find("Player/CHARACTER - L-ARM - FIREMAN/BulletStart Position").transform.position).normalized + new Vector3(0f, 0.1f, 0f)) * bulletSpeed;
-            Debug.Log("Con lock");
         }
         else
         {
             rb.velocity = transform.forward * bulletSpeed;
-            Debug.Log("Senza lock");
         }
     }
 

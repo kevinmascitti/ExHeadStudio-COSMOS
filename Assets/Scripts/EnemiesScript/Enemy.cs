@@ -57,7 +57,7 @@ public class Enemy : Character
     private void DoDamage(object sender, PlayerCollisionArgs args)
     {
         if (this.GetInstanceID() == args.id)
-        {
+        {                
             if (args.player.def > stats.elemAtk[enemyElement] + atk)
             {
                 args.player.TakeDamage(0, enemyElement);

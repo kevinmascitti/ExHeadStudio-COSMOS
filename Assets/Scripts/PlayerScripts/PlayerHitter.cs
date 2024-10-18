@@ -11,10 +11,10 @@ public class PlayerHitter : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Player") && !other.TryGetComponent<ShieldObj>( out ShieldObj shield))
         {
 
-            OnPlayerCollision?.Invoke(this, new PlayerCollisionArgs(other.gameObject.GetComponent<PlayerCharacter>(), this, gameObject.GetComponentInParent<Enemy>().GetInstanceID()));
+           OnPlayerCollision?.Invoke(this, new PlayerCollisionArgs(other.gameObject.GetComponent<PlayerCharacter>(), this, gameObject.GetComponentInParent<Enemy>().GetInstanceID()));
         }
     }
 
