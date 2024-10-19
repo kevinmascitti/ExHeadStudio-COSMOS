@@ -296,7 +296,7 @@ public class PlayerCharacter : Character
     {
         if(stats.atk > args.enemy.def)
         {
-            Debug.Log(stats.atk + args.hitter.atk - args.enemy.def + activeRxElement);
+           // Debug.Log(stats.atk + args.hitter.atk - args.enemy.def + activeRxElement);
             args.enemy.TakeDamage(stats.atk + args.hitter.atk - args.enemy.def, activeRxElement);
         }
             

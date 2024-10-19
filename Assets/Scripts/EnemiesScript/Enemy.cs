@@ -22,6 +22,7 @@ public class Enemy : Character
     [Tooltip("Velocità con cui diminuisce la salute")]
     [SerializeField] float chipSpeed;
     private float lerpTimer;
+    [SerializeField] GameObject cureObject;
 
 
     void Awake()
@@ -86,9 +87,18 @@ public class Enemy : Character
         }
 
         yield return new WaitForSeconds(2f);
+        SpawnCureObject();
         Destroy(gameObject);
     }
-
+    private void SpawnCureObject()
+    {
+        float number = UnityEngine.Random.Range(0f, 1f);
+        Debug.Log(number);
+        if(number > 0.5f)
+        {
+            Instantiate(cureObject, transform.position + Vector3.up, transform.rotation);
+        }
+    }
 
     public override void UpdateHP(float newHP)
     {

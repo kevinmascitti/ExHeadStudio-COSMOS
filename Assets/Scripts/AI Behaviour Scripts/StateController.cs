@@ -107,7 +107,7 @@ public class StateController : MonoBehaviour
     public void SetAreaBounds(Collider aB)
     {
         areaBounds = aB;
-        Debug.Log(gameObject.name + ", " + aB.gameObject.name);
+        //Debug.Log(gameObject.name + ", " + aB.gameObject.name);
     }
     private void StopChasing(object sender, OnPlayerArg e)
     {

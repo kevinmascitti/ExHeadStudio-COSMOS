@@ -54,7 +54,7 @@ public class Weapon : Piece
         {
             playerCharacter.enemiesHit.Add(other.gameObject.GetInstanceID());
             //TimeResume();
-            Debug.Log("Preso");
+            //Debug.Log("Preso");
             OnEnemyCollision?.Invoke(this, new EnemyCollisionArgs(other.gameObject.GetComponent<Enemy>(), this));
         }
     }

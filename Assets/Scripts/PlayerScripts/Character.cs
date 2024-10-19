@@ -115,7 +115,7 @@ public class Character : MonoBehaviour
             {
                 if (effectCountdown[args.element] > 1)
                 {
-                    Debug.Log("Effetto!");
+                   //Debug.Log("Effetto!");
                     Effect(args.element);
                     effectCountdown[args.element] -= 1;
                     effectTimer[args.element].Begin();
@@ -191,7 +191,7 @@ public class Character : MonoBehaviour
     //Applicato abbastanza status, applica l'effetto e applicalo una volta ogni 5 secondi per 5 volte.
     public void ApplyElementEffect(Element element)
     {
-        Debug.Log("Effetto Applicato");
+        //Debug.Log("Effetto Applicato");
         effectsApplied[element] = true;
 
         effectCountdown[element] = 5;
