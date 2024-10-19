@@ -6,7 +6,7 @@ using UnityEngine;
 public class BulletScript : Weapon
 {
 
-
+    //OCCHIO A RINOMINARE LE COSE CHE POI NON FUNZIONA PIù
     [SerializeField] private float bulletDestroyTime;
     [SerializeField] float damageRadius;
     [SerializeField] int maxDamage;
@@ -19,17 +19,33 @@ public class BulletScript : Weapon
     [SerializeField] ParticleSystem collisionParticle;
 
     Rigidbody rb;
+    private LockOnCamSwitcher lockOnScript;
 
     private int maxEnemies = 25;
     private Collider[] enemiesArray;
     private int damage;
     void Awake()
     {
+        lockOnScript = GameObject.Find("Player").GetComponent<LockOnCamSwitcher>();
         bulletSmokeEffect.Play();
         enemiesArray = new Collider[maxEnemies];
         rb = GetComponent<Rigidbody>();
         Destroy(gameObject, bulletDestroyTime);
-            rb.velocity = (Camera.main.transform.forward.normalized * bulletSpeed + new Vector3(0f, 1f, 0f));//ho aggiunto un offset per non sparare troppo in basso
+
+        //rb.velocity = (Camera.main.transform.forward.normalized * bulletSpeed + new Vector3(0f, 1f, 0f));//ho aggiunto un offset per non sparare troppo in basso
+    }
+
+    private void OnEnable()
+    {
+        if (lockOnScript.lockOn)
+        {
+            //aggiungo un offset perchè altrimenti spara in basso
+            rb.velocity = ((lockOnScript.GetCurrentEnemyTr().position - GameObject.Find("Player/CHARACTER - L-ARM - FIREMAN/BulletStart Position").transform.position).normalized + new Vector3(0f, 0.1f, 0f)) * bulletSpeed;
+        }
+        else
+        {
+            rb.velocity = transform.forward * bulletSpeed;
+        }
     }
 
     private void OnCollisionEnter(Collision collision)

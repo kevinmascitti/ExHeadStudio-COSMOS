@@ -53,9 +53,9 @@ public class PlayerCharacter : Character
     [SerializeField] private float cooldown = 0.5f;
     [SerializeField] private float nextActionTimer = 0.3f;
     [SerializeField] private float speed = 5f;
-    [SerializeField] private float dodgeDistance = 1f;
-    [SerializeField] private float dodgeRightDistance = 1f;
-    [SerializeField] private float dodgeLeftDistance = 1f;
+    [SerializeField] private float dodgeDistance = 5f;
+    [SerializeField] private float dodgeRightDistance = 5f;
+    [SerializeField] private float dodgeLeftDistance = 5f;
     private Vector3 movementDirection;
     public float maxDistanceNPC = 5f;
     public LayerMask npcLayer;

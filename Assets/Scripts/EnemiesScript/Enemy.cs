@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class Enemy : Character
 {
@@ -12,6 +13,7 @@ public class Enemy : Character
     private Animator animator;
     public EventHandler OnEnemySpawn;
     public EventHandler OnEnemyDeath;
+    public static EventHandler<EnemyTr> OnEnemyDestroyed; //evento per eliminare i nemici dal target group
 
     [SerializeField] float defHP = 100;
     [SerializeField] float MAX_HP = 100;
@@ -39,7 +41,7 @@ public class Enemy : Character
                 break;
             }
         }
-        EnemyWeapon.OnPlayerCollision += DoDamage;
+        EnemyWeapon.OnPlayerCollision += DoDamage;//QUESTO EVENTO NON ESISTE????
         
     }
 
@@ -55,7 +57,7 @@ public class Enemy : Character
     private void DoDamage(object sender, PlayerCollisionArgs args)
     {
         if (this.GetInstanceID() == args.id)
-        {
+        {                
             if (args.player.def > stats.elemAtk[enemyElement] + atk)
             {
                 args.player.TakeDamage(0, enemyElement);
@@ -127,5 +129,19 @@ public class Enemy : Character
         }
     }
 
+    public void OnDestroy()
+    {
+        OnEnemyDestroyed?.Invoke(this, new EnemyTr(this.gameObject.transform));
+    }
 
 }
+
+public class EnemyTr : EventArgs //l'evento serve a rimuovere i nemici dalla lista del lock
+{
+    public EnemyTr(Transform t)
+    {
+        tr = t;
+    }
+    public Transform tr;
+}
+

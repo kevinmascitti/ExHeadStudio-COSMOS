@@ -242,9 +242,11 @@ public class PlayerMovement : MonoBehaviour
 }
 */
 
+using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -282,6 +284,14 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform mainCamera;
     [SerializeField] float rotationSpeed = 4f;
 
+
+    [Header("Lock-On")]
+    [SerializeField] float lockOnRotationSpeed = 6f;
+    [Tooltip("Icona da assegnare ad un nemico quando avviene il lock")]
+    private LockOnCamSwitcher lockOnCamSwitcher;
+    [SerializeField] private CinemachineTargetGroup targetGroup = default;
+
+
     public Vector3 velocity;
     [SerializeField] private Vector3 moveDir;
     private Vector3 playerVector;
@@ -289,6 +299,8 @@ public class PlayerMovement : MonoBehaviour
     [NonSerialized] public CharacterController playerController;
     private PlayerCharacter player;
 
+
+    private float angle = 0;
     private void Awake()
     {
         player = GetComponent<PlayerCharacter>();
@@ -297,6 +309,9 @@ public class PlayerMovement : MonoBehaviour
         UnityEngine.Cursor.visible = false;
         UnityEngine.Cursor.lockState = CursorLockMode.Locked;
         playerVector = Vector3.zero;
+
+        lockOnCamSwitcher = FindAnyObjectByType<LockOnCamSwitcher>();
+       
     }
 
     void Update()
@@ -326,14 +341,48 @@ public class PlayerMovement : MonoBehaviour
 
         if (player.isInputOn)
         {
+            
+   
             if (direction.magnitude >= 0.1f || playerVector.y > 5f)
             {
-                float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + mainCamera.eulerAngles.y;
-                float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
-                transform.rotation = Quaternion.Euler(0f, angle, 0f);
+                if(lockOnCamSwitcher.lockOn && targetGroup.m_Targets.Length > 1 && targetGroup.m_Targets[lockOnCamSwitcher.GetEnemyIndex()].target != null) //Possibile sostituzione con un evento
+                { 
 
-                moveDir = (Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward).normalized * movementSpeed;
-                moveDir.y=playerVector.y;
+                    Vector3 rotationOffset = targetGroup.m_Targets[lockOnCamSwitcher.GetEnemyIndex()].target.position - transform.position;
+                    rotationOffset.y = 0;
+                    transform.forward += Vector3.Lerp(transform.forward, rotationOffset, Time.deltaTime * lockOnRotationSpeed);
+                    //float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + Vector3.Angle(transform.forward, targetGroup.m_Targets[1].target.position);
+                    //float targetAngle = Vector3.Angle(transform.forward, targetGroup.m_Targets[1].target.position);
+                    /*float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+                    transform.rotation = Quaternion.Euler(0f, angle, 0f);*/
+                    //moveDir = (Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward).normalized * movementSpeed;
+                    /*if(direction.z != 0f) //FINO QUI OK
+                    {
+
+                        moveDir = (transform.forward * direction.z).normalized * movementSpeed;
+                    }
+                    if (direction.x != 0f)
+                    {
+                        angle += Time.deltaTime * movementSpeed * direction.x; 
+
+                        float x = Mathf.Cos(angle) * Vector3.Distance(targetGroup.m_Targets[1].target.position, transform.position);
+                        float z = Mathf.Sin(angle) * Vector3.Distance(targetGroup.m_Targets[1].target.position, transform.position);
+                        moveDir = (transform.right * direction.x).normalized * movementSpeed;
+
+                    }*/
+
+                    moveDir = ((transform.right * direction.x).normalized + (transform.forward * direction.z).normalized) * movementSpeed;
+                }
+                else
+                {
+
+                    float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + mainCamera.eulerAngles.y;
+                    float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+                    transform.rotation = Quaternion.Euler(0f, angle, 0f);
+                    moveDir = (Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward).normalized * movementSpeed;
+                }
+
+                moveDir.y = playerVector.y;
                 if (direction.magnitude >= 0.1f)
                 {
                     isMoving = true;
@@ -344,7 +393,6 @@ public class PlayerMovement : MonoBehaviour
                     isMoving = false;
                     playerController.Move(playerVector * Time.deltaTime);
                 }
-               // Debug.Log("moveDir: " + moveDir.normalized);
             }
             else
             {
