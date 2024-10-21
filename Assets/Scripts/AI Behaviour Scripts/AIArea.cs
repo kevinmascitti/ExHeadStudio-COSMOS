@@ -18,28 +18,28 @@ public class AIArea: MonoBehaviour
     {
         areaCollider = GetComponent<BoxCollider>();
         
-        /*foreach(GameObject g in enemyList)
-        {
-            g.GetComponent<StateController>().SetAreaBounds(areaCollider);
-        }*/
     }
-
+    
     private void OnTriggerEnter(Collider other)
     {
-        //All'inizio del gioco, salvo in ogni area i nemici all'interno e in caso il player
-        if (other.gameObject.tag.Equals("Player"))
-        {
-            isCharacterInside = true;
-            OnPlayerEnter?.Invoke(this, new OnPlayerArg(areaID));
-
-        }
-        else if (other.gameObject.tag.Equals("Enemy") || other.gameObject.tag.Equals("ShootingEnemy") && !enemyList.ContainsKey(other.gameObject.GetInstanceID()))
+        if (other.gameObject.tag.Equals("Enemy") || other.gameObject.tag.Equals("ShootingEnemy") && !enemyList.ContainsKey(other.gameObject.GetInstanceID()))
         {
             enemyList.Add(other.gameObject.GetInstanceID(), other.gameObject);
             other.gameObject.GetComponent<StateController>().areaID = areaID;
             other.gameObject.GetComponent<StateController>().SetAreaBounds(areaCollider);
-            count = enemyList.Count;
+            count=enemyList.Count;
+            if(isCharacterInside)
+            {
+                other.gameObject.GetComponent<StateController>().canChase = true;
+            }
         }
+        //All'inizio del gioco, salvo in ogni area i nemici all'interno e in caso il player
+        else if (other.gameObject.tag.Equals("Player"))
+        {
+            isCharacterInside = true;
+            OnPlayerEnter?.Invoke(this, new OnPlayerArg(areaID));
+        }
+       
     }
     private void OnTriggerExit(Collider other)
     {

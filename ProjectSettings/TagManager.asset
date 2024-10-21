@@ -4,29 +4,20 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Waypoints
-  - PlayerCamera
-<<<<<<< HEAD
-  - ShootingEnemy
-=======
   - sceneObj
->>>>>>> testing
+  - ShootingEnemy
+  - Enemy
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Player
+  - Walkable
   - Water
   - UI
-  - Enemy
-  - NPC
-<<<<<<< HEAD
   - Unwalkable
-  - Walkable
-=======
-  - LockOn
+  - Enemy
+  - Player
   - 
->>>>>>> testing
   - 
   - 
   - 

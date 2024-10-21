@@ -18,9 +18,9 @@ public class StateController : MonoBehaviour
     [SerializeField] Vector3 patrolWayPoint;
     [SerializeField] bool isShooter;
     [SerializeField] float shootingRange;
-    private Collider areaBounds;
+    public Collider areaBounds;
     public int areaID;
-    public bool canChase=true;
+    public bool canChase=false;
     /*
     ChaseState chaseState;
     IdleState idleState;
@@ -33,7 +33,7 @@ public class StateController : MonoBehaviour
     void Awake()
     {
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
-        patrolWayPoint = ComputeNewDestination();
+        //patrolWayPoint = ComputeNewDestination();
         animator = GetComponent<Animator>();
         AIArea.OnPlayerEnter += CanChase;
         AIArea.OnPlayerExit += StopChasing;
@@ -118,7 +118,7 @@ public class StateController : MonoBehaviour
     }
     private void CanChase(object sender, OnPlayerArg e)
     {
-        if(e.areaId == areaID)
+        if(e.areaId == areaID && !canChase)
         {
             canChase = true;
         }

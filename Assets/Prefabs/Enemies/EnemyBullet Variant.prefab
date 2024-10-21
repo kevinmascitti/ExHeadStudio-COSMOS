@@ -105,10 +105,10 @@ MonoBehaviour:
   bulletElement: 0
   playerMask:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 256
   blockMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 128
   bulletSmokeEffect: {fileID: 4217219046761663918}
   collisionParticle: {fileID: 1685470849796086391}
 --- !u!198 &4217219046761663918 stripped

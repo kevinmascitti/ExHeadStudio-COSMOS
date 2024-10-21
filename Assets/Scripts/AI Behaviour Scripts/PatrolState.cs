@@ -35,7 +35,7 @@ public class PatrolState : StateMachineBehaviour
     {
         if(agent.remainingDistance <= agent.stoppingDistance)
         {
-            agent.SetDestination(controller.ComputeNewDestination() );
+            agent.SetDestination(controller.ComputeNewDestination());
             //Debug.Log(agent.destination);
         }
         
