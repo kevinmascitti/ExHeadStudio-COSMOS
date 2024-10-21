@@ -4578,6 +4578,7 @@ MonoBehaviour:
   movementSpeed: 7
   maxJumpHeight: 0.07
   turnSmoothTime: 0.1
+  maxJumpTime: 0.5
   groundCheck: {fileID: 5009152500015766297}
   groundMask:
     serializedVersion: 2
@@ -4588,6 +4589,7 @@ MonoBehaviour:
   isJumpAscension: 0
   isJumpPeak: 0
   isJumpFalling: 0
+  canJumpAgain: 1
   isMoving: 0
   gravity: -9.81
   coyoteTime: 0.2
@@ -4595,7 +4597,6 @@ MonoBehaviour:
   rotationSpeed: 4
   velocity: {x: 0, y: 0, z: 0}
   moveDir: {x: 0, y: 0, z: 0}
-  playerController: {fileID: 8072526761904538898}
 --- !u!4 &8099731014567096491 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1367848813772621839, guid: a6a40ed334bcfe04db9ac8785d969e95,

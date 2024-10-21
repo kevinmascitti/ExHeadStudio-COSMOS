@@ -18,6 +18,7 @@ public class IdleState : StateMachineBehaviour
     {
         controller = animator.GetComponent<StateController>();
         timer = 0f;
+        
         player = controller.GetPlayerTransform();
         stateDuration=controller.GetIdleStateDuration();
         chaseRange=controller.GetChaseRange();
@@ -32,7 +33,7 @@ public class IdleState : StateMachineBehaviour
             animator.SetBool("isPatrolling", true);
         }
         
-        if (distanceFromPlayer < chaseRange)
+        if (distanceFromPlayer < chaseRange && controller.canChase)
             animator.SetBool("isChasing", true);
 
         timer += Time.deltaTime;

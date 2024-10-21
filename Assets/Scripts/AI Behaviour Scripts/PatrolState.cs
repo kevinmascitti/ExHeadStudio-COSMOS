@@ -7,7 +7,6 @@ public class PatrolState : StateMachineBehaviour
 {
      private float stateDuration; //Indica la durata dello stato
      private float chaseRange; //Distanza entro la quale l'IA insegue il player
-
     StateController controller;
 
     float timer;
@@ -44,9 +43,9 @@ public class PatrolState : StateMachineBehaviour
             animator.SetBool("isPatrolling", false);
         }
         float distance = controller.GetDistanceFromPlayer();
-        if (distance < chaseRange)
+        if (distance < chaseRange && controller.canChase)
             animator.SetBool("isChasing", true);
-
+       
         timer += Time.deltaTime;
     }
 
