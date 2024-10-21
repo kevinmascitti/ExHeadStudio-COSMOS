@@ -9,14 +9,14 @@ using System;
 public abstract class ActiveAbilities : MonoBehaviour
 {
     [Tooltip("Per le abilità continue, meglio considerare un cooldown più lungo della durata stessa dell'abilità. C'è un bug.")]
-    [SerializeField] float cooldownTime, timeForContinous = 5f;
+    [SerializeField] protected float cooldownTime, timeForContinous = 5f;
     [SerializeField] Image frontAbilityImage;
     [SerializeField] TMPro.TextMeshProUGUI abilityText;
-    [SerializeField] private bool isContinous = false;
+    [SerializeField] protected bool isContinous = false;
     [NonSerialized] public Animator playerAnimator;
-    private float abilityTimer;
-    private float abilityFraction;
-    private bool cooldown = false;
+    protected float abilityTimer;
+    protected float abilityFraction;
+    protected bool cooldown = false;
 
     private void Awake()
     {
@@ -38,24 +38,22 @@ public abstract class ActiveAbilities : MonoBehaviour
 
     public virtual void Update()
     {
-        if(isContinous)
+        if (isContinous)
         {
             if (Input.GetKey(KeyCode.Q) && abilityTimer >= 0.1f && !cooldown)
             {
                 Ability();
                 abilityTimer -= Time.deltaTime;
-               // Debug.Log("Ability Timer" + abilityTimer);
             }
             else
             {
                 StopAbility();
-                if(abilityTimer < 0.1f && !cooldown)
+                if (abilityTimer < 0.1f && !cooldown)
                 {
                     cooldown = true;
-                    //Debug.Log("Inizio cooldown");
-                    StartCoroutine("AbilityCooldown"); 
+                    StartCoroutine("AbilityCooldown");
                 }
-                else if(abilityTimer < timeForContinous && cooldown)
+                else if (abilityTimer < timeForContinous && cooldown)
                 {
                     abilityTimer += Time.deltaTime;
                 }
@@ -70,7 +68,7 @@ public abstract class ActiveAbilities : MonoBehaviour
                 abilityTimer = 0;
                 StartCoroutine("AbilityCooldown");
             }
-            abilityTimer += Time.deltaTime;  
+            abilityTimer += Time.deltaTime;
         }
         UpdateAbiltyColumn();
     }

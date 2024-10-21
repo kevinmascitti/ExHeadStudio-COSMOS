@@ -11,10 +11,13 @@ public class WaterArmAbility : ActiveAbilities
     [SerializeField] private float maxRange = 1f, forceMagnitude = 1f;
     [SerializeField] private LayerMask mask;
 
+    private LockOnCamSwitcher lockOnScript;
+    private Ray ray;
     private CinemachineImpulseSource cameraShake;
     public override void Start()
     {
         base.Start();
+        lockOnScript = GameObject.Find("Player").GetComponent<LockOnCamSwitcher>();
 
     }
 
@@ -22,12 +25,18 @@ public class WaterArmAbility : ActiveAbilities
     {
         Debug.DrawRay(startPosition.position, Camera.main.transform.forward * maxRange, Color.white, 0.5f);
 
-        var ray = new Ray(this.startPosition.position, Camera.main.transform.forward * maxRange);
+        if(lockOnScript.lockOn)
+        {
+             ray = new Ray(this.startPosition.position, (lockOnScript.GetCurrentEnemyTr().position - this.startPosition.position).normalized * maxRange);
+        }
+        else
+        {
+             ray = new Ray(this.startPosition.position, GameObject.Find("Player").transform.forward * maxRange);
+        }
+
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, maxRange, mask))
         {
-            Debug.Log("Preso oggetto");
-            Debug.DrawRay(startPosition.position, Camera.main.transform.forward * maxRange,Color.red, 0.5f);
             if(hit.rigidbody != null)
             {
                 hit.rigidbody.AddForce(hit.point * forceMagnitude, ForceMode.Impulse);

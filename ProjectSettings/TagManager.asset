@@ -6,7 +6,11 @@ TagManager:
   tags:
   - Waypoints
   - PlayerCamera
+<<<<<<< HEAD
   - ShootingEnemy
+=======
+  - sceneObj
+>>>>>>> testing
   layers:
   - Default
   - TransparentFX
@@ -16,8 +20,13 @@ TagManager:
   - UI
   - Enemy
   - NPC
+<<<<<<< HEAD
   - Unwalkable
   - Walkable
+=======
+  - LockOn
+  - 
+>>>>>>> testing
   - 
   - 
   - 
