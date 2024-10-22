@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6140261121926909842}
   - component: {fileID: 3882340446455603766}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: LockOnEmpty
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52,8 +52,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 16.295668, y: 3.4837134, z: 0.9999999}
+  m_Center: {x: -0.15648854, y: 1.2418586, z: 0.00000010179249}
 --- !u!1001 &2952247711877482232
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -66,6 +66,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: LockOnObj
+      objectReference: {fileID: 0}
+    - target: {fileID: 1330092183022084348, guid: ff190e7b7f9fadd45ac55d6b8fee06bb,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3177344285743561738, guid: ff190e7b7f9fadd45ac55d6b8fee06bb,
         type: 3}
@@ -221,10 +226,75 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8380157826906577798, guid: dd7dcad12aae1d147951b0b0a51db073,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -6733177361254619370, guid: dd7dcad12aae1d147951b0b0a51db073,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -5568371526223589888, guid: dd7dcad12aae1d147951b0b0a51db073,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -3367815897855678043, guid: dd7dcad12aae1d147951b0b0a51db073,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -2100681930374150874, guid: dd7dcad12aae1d147951b0b0a51db073,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -639842078103030313, guid: dd7dcad12aae1d147951b0b0a51db073,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 359312179909449575, guid: dd7dcad12aae1d147951b0b0a51db073,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: dd7dcad12aae1d147951b0b0a51db073,
         type: 3}
       propertyPath: m_Name
       value: Rampicanti
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: dd7dcad12aae1d147951b0b0a51db073,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2800250516343163423, guid: dd7dcad12aae1d147951b0b0a51db073,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2909892177943757418, guid: dd7dcad12aae1d147951b0b0a51db073,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4694403432790717876, guid: dd7dcad12aae1d147951b0b0a51db073,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8513859187771203891, guid: dd7dcad12aae1d147951b0b0a51db073,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8700725330082129686, guid: dd7dcad12aae1d147951b0b0a51db073,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

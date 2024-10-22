@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5197295968764010336}
   - component: {fileID: 7320912757308777319}
   - component: {fileID: 2205044991266154746}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: Scatola_Action_figure
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,6 +131,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8527285347593115993, guid: cc5a1d0953213eb44b11c618366d3899,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -5468382965755959887, guid: cc5a1d0953213eb44b11c618366d3899,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: -3887185075125053422, guid: cc5a1d0953213eb44b11c618366d3899,
         type: 3}
       propertyPath: m_DirtyAABB
@@ -166,10 +176,70 @@ PrefabInstance:
       propertyPath: m_AABB.m_Extent.z
       value: 0.002383477
       objectReference: {fileID: 0}
+    - target: {fileID: -844254489292832659, guid: cc5a1d0953213eb44b11c618366d3899,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 409782387535290315, guid: cc5a1d0953213eb44b11c618366d3899,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 820300278093189185, guid: cc5a1d0953213eb44b11c618366d3899,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: cc5a1d0953213eb44b11c618366d3899,
         type: 3}
       propertyPath: m_Name
       value: CHARACTER - HEAD - CYRUS
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cc5a1d0953213eb44b11c618366d3899,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2008959529902351481, guid: cc5a1d0953213eb44b11c618366d3899,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337315356709198532, guid: cc5a1d0953213eb44b11c618366d3899,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3556682141395344534, guid: cc5a1d0953213eb44b11c618366d3899,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3949402887072491011, guid: cc5a1d0953213eb44b11c618366d3899,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6054812075154727041, guid: cc5a1d0953213eb44b11c618366d3899,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7500014301831041098, guid: cc5a1d0953213eb44b11c618366d3899,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8654152705233854886, guid: cc5a1d0953213eb44b11c618366d3899,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 9134870167519146706, guid: cc5a1d0953213eb44b11c618366d3899,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -240,10 +310,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -720472438325490187, guid: b4a0525b4cb635147a9fc5add7b35537,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b4a0525b4cb635147a9fc5add7b35537,
         type: 3}
       propertyPath: m_Name
       value: CHARACTER - L-ARM - CYRUS
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b4a0525b4cb635147a9fc5add7b35537,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -317,7 +397,7 @@ PrefabInstance:
     - target: {fileID: -8391222552659086748, guid: 48d91415f8df7ab469c8d558618b6cff,
         type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: -4683669308469848369, guid: 48d91415f8df7ab469c8d558618b6cff,
         type: 3}
@@ -332,7 +412,7 @@ PrefabInstance:
     - target: {fileID: -516098083770646512, guid: 48d91415f8df7ab469c8d558618b6cff,
         type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: -516098083770646512, guid: 48d91415f8df7ab469c8d558618b6cff,
         type: 3}
@@ -347,7 +427,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 48d91415f8df7ab469c8d558618b6cff,
         type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -437,6 +517,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WEAPONS - CYRUS' AXE
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1c6a822c2f1515e479ed29a2a1a42317,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -542,10 +627,20 @@ PrefabInstance:
       propertyPath: m_AABB.m_Extent.z
       value: 0.004254039
       objectReference: {fileID: 0}
+    - target: {fileID: 649222988948553641, guid: 80f50003821ba944b845bff7c89ddc99,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 80f50003821ba944b845bff7c89ddc99,
         type: 3}
       propertyPath: m_Name
       value: CHARACTER - R-ARM - CYRUS
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 80f50003821ba944b845bff7c89ddc99,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -616,10 +711,35 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8076345087569252834, guid: 787ada96f2bfc5c4ca29d2438590e412,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -7206528446358462380, guid: 787ada96f2bfc5c4ca29d2438590e412,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -6058042686221043474, guid: 787ada96f2bfc5c4ca29d2438590e412,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 787ada96f2bfc5c4ca29d2438590e412,
         type: 3}
       propertyPath: m_Name
       value: CHARACTER - LEGS - CYRUS
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 787ada96f2bfc5c4ca29d2438590e412,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7943044396825750096, guid: 787ada96f2bfc5c4ca29d2438590e412,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -694,6 +814,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CHARACTER - TORSO - CYRUS
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: dda2598c69465f74eb232aeab2a92333,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
