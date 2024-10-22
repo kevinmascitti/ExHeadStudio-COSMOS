@@ -30,8 +30,8 @@ public class Weapon : Piece
     {
         BaseAttack1State.OnAttackBase1 += ActivateRxPiece;
         BaseAttack1State.OnAttackBase1Finished += DeactivateRxPiece;
-        BaseAttack2State.OnAttackBase2 += ActivateSxPiece;
-        BaseAttack2State.OnAttackBase2Exit += DeactivateSxPiece;
+        BaseAttack2State.OnAttackBase2 += ActivateRxPiece;
+        BaseAttack2State.OnAttackBase2Exit += DeactivateRxPiece;
         StrongAttackState.OnStrongAttack += ActivateRxPiece;
         StrongAttackState.OnStrongAttackFinished += DeactivateRxPiece;
         GetComponent<BoxCollider>().enabled = false;
