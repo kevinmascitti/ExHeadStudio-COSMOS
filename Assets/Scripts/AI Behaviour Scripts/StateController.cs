@@ -98,7 +98,7 @@ public class StateController : MonoBehaviour
     {
         if (areaBounds != null)
         {
-            Vector3 newPosition = new Vector3(UnityEngine.Random.Range(areaBounds.bounds.min.x, areaBounds.bounds.max.x), transform.position.y, UnityEngine.Random.Range(areaBounds.bounds.min.z, areaBounds.bounds.max.z));
+            Vector3 newPosition = new Vector3(UnityEngine.Random.Range(areaBounds.bounds.min.x+2f, areaBounds.bounds.max.x-2f), transform.position.y, UnityEngine.Random.Range(areaBounds.bounds.min.z+2f, areaBounds.bounds.max.z-2f));
             return newPosition;
         }
 

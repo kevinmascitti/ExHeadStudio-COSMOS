@@ -293,7 +293,7 @@ public class PlayerMovement : MonoBehaviour
 
 
     public Vector3 velocity;
-    [SerializeField] private Vector3 moveDir;
+    [SerializeField] public Vector3 moveDir;
     private Vector3 playerVector;
 
     [NonSerialized] public CharacterController playerController;
