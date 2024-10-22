@@ -1,5 +1,32 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7653756961414030142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Ambiente Dungeon
+  m_EditorClassIdentifier: 
+  Path: event:/Ambiente Dungeon
+  Guid:
+    Data1: -1904202790
+    Data2: 1084089144
+    Data3: 1301817991
+    Data4: -1804801052
+  Banks:
+  - {fileID: 3884463886562508270}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 389701
 --- !u!114 &-6064461291482965761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27,6 +54,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 27053
+--- !u!114 &-1856606137560521905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/LowHeavySwing
+  m_EditorClassIdentifier: 
+  Path: event:/LowHeavySwing
+  Guid:
+    Data1: -1724068874
+    Data2: 1155461892
+    Data3: -1919416667
+    Data4: 1000945949
+  Banks:
+  - {fileID: 3884463886562508270}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2202
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49,13 +103,49 @@ MonoBehaviour:
   - {fileID: 7558949445289980156}
   - {fileID: 1003458218908353466}
   - {fileID: -6064461291482965761}
+  - {fileID: -1856606137560521905}
+  - {fileID: -7653756961414030142}
+  - {fileID: 2398369081219505866}
+  - {fileID: 5392997388027963626}
+  - {fileID: 265454537374956543}
   EditorParameters: []
   MasterBanks:
   - {fileID: 3884463886562508270}
   StringsBanks:
   - {fileID: 5647155013112044804}
-  cacheTime: 638628514085809962
+<<<<<<< Updated upstream
+  cacheTime: 638649752420000000
+=======
+  cacheTime: 638651287839426842
+>>>>>>> Stashed changes
   cacheVersion: 131618
+--- !u!114 &265454537374956543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Torch
+  m_EditorClassIdentifier: 
+  Path: event:/Torch
+  Guid:
+    Data1: -1467262482
+    Data2: 1143717128
+    Data3: 400946581
+    Data4: -1367417179
+  Banks:
+  - {fileID: 3884463886562508270}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 11555
 --- !u!114 &876745119771290055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,7 +199,34 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 6500
+  Length: 500
+--- !u!114 &2398369081219505866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/HighHeavySwing
+  m_EditorClassIdentifier: 
+  Path: event:/HighHeavySwing
+  Guid:
+    Data1: 675091096
+    Data2: 1264254744
+    Data3: -1687946823
+    Data4: 1032449953
+  Banks:
+  - {fileID: 3884463886562508270}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2202
 --- !u!114 &3884463886562508270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,9 +242,40 @@ MonoBehaviour:
   Path: Assets/FModBanks/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638628514085790005
+<<<<<<< Updated upstream
+  lastModified: 638649752420000000
+=======
+  lastModified: 638651287839416802
+>>>>>>> Stashed changes
   FileSizes: []
   Exists: 1
+--- !u!114 &5392997388027963626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Landing
+  m_EditorClassIdentifier: 
+  Path: event:/Landing
+  Guid:
+    Data1: -635514809
+    Data2: 1236123709
+    Data3: -1134098531
+    Data4: 2128527304
+  Banks:
+  - {fileID: 3884463886562508270}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 873
 --- !u!114 &5647155013112044804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,10 +291,14 @@ MonoBehaviour:
   Path: Assets/FModBanks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638628514085809962
+<<<<<<< Updated upstream
+  lastModified: 638649752420000000
+=======
+  lastModified: 638651287839426842
+>>>>>>> Stashed changes
   FileSizes:
   - Name: 
-    Value: 960
+    Value: 1204
   Exists: 1
 --- !u!114 &6445769666443414744
 MonoBehaviour:
@@ -195,13 +347,13 @@ MonoBehaviour:
     Data4: 217422932
   Banks:
   - {fileID: 3884463886562508270}
-  IsStream: 0
+  IsStream: 1
   Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 3000
+  Length: 1223
 --- !u!114 &7558949445289980156
 MonoBehaviour:
   m_ObjectHideFlags: 0
