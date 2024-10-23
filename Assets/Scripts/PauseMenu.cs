@@ -14,6 +14,8 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] Canvas[] UI_elements;
     [SerializeField] GameObject player;
     [NonSerialized] public bool isUIOpen = false;
+    [SerializeField] CinemachineFreeLook playerCamera;
+    [SerializeField] CinemachineFreeLook lockOnCamera;
 
     private void Awake()
     {
@@ -78,10 +80,19 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
+    public void InvertiComandiCamera()
+    {
+    }
+
     public void RestartLevel()
     {
         Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void BackToMain()
+    {
+        SceneManager.LoadScene(0);
     }
     public void Quit()
     {

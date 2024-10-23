@@ -960,7 +960,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 598253172790497569}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.030075906, y: -0.68769103, z: 0.04004599, w: 0.72427404}
+  m_LocalRotation: {x: -0.030040566, y: -0.6885848, z: 0.040098045, w: 0.723423}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1604,7 +1604,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 3
-  m_FollowOffset: {x: 0, y: 2.1, z: -6}
+  m_FollowOffset: {x: 0, y: 2.1, z: -5.9999995}
   m_XDamping: 1
   m_YDamping: 0
   m_ZDamping: 0
@@ -1856,7 +1856,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1026428102188737145}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.040791027, y: -0.18245745, z: 0.0106249675, w: 0.9823098}
+  m_LocalRotation: {x: 0.11936047, y: -0.17712213, z: 0.039858427, w: 0.9761107}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1894,7 +1894,7 @@ MonoBehaviour:
     FieldOfView: 40
     OrthographicSize: 10
     NearClipPlane: 0.1
-    FarClipPlane: 500
+    FarClipPlane: 100
     Dutch: 0
     ModeOverride: 2
     LensShift: {x: 0, y: 0}
@@ -2530,7 +2530,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d14c8f778dcc4fe589b8f3c77327211, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: K
+  name: FIRE LEGS
   numberInList: 1
   prefab: {fileID: 919132149155446097, guid: 36b6d90c0b7e2ff4b8c5efac8b487ee9, type: 3}
   type: 4
@@ -2551,10 +2551,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldownTime: 2
   timeForContinous: 5
-  frontAbilityImage: {fileID: 5338894428916824808, guid: 712433b524e87e7419759561dc9e7e42,
-    type: 3}
-  abilityText: {fileID: 1008716100487370294, guid: ac6014e48c97f7846935b73f2c21cd39,
-    type: 3}
+  frontAbilityImage: {fileID: 0}
+  abilityText: {fileID: 0}
   isContinous: 0
   dashTime: 0.2
   dashSpeed: 6
@@ -2826,7 +2824,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d14c8f778dcc4fe589b8f3c77327211, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: F
+  name: TORSO
   numberInList: 0
   prefab: {fileID: 919132149155446097, guid: dda2598c69465f74eb232aeab2a92333, type: 3}
   type: 1
@@ -3379,7 +3377,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d14c8f778dcc4fe589b8f3c77327211, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Bho
+  name: CYRUS - HEAD
   numberInList: 0
   prefab: {fileID: 919132149155446097, guid: cc5a1d0953213eb44b11c618366d3899, type: 3}
   type: 0
@@ -4236,7 +4234,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2350132821367633458}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.030075906, y: -0.68769103, z: 0.04004599, w: 0.72427404}
+  m_LocalRotation: {x: -0.030040566, y: -0.6885848, z: 0.040098045, w: 0.723423}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5643,7 +5641,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3315131232257100859}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.040791027, y: -0.18245745, z: 0.0106249675, w: 0.9823098}
+  m_LocalRotation: {x: 0.11936047, y: -0.17712213, z: 0.039858427, w: 0.9761107}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5681,7 +5679,7 @@ MonoBehaviour:
     FieldOfView: 40
     OrthographicSize: 10
     NearClipPlane: 0.1
-    FarClipPlane: 500
+    FarClipPlane: 100
     Dutch: 0
     ModeOverride: 2
     LensShift: {x: 0, y: 0}
@@ -5788,8 +5786,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3488446490281588483}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.04981367, y: -0.000000032226357, z: 0.0000000016073085, w: 0.99875855}
-  m_LocalPosition: {x: 0, y: 2.1, z: -6}
+  m_LocalRotation: {x: 0.123574704, y: 0.6796311, z: -0.11772144, w: 0.71342313}
+  m_LocalPosition: {x: -6.991767, y: 4.5, z: -0.33940458}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5827,7 +5825,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.1
-  far clip plane: 500
+  far clip plane: 100
   field of view: 40
   orthographic: 0
   orthographic size: 10
@@ -6257,7 +6255,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d14c8f778dcc4fe589b8f3c77327211, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Bha
+  name: FIRE ARM
   numberInList: 1
   prefab: {fileID: 919132149155446097, guid: 374c47aeec555e64e8400959270943f3, type: 3}
   type: 3
@@ -7134,7 +7132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d14c8f778dcc4fe589b8f3c77327211, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: E
+  name: WATER ARM
   numberInList: 2
   prefab: {fileID: 919132149155446097, guid: ad76d1a8600ec874daee84bf09c55ece, type: 3}
   type: 2
@@ -7864,7 +7862,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4496810495163474605}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.000000007450581, y: -0.6854373, z: 0.06854371, w: 0.7248982}
+  m_LocalRotation: {x: 0.0000000074505797, y: -0.6863282, z: 0.06863279, w: 0.7240464}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8231,7 +8229,7 @@ MonoBehaviour:
   forceMagnitude: 2
   mask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 192
 --- !u!114 &2676682131050337712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8244,7 +8242,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d14c8f778dcc4fe589b8f3c77327211, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: A
+  name: WATER ARM
   numberInList: 2
   prefab: {fileID: 919132149155446097, guid: 23230573e68bac34bb4d5d3eac3904e5, type: 3}
   type: 3
@@ -8336,7 +8334,7 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     m_ImpulseDuration: 0.5
-    m_ImpulseType: 0
+    m_ImpulseType: 1
     m_DissipationRate: 0.25
     m_RawSignal: {fileID: 0}
     m_AmplitudeGain: 1
@@ -8366,7 +8364,7 @@ MonoBehaviour:
     m_DissipationMode: 2
     m_DissipationDistance: 100
     m_PropagationSpeed: 343
-  m_DefaultVelocity: {x: -0.05, y: -0.02, z: -0.05}
+  m_DefaultVelocity: {x: 0, y: 0, z: 0}
 --- !u!1 &4676675792583670259
 GameObject:
   m_ObjectHideFlags: 0
@@ -8492,7 +8490,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: 2.1, z: -6}
+  m_FollowOffset: {x: 0, y: 4.5, z: -7}
   m_XDamping: 1
   m_YDamping: 0
   m_ZDamping: 0
@@ -9159,7 +9157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 3
-  m_FollowOffset: {x: 0, y: 2.1, z: -6}
+  m_FollowOffset: {x: 0, y: 2.1, z: -5.9999995}
   m_XDamping: 1
   m_YDamping: 0
   m_ZDamping: 0
@@ -9858,7 +9856,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d14c8f778dcc4fe589b8f3c77327211, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Bhi
+  name: FIRE HEAD
   numberInList: 1
   prefab: {fileID: 919132149155446097, guid: 6346f0826c76c7b43b238a38fef46189, type: 3}
   type: 0
@@ -10005,8 +10003,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5201232570592954381}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.036109846, y: 0.68800086, z: -0.03431445, w: 0.7239983}
-  m_LocalPosition: {x: 0, y: 2.1, z: -6}
+  m_LocalRotation: {x: 0.036067415, y: 0.688895, z: -0.03435905, w: 0.7231476}
+  m_LocalPosition: {x: 0, y: 2.1, z: -5.9999995}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -10085,7 +10083,7 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_YAxis:
-    Value: 0
+    Value: 0.00000007554735
     m_SpeedMode: 0
     m_MaxSpeed: 5
     m_AccelTime: 5
@@ -11014,7 +11012,7 @@ Transform:
   m_GameObject: {fileID: 5763380797680084810}
   serializedVersion: 2
   m_LocalRotation: {x: 0.02923011, y: 0.808735, z: -0.04033617, w: 0.58606}
-  m_LocalPosition: {x: -5.9922056, y: 2.1, z: -0.3057289}
+  m_LocalPosition: {x: -6.991767, y: 4.5, z: -0.33940458}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -11093,7 +11091,7 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_YAxis:
-    Value: 0
+    Value: 1
     m_SpeedMode: 0
     m_MaxSpeed: 5
     m_AccelTime: 5
@@ -11667,7 +11665,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d14c8f778dcc4fe589b8f3c77327211, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Bhe
+  name: NORMAL ARM
   numberInList: 0
   prefab: {fileID: 919132149155446097, guid: b4a0525b4cb635147a9fc5add7b35537, type: 3}
   type: 3
@@ -12216,7 +12214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d14c8f778dcc4fe589b8f3c77327211, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: B
+  name: NORMAL LEGS
   numberInList: 0
   prefab: {fileID: 919132149155446097, guid: 787ada96f2bfc5c4ca29d2438590e412, type: 3}
   type: 4
@@ -12411,7 +12409,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 3
-  m_FollowOffset: {x: 0, y: 2.1, z: -6}
+  m_FollowOffset: {x: 0, y: 2.1, z: -5.9999995}
   m_XDamping: 1
   m_YDamping: 0
   m_ZDamping: 0
@@ -12940,6 +12938,7 @@ GameObject:
   - component: {fileID: 4941571995572082979}
   - component: {fileID: 2107244504058716180}
   - component: {fileID: 4045194161294060191}
+  - component: {fileID: 222950863318093772}
   m_Layer: 8
   m_Name: Playerv4.0
   m_TagString: Player
@@ -13134,15 +13133,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6921775843913336709}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f60f9aac96491c46a6e849189295639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 7
-  maxJumpHeight: 10
+  maxJumpHeight: 4
   turnSmoothTime: 0.1
-  maxJumpTime: 2
+  maxJumpTime: 1
   groundCheck: {fileID: 3499369404600226852}
   groundMask:
     serializedVersion: 2
@@ -13155,7 +13154,7 @@ MonoBehaviour:
   isJumpFalling: 0
   canJumpAgain: 1
   isMoving: 0
-  gravity: -9.81
+  gravity: -15
   coyoteTime: 0.2
   mainCamera: {fileID: 8364804037854593492}
   rotationSpeed: 4
@@ -13211,6 +13210,19 @@ MonoBehaviour:
   lockOnRange: 20
   maxTargetDistance: 20
   lockOn: 0
+--- !u!114 &222950863318093772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6921775843913336709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 0}
 --- !u!1 &6941603914191564340
 GameObject:
   m_ObjectHideFlags: 0
@@ -13386,7 +13398,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: 2.1, z: -6}
+  m_FollowOffset: {x: 0, y: 4.5, z: -7}
   m_XDamping: 1
   m_YDamping: 0
   m_ZDamping: 0
@@ -14152,7 +14164,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7675024447941601708}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.000000020489097, y: -0.1818595, z: 0.018185958, w: 0.9831564}
+  m_LocalRotation: {x: 0.1494935, y: -0.17580462, z: 0.045317523, w: 0.9719521}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -14190,7 +14202,7 @@ MonoBehaviour:
     FieldOfView: 40
     OrthographicSize: 10
     NearClipPlane: 0.1
-    FarClipPlane: 500
+    FarClipPlane: 100
     Dutch: 0
     ModeOverride: 2
     LensShift: {x: 0, y: 0}
@@ -14505,7 +14517,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d14c8f778dcc4fe589b8f3c77327211, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: D
+  name: FIRE ARM
   numberInList: 1
   prefab: {fileID: 919132149155446097, guid: 4465ee9a34a88b24b9d80a6a20246c09, type: 3}
   type: 2
@@ -14999,7 +15011,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fb1e0470466c44508aedd5f438bf723, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: prova
+  name: AXE
   numberInList: 0
   prefab: {fileID: 2888271666979290687, guid: f0710dac7d674b04e8713cd671d97322, type: 3}
   type: 5
@@ -16394,7 +16406,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: 2.1, z: -6}
+  m_FollowOffset: {x: 0, y: 4.5, z: -7}
   m_XDamping: 1
   m_YDamping: 0
   m_ZDamping: 0
@@ -17785,7 +17797,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d14c8f778dcc4fe589b8f3c77327211, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: C
+  name: NORMAL ARM
   numberInList: 0
   prefab: {fileID: 919132149155446097, guid: 80f50003821ba944b845bff7c89ddc99, type: 3}
   type: 2
