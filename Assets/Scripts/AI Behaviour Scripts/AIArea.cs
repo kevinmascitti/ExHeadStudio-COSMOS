@@ -7,20 +7,21 @@ using UnityEngine.InputSystem.Controls;
 public class AIArea: MonoBehaviour
 {
     public int areaID;
-    private Dictionary<int, GameObject> enemyList = new Dictionary<int, GameObject>();
+    public Dictionary<int, GameObject> enemyList = new Dictionary<int, GameObject>();
     public int count;
-    public bool isCharacterInside=false;
+    
+    public bool isPlayerInside=false;
     public static EventHandler<OnPlayerArg> OnPlayerExit;
     public static EventHandler<OnPlayerArg> OnPlayerEnter;
    
-    BoxCollider areaCollider;
-    private void Awake()
+    public BoxCollider areaCollider;
+    public void Awake()
     {
         areaCollider = GetComponent<BoxCollider>();
         
     }
     
-    private void OnTriggerEnter(Collider other)
+    virtual public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag.Equals("Enemy") || other.gameObject.tag.Equals("ShootingEnemy") && !enemyList.ContainsKey(other.gameObject.GetInstanceID()))
         {
@@ -28,7 +29,7 @@ public class AIArea: MonoBehaviour
             other.gameObject.GetComponent<StateController>().areaID = areaID;
             other.gameObject.GetComponent<StateController>().SetAreaBounds(areaCollider);
             count=enemyList.Count;
-            if(isCharacterInside)
+            if(isPlayerInside)
             {
                 other.gameObject.GetComponent<StateController>().canChase = true;
             }
@@ -36,7 +37,7 @@ public class AIArea: MonoBehaviour
         //All'inizio del gioco, salvo in ogni area i nemici all'interno e in caso il player
         else if (other.gameObject.tag.Equals("Player"))
         {
-            isCharacterInside = true;
+            isPlayerInside = true;
             OnPlayerEnter?.Invoke(this, new OnPlayerArg(areaID));
         }
        
@@ -46,7 +47,7 @@ public class AIArea: MonoBehaviour
         //Se il player esce dalla zona, i nemici smettono di inseguirlo
         if (other.gameObject.tag.Equals("Player"))
         {
-            isCharacterInside = false;
+            isPlayerInside = false;
             OnPlayerExit?.Invoke(this, new OnPlayerArg(areaID));
         }
         

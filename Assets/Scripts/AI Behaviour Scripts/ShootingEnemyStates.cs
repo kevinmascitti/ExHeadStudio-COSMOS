@@ -13,7 +13,8 @@ public class ShootingEnemyStates : MonoBehaviour
         TakeDistance,
         Aim,
         Attack,
-        Reposition
+        Reposition,
+        Dead
     }
 
     private Animator rangedEnemyAnimator;
@@ -61,6 +62,10 @@ public class ShootingEnemyStates : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (rangedEnemyAnimator.GetBool("isDead"))
+        {
+            rangedEnemyState = RangedEnemyStates.Dead;
+        }
         if (playerPosition.gameObject.GetComponent<PlayerMovement>().moveDir != null)
             playerDirection = playerPosition.gameObject.GetComponent<PlayerMovement>().moveDir;
         else playerDirection = gameObject.transform.position;
@@ -97,7 +102,9 @@ public class ShootingEnemyStates : MonoBehaviour
             case RangedEnemyStates.Reposition:
                 Reposition();
                 break;
-
+            case RangedEnemyStates.Dead:
+                
+                break;
             default:
 
                 break;
@@ -181,20 +188,20 @@ public class ShootingEnemyStates : MonoBehaviour
     }
     private void TakeDistance()
     {
-        if (takeDistanceTimer > takeDistanceDuration)
+        if (takeDistanceTimer > takeDistanceDuration || agent.remainingDistance <= agent.stoppingDistance)
         {
-            if(playerDistance >= escapeDistance && playerDistance < aimingDistance)
+            if(playerDistance < aimingDistance)
             {
                 rangedEnemyState = RangedEnemyStates.Aim;
                 agent.isStopped = true;
                 inTakeDistance = false;
                 return;
             }
-            if(playerDistance < escapeDistance)
+            /*if(playerDistance < escapeDistance)
             {
                 ResetTakeDistanceControls();
                 return;
-            }
+            }*/
             if(playerDistance > aimingDistance)
             {
                 rangedEnemyState = RangedEnemyStates.Patrol;
@@ -240,7 +247,8 @@ public class ShootingEnemyStates : MonoBehaviour
             inAim = false;
             return;
         }
-        agent.transform.LookAt(aimTarget);
+        //Debug.Log();
+        agent.transform.LookAt(playerPosition);
         aimTimer += Time.deltaTime;
     }
     private void ResetAimControls()
@@ -278,7 +286,7 @@ public class ShootingEnemyStates : MonoBehaviour
     {
         inAttack = true;
 
-        rangedEnemyAnimator.Play("AttackState");
+        rangedEnemyAnimator.Play("AttackState",0, 0f);
     }
     private void Reposition()
     {
