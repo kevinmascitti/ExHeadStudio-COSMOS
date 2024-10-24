@@ -38,6 +38,8 @@ public class ShootingEnemyStates : MonoBehaviour
     [SerializeField] float aimDuration; //Da settare uguale alla durata dell'animazione di mira
     float takeDistanceTimer;
     [SerializeField] float takeDistanceDuration;
+    float attackDuration;
+    float attackTimer;
     bool inIdle = false;
     bool inPatrol = false;
     bool inAim = false;
@@ -53,9 +55,12 @@ public class ShootingEnemyStates : MonoBehaviour
         idleDuration = controller.GetIdleStateDuration();
         patrolDuration = controller.GetPatrollingStateDuration();
         takeDistanceDuration = patrolDuration;
-        escapeDistance=controller.GetAttackRange();
+        escapeDistance = controller.GetAttackRange();
         aimingDistance = controller.GetChaseRange();
-        
+        //idleDuration = rangedEnemyAnimator.GetComponent<Animation>().GetClip("rig_Enemy_Ranged_Idle").length;
+       // patrolTimer = rangedEnemyAnimator.GetComponent<Animation>().GetClip("Nemico_Base_Corsa_Migliorata").length;
+        takeDistanceTimer = patrolTimer;
+        //attackDuration = rangedEnemyAnimator.GetComponent<Animation>().GetClip("rig_Enemy_Ranged_Attack").length;
     }
 
 
@@ -263,30 +268,32 @@ public class ShootingEnemyStates : MonoBehaviour
     }
     private void Attack() //Il nemico spara a player e se è troppo vicino si riposiziona, altrimenti riprende la mira
     {
-        
-        if (playerDistance < escapeDistance)
+        if (attackTimer > attackDuration)
         {
-            rangedEnemyState = RangedEnemyStates.TakeDistance;
+            if (playerDistance < escapeDistance)
+            {
+                rangedEnemyState = RangedEnemyStates.TakeDistance;
+                inAttack = false;
+                return;
+            }
+            if (playerDistance > escapeDistance && playerDistance <= aimingDistance)
+            {
+                rangedEnemyState = RangedEnemyStates.Aim;
+                inAttack = false;
+                return;
+            }
+
+            rangedEnemyState = RangedEnemyStates.Patrol;
             inAttack = false;
             return;
         }
-        if (playerDistance > escapeDistance && playerDistance <= aimingDistance)
-        {
-            rangedEnemyState = RangedEnemyStates.Aim;
-            inAttack = false;
-            return;
-        }
-        
-            rangedEnemyState = RangedEnemyStates.Patrol; 
-            inAttack = false;
-            return;
-        
+        attackTimer += Time.deltaTime;
     }
     private void ResetAttackControls()
     {
         inAttack = true;
-
-        rangedEnemyAnimator.Play("AttackState",0, 0f);
+        attackTimer = 0f;
+        rangedEnemyAnimator.Play("AttackState");
     }
     private void Reposition()
     {

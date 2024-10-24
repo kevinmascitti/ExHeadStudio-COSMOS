@@ -1422,10 +1422,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 1791
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
@@ -1581,17 +1581,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: be7aef2f724394e7cb76b0c29f796e70,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.4138918
+      value: 10.900116
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: be7aef2f724394e7cb76b0c29f796e70,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -9.723895
+      value: -25.00592
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: be7aef2f724394e7cb76b0c29f796e70,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.75
+      value: 112.74631
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: be7aef2f724394e7cb76b0c29f796e70,
         type: 3}
@@ -2063,7 +2063,7 @@ MonoBehaviour:
   effect: 5
   currentHP: 0
   isPlayer: 0
-  atk: 0
+  atk: 20
   def: 10
   normalAtk: 0
   normalDef: 0
@@ -2100,13 +2100,14 @@ MonoBehaviour:
   attackRange: 1.7
   idleStateDuration: 5
   patrollingStateDuration: 10
-  enemyChasingSpeed: 0
-  enemyPatrollingSpeed: 0
+  enemyChasingSpeed: 4
+  enemyPatrollingSpeed: 3
   attackTime: 3
   repositionTime: 3
   patrolWayPoint: {x: 0, y: 0, z: 0}
   isShooter: 0
   shootingRange: 0
+  weapon: {fileID: 7695858980535395722}
   areaBounds: {fileID: 0}
   areaID: 0
   canChase: 1
@@ -2120,7 +2121,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 0
+  m_Speed: 5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120

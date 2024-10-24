@@ -18,6 +18,7 @@ public class StateController : MonoBehaviour
     [SerializeField] Vector3 patrolWayPoint;
     [SerializeField] bool isShooter;
     [SerializeField] float shootingRange;
+    [SerializeField] EnemyWeapon weapon;
     public Collider areaBounds;
     public int areaID;
     public bool canChase=false;
@@ -37,6 +38,7 @@ public class StateController : MonoBehaviour
         animator = GetComponent<Animator>();
         AIArea.OnPlayerEnter += CanChase;
         AIArea.OnPlayerExit += StopChasing;
+        weapon = GetComponentInChildren<EnemyWeapon>();
     }
 
     // Update is called once per frame
@@ -71,6 +73,11 @@ public class StateController : MonoBehaviour
     public Transform GetPlayerTransform()
     {
         return playerTransform;
+    }
+    public void SetWeaponCollider(bool state)
+    {
+        if(weapon != null) 
+            weapon.gameObject.GetComponent<BoxCollider>().enabled = state;
     }
     public float GetChasingSpeed()
     {
@@ -109,6 +116,7 @@ public class StateController : MonoBehaviour
         areaBounds = aB;
         //Debug.Log(gameObject.name + ", " + aB.gameObject.name);
     }
+   
     private void StopChasing(object sender, OnPlayerArg e)
     {
         if(e.areaId == areaID)

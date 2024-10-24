@@ -269,6 +269,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baaf5b0b13740504280415a4de95b2fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  escapeDistance: 5
+  aimingDistance: 10
+  idleDuration: 0
+  patrolDuration: 0
+  aimDuration: 5
+  takeDistanceDuration: 0
 --- !u!195 &6099375619346915391
 NavMeshAgent:
   m_ObjectHideFlags: 0

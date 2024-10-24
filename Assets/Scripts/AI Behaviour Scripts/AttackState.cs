@@ -26,6 +26,7 @@ public class AttackState : StateMachineBehaviour
         attackRange = controller.GetAttackRange();
         chaseRange = controller.GetChaseRange();
         enemyTransform = controller.GetComponent<Transform>();
+        controller.SetWeaponCollider(true);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -68,6 +69,7 @@ public class AttackState : StateMachineBehaviour
             EnemyShootEvent?.Invoke(this, EventArgs.Empty); //DA METTERE NELL'ANIMAZIONE VERA E PROPRIA
     
         }
+        controller.SetWeaponCollider(false);
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

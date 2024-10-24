@@ -9,14 +9,7 @@ public class EnemyShooting : MonoBehaviour
     [SerializeField] Transform bulletSpawnPoint;
     [SerializeField] GameObject bulletPrefab;
 
-    
-    private void Awake()
-    {
-     
-        AttackState.EnemyShootEvent += Shoot;
-    }
-    
-    public void Shoot(object s, EventArgs args)
+    public void Shoot()
     {
         
         Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
