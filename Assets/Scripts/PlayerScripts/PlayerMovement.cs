@@ -294,6 +294,7 @@ public class PlayerMovement : MonoBehaviour
 
     public Vector3 velocity;
     [SerializeField] public Vector3 moveDir;
+    Vector3 direction;
     private Vector3 playerVector;
 
     [NonSerialized] public CharacterController playerController;
@@ -333,7 +334,7 @@ public class PlayerMovement : MonoBehaviour
 
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
-        Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
+        direction = new Vector3(horizontal, 0f, vertical).normalized;
         /*
         playerVector.x = direction.x * movementSpeed;
         playerVector.z = direction.y * movementSpeed;
@@ -382,17 +383,18 @@ public class PlayerMovement : MonoBehaviour
                     moveDir = (Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward).normalized * movementSpeed;
                 }
 
-                moveDir.y = playerVector.y;
-                if (direction.magnitude >= 0.1f)
-                {
+                //moveDir.y = playerVector.y;
+                 /*if(direction.magnitude >= 0.1f)
+                {*/
                     isMoving = true;
-                    playerController.Move(moveDir * Time.deltaTime);
-                }
-                else
+                Vector3 horizontalMovement = new Vector3(moveDir.x, 0f, moveDir.z);
+                    playerController.Move(horizontalMovement * Time.deltaTime);
+                //}
+                /*else
                 {
                     isMoving = false;
                     playerController.Move(playerVector * Time.deltaTime);
-                }
+                }*/
             }
             else
             {
@@ -401,6 +403,10 @@ public class PlayerMovement : MonoBehaviour
         }
         //playerController.Move(playerVector * Time.deltaTime);
         //Debug.Log("playerVector: " + playerVector);
+        
+    }
+    private void FixedUpdate()
+    {
         if (Input.GetButtonDown("Jump"))
         {
             if (coyoteTimeCounter > 0 && canJumpAgain)
@@ -412,10 +418,10 @@ public class PlayerMovement : MonoBehaviour
 
             }
         }
-    }
-    private void FixedUpdate()
-    {
-        
+        if(playerVector.y > 2f)
+        {
+            playerController.Move(playerVector * Time.fixedDeltaTime);
+        }
         HandleGravity();
         HandleJump();
     }
