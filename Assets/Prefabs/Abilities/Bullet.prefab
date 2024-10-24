@@ -140,7 +140,7 @@ MonoBehaviour:
   atk: 0
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 192
   bulletDestroyTime: 2.5
   damageRadius: 10
   maxDamage: 30
