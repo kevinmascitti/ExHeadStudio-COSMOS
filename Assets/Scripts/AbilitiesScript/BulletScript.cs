@@ -57,21 +57,25 @@ public class BulletScript : Weapon
         {
             fireInteract.InteractionsType(fireInteract.typeOfObjectInteraction);
         }
-
-        int hits = Physics.OverlapSphereNonAlloc(gameObject.transform.position, damageRadius, enemiesArray, enemyMask);
-
-        for (int i = 0; i < hits; i++)
+        else
         {
-            float distance = Vector3.Distance(gameObject.transform.position, enemiesArray[i].transform.position);
-            if (!Physics.Raycast(gameObject.transform.position, (enemiesArray[i].transform.position - gameObject.transform.position).normalized, damageRadius, blockMask.value)
-                || distance <= 1)
-            {
-                damage = Mathf.FloorToInt(Mathf.Lerp(maxDamage, minDamage, distance / damageRadius));
-                Enemy target = enemiesArray[i].GetComponentInParent<Enemy>();
-                target.TakeDamage(damage, bulletElement);
+            int hits = Physics.OverlapSphereNonAlloc(gameObject.transform.position, damageRadius, enemiesArray, enemyMask);
 
+            for (int i = 0; i < hits; i++)
+            {
+                float distance = Vector3.Distance(gameObject.transform.position, enemiesArray[i].transform.position);
+                if (!Physics.Raycast(gameObject.transform.position, (enemiesArray[i].transform.position - gameObject.transform.position).normalized, damageRadius, blockMask.value)
+                    || distance <= 1)
+                {
+                    damage = Mathf.FloorToInt(Mathf.Lerp(maxDamage, minDamage, distance / damageRadius));
+                    Enemy target = enemiesArray[i].GetComponentInParent<Enemy>();
+                    target.TakeDamage(damage, bulletElement);
+
+                }
             }
         }
+
+
 
         collisionParticle.Stop();
         gameObject.SetActive(false);

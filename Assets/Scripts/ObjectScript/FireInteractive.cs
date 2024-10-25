@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public enum FireInteractions
 {
@@ -15,6 +16,13 @@ public class FireInteractive : MonoBehaviour
     [SerializeField] ParticleSystem fireEffect;
     [SerializeField] public FireInteractions typeOfObjectInteraction;
 
+    [SerializeField] private bool isFirstDoorPuzzle = false;
+
+    //Dichiaro un evento per il puzzle dei bracieri
+    public delegate void OnBrazierLight();
+    public static event OnBrazierLight onBrazierLight;
+    public bool canDestroy = false;
+
     private void Awake()
     {
         if (fireLight && smokeEffect && fireEffect)
@@ -23,6 +31,7 @@ public class FireInteractive : MonoBehaviour
             smokeEffect.Stop();
             fireEffect.Stop();
         }
+        canDestroy = false;
 
     }
 
@@ -31,11 +40,26 @@ public class FireInteractive : MonoBehaviour
         switch (interactionType)
         {
             case FireInteractions.Destructible:
-                Disappearing();
+
+                if (isFirstDoorPuzzle)
+                {
+                    DisappearingForPuzzle();
+                }
+                else
+                {
+                    Disappearing();
+                }
                 break;
 
             case FireInteractions.Lighter:
-                Lighter();
+                if(isFirstDoorPuzzle)
+                {
+                    LighterForPuzzle();
+                }
+                else
+                {
+                    Lighter();
+                }
                 break;
 
             default: break;
@@ -49,12 +73,33 @@ public class FireInteractive : MonoBehaviour
         Destroy(gameObject, disappearTime);
     }
 
+    public void DisappearingForPuzzle()
+    {
+        Debug.Log("Ho trovato un rovo puzzle");
+        //far partire un'animazione?
+        if(canDestroy)
+        {
+            Destroy(gameObject, disappearTime);
+        }
+
+    }
+
     public void Lighter()
     {
         Debug.Log("Ho acceso un braciere");
         fireLight.enabled = true;
         smokeEffect.Play();
         fireEffect.Play();
+
+    }
+
+    public void LighterForPuzzle()
+    {
+        onBrazierLight.Invoke();
+        fireLight.enabled = true;
+        smokeEffect.Play();
+        fireEffect.Play();
+
 
     }
 }

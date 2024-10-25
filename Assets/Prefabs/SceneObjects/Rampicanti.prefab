@@ -361,6 +361,8 @@ MonoBehaviour:
   smokeEffect: {fileID: 0}
   fireEffect: {fileID: 0}
   typeOfObjectInteraction: 0
+  isFirstDoorPuzzle: 0
+  canDestroy: 0
 --- !u!54 &2672799475567007953
 Rigidbody:
   m_ObjectHideFlags: 0

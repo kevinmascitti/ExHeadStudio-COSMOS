@@ -64,7 +64,7 @@ public class LockOnCamSwitcher : MonoBehaviour
                     }
                     else */if(targetGroup.FindMember(enemy.transform) == -1)
                     {
-                        targetGroup.AddMember(enemy.transform, 2f, 2f);
+                        targetGroup.AddMember(enemy.transform, 0.5f, 0.1f);
                     }
 
                 }
