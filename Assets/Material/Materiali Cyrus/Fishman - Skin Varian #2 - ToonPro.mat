@@ -21,8 +21,7 @@ Material:
   - _USEOUTLINE_ON
   - _USEPURESKETCH_ON
   - _USESPECULAR_ON
-  m_InvalidKeywords:
-  - _USESHADOWS_ON
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0

@@ -254,6 +254,7 @@ MonoBehaviour:
   patrolWayPoint: {x: 0, y: 0, z: 0}
   isShooter: 1
   shootingRange: 0
+  weapon: {fileID: 0}
   areaBounds: {fileID: 0}
   areaID: 451
   canChase: 0
@@ -1176,17 +1177,17 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 02ac79aadaac7f244a30a405c4a286e2, type: 2}
+      objectReference: {fileID: 2100000, guid: 1d9bfe8558f8db541b83c2625f47fb77, type: 2}
     - target: {fileID: -3722405182657794361, guid: af7257d2f98da1b4193bdcf818b27040,
         type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 2100000, guid: 4d399db1f4a2d02488f935a8404b83de, type: 2}
+      objectReference: {fileID: 2100000, guid: b1f96b88366a503418a1e67fdfc852d9, type: 2}
     - target: {fileID: -3722405182657794361, guid: af7257d2f98da1b4193bdcf818b27040,
         type: 3}
       propertyPath: m_Materials.Array.data[2]
       value: 
-      objectReference: {fileID: 2100000, guid: 55cac2f7b321caf44a5f98834875dccf, type: 2}
+      objectReference: {fileID: 2100000, guid: b706a91a43ed2fb4f8edc86477414a9e, type: 2}
     - target: {fileID: -3682517746895779538, guid: af7257d2f98da1b4193bdcf818b27040,
         type: 3}
       propertyPath: m_Layer
@@ -2176,7 +2177,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 8f0624838188cb04db67d17dd705212d, type: 2}
+      objectReference: {fileID: 2100000, guid: 598d74e3662a3c44fbf0d13fadae642a, type: 2}
     - target: {fileID: 8432649062252845561, guid: af7257d2f98da1b4193bdcf818b27040,
         type: 3}
       propertyPath: m_Layer
@@ -2211,12 +2212,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 02ac79aadaac7f244a30a405c4a286e2, type: 2}
+      objectReference: {fileID: 2100000, guid: 1d9bfe8558f8db541b83c2625f47fb77, type: 2}
     - target: {fileID: 8743813690021804245, guid: af7257d2f98da1b4193bdcf818b27040,
         type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 2100000, guid: 55cac2f7b321caf44a5f98834875dccf, type: 2}
+      objectReference: {fileID: 2100000, guid: b706a91a43ed2fb4f8edc86477414a9e, type: 2}
     - target: {fileID: 8811941769017886483, guid: af7257d2f98da1b4193bdcf818b27040,
         type: 3}
       propertyPath: m_Layer

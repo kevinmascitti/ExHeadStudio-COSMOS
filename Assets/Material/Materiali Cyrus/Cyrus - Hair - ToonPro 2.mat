@@ -21,8 +21,7 @@ Material:
   - _USEOUTLINE_ON
   - _USEPURESKETCH_ON
   - _USESPECULAR_ON
-  m_InvalidKeywords:
-  - _USESHADOWS_ON
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -39,6 +38,7 @@ Material:
     - _AdditionalLightsSmoothnessMultiplier: 1.801
     - _Glossiness: 0
     - _Thicnkess: 0.00005
+    - _UseShadows: 0
     m_Colors:
     - _Color: {r: 1, g: 0.83208823, b: 0.24842751, a: 1}
     - _OutlineColor: {r: 1, g: 0.34768167, b: 0, a: 1}

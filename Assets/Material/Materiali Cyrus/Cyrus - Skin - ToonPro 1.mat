@@ -20,8 +20,7 @@ Material:
   - _USELIGHTRAMP_POSTERIZE
   - _USEOUTLINE_ON
   - _USEPURESKETCH_ON
-  m_InvalidKeywords:
-  - _USESHADOWS_ON
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -124,8 +123,8 @@ Material:
     m_Floats:
     - _ASEOutlineWidth: 0
     - _AdaptiveThicnkess: 0.122
-    - _AdditionalLightsAmount: 0.341
-    - _AdditionalLightsFaloff: 0.29
+    - _AdditionalLightsAmount: 0.004
+    - _AdditionalLightsFaloff: 0.051
     - _AdditionalLightsIntesity: 3.01
     - _AdditionalLightsSmoothnessMultiplier: 1.669
     - _AlphaClip: 0
@@ -237,10 +236,10 @@ Material:
     - _UseScreenUvs: 0
     - _UseScreenUvsSpecular: 0
     - _UseScreenUvsWarp: 0
-    - _UseShadows: 1
+    - _UseShadows: 0
     - _UseSpecular: 0
     - _UseSpecularMask: 0
-    - _WarpStrength: 0.207
+    - _WarpStrength: 0.318
     - _WarpTextureRotation: 0
     - _WarpTextureScale: 1
     - _WorkflowMode: 1
