@@ -156,7 +156,7 @@ MonoBehaviour:
   atk: 0
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 16
   bulletDestroyTime: 2.5
   damageRadius: 10
   maxDamage: 30
@@ -165,7 +165,7 @@ MonoBehaviour:
   bulletElement: 2
   enemyMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   blockMask:
     serializedVersion: 2
     m_Bits: 1
