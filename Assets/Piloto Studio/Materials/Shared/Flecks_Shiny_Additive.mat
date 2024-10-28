@@ -146,13 +146,13 @@ Material:
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _FlipbooksColumsRows: {r: 2, g: 2, b: 0, a: 0}
     - _FresnelColor: {r: 1, g: 1, b: 1, a: 1}
-    - _LastColor: {r: 0.93685627, g: 0, b: 1, a: 0}
+    - _LastColor: {r: 1, g: 0, b: 0, a: 0}
     - _MainAlphaChannel: {r: 0, g: 0, b: 0, a: 1}
     - _MainAlphaPanning: {r: 0, g: 0, b: 0, a: 0}
     - _MainTextureChannel: {r: 1, g: 1, b: 1, a: 0}
     - _MainTexturePanning: {r: 0, g: 0, b: 0, a: 0}
-    - _MidColor: {r: 1, g: 0, b: 0.6525903, a: 0}
+    - _MidColor: {r: 1, g: 0.44479147, b: 0, a: 0}
     - _Resolution: {r: 64, g: 64, b: 0, a: 0}
     - _UnlitColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
-    - _WhiteColor: {r: 0.54088044, g: 0.09695021, b: 0.46815336, a: 0}
+    - _WhiteColor: {r: 1, g: 0.8950032, b: 0, a: 0}
   m_BuildTextureStacks: []
