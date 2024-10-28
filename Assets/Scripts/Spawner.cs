@@ -25,14 +25,19 @@ public class Spawner : AIArea
                 GameObject nextSpawningEnemy;
                 if (enemyType < .5f) nextSpawningEnemy = meleeEnemy;
                 else nextSpawningEnemy = rangedEnemy;
-                var enemy = Instantiate(nextSpawningEnemy, spawnList[spawnIndex]);
+                var enemy = Instantiate(nextSpawningEnemy, spawnList[spawnIndex].position, spawnList[spawnIndex].rotation );
                 enemyList.Add(enemy.GetInstanceID(), enemy);
-                enemy.GetComponent<StateController>().areaID = areaID;
-                enemy.GetComponent<StateController>().SetAreaBounds(areaCollider);
+                enemy.GetComponent<StateController>().SetAreaOfAction(this);
             }
             spawnIndex = 0;
             count = enemyList.Count;
-            
+            return;
+        }
+        if(other.gameObject.tag.Equals("Enemy") || other.gameObject.tag.Equals("ShootingEnemy"))
+        {
+            other.GetComponent<StateController>().SetAreaOfAction(this);
+            enemyList.Add(other.gameObject.GetInstanceID(), other.gameObject);
+            count=enemyList.Count;
         }
         //All'inizio del gioco, salvo in ogni area i nemici all'interno e in caso il player
         else 

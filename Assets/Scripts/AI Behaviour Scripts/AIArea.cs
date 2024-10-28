@@ -18,7 +18,9 @@ public class AIArea: MonoBehaviour
     public void Awake()
     {
         areaCollider = GetComponent<BoxCollider>();
-        
+        StateController.RemoveFromListAfterDeath += RemoveEnemy;
+
+
     }
     
     virtual public void OnTriggerEnter(Collider other)
@@ -26,8 +28,9 @@ public class AIArea: MonoBehaviour
         if (other.gameObject.tag.Equals("Enemy") || other.gameObject.tag.Equals("ShootingEnemy") && !enemyList.ContainsKey(other.gameObject.GetInstanceID()))
         {
             enemyList.Add(other.gameObject.GetInstanceID(), other.gameObject);
-            other.gameObject.GetComponent<StateController>().areaID = areaID;
-            other.gameObject.GetComponent<StateController>().SetAreaBounds(areaCollider);
+
+            other.gameObject.GetComponent<StateController>().SetAreaOfAction(this);
+
             count=enemyList.Count;
             if(isPlayerInside)
             {
@@ -52,7 +55,21 @@ public class AIArea: MonoBehaviour
         }
         
     }
+    private void RemoveEnemy(object sender, EnemyDeadArg e)
+    {
+        enemyList.Remove(e.enemyID);
+        count = enemyList.Count;
+    }
     
+    public Vector3 GetMeleeEnemyPosition()
+    {
+       
+        foreach(int id in  enemyList.Keys) 
+        {
+            if (enemyList[id].tag.Equals("Enemy")) return enemyList[id].transform.position;
+        }
+        return Vector3.zero;
+    }
    
 }
 public class OnPlayerArg : EventArgs
