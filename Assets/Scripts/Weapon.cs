@@ -1,3 +1,4 @@
+using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,6 +13,8 @@ public enum WeaponType
     Punch,
 }
 
+[RequireComponent(typeof(CinemachineImpulseSource))]
+
 public class Weapon : Piece
 {
 
@@ -22,8 +25,10 @@ public class Weapon : Piece
     public float movementSpeed;
     public int atk;
     [SerializeField] private LayerMask enemyLayer;
-    
-    
+
+    private CinemachineImpulseSource cameraShake;
+
+
     public static EventHandler<EnemyCollisionArgs> OnEnemyCollision;
  
     public void Awake()
@@ -52,6 +57,11 @@ public class Weapon : Piece
 
         if (other.gameObject.layer == LayerMask.NameToLayer("Enemy") /*&& playerCharacter.isFighting*/ && !playerCharacter.enemiesHit.Contains(other.gameObject.GetInstanceID()))//GetComponentInParent<PlayerCharacter>().isFighting)
         {
+            if ((cameraShake = GetComponent<CinemachineImpulseSource>()) != null)
+            {
+                cameraShake.GenerateImpulse();
+            }
+
             playerCharacter.enemiesHit.Add(other.gameObject.GetInstanceID());
             //TimeResume();
             //Debug.Log("Preso");

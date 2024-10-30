@@ -48,7 +48,7 @@ public abstract class ActiveAbilities : MonoBehaviour
             else
             {
                 StopAbility();
-                if (abilityTimer < 0.1f && !cooldown)
+                if (!cooldown)//(abilityTimer < 0.1f && !cooldown)
                 {
                     cooldown = true;
                     StartCoroutine("AbilityCooldown");

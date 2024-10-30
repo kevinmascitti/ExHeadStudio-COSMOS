@@ -119,3 +119,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthAmount: -30
+  isContinous: 1
+  continuousTimer: 0

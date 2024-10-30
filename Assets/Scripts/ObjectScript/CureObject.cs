@@ -5,6 +5,11 @@ using UnityEngine;
 
 public class CureObject : MonoBehaviour
 {
+
+    [TextArea(2, 10)]
+    public string description = "";
+
+
     [SerializeField] float healthAmount;
     [SerializeField] bool isContinous;
     [Tooltip("Dopo qunato tempo inizia l'effetto")]
@@ -19,6 +24,10 @@ public class CureObject : MonoBehaviour
             other.gameObject.GetComponent<PlayerCharacter>().UpdateHP(actual);
             Destroy(this.gameObject);
         }
+        //else if(other.CompareTag("Player") && isContinous)
+        //{
+        //    StartCoroutine("DamageOverTime");
+        //}
 
     }
 
@@ -26,7 +35,9 @@ public class CureObject : MonoBehaviour
     {
         if (other.CompareTag("Player") && isContinous)
         {
-            StartCoroutine("DamageOverTime", other);
+            Debug.Log("Sono nel collider");
+            StartCoroutine(DamageOverTime(other));
+
         }
     }
 
@@ -41,6 +52,7 @@ public class CureObject : MonoBehaviour
 
     IEnumerator DamageOverTime(Collider playerCollider)
     {
+        Debug.Log("Sono nella coraut");
         yield return new WaitForSeconds(continuousTimer);
         float actual = playerCollider.gameObject.GetComponent<PlayerCharacter>().currentHP;
         actual += healthAmount;

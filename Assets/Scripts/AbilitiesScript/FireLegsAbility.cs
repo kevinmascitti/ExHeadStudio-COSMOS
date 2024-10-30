@@ -1,11 +1,15 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(CinemachineImpulseSource))]
 public class FireLegsAbility : ActiveAbilities
 {
     [SerializeField] private float dashTime;
     [SerializeField] private float dashSpeed;
+
+    private CinemachineImpulseSource cameraShake;
 
     private PlayerMovement movementScript;
 
@@ -43,6 +47,10 @@ public class FireLegsAbility : ActiveAbilities
         {
             if (Input.GetKey(KeyCode.E) && !cooldown)
             {
+                if ((cameraShake = GetComponent<CinemachineImpulseSource>()) != null)
+                {
+                    cameraShake.GenerateImpulse();
+                }
                 Ability();
                 cooldown = true;
                 abilityTimer = 0;
@@ -56,7 +64,6 @@ public class FireLegsAbility : ActiveAbilities
     public override void Ability()
     {
         StartCoroutine(Dash());
-
     }
 
     IEnumerator Dash()
