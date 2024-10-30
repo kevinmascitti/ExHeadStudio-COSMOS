@@ -87,8 +87,11 @@ public class PlayerCharacter : Character
     [Tooltip("Inserire le sprites del volto di Cyrus")]
     [SerializeField] private Image[] icons;
     [SerializeField] private GameObject healthBar;
-    [SerializeField] private GameObject abilitiesSection;
+    [SerializeField] private GameObject abilitiesSection;   
 
+    //lista dei VFX
+    [SerializeField] private List<GameObject> vfxList;
+ 
     public void Awake()
     {
         base.Awake();
@@ -292,12 +295,24 @@ public class PlayerCharacter : Character
         Debug.Log("RESPAWNED");
     }
    
-    private void DoDamage(object sender, EnemyCollisionArgs args)
+ private void DoDamage(object sender, EnemyCollisionArgs args)
     {
+     
         if(stats.atk > args.enemy.def)
         {
-           // Debug.Log(stats.atk + args.hitter.atk - args.enemy.def + activeRxElement);
+            GameObject hitParticles = Instantiate(vfxList[0]) as GameObject; //viene istanziato un hit particle separato dall'originale
+            //hitParticles.transform.parent = weaponList[0].transform; //si fa sì che l'hit particle si trovi nella posizione 
+            hitParticles.transform.position = weaponList[0].transform.position;
+   
+            StopTime(); // chiamato per effettuare l'hit stop / freeze frame
             args.enemy.TakeDamage(stats.atk + args.hitter.atk - args.enemy.def, activeRxElement);
+          
+            hitParticles.SetActive(true);
+
+            hitParticles.GetComponent<ParticleSystem>().Play();
+            hitParticles.transform.parent = null;
+         
+            StartCoroutine(DestroyParticle(hitParticles));
         }
             
        
@@ -305,6 +320,33 @@ public class PlayerCharacter : Character
         
         //Da sistemare perché ora viene passato solo l'elemento del braccio destro
     }
+
+
+    
+
+    //StopTime serve per fermare il tempo viene richiamato quando il nemico prende danno
+
+    private void StopTime(){
+        StartCoroutine(ResumeTime());
+        Time.timeScale = 0.0f;
+        
+    }
+
+    //ResumeTime viene chiamata da stop time per far riprendere il tempo dopo pochi centesimi/decimi di secondo
+     IEnumerator  ResumeTime(){
+        Debug.Log("sono nel resume time");
+        yield return new WaitForSecondsRealtime(0.075f);
+        Time.timeScale = 1.0f;
+    }
+
+    //DestroyParticle serve per distraggere gli oggetti contenenti i particle system per evitare di intasare la hierarchy
+     IEnumerator DestroyParticle( GameObject hitParticles)
+    {
+        yield return new WaitForSeconds(0.5f);
+        Destroy(hitParticles);
+    }
+
+
 
     private void ClearEnemyHitList()
     {
