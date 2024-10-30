@@ -114,7 +114,7 @@ public class PlayerCharacter : Character
         
         choicePieceManager = GameObject.Find("ChoicePiecesManager").GetComponent<ChoicePieceManager>();
         
-        Weapon.OnEnemyCollision += DoDamage;
+        //Weapon.OnEnemyCollision += DoDamage;
         ChoicePieceManager.OnChangePiece += ModifyComposition;
         ChoicePieceManager.OnSetPiece += SetPieceComposition;
         BaseAttack1State.OnClearEnemyHitList += ClearEnemyHitList;
@@ -126,7 +126,7 @@ public class PlayerCharacter : Character
 
     void OnDestroy()
     {
-        Weapon.OnEnemyCollision -= DoDamage;
+        //Weapon.OnEnemyCollision -= DoDamage;
         ChoicePieceManager.OnChangePiece -= ModifyComposition;
         ChoicePieceManager.OnSetPiece -= SetPieceComposition;
         BaseAttack1State.OnClearEnemyHitList -= ClearEnemyHitList;
@@ -292,7 +292,7 @@ public class PlayerCharacter : Character
         Debug.Log("RESPAWNED");
     }
    
-    private void DoDamage(object sender, EnemyCollisionArgs args)
+    /*public void DoDamage(object sender, EnemyCollisionArgs args)
     {
         if(stats.atk > args.enemy.def)
         {
@@ -303,6 +303,19 @@ public class PlayerCharacter : Character
        
       
         
+        //Da sistemare perché ora viene passato solo l'elemento del braccio destro
+    }*/
+    public void DoDamage(Enemy enemy, int weaponAtkValue)
+    {
+        if (stats.atk > enemy.def)
+        {
+            // Debug.Log(stats.atk + args.hitter.atk - args.enemy.def + activeRxElement);
+            enemy.TakeDamage(stats.atk + weaponAtkValue - enemy.def, activeRxElement);
+        }
+
+
+
+
         //Da sistemare perché ora viene passato solo l'elemento del braccio destro
     }
 

@@ -1407,6 +1407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ef7126eb3e91ed4f9dcc1cb4153e6f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _enemy: {fileID: 0}
   type: 0
   element: 2
   movementSpeed: 0
@@ -2108,6 +2109,7 @@ MonoBehaviour:
   isShooter: 0
   shootingRange: 0
   weapon: {fileID: 7695858980535395722}
+  enemyAreaOfAction: {fileID: 0}
   areaBounds: {fileID: 0}
   areaID: 0
   canChase: 1

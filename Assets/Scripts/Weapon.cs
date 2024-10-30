@@ -55,7 +55,9 @@ public class Weapon : Piece
             playerCharacter.enemiesHit.Add(other.gameObject.GetInstanceID());
             //TimeResume();
             //Debug.Log("Preso");
-            OnEnemyCollision?.Invoke(this, new EnemyCollisionArgs(other.gameObject.GetComponent<Enemy>(), this));
+            if (other.gameObject.GetComponent<Enemy>() != null)
+                playerCharacter.DoDamage(other.gameObject.GetComponent<Enemy>(), atk);
+            //OnEnemyCollision?.Invoke(this, new EnemyCollisionArgs(other.gameObject.GetComponent<Enemy>(), this));
         }
     }
     private void ActivateRxPiece(object sender, EventArgs args)

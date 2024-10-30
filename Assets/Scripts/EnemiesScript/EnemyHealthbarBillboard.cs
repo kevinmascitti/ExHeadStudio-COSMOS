@@ -15,6 +15,7 @@ public class EnemyHealthbarBillboard : MonoBehaviour
     private void LateUpdate()
     {
         transform.LookAt(cameraTransform.position + cameraTransform.forward);
+        //transform.LookAt(cameraTransform.position);
     }
 }
 
