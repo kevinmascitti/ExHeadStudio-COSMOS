@@ -13126,6 +13126,7 @@ MonoBehaviour:
   - {fileID: 0}
   healthBar: {fileID: 0}
   abilitiesSection: {fileID: 0}
+  vfxList: {fileID: 0}
 --- !u!114 &4561421796706817298
 MonoBehaviour:
   m_ObjectHideFlags: 0
