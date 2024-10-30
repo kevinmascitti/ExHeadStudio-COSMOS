@@ -47,8 +47,9 @@ public abstract class ActiveAbilities : MonoBehaviour
             }
             else
             {
+                SetFalseObj();
                 StopAbility();
-                if (!cooldown)//(abilityTimer < 0.1f && !cooldown)
+                if (!cooldown && abilityTimer < 0.1f && !cooldown)
                 {
                     cooldown = true;
                     StartCoroutine("AbilityCooldown");
@@ -118,6 +119,10 @@ public abstract class ActiveAbilities : MonoBehaviour
         }
 
 
+    }
+
+    public virtual void SetFalseObj() //la funzione serve per disattivare l'oggetto del braccio d'acqua
+    { 
     }
 
  
