@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4487178518869903362}
   - component: {fileID: 6240793585548019077}
   - component: {fileID: 1561501062356804729}
+  - component: {fileID: 8985387625226523251}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Untagged
@@ -137,15 +138,15 @@ MonoBehaviour:
   playerCharacter: {fileID: 0}
   weaponType: 3
   movementSpeed: 0
-  atk: 0
+  atk: 10
   enemyLayer:
     serializedVersion: 2
     m_Bits: 192
   bulletDestroyTime: 2.5
   damageRadius: 10
-  maxDamage: 30
-  minDamage: 0
-  bulletSpeed: 10
+  maxDamage: 50
+  minDamage: 10
+  bulletSpeed: 20
   bulletElement: 2
   enemyMask:
     serializedVersion: 2
@@ -176,6 +177,59 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.5, y: 2, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8985387625226523251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 146416292059051500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ImpulseDefinition:
+    m_ImpulseChannel: 1
+    m_ImpulseShape: 2
+    m_CustomImpulseShape:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_ImpulseDuration: 0.2
+    m_ImpulseType: 0
+    m_DissipationRate: 0.25
+    m_RawSignal: {fileID: 0}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_RepeatMode: 0
+    m_Randomize: 1
+    m_TimeEnvelope:
+      m_AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_AttackTime: 0
+      m_SustainTime: 0.2
+      m_DecayTime: 0.7
+      m_ScaleWithImpact: 1
+      m_HoldForever: 0
+    m_ImpactRadius: 100
+    m_DirectionMode: 0
+    m_DissipationMode: 2
+    m_DissipationDistance: 100
+    m_PropagationSpeed: 343
+  m_DefaultVelocity: {x: 0, y: -1, z: 0}
 --- !u!1001 &1677930840585177048
 PrefabInstance:
   m_ObjectHideFlags: 0
