@@ -12,12 +12,21 @@ public class VFXTrigger : MonoBehaviour
     public void TriggerVFXTrailLightAttack1(){
         vfxList[0].GetComponent<ParticleSystem>().Play();
     }
+
     public void TriggerVFXTrailLightAttack2(){
         vfxList[1].GetComponent<ParticleSystem>().Play();
     }
 
-     public void HeavyAttackGroundImpact(){
-        GameObject groundHitParticles = Instantiate(vfxList[2]) as GameObject;
+    public void TriggerVFXTrailLightAttack3(){
+        vfxList[2].GetComponent<ParticleSystem>().Play();
+    }
+
+    public void TriggerVFXTrailHeavyAttack(){
+        vfxList[3].GetComponent<ParticleSystem>().Play();
+    }
+
+    public void HeavyAttackGroundImpact(){
+        GameObject groundHitParticles = Instantiate(vfxList[4]) as GameObject;
         groundHitParticles.transform.parent = pivotGroundHit.transform;
         groundHitParticles.transform.position = pivotGroundHit.transform.position;
         groundHitParticles.SetActive(true);

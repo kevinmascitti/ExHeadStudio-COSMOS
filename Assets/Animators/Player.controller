@@ -8,7 +8,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Cyrus_Cosmos_Rig_Cyrus_Attacco_Pesante_#2_Anticipation
-  m_Speed: 1.25
+  m_Speed: 1.5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -4667308820842620491}
@@ -22,7 +22,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: ad64a0c71ecfcf64b8c98116acb2c276, type: 2}
+  m_Motion: {fileID: 7400000, guid: 17151406ddf56734f965647c190422a6, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -85,7 +85,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 2f0cb4552e3cb154eb835a1956506cad, type: 2}
+  m_Motion: {fileID: 7400000, guid: c8e678f7d737c194fbd63ee6feea611d, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -174,7 +174,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Cyrus_Cosmos_Rig_Cyrus_Attacco_Pesante_v2_Anticipation
-  m_Speed: 20
+  m_Speed: 0.5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1693300076833939753}
@@ -368,9 +368,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
+  m_TransitionDuration: 0.025016844
   m_TransitionOffset: 0
-  m_ExitTime: 0.25
+  m_ExitTime: 0.9249495
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -505,9 +505,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
+  m_TransitionDuration: 0.013763189
   m_TransitionOffset: 0
-  m_ExitTime: 0.7540984
+  m_ExitTime: 0.7522831
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -656,9 +656,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
+  m_TransitionDuration: 0.027380079
   m_TransitionOffset: 0
-  m_ExitTime: 0.5
+  m_ExitTime: 0.94523984
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -687,7 +687,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: d9595b5e989e4e74388135b61c371128, type: 2}
+  m_Motion: {fileID: 7400000, guid: 8548cdd489f38c84d9a134774057af27, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -750,7 +750,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Cyrus_Cosmos_Rig_Cyrus_Attacco_Pesante_v2_Action
-  m_Speed: 20
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 3910666773123688525}
@@ -792,7 +792,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 75ec31ceeb545e34cacddf22e3dd87cc, type: 2}
+  m_Motion: {fileID: 7400000, guid: 8261efef3d05e4c49a34a4d181818235, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -1095,7 +1095,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 89c200c16815c9140a3cea7188412fe3, type: 2}
+  m_Motion: {fileID: 7400000, guid: e8094e1a6500a8f43bb08f37928f2e74, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -1245,9 +1245,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.23811707
-  m_TransitionOffset: 0.5092687
-  m_ExitTime: 0.9703801
+  m_TransitionDuration: 0.031064767
+  m_TransitionOffset: 0
+  m_ExitTime: 0.8345048
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -1338,7 +1338,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Cyrus_Cosmos_Rig_Cyrus_Attacco_Pesante_v2_Recovery
-  m_Speed: 5
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 400823807338384983}
@@ -1549,7 +1549,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: bc3c77ad8eacc2346b1fbc86c9c1b986, type: 2}
+  m_Motion: {fileID: 7400000, guid: 21c998bba3bea0d499c971df1dea135c, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -1563,7 +1563,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Cyrus_Cosmos_Rig_Cyrus_Fireball
-  m_Speed: 0.8
+  m_Speed: 1.25
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 7914724206927318176}
@@ -1576,7 +1576,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: c85e86da28e51404f9cd1f2972265b36, type: 2}
+  m_Motion: {fileID: 7400000, guid: 806851d0f17b6014bbce8c697f774b1d, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -1746,7 +1746,7 @@ AnimatorStateTransition:
   m_IsExit: 0
   serializedVersion: 3
   m_TransitionDuration: 0.25
-  m_TransitionOffset: 0
+  m_TransitionOffset: 0.041836083
   m_ExitTime: 0.53125
   m_HasExitTime: 0
   m_HasFixedDuration: 1
@@ -1857,7 +1857,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Cyrus_Cosmos_Rig_Cyrus_Attacco_Pesante_#2_Recovery
-  m_Speed: 1.25
+  m_Speed: 1.5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 2049662018702303051}
@@ -1872,7 +1872,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 2bd49b6ed82aa424f919af71a27d0ac2, type: 2}
+  m_Motion: {fileID: 7400000, guid: 04d31bf1d1d705b4f88e371d4a3062a6, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -2043,9 +2043,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
-  m_TransitionOffset: 0
-  m_ExitTime: 0.5
+  m_TransitionDuration: 0.24999964
+  m_TransitionOffset: 0.048928905
+  m_ExitTime: 0.79032296
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -2059,7 +2059,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Cyrus_Cosmos_Rig_Cyrus_Attacco_Pesante_#2_Action
-  m_Speed: 1.25
+  m_Speed: 1.5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -2281637297834078393}
@@ -2073,7 +2073,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: f9b3ab54514c6da4492a68d9c130c8c2, type: 2}
+  m_Motion: {fileID: 7400000, guid: ad7a2ee122e5c6240825c1c001894cce, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -2099,9 +2099,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
+  m_TransitionDuration: 0.021925926
   m_TransitionOffset: 0
-  m_ExitTime: 0.98
+  m_ExitTime: 0.9800001
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -2154,7 +2154,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: ca2ab9c4c75f54647abbca0c096465f4, type: 2}
+  m_Motion: {fileID: 7400000, guid: cf4f05fbeb68c9b40a4f44fc7f2f4336, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

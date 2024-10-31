@@ -405,6 +405,7 @@ public class PlayerMovement : MonoBehaviour
         //Debug.Log("playerVector: " + playerVector);
         
     }
+    
     private void FixedUpdate()
     {
         if (Input.GetButtonDown("Jump"))
