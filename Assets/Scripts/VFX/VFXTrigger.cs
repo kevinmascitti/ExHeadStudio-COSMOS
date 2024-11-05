@@ -41,5 +41,11 @@ public class VFXTrigger : MonoBehaviour
         Destroy(groundHitParticles);
     }
 
+    public void FireRingFireBall(){
+          vfxList[5].GetComponent<ParticleSystem>().Play();
+          vfxList[6].GetComponent<ParticleSystem>().Play();
+          vfxList[7].GetComponent<ParticleSystem>().Play();
+        vfxList[8].GetComponent<ParticleSystem>().Play();
+    }
 
 }
