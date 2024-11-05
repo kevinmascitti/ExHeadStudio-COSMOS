@@ -340,10 +340,10 @@ public class PlayerCharacter : Character
     }
 
     //DestroyParticle serve per distraggere gli oggetti contenenti i particle system per evitare di intasare la hierarchy
-     IEnumerator DestroyParticle( GameObject hitParticles)
+     IEnumerator DestroyParticle(GameObject particles)
     {
         yield return new WaitForSeconds(0.5f);
-        Destroy(hitParticles);
+        Destroy(particles);
     }
 
 
