@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,7 +22,7 @@ namespace PilotoStudio
         private float beamFormationTime;
 
         //  [Separator("Target Options")]
-        [SerializeField]
+        [SerializeField] 
         private Transform beamTarget;
         [SerializeField]
         private GameObject beamTargetHitFX;
@@ -287,6 +288,11 @@ namespace PilotoStudio
             UpdateImpactFX();
         }
 
+
+        public void SetBeamTarget(Transform newTarget)
+        {
+            beamTarget = newTarget;
+        }
 
 
 

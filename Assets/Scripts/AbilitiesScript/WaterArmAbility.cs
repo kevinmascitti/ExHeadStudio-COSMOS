@@ -1,4 +1,5 @@
 using Cinemachine;
+using PilotoStudio;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,24 +15,31 @@ public class WaterArmAbility : ActiveAbilities
     private LockOnCamSwitcher lockOnScript;
     private Ray ray;
     private CinemachineImpulseSource cameraShake;
+
+    [SerializeField] private BeamEmitter waterEffectScript;
+    [SerializeField] private GameObject waterEffectObj;
+    [SerializeField] private Transform beamBaseTarget;
     public override void Start()
     {
         base.Start();
         lockOnScript = GameObject.Find("Player").GetComponent<LockOnCamSwitcher>();
-
     }
 
     public override void Ability()
     {
-        Debug.DrawRay(startPosition.position, Camera.main.transform.forward * maxRange, Color.white, 0.5f);
+        waterEffectObj.SetActive(true);
+        //Debug.DrawRay(startPosition.position, Camera.main.transform.forward * maxRange, Color.white, 0.5f);
 
         if(lockOnScript.lockOn)
         {
+            waterEffectScript.SetBeamTarget(lockOnScript.GetCurrentEnemyTr());
              ray = new Ray(this.startPosition.position, (lockOnScript.GetCurrentEnemyTr().position - this.startPosition.position).normalized * maxRange);
+            
         }
         else
         {
-             ray = new Ray(this.startPosition.position, GameObject.Find("Player").transform.forward * maxRange);
+            waterEffectScript.SetBeamTarget(beamBaseTarget);
+            ray = new Ray(this.startPosition.position, GameObject.Find("Player").transform.forward * maxRange);
         }
 
         RaycastHit hit;
@@ -47,6 +55,12 @@ public class WaterArmAbility : ActiveAbilities
         {
             cameraShake.GenerateImpulse();
         }
+    }
+
+
+    public override void SetFalseObj()
+    {
+        waterEffectObj.SetActive(false);
     }
 
 }

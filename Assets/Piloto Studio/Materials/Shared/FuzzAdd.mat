@@ -91,8 +91,8 @@ Material:
     - _Fresnel: 0
     - _FresnelPower: 1
     - _FresnelScale: 1
-    - _MiddlePointPos: 0.131
-    - _MiddlePointPos1: -0.612
+    - _MiddlePointPos: 0.5
+    - _MiddlePointPos1: 0.5
     - _MultiplyNoiseDesaturation: 1
     - _OpaqueCullMode: 2
     - _QueueControl: 0
@@ -152,8 +152,8 @@ Material:
     - _MainAlphaPanning: {r: 0, g: 0, b: 0, a: 0}
     - _MainTextureChannel: {r: 1, g: 1, b: 1, a: 0}
     - _MainTexturePanning: {r: 0, g: 0, b: 0, a: 0}
-    - _MidColor: {r: 1, g: 0, b: 0, a: 0}
+    - _MidColor: {r: 1, g: 0.44479147, b: 0, a: 0}
     - _Resolution: {r: 64, g: 64, b: 0, a: 0}
     - _UnlitColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
-    - _WhiteColor: {r: 1, g: 0.9423926, b: 0, a: 0}
+    - _WhiteColor: {r: 1, g: 0.8950032, b: 0, a: 0}
   m_BuildTextureStacks: []

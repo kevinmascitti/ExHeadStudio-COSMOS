@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using System;
 
 public enum FireInteractions
 {
@@ -17,6 +18,8 @@ public class FireInteractive : MonoBehaviour
     [SerializeField] public FireInteractions typeOfObjectInteraction;
 
     [SerializeField] private bool isFirstDoorPuzzle = false;
+
+    public static EventHandler<EnemyTr> OnEnemyDestroyed; //questo evento è dichiarato in enemy, ma ho bisogno di chiamare la stessa logica
 
     //Dichiaro un evento per il puzzle dei bracieri
     public delegate void OnBrazierLight();
@@ -102,4 +105,12 @@ public class FireInteractive : MonoBehaviour
 
 
     }
+
+
+
+    public void OnDestroy()
+    {
+        OnEnemyDestroyed?.Invoke(this, new EnemyTr(this.gameObject.transform));
+    }
+
 }

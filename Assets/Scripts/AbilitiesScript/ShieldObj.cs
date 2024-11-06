@@ -1,9 +1,13 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(CinemachineImpulseSource))]
 public class ShieldObj : MonoBehaviour
 {
+
+    private CinemachineImpulseSource cameraShake;
 
     private BulletScript bulletScript;
     private BulletScriptLauncherVariant bulletScriptLauncherVariant;
@@ -24,6 +28,11 @@ public class ShieldObj : MonoBehaviour
             other.transform.rotation = Quaternion.LookRotation(reflected);
             float mag = other.transform.GetComponent<Rigidbody>().velocity.magnitude;
             other.GetComponent<Rigidbody>().velocity = reflected.normalized * mag;
+
+            if ((cameraShake = GetComponent<CinemachineImpulseSource>()) != null)
+            {
+                cameraShake.GenerateImpulse();
+            }
         }
         else if(other.TryGetComponent<BulletScriptLauncherVariant>(out bulletScriptLauncherVariant))
         {
@@ -35,6 +44,11 @@ public class ShieldObj : MonoBehaviour
             other.transform.rotation = Quaternion.LookRotation(reflected);
             float mag = other.transform.GetComponent<Rigidbody>().velocity.magnitude;
             bulletScriptLauncherVariant.SetVelocity(reflected.normalized * mag);
+
+            if ((cameraShake = GetComponent<CinemachineImpulseSource>()) != null)
+            {
+                cameraShake.GenerateImpulse();
+            }
         }
         else if(other.TryGetComponent<EnemyWeapon>(out enemyWeapon))
         {
@@ -46,6 +60,11 @@ public class ShieldObj : MonoBehaviour
 
             Debug.DrawRay(transform.position, (enemyScript.gameObject.transform.position - transform.position).normalized*10f, Color.green, 5f);
             enemyRb.AddForce((enemyScript.gameObject.transform.position - transform.position).normalized*forceMag, ForceMode.Impulse);
+
+            if ((cameraShake = GetComponent<CinemachineImpulseSource>()) != null)
+            {
+                cameraShake.GenerateImpulse();
+            }
 
         }
     }

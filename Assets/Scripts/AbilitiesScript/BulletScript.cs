@@ -6,7 +6,7 @@ using UnityEngine;
 public class BulletScript : Weapon
 {
 
-    //OCCHIO A RINOMINARE LE COSE CHE POI NON FUNZIONA PIù
+    //OCCHIO A RINOMINARE LE COSE CHE POI NON FUNZIONA PIï¿½
     [SerializeField] private float bulletDestroyTime;
     [SerializeField] float damageRadius;
     [SerializeField] int maxDamage;
@@ -15,7 +15,7 @@ public class BulletScript : Weapon
     [SerializeField] Element bulletElement;
     [SerializeField] LayerMask enemyMask;
     [SerializeField] LayerMask blockMask;
-    [SerializeField] ParticleSystem bulletSmokeEffect;
+    [SerializeField] GameObject bulletSmokeEffect;
     [SerializeField] ParticleSystem collisionParticle;
 
     Rigidbody rb;
@@ -27,7 +27,7 @@ public class BulletScript : Weapon
     void Awake()
     {
         lockOnScript = GameObject.Find("Player").GetComponent<LockOnCamSwitcher>();
-        bulletSmokeEffect.Play();
+        bulletSmokeEffect.GetComponent<ParticleSystem>().Play();
         enemiesArray = new Collider[maxEnemies];
         rb = GetComponent<Rigidbody>();
         Destroy(gameObject, bulletDestroyTime);
@@ -39,7 +39,7 @@ public class BulletScript : Weapon
     {
         if (lockOnScript.lockOn)
         {
-            //aggiungo un offset perchè altrimenti spara in basso
+            //aggiungo un offset perchï¿½ altrimenti spara in basso
             rb.velocity = ((lockOnScript.GetCurrentEnemyTr().position - GameObject.Find("Player/CHARACTER - L-ARM - FIREMAN/BulletStart Position").transform.position).normalized + new Vector3(0f, 0.1f, 0f)) * bulletSpeed;
         }
         else
@@ -50,8 +50,9 @@ public class BulletScript : Weapon
 
     private void OnCollisionEnter(Collision collision)
     {
-        collisionParticle.Play();
-        bulletSmokeEffect.Stop();
+        if(!collisionParticle.isPlaying)
+            collisionParticle.Play();
+        bulletSmokeEffect.GetComponent<ParticleSystem>().Stop();
 
         if (collision.gameObject.TryGetComponent<FireInteractive>(out FireInteractive fireInteract))
         {
@@ -76,11 +77,12 @@ public class BulletScript : Weapon
         }
 
 
-
-        collisionParticle.Stop();
-        gameObject.SetActive(false);
+        //collisionParticle.Stop();
+        collisionParticle.transform.parent = null;
+        bulletSmokeEffect.SetActive(false);
         Destroy(gameObject, 2);
     }
+
 
     public void SetVelocity(Vector3 newVelocity)
     {
@@ -103,7 +105,7 @@ public class BulletScript : Weapon
 //{
 //    Destroy(this, destroyDelay);
 //    rig.useGravity = useGravity;
-//    if (!updateTravel) rig.velocity – transform.forward* travelSpeed;
+//    if (!updateTravel) rig.velocity ï¿½ transform.forward* travelSpeed;
 //}
 
 //void Update()

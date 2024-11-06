@@ -15,10 +15,18 @@ public class ShieldArmAbility : ActiveAbilities
     public override void Ability()
     {
         shield.SetActive(true);
+        
+        if(!shield.GetComponent<ParticleSystem>().isPlaying)
+        {
+            shield.GetComponent<ParticleSystem>().startLifetime = 0f;
+            shield.GetComponent<ParticleSystem>().Play();
+        }
+            
     }
 
     public override void StopAbility()
     {
+       
         shield.SetActive(false);
     }
 

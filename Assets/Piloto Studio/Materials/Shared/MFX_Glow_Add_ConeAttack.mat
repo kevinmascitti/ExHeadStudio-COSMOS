@@ -9,26 +9,28 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: MFX_Glow_Add_ConeAttack
   m_Shader: {fileID: 4800000, guid: d985403ea514e7c46bf7c2fab31b9d95, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - _DISABLEEROSION_ON
-  - _SURFACE_TYPE_TRANSPARENT
   - _USEALPHAOVERRIDE_ON
   - _USESOFTALPHA_ON
   m_InvalidKeywords:
   - _ALPHABLEND_ON
   - _DISABLE_SSR_TRANSPARENT
   - _FADING_ON
+  - _SURFACE_TYPE_TRANSPARENT
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: 3000
   stringTagMap:
     MotionVector: User
-    RenderType: Transparent
   disabledShaderPasses:
   - DistortionVectors
   - MOTIONVECTORS
   - TransparentBackface
+  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -80,6 +82,18 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
     - _AlphaCutoff: 0.5
@@ -96,6 +110,7 @@ Material:
     - _Cull: 2
     - _CullMode: 2
     - _CullModeForward: 2
+    - _Culling: 0
     - _Cutoff: 0.5
     - _Desaturate: 0
     - _DetailNormalMapScale: 1
@@ -133,6 +148,9 @@ Material:
     - _OpacityMultiply: 1
     - _OpaqueCullMode: 2
     - _Parallax: 0.02
+    - _QueueControl: 0
+    - _QueueOffset: 0
+    - _ReceiveShadows: 1
     - _ReceivesSSR: 1
     - _ReceivesSSRTransparent: 0
     - _RenderQueueType: 4
@@ -165,6 +183,7 @@ Material:
     - _TransparentZWrite: 0
     - _UVSec: 0
     - _UseAlphaOverride: 1
+    - _UsePixelation: 0
     - _UseRamp: 0
     - _UseShadowThreshold: 0
     - _UseSoftAlpha: 1
@@ -184,6 +203,7 @@ Material:
     - _DetailDistortionChannel: {r: 0, g: 0, b: 0, a: 1}
     - _DetailMultiplyChannel: {r: 1, g: 1, b: 1, a: 0}
     - _DetailNoisePanning: {r: 0, g: 0, b: 0, a: 0}
+    - _DetailVertexOffsetChannel: {r: 1, g: 0, b: 0, a: 0}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _FresnelColor: {r: 1, g: 1, b: 1, a: 1}
@@ -192,6 +212,7 @@ Material:
     - _MainTextureChannel: {r: 10, g: 10, b: 10, a: 0}
     - _MainTexturePanning: {r: 0, g: 0, b: 0, a: 0}
     - _MidColor: {r: 1, g: 0.44479147, b: 0, a: 0}
+    - _Resolution: {r: 64, g: 64, b: 0, a: 0}
     - _SoftParticleFadeParams: {r: 0, g: 1, b: 0, a: 0}
     - _TintColor: {r: 1, g: 1, b: 1, a: 1}
     - _UnlitColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
