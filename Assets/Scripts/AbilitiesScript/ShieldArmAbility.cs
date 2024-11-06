@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class ShieldArmAbility : ActiveAbilities
 {
-    [Tooltip("Il pirmo deve essere lo scudo")]
     [SerializeField] private GameObject shield;
     private ShieldObj shieldObj;
 

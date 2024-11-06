@@ -263,7 +263,7 @@ public class PlayerMovement : MonoBehaviour
     [Tooltip("Posizione della empty che riconosce il terreno")]
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundMask;
-    [SerializeField] private float groundDistance = 0.07f;
+    [SerializeField] private float groundDistance = 0.4f;
     [SerializeField] private bool isJumpPressed;
     [SerializeField] private bool isGrounded;
     [SerializeField] public bool isJumpAscension = false;
