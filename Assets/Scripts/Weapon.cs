@@ -54,9 +54,10 @@ public class Weapon : Piece
 
     public void OnTriggerEnter(Collider other)
     {
-
+       
         if (other.gameObject.layer == LayerMask.NameToLayer("Enemy") /*&& playerCharacter.isFighting*/ && !playerCharacter.enemiesHit.Contains(other.gameObject.GetInstanceID()))//GetComponentInParent<PlayerCharacter>().isFighting)
         {
+            Debug.Log("collisione");
             if ((cameraShake = GetComponent<CinemachineImpulseSource>()) != null)
             {
                 cameraShake.GenerateImpulse();
@@ -65,7 +66,9 @@ public class Weapon : Piece
             playerCharacter.enemiesHit.Add(other.gameObject.GetInstanceID());
             //TimeResume();
             //Debug.Log("Preso");
-            OnEnemyCollision?.Invoke(this, new EnemyCollisionArgs(other.gameObject.GetComponent<Enemy>(), this));
+            if (other.gameObject.GetComponent<Enemy>() != null)
+                playerCharacter.DoDamage(other.gameObject.GetComponent<Enemy>(), atk);
+            //OnEnemyCollision?.Invoke(this, new EnemyCollisionArgs(other.gameObject.GetComponent<Enemy>(), this));
         }
     }
     private void ActivateRxPiece(object sender, EventArgs args)

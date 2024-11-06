@@ -19,6 +19,7 @@ public class StateController : MonoBehaviour
     [SerializeField] bool isShooter;
     [SerializeField] float shootingRange;
     [SerializeField] EnemyWeapon weapon;
+    public AIArea enemyAreaOfAction;
     public Collider areaBounds;
     public int areaID;
     public bool canChase=false;
@@ -30,7 +31,7 @@ public class StateController : MonoBehaviour
     Animator animator;
     float distanceFromPlayer;
     Transform playerTransform;
-
+    static public EventHandler<EnemyDeadArg> RemoveFromListAfterDeath;
     void Awake()
     {
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
@@ -45,7 +46,8 @@ public class StateController : MonoBehaviour
     void Update()
     {
         distanceFromPlayer = Vector3.Distance(playerTransform.position, animator.transform.position);
-        
+
+        if (animator.GetBool("isDead")) RemoveFromListAfterDeath?.Invoke(this, new EnemyDeadArg(gameObject.GetInstanceID()));
 
         //Debug.Log(distanceFromPlayer);
     }
@@ -111,12 +113,14 @@ public class StateController : MonoBehaviour
 
         return transform.position;
     }
-    public void SetAreaBounds(Collider aB)
-    {
-        areaBounds = aB;
-        //Debug.Log(gameObject.name + ", " + aB.gameObject.name);
-    }
    
+    
+    public void SetAreaOfAction(AIArea area)
+    {
+        enemyAreaOfAction = area;
+        areaBounds = area.areaCollider;
+        areaID = area.areaID;
+    }
     private void StopChasing(object sender, OnPlayerArg e)
     {
         if(e.areaId == areaID)
@@ -137,4 +141,14 @@ public class StateController : MonoBehaviour
         AIArea.OnPlayerEnter -= CanChase;
         AIArea.OnPlayerExit -= StopChasing;
     }
+}
+
+public class EnemyDeadArg : EventArgs
+{
+    public EnemyDeadArg(int i)
+    {
+        enemyID = i;
+    }
+
+    public int enemyID;
 }

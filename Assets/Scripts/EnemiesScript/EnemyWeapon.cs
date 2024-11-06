@@ -20,6 +20,7 @@ public class EnemyWeapon : PlayerHitter
         public AnimationClip strongAttack;
     private void Awake()
     {
+        _enemy = this.gameObject.GetComponentInParent<Enemy>();
         if (type == EnemyWeaponType.Punch)
         {
             this.GetComponent<BoxCollider>().enabled = false;
@@ -36,4 +37,12 @@ public class EnemyWeapon : PlayerHitter
         GetComponent<BoxCollider>().enabled = state;
     }
 
+    public void ActivateCollider()
+    {
+        GetComponent<BoxCollider>().enabled = true;
+    }
+    public void DeactivateCollider()
+    {
+        GetComponent<BoxCollider>().enabled = false;
+    }
 }

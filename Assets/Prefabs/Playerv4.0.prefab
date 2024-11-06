@@ -2273,6 +2273,7 @@ GameObject:
   - component: {fileID: 7907277595050690063}
   - component: {fileID: 4591394188475056666}
   - component: {fileID: 4682582118046333245}
+  - component: {fileID: 1648007082950540424}
   m_Layer: 8
   m_Name: CHARACTER - LEGS - FIREMAN
   m_TagString: Untagged
@@ -2556,6 +2557,59 @@ MonoBehaviour:
   isContinous: 0
   dashTime: 0.2
   dashSpeed: 6
+--- !u!114 &1648007082950540424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1420740218867691940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ImpulseDefinition:
+    m_ImpulseChannel: 1
+    m_ImpulseShape: 2
+    m_CustomImpulseShape:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_ImpulseDuration: 0.2
+    m_ImpulseType: 0
+    m_DissipationRate: 0.25
+    m_RawSignal: {fileID: 0}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_RepeatMode: 0
+    m_Randomize: 1
+    m_TimeEnvelope:
+      m_AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_AttackTime: 0
+      m_SustainTime: 0.2
+      m_DecayTime: 0.7
+      m_ScaleWithImpact: 1
+      m_HoldForever: 0
+    m_ImpactRadius: 100
+    m_DirectionMode: 0
+    m_DissipationMode: 2
+    m_DissipationDistance: 100
+    m_PropagationSpeed: 343
+  m_DefaultVelocity: {x: 0, y: -1, z: 0}
 --- !u!1 &1423822061773348722
 GameObject:
   m_ObjectHideFlags: 0
@@ -5126,6 +5180,7 @@ GameObject:
   - component: {fileID: 5303036422242891338}
   - component: {fileID: 2875464962249264355}
   - component: {fileID: 2774509749229464481}
+  - component: {fileID: 4915971264041034176}
   m_Layer: 8
   m_Name: PlayerShield
   m_TagString: Untagged
@@ -5233,6 +5288,59 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceMag: 70
+--- !u!114 &4915971264041034176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3075625862627813409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ImpulseDefinition:
+    m_ImpulseChannel: 1
+    m_ImpulseShape: 2
+    m_CustomImpulseShape:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_ImpulseDuration: 0.2
+    m_ImpulseType: 0
+    m_DissipationRate: 0.25
+    m_RawSignal: {fileID: 0}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_RepeatMode: 0
+    m_Randomize: 1
+    m_TimeEnvelope:
+      m_AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_AttackTime: 0
+      m_SustainTime: 0.2
+      m_DecayTime: 0.7
+      m_ScaleWithImpact: 1
+      m_HoldForever: 0
+    m_ImpactRadius: 100
+    m_DirectionMode: 0
+    m_DissipationMode: 2
+    m_DissipationDistance: 100
+    m_PropagationSpeed: 343
+  m_DefaultVelocity: {x: 0, y: -1, z: 0}
 --- !u!1 &3126111969452750106
 GameObject:
   m_ObjectHideFlags: 0
@@ -7339,6 +7447,7 @@ GameObject:
   - component: {fileID: 1371007557132540976}
   - component: {fileID: 225971708497511219}
   - component: {fileID: 2883351047192891059}
+  - component: {fileID: 1041689630541211060}
   m_Layer: 8
   m_Name: mixamorig:LeftHand
   m_TagString: Untagged
@@ -7418,6 +7527,59 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &1041689630541211060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4218143779855656420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ImpulseDefinition:
+    m_ImpulseChannel: 1
+    m_ImpulseShape: 2
+    m_CustomImpulseShape:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_ImpulseDuration: 0.2
+    m_ImpulseType: 0
+    m_DissipationRate: 0.25
+    m_RawSignal: {fileID: 0}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_RepeatMode: 0
+    m_Randomize: 1
+    m_TimeEnvelope:
+      m_AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_AttackTime: 0
+      m_SustainTime: 0.2
+      m_DecayTime: 0.7
+      m_ScaleWithImpact: 1
+      m_HoldForever: 0
+    m_ImpactRadius: 100
+    m_DirectionMode: 0
+    m_DissipationMode: 2
+    m_DissipationDistance: 100
+    m_PropagationSpeed: 343
+  m_DefaultVelocity: {x: 0, y: -1, z: 0}
 --- !u!1 &4273225433657750363
 GameObject:
   m_ObjectHideFlags: 0
@@ -8230,6 +8392,9 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 192
+  waterEffectScript: {fileID: 0}
+  waterEffectObj: {fileID: 0}
+  beamBaseTarget: {fileID: 0}
 --- !u!114 &2676682131050337712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13126,7 +13291,8 @@ MonoBehaviour:
   - {fileID: 0}
   healthBar: {fileID: 0}
   abilitiesSection: {fileID: 0}
-  vfxList: {fileID: 0}
+  vfxList:
+  - {fileID: 0}
 --- !u!114 &4561421796706817298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14922,6 +15088,7 @@ GameObject:
   - component: {fileID: 7072028929478765573}
   - component: {fileID: 8087797954548768539}
   - component: {fileID: 4762636427552042410}
+  - component: {fileID: 702896057411661325}
   m_Layer: 8
   m_Name: WEAPONS - CYRUS' AXE
   m_TagString: Untagged
@@ -15025,7 +15192,7 @@ MonoBehaviour:
   atk: 0
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 128
 --- !u!54 &8087797954548768539
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -15074,6 +15241,59 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.006394638, y: 0.004408297, z: 0.0054416033}
   m_Center: {x: -0.0028727672, y: -0.0032979993, z: 0.0049093612}
+--- !u!114 &702896057411661325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7802411885177929003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ImpulseDefinition:
+    m_ImpulseChannel: 1
+    m_ImpulseShape: 2
+    m_CustomImpulseShape:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_ImpulseDuration: 0.2
+    m_ImpulseType: 0
+    m_DissipationRate: 0.25
+    m_RawSignal: {fileID: 0}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_RepeatMode: 0
+    m_Randomize: 1
+    m_TimeEnvelope:
+      m_AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_AttackTime: 0
+      m_SustainTime: 0.2
+      m_DecayTime: 0.7
+      m_ScaleWithImpact: 1
+      m_HoldForever: 0
+    m_ImpactRadius: 100
+    m_DirectionMode: 0
+    m_DissipationMode: 2
+    m_DissipationDistance: 100
+    m_PropagationSpeed: 343
+  m_DefaultVelocity: {x: 0, y: -1, z: 0}
 --- !u!1 &7813451576489696202
 GameObject:
   m_ObjectHideFlags: 0

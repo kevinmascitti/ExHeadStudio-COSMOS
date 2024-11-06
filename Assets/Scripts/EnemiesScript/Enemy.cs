@@ -26,10 +26,11 @@ public class Enemy : Character
     private float lerpTimer;
     [SerializeField] GameObject cureObject;
 
-
+    private EnemyWeapon myWeapon;
     void Awake()
     {
         base.Awake();
+        myWeapon = GetComponentInChildren<EnemyWeapon>();
         UpdateHP(defHP);
         OnEnemySpawn?.Invoke(this, EventArgs.Empty);
         gameObject.layer = LayerMask.NameToLayer("Enemy");
@@ -42,7 +43,7 @@ public class Enemy : Character
                 break;
             }
         }
-        EnemyWeapon.OnPlayerCollision += DoDamage;//QUESTO EVENTO NON ESISTE????
+       // EnemyWeapon.OnPlayerCollision += DoDamage;//QUESTO EVENTO NON ESISTE???? ESISTE IN PLAYERHITTER
         
     }
 
@@ -55,7 +56,7 @@ public class Enemy : Character
         UpdateHPUI();
     }
 
-    private void DoDamage(object sender, PlayerCollisionArgs args)
+    /*private void DoDamage(object sender, PlayerCollisionArgs args)
     {
         if (this.GetInstanceID() == args.id)
         {                
@@ -65,6 +66,16 @@ public class Enemy : Character
             }
             else args.player.TakeDamage(stats.elemAtk[enemyElement] + atk - args.player.def - args.player.stats.elemDef[enemyElement], enemyElement);
         }
+    }*/
+    public void DoDamage(PlayerCharacter player)
+    {
+       
+            if (player.def > stats.elemAtk[enemyElement] + atk)
+            {
+                player.TakeDamage(0, enemyElement);
+            }
+            else player.TakeDamage(stats.elemAtk[enemyElement] + atk - player.def - player.stats.elemDef[enemyElement], enemyElement);
+        
     }
 
     public override void Die()
@@ -137,6 +148,16 @@ public class Enemy : Character
                 frontSprite.fillAmount = Mathf.Lerp(fillFront, backSprite.fillAmount, percentComplete);
             }
         }
+    }
+    public void SetWeaponCollider(bool v)
+    {
+        if (v) 
+        {
+            myWeapon.ActivateCollider();
+                 return; 
+        }
+        myWeapon.DeactivateCollider();
+        
     }
 
     public void OnDestroy()
