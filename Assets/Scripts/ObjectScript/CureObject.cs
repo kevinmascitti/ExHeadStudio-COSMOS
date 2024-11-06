@@ -14,21 +14,15 @@ public class CureObject : MonoBehaviour
     [SerializeField] bool isContinous;
     [Tooltip("Dopo qunato tempo inizia l'effetto")]
     [SerializeField] float continuousTimer;
-    [SerializeField] GameObject HealingVFX;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player") && !isContinous)
         {
-            GameObject healParticles = Instantiate(HealingVFX) as GameObject;
-            healParticles.transform.position = other.transform.position;
-            healParticles.transform.parent = other.transform;
-            healParticles.GetComponent<ParticleSystem>().Play();
             float actual = other.gameObject.GetComponent<PlayerCharacter>().currentHP;
             actual += healthAmount;
             other.gameObject.GetComponent<PlayerCharacter>().UpdateHP(actual);
             Destroy(this.gameObject);
-            StartCoroutine(DestroyParticle(healParticles));
         }
         //else if(other.CompareTag("Player") && isContinous)
         //{
@@ -36,13 +30,6 @@ public class CureObject : MonoBehaviour
         //}
 
     }
-
-    IEnumerator DestroyParticle(GameObject particles)
-    {
-        yield return new WaitForSeconds(0.5f);
-        Destroy(particles);
-    }
-
 
     private void OnTriggerStay(Collider other)
     {
