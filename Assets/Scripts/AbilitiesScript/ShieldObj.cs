@@ -52,13 +52,9 @@ public class ShieldObj : MonoBehaviour
         }
         else if(other.TryGetComponent<EnemyWeapon>(out enemyWeapon))
         {
-            enemyScript = other.GetComponentInParent<Enemy>();
-            ///enemyRb = other.GetComponentInParent<Rigidbody>();
-            Debug.Log(enemyScript.gameObject.name);
+            enemyScript = other.GetComponentInParent<Enemy>();;
             enemyRb = enemyScript.gameObject.GetComponent<Rigidbody>();
-            Debug.Log(enemyRb.gameObject.name);
 
-            Debug.DrawRay(transform.position, (enemyScript.gameObject.transform.position - transform.position).normalized*10f, Color.green, 5f);
             enemyRb.AddForce((enemyScript.gameObject.transform.position - transform.position).normalized*forceMag, ForceMode.Impulse);
 
             if ((cameraShake = GetComponent<CinemachineImpulseSource>()) != null)

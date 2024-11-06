@@ -27,13 +27,13 @@ public abstract class ActiveAbilities : MonoBehaviour
     {
         if (isContinous)
         {
-            abilityTimer = timeForContinous;
+            abilityTimer = timeForContinous-0.04f;
         }
         else
         {
             abilityTimer = 1;
         }
-        Mathf.Clamp(abilityTimer, 0, cooldownTime);
+
     }
 
     public virtual void Update()
@@ -44,20 +44,25 @@ public abstract class ActiveAbilities : MonoBehaviour
             {
                 Ability();
                 abilityTimer -= Time.deltaTime;
+                abilityTimer = Mathf.Clamp(abilityTimer, 0, timeForContinous);
             }
             else
             {
                 SetFalseObj();
                 StopAbility();
-                if (!cooldown && abilityTimer < 0.1f && !cooldown)
+
+                abilityTimer += Time.deltaTime;
+                abilityTimer = Mathf.Clamp(abilityTimer, 0, timeForContinous);
+
+                if (!cooldown && abilityTimer < 0.2f)
                 {
                     cooldown = true;
                     StartCoroutine("AbilityCooldown");
                 }
-                else if (abilityTimer < timeForContinous && cooldown)
+                /*else if (abilityTimer < timeForContinous && cooldown)
                 {
                     abilityTimer += Time.deltaTime;
-                }
+                }*/
             }
         }
         else
@@ -76,22 +81,12 @@ public abstract class ActiveAbilities : MonoBehaviour
 
     public abstract void Ability();
 
-    public virtual void StopAbility(){} //la funzione serve a gestire l'abilità dello scudo
+
 
     private IEnumerator AbilityCooldown()
     {
-        
-        if (isContinous)
-        {
-            yield return new WaitForSeconds(cooldownTime);
-            //Debug.Log("FineCooldown");
-            cooldown = false;
-        }
-        else
-        {
-            yield return new WaitForSeconds(cooldownTime);
-            cooldown = false;
-        }
+        yield return new WaitForSeconds(cooldownTime);
+        cooldown = false;
     }
     public void UpdateAbiltyColumn()
     {
@@ -121,9 +116,7 @@ public abstract class ActiveAbilities : MonoBehaviour
 
     }
 
-    public virtual void SetFalseObj() //la funzione serve per disattivare l'oggetto del braccio d'acqua
-    { 
-    }
-
+    public virtual void StopAbility() { } //la funzione serve a gestire l'abilità dello scudo
+    public virtual void SetFalseObj() { } //la funzione serve per disattivare l'oggetto del braccio d'acqua
  
 }

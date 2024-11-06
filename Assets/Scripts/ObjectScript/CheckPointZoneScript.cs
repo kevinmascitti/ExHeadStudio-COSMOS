@@ -11,7 +11,7 @@ public class CheckPointZoneScript : MonoBehaviour
 
     private Collider areaCollider;
 
-    private void Start()
+    private void Awake()
     {
         areaCollider = GetComponent<Collider>();
         areaCollider.isTrigger = true;

@@ -318,7 +318,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask); //controllo sul terreno, provare a sostituire con un capsule o un box
+        isGrounded = Physics.CheckCapsule(groundCheck.position + new Vector3(0f, groundDistance/2, 0f), groundCheck.position - new Vector3(0f, groundDistance / 2, 0f), groundDistance, groundMask); //controllo sul terreno, provare a sostituire con un capsule o un box
        
         if (isGrounded == true && playerVector.y <= 0)
         {
