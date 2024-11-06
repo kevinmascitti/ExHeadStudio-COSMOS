@@ -7,7 +7,7 @@ using UnityEngine.InputSystem.Controls;
 public class AIArea: MonoBehaviour
 {
     public int areaID;
-    public Dictionary<int, GameObject> enemyList = new Dictionary<int, GameObject>();
+    public Dictionary<int, GameObject> enemyList;
     public int count;
     
     public bool isPlayerInside=false;
@@ -17,6 +17,7 @@ public class AIArea: MonoBehaviour
     public BoxCollider areaCollider;
     public void Awake()
     {
+        enemyList = new Dictionary<int, GameObject>();
         areaCollider = GetComponent<BoxCollider>();
         StateController.RemoveFromListAfterDeath += RemoveEnemy;
 

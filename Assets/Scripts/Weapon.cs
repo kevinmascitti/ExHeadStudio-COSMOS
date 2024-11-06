@@ -54,9 +54,10 @@ public class Weapon : Piece
 
     public void OnTriggerEnter(Collider other)
     {
-
+       
         if (other.gameObject.layer == LayerMask.NameToLayer("Enemy") /*&& playerCharacter.isFighting*/ && !playerCharacter.enemiesHit.Contains(other.gameObject.GetInstanceID()))//GetComponentInParent<PlayerCharacter>().isFighting)
         {
+            Debug.Log("collisione");
             if ((cameraShake = GetComponent<CinemachineImpulseSource>()) != null)
             {
                 cameraShake.GenerateImpulse();

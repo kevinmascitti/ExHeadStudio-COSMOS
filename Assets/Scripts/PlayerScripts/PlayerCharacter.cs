@@ -117,7 +117,7 @@ public class PlayerCharacter : Character
         
         choicePieceManager = GameObject.Find("ChoicePiecesManager").GetComponent<ChoicePieceManager>();
         
-        Weapon.OnEnemyCollision += DoDamage;
+        //Weapon.OnEnemyCollision += DoDamage;
         ChoicePieceManager.OnChangePiece += ModifyComposition;
         ChoicePieceManager.OnSetPiece += SetPieceComposition;
         BaseAttack1State.OnClearEnemyHitList += ClearEnemyHitList;
@@ -129,7 +129,7 @@ public class PlayerCharacter : Character
 
     void OnDestroy()
     {
-        Weapon.OnEnemyCollision -= DoDamage;
+        //Weapon.OnEnemyCollision -= DoDamage;
         ChoicePieceManager.OnChangePiece -= ModifyComposition;
         ChoicePieceManager.OnSetPiece -= SetPieceComposition;
         BaseAttack1State.OnClearEnemyHitList -= ClearEnemyHitList;
@@ -295,17 +295,17 @@ public class PlayerCharacter : Character
         Debug.Log("RESPAWNED");
     }
    
- private void DoDamage(object sender, EnemyCollisionArgs args)
+ public void DoDamage(Enemy enemy, int weaponAtk)
     {
      
-        if(stats.atk > args.enemy.def)
+        if(weaponAtk > enemy.def)
         {
             GameObject hitParticles = Instantiate(vfxList[0]) as GameObject; //viene istanziato un hit particle separato dall'originale
             //hitParticles.transform.parent = weaponList[0].transform; //si fa sì che l'hit particle si trovi nella posizione 
             hitParticles.transform.position = weaponList[0].transform.position;
    
             StopTime(); // chiamato per effettuare l'hit stop / freeze frame
-            args.enemy.TakeDamage(stats.atk + args.hitter.atk - args.enemy.def, activeRxElement);
+            enemy.TakeDamage(weaponAtk - enemy.def, activeRxElement);
           
             hitParticles.SetActive(true);
 
