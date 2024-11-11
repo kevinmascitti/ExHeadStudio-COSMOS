@@ -42,9 +42,9 @@ public class VFXTrigger : MonoBehaviour
     }
 
     public void FireRingFireBall(){
-          vfxList[5].GetComponent<ParticleSystem>().Play();
-          vfxList[6].GetComponent<ParticleSystem>().Play();
-          vfxList[7].GetComponent<ParticleSystem>().Play();
+        //vfxList[5].GetComponent<ParticleSystem>().Play();
+        vfxList[6].GetComponent<ParticleSystem>().Play();
+        vfxList[7].GetComponent<ParticleSystem>().Play();
         vfxList[8].GetComponent<ParticleSystem>().Play();
     }
 
