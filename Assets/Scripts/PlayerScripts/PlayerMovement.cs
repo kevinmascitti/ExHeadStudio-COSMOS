@@ -344,7 +344,7 @@ public class PlayerMovement : MonoBehaviour
         {
             
    
-            if (direction.magnitude >= 0.1f || playerVector.y > 5f)
+            if (direction.magnitude >= 0.1f)
             {
                 if(lockOnCamSwitcher.lockOn && targetGroup.m_Targets.Length > 1 && targetGroup.m_Targets[lockOnCamSwitcher.GetEnemyIndex()].target != null) //Possibile sostituzione con un evento
                 { 
