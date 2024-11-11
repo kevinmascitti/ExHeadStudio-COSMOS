@@ -37,7 +37,7 @@ public class ShootingEnemyStates : MonoBehaviour
     [SerializeField] float aimDuration; //Da settare uguale alla durata dell'animazione di mira
     float takeDistanceTimer;
     [SerializeField] float takeDistanceDuration;
-    [SerializeField] float attackDuration;
+    [SerializeField] float attackDuration; //Da settare uguale alla durata dell'animazione di attacco
     float attackTimer;
     bool inIdle = false;
     bool inPatrol = false;
@@ -299,6 +299,10 @@ public class ShootingEnemyStates : MonoBehaviour
     }
     private void ResetAttackControls()
     {
+        if(attackDuration<= 0f)
+        {
+            attackDuration = rangedEnemyAnimator.GetCurrentAnimatorStateInfo(0).length;
+        }
         inAttack = true;
         attackTimer = 0f;
 

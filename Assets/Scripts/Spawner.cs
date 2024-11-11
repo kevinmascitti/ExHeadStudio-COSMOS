@@ -9,6 +9,7 @@ public class Spawner : AIArea
     [SerializeField] GameObject rangedEnemy;
     [SerializeField] List<Transform> spawnList= new List<Transform>();
     [SerializeField] int spawnIndex=0;
+    private int idControl = 0;
     private void Awake()
     {
         base.Awake();
@@ -26,14 +27,15 @@ public class Spawner : AIArea
                 if (enemyType < .5f) nextSpawningEnemy = meleeEnemy;
                 else nextSpawningEnemy = rangedEnemy;
                 var enemy = Instantiate(nextSpawningEnemy, spawnList[spawnIndex].position, spawnList[spawnIndex].rotation );
-                enemyList.Add(enemy.GetInstanceID(), enemy);
+                //enemy.GetComponent<Enemy>().SetID(++idControl);
+                enemyList.Add(enemy.GetComponent<Enemy>().GetInstanceID(), enemy);
                 enemy.GetComponent<StateController>().SetAreaOfAction(this);
             }
             spawnIndex = 0;
             count = enemyList.Count;
             return;
         }
-        if(other.gameObject.tag.Equals("Enemy") || other.gameObject.tag.Equals("ShootingEnemy"))
+        if(other.gameObject.tag.Equals("Enemy") || other.gameObject.tag.Equals("ShootingEnemy") && !enemyList.ContainsKey(other.gameObject.GetComponent<Enemy>().GetID()))
         {
             other.GetComponent<StateController>().SetAreaOfAction(this);
             enemyList.Add(other.gameObject.GetInstanceID(), other.gameObject);

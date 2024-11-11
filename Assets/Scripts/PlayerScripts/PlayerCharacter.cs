@@ -295,17 +295,17 @@ public class PlayerCharacter : Character
         Debug.Log("RESPAWNED");
     }
    
- public void DoDamage(Enemy enemy, int weaponAtk)
+ public void DoDamage(Enemy enemy, int wAtk)
     {
      
-        if(weaponAtk > enemy.def)
+        if(wAtk > enemy.def)
         {
             GameObject hitParticles = Instantiate(vfxList[0]) as GameObject; //viene istanziato un hit particle separato dall'originale
             //hitParticles.transform.parent = weaponList[0].transform; //si fa sì che l'hit particle si trovi nella posizione 
             hitParticles.transform.position = weaponList[0].transform.position;
    
             StopTime(); // chiamato per effettuare l'hit stop / freeze frame
-            enemy.TakeDamage(weaponAtk - enemy.def, activeRxElement);
+            enemy.TakeDamage(wAtk - enemy.def, activeRxElement);
           
             hitParticles.SetActive(true);
 
@@ -334,7 +334,7 @@ public class PlayerCharacter : Character
 
     //ResumeTime viene chiamata da stop time per far riprendere il tempo dopo pochi centesimi/decimi di secondo
      IEnumerator  ResumeTime(){
-        Debug.Log("sono nel resume time");
+        //Debug.Log("sono nel resume time");
         yield return new WaitForSecondsRealtime(0.075f);
         Time.timeScale = 1.0f;
     }

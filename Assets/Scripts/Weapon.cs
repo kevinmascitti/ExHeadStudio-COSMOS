@@ -57,7 +57,7 @@ public class Weapon : Piece
        
         if (other.gameObject.layer == LayerMask.NameToLayer("Enemy") /*&& playerCharacter.isFighting*/ && !playerCharacter.enemiesHit.Contains(other.gameObject.GetInstanceID()))//GetComponentInParent<PlayerCharacter>().isFighting)
         {
-            Debug.Log("collisione");
+            //Debug.Log("collisione");
             if ((cameraShake = GetComponent<CinemachineImpulseSource>()) != null)
             {
                 cameraShake.GenerateImpulse();
@@ -67,7 +67,7 @@ public class Weapon : Piece
             //TimeResume();
             //Debug.Log("Preso");
             if (other.gameObject.GetComponent<Enemy>() != null)
-                playerCharacter.DoDamage(other.gameObject.GetComponent<Enemy>(), atk);
+                playerCharacter.DoDamage(other.gameObject.GetComponent<Enemy>(), this.atk);
             //OnEnemyCollision?.Invoke(this, new EnemyCollisionArgs(other.gameObject.GetComponent<Enemy>(), this));
         }
     }

@@ -15189,7 +15189,7 @@ MonoBehaviour:
   playerCharacter: {fileID: 902386066158743653}
   weaponType: 1
   movementSpeed: 0
-  atk: 0
+  atk: 15
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -15230,10 +15230,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 128
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 256
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
