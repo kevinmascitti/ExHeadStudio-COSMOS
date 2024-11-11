@@ -294,11 +294,13 @@ public class PlayerMovement : MonoBehaviour
 
     public Vector3 velocity;
     [SerializeField] public Vector3 moveDir;
+    private Vector3 horizontalMovement;
     Vector3 direction;
     private Vector3 playerVector;
 
     [NonSerialized] public CharacterController playerController;
     private PlayerCharacter player;
+    private Animator playerAnimator;
 
 
     private float angle = 0;
@@ -310,7 +312,7 @@ public class PlayerMovement : MonoBehaviour
         UnityEngine.Cursor.visible = false;
         UnityEngine.Cursor.lockState = CursorLockMode.Locked;
         playerVector = Vector3.zero;
-
+        playerAnimator = GetComponent<Animator>();
         lockOnCamSwitcher = FindAnyObjectByType<LockOnCamSwitcher>();
        
     }
@@ -318,16 +320,18 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         
-        isGrounded = Physics.CheckCapsule(groundCheck.position + new Vector3(0f, groundDistance/2, 0f), groundCheck.position - new Vector3(0f, groundDistance / 2, 0f), groundDistance, groundMask); //controllo sul terreno, provare a sostituire con un capsule o un box
+        isGrounded = Physics.CheckCapsule(groundCheck.position + new Vector3(0f, groundDistance/2, 0f), groundCheck.position - new Vector3(0f, groundDistance / 2, 0f), groundDistance, groundMask) || playerController.isGrounded; //controllo sul terreno, provare a sostituire con un capsule o un box
        
         if (isGrounded == true && playerVector.y <= 0)
         {
+            player.isInputOn = true;
             isJumpFalling = false;
             //velocity.y = -0.5f; //serve ad essere sicuri che "senta" il terreno, vale come la gravità
             coyoteTimeCounter = coyoteTime;
         }
         else if (isGrounded == false && playerVector.y <= 0)
         {
+            //player.isInputOn = false;
             isJumpFalling = true; //condizione per la caduta
             coyoteTimeCounter -= Time.deltaTime;
         }
@@ -342,12 +346,12 @@ public class PlayerMovement : MonoBehaviour
 
         if (player.isInputOn)
         {
-            
-   
+
+
             if (direction.magnitude >= 0.1f)
             {
-                if(lockOnCamSwitcher.lockOn && targetGroup.m_Targets.Length > 1 && targetGroup.m_Targets[lockOnCamSwitcher.GetEnemyIndex()].target != null) //Possibile sostituzione con un evento
-                { 
+                if (lockOnCamSwitcher.lockOn && targetGroup.m_Targets.Length > 1 && targetGroup.m_Targets[lockOnCamSwitcher.GetEnemyIndex()].target != null) //Possibile sostituzione con un evento
+                {
 
                     Vector3 rotationOffset = targetGroup.m_Targets[lockOnCamSwitcher.GetEnemyIndex()].target.position - transform.position;
                     rotationOffset.y = 0;
@@ -384,11 +388,12 @@ public class PlayerMovement : MonoBehaviour
                 }
 
                 //moveDir.y = playerVector.y;
-                 /*if(direction.magnitude >= 0.1f)
-                {*/
-                    isMoving = true;
-                Vector3 horizontalMovement = new Vector3(moveDir.x, 0f, moveDir.z);
-                    playerController.Move(horizontalMovement * Time.deltaTime);
+                /*if(direction.magnitude >= 0.1f)
+               {*/
+                isMoving = true;
+                horizontalMovement = new Vector3(moveDir.x, 0f, moveDir.z);
+                playerController.Move(horizontalMovement * Time.deltaTime);
+                Debug.Log(moveDir);
                 //}
                 /*else
                 {
@@ -399,6 +404,8 @@ public class PlayerMovement : MonoBehaviour
             else
             {
                 isMoving = false;
+                moveDir = Vector3.zero;
+                horizontalMovement = moveDir;
             }
         }
         //playerController.Move(playerVector * Time.deltaTime);
@@ -419,9 +426,15 @@ public class PlayerMovement : MonoBehaviour
 
             }
         }
-        if(playerVector.y > 2f)
+        if (playerVector.y > 2f && horizontalMovement == Vector3.zero) 
         {
             playerController.Move(playerVector * Time.fixedDeltaTime);
+        }
+        if(playerVector.y> 2f && horizontalMovement != Vector3.zero)
+        {
+            horizontalMovement.y = playerVector.y;
+            playerController.Move(horizontalMovement * Time.fixedDeltaTime);
+            player.isInputOn = false;
         }
         HandleGravity();
         HandleJump();
@@ -462,17 +475,20 @@ public class PlayerMovement : MonoBehaviour
             //canJumpAgain = false;
             isJumpPressed = false;
             playerVector.y = initialJumpVelocity;
-
+            playerAnimator.Play("Cyrus_Cosmos_Rig_Cyrus_Jump_Normal_Asc");
 
         }
-        else if (isJumpAscension && playerVector.y <= 1f && !playerController.isGrounded)
+        else if (isJumpAscension && playerVector.y <= initialJumpVelocity/3 && !playerController.isGrounded)
         {
-           
+            playerAnimator.Play("Cyrus_Cosmos_Rig_Cyrus_Jump_Normal_Fall");
             isJumpFalling = true;
         }
         else if (playerController.isGrounded && isJumpFalling)
         {
             isJumpFalling = false;
+            if(horizontalMovement!= Vector3.zero)
+                playerAnimator.Play("Cyrus_Cosmos_Rig_Cyrus_Idle");
+            else playerAnimator.Play("Cyrus_Cosmos_Rig_Cyrus_Run_Cycle");
             canJumpAgain = true;
             //StartCoroutine(WaitForJumpAgain());
         }
@@ -482,10 +498,17 @@ public class PlayerMovement : MonoBehaviour
             isJumpPeak = false;
             isJumpFalling = false;
             canJumpAgain = true;
+            if (horizontalMovement != Vector3.zero)
+                playerAnimator.Play("Cyrus_Cosmos_Rig_Cyrus_Idle");
+            else playerAnimator.Play("Cyrus_Cosmos_Rig_Cyrus_Run_Cycle");
         }
         else if (playerController.isGrounded && !canJumpAgain)
         {
+            if (horizontalMovement != Vector3.zero)
+                playerAnimator.Play("Cyrus_Cosmos_Rig_Cyrus_Idle");
+            else playerAnimator.Play("Cyrus_Cosmos_Rig_Cyrus_Run_Cycle");
             canJumpAgain = true;
+            //player.isInputOn = true;
         }
     }
     IEnumerator WaitForJumpAgain()
