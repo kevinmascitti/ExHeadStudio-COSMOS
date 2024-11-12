@@ -25,6 +25,7 @@ public class FireInteractive : MonoBehaviour
     public delegate void OnBrazierLight();
     public static event OnBrazierLight onBrazierLight;
     public bool canDestroy = false;
+    private bool alreadyLight = false;
 
     private void Awake()
     {
@@ -71,17 +72,17 @@ public class FireInteractive : MonoBehaviour
 
     public void Disappearing()
     {
-        Debug.Log("Ho trovato un rovo");
         //far partire un'animazione?
+        OnEnemyDestroyed?.Invoke(this, new EnemyTr(this.gameObject.transform));
         Destroy(gameObject, disappearTime);
     }
 
     public void DisappearingForPuzzle()
-    {
-        Debug.Log("Ho trovato un rovo puzzle");
-        //far partire un'animazione?
+    { 
+        
         if(canDestroy)
         {
+            OnEnemyDestroyed?.Invoke(this, new EnemyTr(this.gameObject.transform));
             Destroy(gameObject, disappearTime);
         }
 
@@ -90,6 +91,7 @@ public class FireInteractive : MonoBehaviour
     public void Lighter()
     {
         Debug.Log("Ho acceso un braciere");
+        OnEnemyDestroyed?.Invoke(this, new EnemyTr(this.gameObject.transform));
         fireLight.enabled = true;
         smokeEffect.Play();
         fireEffect.Play();
@@ -98,11 +100,17 @@ public class FireInteractive : MonoBehaviour
 
     public void LighterForPuzzle()
     {
-        onBrazierLight.Invoke();
-        fireLight.enabled = true;
-        smokeEffect.Play();
-        fireEffect.Play();
+        if(!alreadyLight)
+        {
 
+            onBrazierLight.Invoke();
+            OnEnemyDestroyed?.Invoke(this, new EnemyTr(this.gameObject.transform));
+            fireLight.enabled = true;
+            smokeEffect.Play();
+            fireEffect.Play();
+            gameObject.GetComponent<Collider>().enabled = false;
+            alreadyLight = true;
+        }
 
     }
 
