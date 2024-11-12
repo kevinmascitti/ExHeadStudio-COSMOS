@@ -8,7 +8,11 @@ public class Spawner : AIArea
     [SerializeField] GameObject meleeEnemy;
     [SerializeField] GameObject rangedEnemy;
     [SerializeField] List<Transform> spawnList= new List<Transform>();
-    [SerializeField] int spawnIndex=0;
+    private int spawnIndex=0;
+    [Tooltip("0 = nemico melee\n 1 = nemico ranged")]
+    [SerializeField] private int tipoNemico;
+    [Tooltip("false = calcolo random\n true = crea solo nemici dati da tipoNemico")]
+    [SerializeField] bool decideLuca;
     private int idControl = 0;
     private void Awake()
     {
@@ -22,7 +26,9 @@ public class Spawner : AIArea
             
             for(spawnIndex = 0; spawnIndex < maxEnemiesNumber; spawnIndex++)
             {
-                float enemyType = Random.value;
+                float enemyType;
+                if (!decideLuca) enemyType = Random.value;
+                else enemyType = tipoNemico;
                 GameObject nextSpawningEnemy;
                 if (enemyType < .5f) nextSpawningEnemy = meleeEnemy;
                 else nextSpawningEnemy = rangedEnemy;

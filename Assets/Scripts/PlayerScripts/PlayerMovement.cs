@@ -393,7 +393,7 @@ public class PlayerMovement : MonoBehaviour
                 isMoving = true;
                 horizontalMovement = new Vector3(moveDir.x, 0f, moveDir.z);
                 playerController.Move(horizontalMovement * Time.deltaTime);
-                Debug.Log(moveDir);
+                //Debug.Log(moveDir);
                 //}
                 /*else
                 {
