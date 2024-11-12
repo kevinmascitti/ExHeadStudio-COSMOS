@@ -89,6 +89,7 @@ public class Enemy : Character
     {
         base.Die();
         animator.SetBool("isDead", true);
+        OnEnemyDestroyed?.Invoke(this, new EnemyTr(this.gameObject.transform));
         StartCoroutine(DestroyAfterAnimationEnd("Nemico_Base_Morte"));
         
     }
@@ -158,18 +159,13 @@ public class Enemy : Character
     }
     public void SetWeaponCollider(bool v)
     {
-        if (v) 
+        if (v)
         {
             myWeapon.ActivateCollider();
-                 return; 
+            return;
         }
         myWeapon.DeactivateCollider();
-        
-    }
 
-    public void OnDestroy()
-    {
-        OnEnemyDestroyed?.Invoke(this, new EnemyTr(this.gameObject.transform));
     }
 
 }

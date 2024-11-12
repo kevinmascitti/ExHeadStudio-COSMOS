@@ -8,7 +8,8 @@ using System;
 
 public abstract class ActiveAbilities : MonoBehaviour
 {
-    [Tooltip("Per le abilità continue, meglio considerare un cooldown più lungo della durata stessa dell'abilità. C'è un bug.")]
+
+
     [SerializeField] protected float cooldownTime, timeForContinous = 5f;
     [SerializeField] Image frontAbilityImage;
     [SerializeField] TMPro.TextMeshProUGUI abilityText;
