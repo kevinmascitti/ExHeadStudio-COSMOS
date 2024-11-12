@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PuzzleManagerFirstDoor : MonoBehaviour
@@ -12,7 +11,6 @@ public class PuzzleManagerFirstDoor : MonoBehaviour
 
     private FireInteractive rampicantiScript;
     private int brazierCounter = 0;
-    private bool rampicantiDistrutti = false;
 
     private void Start()
     {
@@ -23,14 +21,10 @@ public class PuzzleManagerFirstDoor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(brazierCounter == brazierNumber && !rampicantiDistrutti)
+        if(brazierCounter == brazierNumber)
         {
             rampicantiScript.canDestroy = true;
-            rampicantiDistrutti = true;
-            rampicantiScript.DisappearingForPuzzle();
         }
-
-        if (rampicantiDistrutti) Destroy(gameObject);
     }
 
     private void Count()
