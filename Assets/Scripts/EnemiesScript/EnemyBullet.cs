@@ -13,7 +13,7 @@ public class EnemyBullet : MonoBehaviour
     [SerializeField] Element bulletElement;
     [SerializeField] LayerMask playerMask;
     [SerializeField] LayerMask blockMask;
-    [SerializeField] ParticleSystem bulletSmokeEffect;
+    [SerializeField] GameObject bulletSmokeEffect;
     [SerializeField] ParticleSystem collisionParticle;
     Collider[] playerHit = new Collider[1];
     Rigidbody rb;
@@ -28,7 +28,7 @@ public class EnemyBullet : MonoBehaviour
     }*/
     void Awake()
     {
-        bulletSmokeEffect.Play();
+        bulletSmokeEffect.GetComponent<ParticleSystem>().Play();
         rb = GetComponent<Rigidbody>();
         Destroy(gameObject, bulletDestroyTime);
         rb.velocity = (gameObject.transform.forward * bulletSpeed);//ho aggiunto un offset per non sparare troppo in basso
@@ -37,7 +37,7 @@ public class EnemyBullet : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         collisionParticle.Play();
-        bulletSmokeEffect.Stop();
+        bulletSmokeEffect.GetComponent<ParticleSystem>().Stop();
          if(Physics.OverlapSphereNonAlloc(gameObject.transform.position, damageRadius, playerHit, playerMask) != 0)
         {
             float distance = Vector3.Distance(gameObject.transform.position, playerHit[0].transform.position);

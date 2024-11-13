@@ -71,7 +71,11 @@ public class AIArea: MonoBehaviour
         }
         return Vector3.zero;
     }
-   
+    private void OnDestroy()
+    {
+        enemyList = null;
+    }
+
 }
 public class OnPlayerArg : EventArgs
 {
