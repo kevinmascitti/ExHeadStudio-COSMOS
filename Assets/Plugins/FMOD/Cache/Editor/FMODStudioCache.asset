@@ -108,6 +108,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1223
+--- !u!114 &-150209927628019394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/EnemyFootseps
+  m_EditorClassIdentifier: 
+  Path: event:/EnemyFootseps
+  Guid:
+    Data1: -1870597725
+    Data2: 1330633471
+    Data3: -663757405
+    Data4: -856111624
+  Banks:
+  - {fileID: 1075445325735490855}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 525
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,12 +165,14 @@ MonoBehaviour:
   - {fileID: 3651110136251447606}
   - {fileID: -7802487299841381487}
   - {fileID: 7527580614140638624}
+  - {fileID: -150209927628019394}
+  - {fileID: 7098847637458926574}
   EditorParameters: []
   MasterBanks:
   - {fileID: 1075445325735490855}
   StringsBanks:
   - {fileID: 5783486797186047666}
-  cacheTime: 638670364020820771
+  cacheTime: 638671087713462744
   cacheVersion: 131618
 --- !u!114 &249055530296836542
 MonoBehaviour:
@@ -187,7 +216,7 @@ MonoBehaviour:
   Path: Assets/FModBanks/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638670364020800771
+  lastModified: 638671087713462744
   FileSizes: []
   Exists: 1
 --- !u!114 &3079671008159188711
@@ -259,10 +288,10 @@ MonoBehaviour:
   Path: Assets/FModBanks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638670364020820771
+  lastModified: 638671087713462744
   FileSizes:
   - Name: 
-    Value: 1338
+    Value: 1430
   Exists: 1
 --- !u!114 &6088727695221483639
 MonoBehaviour:
@@ -372,6 +401,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 873
+--- !u!114 &7098847637458926574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PatrolIdle
+  m_EditorClassIdentifier: 
+  Path: event:/PatrolIdle
+  Guid:
+    Data1: 678027230
+    Data2: 1087350815
+    Data3: -951919480
+    Data4: 1075788979
+  Banks:
+  - {fileID: 1075445325735490855}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1492
 --- !u!114 &7172740162735360600
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -386,10 +442,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/GoblinClaw
   Guid:
-    Data1: -1561783272
-    Data2: 1282492357
-    Data3: 521725873
-    Data4: -1479289668
+    Data1: 746351623
+    Data2: 1164444546
+    Data3: -80105568
+    Data4: 1215397342
   Banks:
   - {fileID: 1075445325735490855}
   IsStream: 0
@@ -398,7 +454,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
+  Length: 1771
 --- !u!114 &7527580614140638624
 MonoBehaviour:
   m_ObjectHideFlags: 0
