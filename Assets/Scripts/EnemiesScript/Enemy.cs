@@ -21,7 +21,7 @@ public class Enemy : Character
     [Header("HelthBar nemico")]
     [SerializeField] private Image frontSprite;
     [SerializeField] private Image backSprite;
-    [Tooltip("Velocità con cui diminuisce la salute")]
+    [Tooltip("Velocitï¿½ con cui diminuisce la salute")]
     [SerializeField] float chipSpeed;
     private float lerpTimer;
     [SerializeField] GameObject cureObject;
@@ -31,6 +31,7 @@ public class Enemy : Character
     {
         base.Awake();
         myWeapon = GetComponentInChildren<EnemyWeapon>();
+      
         UpdateHP(defHP);
         OnEnemySpawn?.Invoke(this, EventArgs.Empty);
         gameObject.layer = LayerMask.NameToLayer("Enemy");
@@ -43,6 +44,7 @@ public class Enemy : Character
                 break;
             }
         }
+          this.GetComponent<VFXTriggerEnemy>().vfxList[0].transform.parent = null;
        // EnemyWeapon.OnPlayerCollision += DoDamage;//QUESTO EVENTO NON ESISTE???? ESISTE IN PLAYERHITTER
         
     }
@@ -108,6 +110,8 @@ public class Enemy : Character
         }
 
         yield return new WaitForSeconds(2f);
+        this.GetComponent<VFXTriggerEnemy>().DeathVFX();
+         this.GetComponent<VFXTriggerEnemy>().vfxList[0].transform.position = this.transform.position;
         SpawnCureObject();
         Destroy(gameObject);
     }
