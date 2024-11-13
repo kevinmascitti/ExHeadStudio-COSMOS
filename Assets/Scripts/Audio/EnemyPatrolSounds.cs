@@ -13,7 +13,16 @@ public class EnemyPatrolSounds : MonoBehaviour
         goblinAttack.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
         goblinAttack.start();
         goblinAttack.release();
-
-       // Debug.Log("Lmao");
     }
+
+    private FMOD.Studio.EventInstance goblinStep;
+
+    public void PlayGoblinSteps()
+    {
+        goblinStep = FMODUnity.RuntimeManager.CreateInstance("event:/EnemyFootseps");
+        goblinStep.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+        goblinStep.start();
+        goblinStep.release();
+    }
+
 }

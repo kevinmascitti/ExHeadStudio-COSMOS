@@ -27,7 +27,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 389701
---- !u!114 &-7802487299841381487
+--- !u!114 &-7775612794683409485
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -37,9 +37,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Ciro Idle
+  m_Name: event:/CiroIdle
   m_EditorClassIdentifier: 
-  Path: event:/Ciro Idle
+  Path: event:/CiroIdle
   Guid:
     Data1: -1313743997
     Data2: 1335468696
@@ -108,6 +108,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1223
+--- !u!114 &-2758367010719119557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/BracierePuzzle
+  m_EditorClassIdentifier: 
+  Path: event:/BracierePuzzle
+  Guid:
+    Data1: -1072274427
+    Data2: 1124055141
+    Data3: 630565782
+    Data4: 834888789
+  Banks:
+  - {fileID: 1075445325735490855}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 12787
 --- !u!114 &-150209927628019394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,7 +161,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 525
+  Length: 342
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,16 +190,20 @@ MonoBehaviour:
   - {fileID: 3079671008159188711}
   - {fileID: 6477929677659153271}
   - {fileID: 3651110136251447606}
-  - {fileID: -7802487299841381487}
   - {fileID: 7527580614140638624}
   - {fileID: -150209927628019394}
   - {fileID: 7098847637458926574}
+  - {fileID: -2758367010719119557}
+  - {fileID: 8516027955398693072}
+  - {fileID: -7775612794683409485}
+  - {fileID: 1187934917662558244}
+  - {fileID: 7813981169496543864}
   EditorParameters: []
   MasterBanks:
   - {fileID: 1075445325735490855}
   StringsBanks:
   - {fileID: 5783486797186047666}
-  cacheTime: 638671087713462744
+  cacheTime: 638671251852467585
   cacheVersion: 131618
 --- !u!114 &249055530296836542
 MonoBehaviour:
@@ -216,9 +247,36 @@ MonoBehaviour:
   Path: Assets/FModBanks/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638671087713462744
+  lastModified: 638671251852432464
   FileSizes: []
   Exists: 1
+--- !u!114 &1187934917662558244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/CiroHurt
+  m_EditorClassIdentifier: 
+  Path: event:/CiroHurt
+  Guid:
+    Data1: -756993547
+    Data2: 1107145037
+    Data3: -1334275674
+    Data4: -1780505951
+  Banks:
+  - {fileID: 1075445325735490855}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1513
 --- !u!114 &3079671008159188711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -288,10 +346,10 @@ MonoBehaviour:
   Path: Assets/FModBanks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638671087713462744
+  lastModified: 638671251852467585
   FileSizes:
   - Name: 
-    Value: 1430
+    Value: 1610
   Exists: 1
 --- !u!114 &6088727695221483639
 MonoBehaviour:
@@ -307,10 +365,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/Jump
   Guid:
-    Data1: 1801439197
-    Data2: 1077017530
-    Data3: -1052883266
-    Data4: -1566652838
+    Data1: -1602617422
+    Data2: 1220835360
+    Data3: 945692343
+    Data4: 32893037
   Banks:
   - {fileID: 1075445325735490855}
   IsStream: 0
@@ -319,7 +377,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
+  Length: 1513
 --- !u!114 &6477929677659153271
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -482,6 +540,60 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2241
+--- !u!114 &7813981169496543864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Shield
+  m_EditorClassIdentifier: 
+  Path: event:/Shield
+  Guid:
+    Data1: 1349321849
+    Data2: 1171697792
+    Data3: -627921508
+    Data4: -933191843
+  Banks:
+  - {fileID: 1075445325735490855}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 21290
+--- !u!114 &8516027955398693072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/BigBraciere
+  m_EditorClassIdentifier: 
+  Path: event:/BigBraciere
+  Guid:
+    Data1: 1528074287
+    Data2: 1163051404
+    Data3: -1446597209
+    Data4: 1506634063
+  Banks:
+  - {fileID: 1075445325735490855}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 15100
 --- !u!114 &8554698943037802728
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -64,4 +64,14 @@ public class PlayerSounds : MonoBehaviour
         axeSwing2.start();
         axeSwing2.release();
     }
+
+    private FMOD.Studio.EventInstance fireBall;
+
+    private void PlayFireBall()
+    {
+        fireBall = FMODUnity.RuntimeManager.CreateInstance("event:/Fireball");
+        fireBall.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+        fireBall.start();
+        fireBall.release();
+    }
 }
