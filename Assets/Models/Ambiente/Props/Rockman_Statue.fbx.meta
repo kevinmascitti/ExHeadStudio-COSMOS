@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 3eb3d32b66f21ec4fa77b441cf662e58
+guid: 23419e3806e99b24aab8936a73e406bf
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,8 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Zapman_Statue
-    second: {fileID: 2100000, guid: b0aea45a0c6e263418d263e76d4c06e5, type: 2}
+      name: Rockman_Statue
+    second: {fileID: 2100000, guid: c9bd7de67892986448b1062113a3e50c, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
