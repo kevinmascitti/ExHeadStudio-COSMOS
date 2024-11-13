@@ -38,7 +38,7 @@ public class PlayerSounds : MonoBehaviour
 
     private void PlayHighSwing()
     {
-        highSwing = FMODUnity.RuntimeManager.CreateInstance("event:/HighHeavySwing");
+        axeSwing2 = FMODUnity.RuntimeManager.CreateInstance("event:/HighHeavySwing");
         highSwing.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
         highSwing.start();
         highSwing.release();
@@ -54,4 +54,14 @@ public class PlayerSounds : MonoBehaviour
         lowSwing.release();
     }
 
- }
+
+    private FMOD.Studio.EventInstance axeSwing2;
+
+    private void PlaySwing2()
+    {
+        axeSwing2 = FMODUnity.RuntimeManager.CreateInstance("event:/AxeSwing 2");
+        axeSwing2.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+        axeSwing2.start();
+        axeSwing2.release();
+    }
+}

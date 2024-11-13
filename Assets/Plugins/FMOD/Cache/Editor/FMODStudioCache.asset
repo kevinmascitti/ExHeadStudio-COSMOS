@@ -27,6 +27,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 389701
+--- !u!114 &-7802487299841381487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Ciro Idle
+  m_EditorClassIdentifier: 
+  Path: event:/Ciro Idle
+  Guid:
+    Data1: -1313743997
+    Data2: 1335468696
+    Data3: 655552909
+    Data4: 1292357409
+  Banks:
+  - {fileID: 1075445325735490855}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2272
 --- !u!114 &-7193440275585961857
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -108,12 +135,15 @@ MonoBehaviour:
   - {fileID: -7193440275585961857}
   - {fileID: 3079671008159188711}
   - {fileID: 6477929677659153271}
+  - {fileID: 3651110136251447606}
+  - {fileID: -7802487299841381487}
+  - {fileID: 7527580614140638624}
   EditorParameters: []
   MasterBanks:
   - {fileID: 1075445325735490855}
   StringsBanks:
   - {fileID: 5783486797186047666}
-  cacheTime: 638653051220000000
+  cacheTime: 638670364020820771
   cacheVersion: 131618
 --- !u!114 &249055530296836542
 MonoBehaviour:
@@ -157,7 +187,7 @@ MonoBehaviour:
   Path: Assets/FModBanks/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638653051220000000
+  lastModified: 638670364020800771
   FileSizes: []
   Exists: 1
 --- !u!114 &3079671008159188711
@@ -187,6 +217,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2202
+--- !u!114 &3651110136251447606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/AxeSwing 2
+  m_EditorClassIdentifier: 
+  Path: event:/AxeSwing 2
+  Guid:
+    Data1: 1047862114
+    Data2: 1105935097
+    Data3: 161392789
+    Data4: 1741618838
+  Banks:
+  - {fileID: 1075445325735490855}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1223
 --- !u!114 &5783486797186047666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,10 +259,10 @@ MonoBehaviour:
   Path: Assets/FModBanks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638653051220000000
+  lastModified: 638670364020820771
   FileSizes:
   - Name: 
-    Value: 1204
+    Value: 1338
   Exists: 1
 --- !u!114 &6088727695221483639
 MonoBehaviour:
@@ -342,6 +399,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &7527580614140638624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Fireball
+  m_EditorClassIdentifier: 
+  Path: event:/Fireball
+  Guid:
+    Data1: 721539996
+    Data2: 1330709368
+    Data3: -1909927772
+    Data4: -1457457049
+  Banks:
+  - {fileID: 1075445325735490855}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2241
 --- !u!114 &8554698943037802728
 MonoBehaviour:
   m_ObjectHideFlags: 0
