@@ -12,6 +12,8 @@ public abstract class ActiveAbilities : MonoBehaviour
 
     [SerializeField] protected float cooldownTime, timeForContinous = 5f;
     [SerializeField] Image frontAbilityImage;
+    [SerializeField] private Color iconColor;
+    [SerializeField] GameObject abilityIconCanvas;
     [SerializeField] TMPro.TextMeshProUGUI abilityText;
     [SerializeField] protected bool isContinous = false;
     [NonSerialized] public Animator playerAnimator;
@@ -39,11 +41,12 @@ public abstract class ActiveAbilities : MonoBehaviour
 
     private void OnEnable()
     {
-        frontAbilityImage.enabled = true;
+        abilityIconCanvas.SetActive(true);
+        frontAbilityImage.fillAmount = 1;
     }
     private void OnDisable()
     {
-        frontAbilityImage.enabled = false;
+        abilityIconCanvas.SetActive(false);
     }
 
     public virtual void Update()
@@ -103,7 +106,7 @@ public abstract class ActiveAbilities : MonoBehaviour
         if(isContinous)
         {
             if(cooldown) frontAbilityImage.color = Color.gray;
-            else frontAbilityImage.color = Color.green;
+            else frontAbilityImage.color = iconColor;
             abilityFraction = abilityTimer / timeForContinous;
                 frontAbilityImage.fillAmount = abilityFraction;
         }
