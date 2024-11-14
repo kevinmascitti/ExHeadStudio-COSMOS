@@ -39,7 +39,7 @@ public class AIArea: MonoBehaviour
             }
         }
         //All'inizio del gioco, salvo in ogni area i nemici all'interno e in caso il player
-        else if (other.gameObject.tag.Equals("Player"))
+        else if (other.gameObject.tag.Equals("Player") && !isPlayerInside)
         {
             isPlayerInside = true;
             OnPlayerEnter?.Invoke(this, new OnPlayerArg(areaID));

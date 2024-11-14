@@ -25,7 +25,6 @@ public class Enemy : Character
     [SerializeField] float chipSpeed;
     private float lerpTimer;
     [SerializeField] GameObject cureObject;
-    private int enemyID;
     private EnemyWeapon myWeapon;
     void Awake()
     {
@@ -79,14 +78,7 @@ public class Enemy : Character
             else player.TakeDamage(stats.elemAtk[enemyElement] + atk - player.def - player.stats.elemDef[enemyElement], enemyElement);
         
     }
-    public int GetID()
-    {
-        return enemyID;
-    }
-    public void SetID(int eID)
-    {
-        enemyID = eID;
-    }
+    
     public override void Die()
     {
         base.Die();

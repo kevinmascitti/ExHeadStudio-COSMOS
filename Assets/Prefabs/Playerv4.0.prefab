@@ -11869,13 +11869,6 @@ MonoBehaviour:
   abilityText: {fileID: 0}
   isContinous: 1
   shield: {fileID: 3075625862627813409}
-  <shieldSound>k__BackingField:
-    Guid:
-      Data1: 1349321849
-      Data2: 1171697792
-      Data3: -627921508
-      Data4: -933191843
-    Path: event:/Shield
 --- !u!1 &6249792446850713992
 GameObject:
   m_ObjectHideFlags: 0
@@ -13254,7 +13247,7 @@ MonoBehaviour:
   currentHP: 100
   isPlayer: 1
   atk: 30
-  def: 10
+  def: 7
   normalAtk: 0
   normalDef: 0
   waterAtk: 0
@@ -13296,7 +13289,8 @@ MonoBehaviour:
   dodgeDistance: 10
   dodgeRightDistance: 4
   dodgeLeftDistance: 4
-  maxDistanceNPC: 5.07
+  axe: {fileID: 7802411885177929003}
+  maxDistanceNPC: 5
   npcLayer:
     serializedVersion: 2
     m_Bits: 1024
@@ -13313,6 +13307,7 @@ MonoBehaviour:
   healthBar: {fileID: 0}
   abilitiesSection: {fileID: 0}
   vfxList:
+  - {fileID: 0}
   - {fileID: 0}
 --- !u!114 &4561421796706817298
 MonoBehaviour:

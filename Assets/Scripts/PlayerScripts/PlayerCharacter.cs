@@ -57,6 +57,8 @@ public class PlayerCharacter : Character
     [SerializeField] private float dodgeRightDistance = 5f;
     [SerializeField] private float dodgeLeftDistance = 5f;
     private Vector3 movementDirection;
+    [Tooltip("Object ascia in mano a ciro, serve per sapere quando l'ascia è attiva")]
+    [SerializeField] private GameObject axe;
     public float maxDistanceNPC = 5f;
     public LayerMask npcLayer;
     [SerializeField] private ChoicePieceManager choicePieceManager;
@@ -176,7 +178,8 @@ public class PlayerCharacter : Character
         
         if ((isInputOn || isFighting)
             && ((Time.time >= nextActionTimer && attacksDone == 0) || attacksDone != 0)
-            && Input.GetKeyDown(KeyCode.Mouse0))
+            && Input.GetKeyDown(KeyCode.Mouse0)
+            && axe.activeInHierarchy)
         {
 
             if (attacksDone == 0)
@@ -199,7 +202,8 @@ public class PlayerCharacter : Character
 
         }
         else if ((isInputOn || isFighting)
-            && Time.time >= nextActionTimer && Input.GetKeyDown(KeyCode.Mouse1))
+            && Time.time >= nextActionTimer && Input.GetKeyDown(KeyCode.Mouse1)
+            && axe.activeInHierarchy)
                // && animator.GetCurrentAnimatorStateInfo(0).IsName("Cyrus_Cosmos_Rig_Cyrus_Attacco_Pesante_#2_Anticipation"))
         {
            // Debug.Log(strongAttackIndex);
@@ -282,7 +286,7 @@ public class PlayerCharacter : Character
         base.Die();
         animator.SetTrigger("Death");
         OnPlayerDeath?.Invoke(this, EventArgs.Empty);
-        Debug.Log("DIED");
+        //Debug.Log("DIED");
         StartCoroutine(Respawn());
     }
 

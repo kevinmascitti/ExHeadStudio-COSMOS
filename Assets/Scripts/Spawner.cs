@@ -4,54 +4,67 @@ using UnityEngine;
 
 public class Spawner : AIArea
 {
-    [SerializeField] private int maxEnemiesNumber;
+    [SerializeField]private int maxEnemiesNumber;
     [SerializeField] GameObject meleeEnemy;
     [SerializeField] GameObject rangedEnemy;
     [SerializeField] List<Transform> spawnList= new List<Transform>();
-    private int spawnIndex=0;
+    private int spawnPos=0;
     [Tooltip("0 = nemico melee\n 1 = nemico ranged")]
     [SerializeField] private int tipoNemico;
     [Tooltip("false = calcolo random\n true = crea solo nemici dati da tipoNemico")]
     [SerializeField] bool decideLuca;
-    private int idControl = 0;
     private void Awake()
     {
         base.Awake();
+        maxEnemiesNumber = spawnList.Count;
     }
     
     public override void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag.Equals("Player") && count < maxEnemiesNumber)
+        if (other.gameObject.tag.Equals("Player") && enemyList.Count < maxEnemiesNumber)
         {
-            
-            for(spawnIndex = 0; spawnIndex < maxEnemiesNumber; spawnIndex++)
+            int currentEnemiesN=enemyList.Count;
+            for(int i = 0; i < maxEnemiesNumber-currentEnemiesN; i++)
             {
+                Debug.Log("Spawn");
                 float enemyType;
                 if (!decideLuca) enemyType = Random.value;
                 else enemyType = tipoNemico;
                 GameObject nextSpawningEnemy;
                 if (enemyType < .5f) nextSpawningEnemy = meleeEnemy;
                 else nextSpawningEnemy = rangedEnemy;
-                var enemy = Instantiate(nextSpawningEnemy, spawnList[spawnIndex].position, spawnList[spawnIndex].rotation );
+                int position = (int)  Random.Range(0f, spawnList.Count-0.1f);
+                var enemy = Instantiate(nextSpawningEnemy, spawnList[spawnPos].position, spawnList[spawnPos].rotation );
                 //enemy.GetComponent<Enemy>().SetID(++idControl);
                 enemyList.Add(enemy.GetComponent<Enemy>().GetInstanceID(), enemy);
                 enemy.GetComponent<StateController>().SetAreaOfAction(this);
+                spawnPos++;
             }
-            spawnIndex = 0;
-            count = enemyList.Count;
+            spawnPos = 0;
+            if (!isPlayerInside)
+            {
+                isPlayerInside = true;
+
+                OnPlayerEnter?.Invoke(this, new OnPlayerArg(areaID));
+            }
+            
+            //count = enemyList.Count;
             return;
         }
-        if(other.gameObject.tag.Equals("Enemy") || other.gameObject.tag.Equals("ShootingEnemy") && !enemyList.ContainsKey(other.gameObject.GetComponent<Enemy>().GetID()))
+        if(other.gameObject.tag.Equals("Enemy") || other.gameObject.tag.Equals("ShootingEnemy") && !enemyList.ContainsKey(other.gameObject.GetComponent<Enemy>().GetInstanceID()))
         {
             other.GetComponent<StateController>().SetAreaOfAction(this);
             enemyList.Add(other.gameObject.GetInstanceID(), other.gameObject);
-            count=enemyList.Count;
         }
         //All'inizio del gioco, salvo in ogni area i nemici all'interno e in caso il player
         else 
         {
-            isPlayerInside = true;
-            OnPlayerEnter?.Invoke(this, new OnPlayerArg(areaID));
+            if (!isPlayerInside)
+            {
+                isPlayerInside = true;
+
+                OnPlayerEnter?.Invoke(this, new OnPlayerArg(areaID));
+            }
         }
     }
 }

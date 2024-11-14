@@ -324,7 +324,6 @@ public class PlayerMovement : MonoBehaviour
        
         if (isGrounded == true && playerVector.y <= 0)
         {
-            player.isInputOn = true;
             isJumpFalling = false;
             //velocity.y = -0.5f; //serve ad essere sicuri che "senta" il terreno, vale come la gravità
             coyoteTimeCounter = coyoteTime;
@@ -434,7 +433,7 @@ public class PlayerMovement : MonoBehaviour
         {
             horizontalMovement.y = playerVector.y;
             playerController.Move(horizontalMovement * Time.fixedDeltaTime);
-            player.isInputOn = false;
+            
         }
         HandleGravity();
         HandleJump();

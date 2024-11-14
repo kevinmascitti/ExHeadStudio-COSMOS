@@ -20,7 +20,6 @@ public class CheckPointZoneScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("unity rompe il cazzo");
         if(other.CompareTag("Player"))
         {
             other.GetComponent<CharacterController>().enabled = false;
