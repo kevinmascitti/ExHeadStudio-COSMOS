@@ -135,6 +135,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 12787
+--- !u!114 &-939159189048629924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GoblinHurt
+  m_EditorClassIdentifier: 
+  Path: event:/GoblinHurt
+  Guid:
+    Data1: 1459473692
+    Data2: 1085571371
+    Data3: -1520757621
+    Data4: -1979919007
+  Banks:
+  - {fileID: 1075445325735490855}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1492
 --- !u!114 &-150209927628019394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -198,12 +225,14 @@ MonoBehaviour:
   - {fileID: -7775612794683409485}
   - {fileID: 1187934917662558244}
   - {fileID: 7813981169496543864}
+  - {fileID: -939159189048629924}
+  - {fileID: 4994651201109529841}
   EditorParameters: []
   MasterBanks:
   - {fileID: 1075445325735490855}
   StringsBanks:
   - {fileID: 5783486797186047666}
-  cacheTime: 638671941826383657
+  cacheTime: 638672006789495344
   cacheVersion: 131618
 --- !u!114 &249055530296836542
 MonoBehaviour:
@@ -247,7 +276,7 @@ MonoBehaviour:
   Path: Assets/FModBanks/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638671941826363317
+  lastModified: 638672006789495344
   FileSizes: []
   Exists: 1
 --- !u!114 &1187934917662558244
@@ -331,6 +360,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1223
+--- !u!114 &4994651201109529841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/BracierePuzzle 2
+  m_EditorClassIdentifier: 
+  Path: event:/BracierePuzzle 2
+  Guid:
+    Data1: -639725632
+    Data2: 1140524528
+    Data3: 1511235740
+    Data4: 1161365859
+  Banks:
+  - {fileID: 1075445325735490855}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 12787
 --- !u!114 &5783486797186047666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -346,10 +402,10 @@ MonoBehaviour:
   Path: Assets/FModBanks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638671941826383657
+  lastModified: 638672006789495344
   FileSizes:
   - Name: 
-    Value: 1610
+    Value: 1702
   Exists: 1
 --- !u!114 &6088727695221483639
 MonoBehaviour:
@@ -539,7 +595,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 2241
+  Length: 2202
 --- !u!114 &7813981169496543864
 MonoBehaviour:
   m_ObjectHideFlags: 0

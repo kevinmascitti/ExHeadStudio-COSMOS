@@ -70,14 +70,31 @@ public class Enemy : Character
     }*/
     public void DoDamage(PlayerCharacter player)
     {
-       
-            if (player.def > stats.elemAtk[enemyElement] + atk)
-            {
-                player.TakeDamage(0, enemyElement);
-            }
-            else player.TakeDamage(stats.elemAtk[enemyElement] + atk - player.def - player.stats.elemDef[enemyElement], enemyElement);
-        
+
+        if (player.def > stats.elemAtk[enemyElement] + atk)
+        {
+            player.TakeDamage(0, enemyElement);
+        }
+        else
+        {
+            player.TakeDamage(stats.elemAtk[enemyElement] + atk - player.def - player.stats.elemDef[enemyElement], enemyElement);
+            PlayCiroHurt();
+        }
     }
+    
+                
+            
+                            
+    private FMOD.Studio.EventInstance ciroHurt;
+
+    public void PlayCiroHurt()
+    {
+        ciroHurt = FMODUnity.RuntimeManager.CreateInstance("event:/CiroHurt");
+        ciroHurt.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+        ciroHurt.start();
+        ciroHurt.release();
+    }
+
     
     public override void Die()
     {

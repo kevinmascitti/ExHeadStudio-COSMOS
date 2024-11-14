@@ -25,4 +25,14 @@ public class EnemyPatrolSounds : MonoBehaviour
         goblinStep.release();
     }
 
+    private FMOD.Studio.EventInstance goblinIdle;
+
+    public void PlayGoblinIdle()
+    {
+        goblinIdle = FMODUnity.RuntimeManager.CreateInstance("event:/PatrolIdle");
+        goblinIdle.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+        goblinIdle.start();
+        goblinIdle.release();
+    }
+
 }

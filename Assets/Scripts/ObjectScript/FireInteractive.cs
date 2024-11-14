@@ -119,7 +119,17 @@ public class FireInteractive : MonoBehaviour
             gameObject.GetComponent<Collider>().enabled = false;
             alreadyLight = true;
         }
+        PlayBracierePuzzle();
+    }
 
+    private FMOD.Studio.EventInstance firePuzzle;
+
+    public void PlayBracierePuzzle()
+    {
+        firePuzzle = FMODUnity.RuntimeManager.CreateInstance("event:/BracierePuzzle");
+        firePuzzle.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+        firePuzzle.start();
+        firePuzzle.release();
     }
 
 
