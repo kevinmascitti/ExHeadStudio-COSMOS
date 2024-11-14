@@ -74,4 +74,14 @@ public class PlayerSounds : MonoBehaviour
         fireBall.start();
         fireBall.release();
     }
+
+    private FMOD.Studio.EventInstance gate;
+
+    private void PlayGatePuzzle()
+    {
+        gate = FMODUnity.RuntimeManager.CreateInstance("event:/GatePuzzle");
+        gate.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+        gate.start();
+        gate.release();
+    }
 }

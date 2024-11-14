@@ -298,39 +298,51 @@ public class PlayerCharacter : Character
         gameObject.transform.position = currentScenario.respawnPoint;
         Debug.Log("RESPAWNED");
     }
-   
- public void DoDamage(Enemy enemy, int wAtk)
+
+    public void DoDamage(Enemy enemy, int wAtk)
     {
-     
-        if(wAtk > enemy.def)
+
+        if (wAtk > enemy.def)
         {
             GameObject hitParticles = Instantiate(vfxList[0]) as GameObject; //viene istanziato un hit particle separato dall'originale
             //hitParticles.transform.parent = weaponList[0].transform; //si fa sì che l'hit particle si trovi nella posizione 
             hitParticles.transform.position = weaponList[0].transform.position;
-   
+
             StopTime(); // chiamato per effettuare l'hit stop / freeze frame
             enemy.TakeDamage(wAtk - enemy.def, activeRxElement);
-          
+
             hitParticles.SetActive(true);
 
             hitParticles.GetComponent<ParticleSystem>().Play();
             hitParticles.transform.parent = null;
-         
+
             StartCoroutine(DestroyParticle(hitParticles));
+            PlayPunch();
         }
-            
-       
-      
-        
-        //Da sistemare perché ora viene passato solo l'elemento del braccio destro
-    }
-
-
     
 
-    //StopTime serve per fermare il tempo viene richiamato quando il nemico prende danno
 
-    private void StopTime(){
+        
+
+
+
+    //Da sistemare perché ora viene passato solo l'elemento del braccio destro
+}
+
+
+private FMOD.Studio.EventInstance punch;
+
+        public void PlayPunch()
+        {
+            punch = FMODUnity.RuntimeManager.CreateInstance("event:/Punch");
+            punch.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+            punch.start();
+            punch.release();
+        }
+
+//StopTime serve per fermare il tempo viene richiamato quando il nemico prende danno
+
+private void StopTime(){
         StartCoroutine(ResumeTime());
         Time.timeScale = 0.0f;
         

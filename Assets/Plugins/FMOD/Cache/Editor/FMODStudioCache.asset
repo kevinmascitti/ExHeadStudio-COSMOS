@@ -108,6 +108,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1223
+--- !u!114 &-5927845133775753537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Punch
+  m_EditorClassIdentifier: 
+  Path: event:/Punch
+  Guid:
+    Data1: 1351087577
+    Data2: 1181326330
+    Data3: -1833030745
+    Data4: -642174798
+  Banks:
+  - {fileID: 1075445325735490855}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1771
 --- !u!114 &-2758367010719119557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,13 +253,14 @@ MonoBehaviour:
   - {fileID: 1187934917662558244}
   - {fileID: 7813981169496543864}
   - {fileID: -939159189048629924}
-  - {fileID: 4994651201109529841}
+  - {fileID: -5927845133775753537}
+  - {fileID: 2810184609615468098}
   EditorParameters: []
   MasterBanks:
   - {fileID: 1075445325735490855}
   StringsBanks:
   - {fileID: 5783486797186047666}
-  cacheTime: 638672006789495344
+  cacheTime: 638672145831391862
   cacheVersion: 131618
 --- !u!114 &249055530296836542
 MonoBehaviour:
@@ -276,7 +304,7 @@ MonoBehaviour:
   Path: Assets/FModBanks/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638672006789495344
+  lastModified: 638672145831356672
   FileSizes: []
   Exists: 1
 --- !u!114 &1187934917662558244
@@ -306,6 +334,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1513
+--- !u!114 &2810184609615468098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GatePuzzle
+  m_EditorClassIdentifier: 
+  Path: event:/GatePuzzle
+  Guid:
+    Data1: 886212634
+    Data2: 1085274400
+    Data3: -1453715273
+    Data4: 220927236
+  Banks:
+  - {fileID: 1075445325735490855}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 5605
 --- !u!114 &3079671008159188711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -360,33 +415,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1223
---- !u!114 &4994651201109529841
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/BracierePuzzle 2
-  m_EditorClassIdentifier: 
-  Path: event:/BracierePuzzle 2
-  Guid:
-    Data1: -639725632
-    Data2: 1140524528
-    Data3: 1511235740
-    Data4: 1161365859
-  Banks:
-  - {fileID: 1075445325735490855}
-  IsStream: 1
-  Is3D: 1
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 12787
 --- !u!114 &5783486797186047666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -402,10 +430,10 @@ MonoBehaviour:
   Path: Assets/FModBanks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638672006789495344
+  lastModified: 638672145831391862
   FileSizes:
   - Name: 
-    Value: 1702
+    Value: 1756
   Exists: 1
 --- !u!114 &6088727695221483639
 MonoBehaviour:
