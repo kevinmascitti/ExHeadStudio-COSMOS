@@ -455,7 +455,7 @@ public class PlayerCharacter : Character
     {
         Ray ray = new Ray();
         RaycastHit[] raycastHit;
-        raycastHit = Physics.SphereCastAll(transform.position, 2f, Vector3.forward, maxDistanceNPC, npcLayer);
+        raycastHit = Physics.SphereCastAll(Camera.main.transform.position, 3f, Vector3.forward, maxDistanceNPC, npcLayer);
         if (raycastHit.Length > 0 && raycastHit[0].collider
             && raycastHit[0].transform.TryGetComponent(out NPC npc)
             && Input.GetKeyDown(KeyCode.E)

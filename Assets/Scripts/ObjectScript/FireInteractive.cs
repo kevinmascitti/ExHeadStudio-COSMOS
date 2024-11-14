@@ -19,6 +19,9 @@ public class FireInteractive : MonoBehaviour
 
     [SerializeField] private bool isFirstDoorPuzzle = false;
 
+    private Animator anim, childAnimator;
+    private bool animationPLayed = false;
+
     public static EventHandler<EnemyTr> OnEnemyDestroyed; //questo evento è dichiarato in enemy, ma ho bisogno di chiamare la stessa logica
 
     //Dichiaro un evento per il puzzle dei bracieri
@@ -80,10 +83,15 @@ public class FireInteractive : MonoBehaviour
     public void DisappearingForPuzzle()
     { 
         
-        if(canDestroy)
+        if(canDestroy && !animationPLayed)
         {
             OnEnemyDestroyed?.Invoke(this, new EnemyTr(this.gameObject.transform));
-            Destroy(gameObject, disappearTime);
+            anim = GetComponent<Animator>();
+            childAnimator = GetComponentInChildren<Animator>();
+            childAnimator.SetTrigger("openDoor");
+            anim.SetInteger("openDoor", 1);
+            animationPLayed = false;
+            Destroy(gameObject, 10f);
         }
 
     }

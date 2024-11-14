@@ -31,7 +31,7 @@ public class MovingPlatform : MonoBehaviour
         if (coll.CompareTag("Player"))
         {
 
-            coll.gameObject.transform.SetParent(transform, false);
+            coll.gameObject.transform.SetParent(transform, true);
         }
     }
 

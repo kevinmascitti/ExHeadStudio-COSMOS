@@ -53,7 +53,17 @@ public class LockOnCamSwitcher : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             if(!lockOn) //ho fatto un modifica sulla direzione, prima era solo transfomr.forward e poi ho aggiunto un offset arbitrario sulla y
-                 enemyNumber = Physics.BoxCastNonAlloc(transform.position + new Vector3(0f, yOffset ,0f), lockOnDimensions, Camera.main.transform.forward, enemyArray, Quaternion.identity, lockOnRange, lockOnMask, QueryTriggerInteraction.Collide); //l'ultimo parametro permette di usare dei collider trigger
+            {
+                /*for (int i = 1; i < targetGroup.m_Targets.Length; i++)
+                {
+                    if (targetGroup.m_Targets[i].target != null)
+                        targetGroup.m_Targets[i].target.Find(lockOnEmptyName + "/" + lockOnObjName).gameObject.SetActive(false); //spengo a tutti l'indicatore
+
+                    targetGroup.RemoveMember(targetGroup.m_Targets[i].target);
+                }*/
+                enemyNumber = Physics.BoxCastNonAlloc(transform.position + new Vector3(0f, yOffset, 0f), lockOnDimensions, Camera.main.transform.forward, enemyArray, Quaternion.identity, lockOnRange, lockOnMask, QueryTriggerInteraction.Collide); //l'ultimo parametro permette di usare dei collider trigger
+            }
+                
 
             if(enemyNumber >=1)
             {
