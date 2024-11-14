@@ -37,6 +37,15 @@ public abstract class ActiveAbilities : MonoBehaviour
 
     }
 
+    private void OnEnable()
+    {
+        frontAbilityImage.enabled = true;
+    }
+    private void OnDisable()
+    {
+        frontAbilityImage.enabled = false;
+    }
+
     public virtual void Update()
     {
         if (isContinous)
@@ -94,7 +103,7 @@ public abstract class ActiveAbilities : MonoBehaviour
         if(isContinous)
         {
             if(cooldown) frontAbilityImage.color = Color.gray;
-            else frontAbilityImage.color = Color.red;
+            else frontAbilityImage.color = Color.green;
             abilityFraction = abilityTimer / timeForContinous;
                 frontAbilityImage.fillAmount = abilityFraction;
         }
