@@ -13,7 +13,6 @@ public enum WeaponType
     Punch,
 }
 
-[RequireComponent(typeof(CinemachineImpulseSource))]
 
 public class Weapon : Piece
 {
@@ -23,7 +22,7 @@ public class Weapon : Piece
     //
     public WeaponType weaponType;
     public float movementSpeed;
-    public int atk;
+    //public int atk;
     [SerializeField] private LayerMask enemyLayer;
 
     private CinemachineImpulseSource cameraShake;
@@ -67,7 +66,7 @@ public class Weapon : Piece
             //TimeResume();
             //Debug.Log("Preso");
             if (other.gameObject.GetComponent<Enemy>() != null)
-                playerCharacter.DoDamage(other.gameObject.GetComponent<Enemy>(), this.atk);
+                playerCharacter.DoDamage(other.gameObject.GetComponent<Enemy>(), playerCharacter.currentAtk);
             //OnEnemyCollision?.Invoke(this, new EnemyCollisionArgs(other.gameObject.GetComponent<Enemy>(), this));
         }
     }

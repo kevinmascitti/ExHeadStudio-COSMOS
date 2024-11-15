@@ -205,11 +205,11 @@ public class LockOnCamSwitcher : MonoBehaviour
     {
         if(targetGroup.FindMember(args.tr) != -1)
         {
-            targetGroup.RemoveMember(args.tr); //quando un nemico viene distrutto, lo elimino
             if (targetGroup.FindMember(args.tr) == enemyIndex)
             {
                 enemyIndex++;
             }
+            targetGroup.RemoveMember(args.tr); //quando un nemico viene distrutto, lo elimino
         }
         if (enemyIndex >= targetGroup.m_Targets.Length)
             enemyIndex = 1;

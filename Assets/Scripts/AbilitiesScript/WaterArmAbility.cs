@@ -14,7 +14,6 @@ public class WaterArmAbility : ActiveAbilities
 
     private LockOnCamSwitcher lockOnScript;
     private Ray ray;
-    private CinemachineImpulseSource cameraShake;
 
     [SerializeField] private BeamEmitter waterEffectScript;
     [SerializeField] private GameObject waterEffectObj;
@@ -28,13 +27,11 @@ public class WaterArmAbility : ActiveAbilities
     public override void Ability()
     {
         waterEffectObj.SetActive(true);
-        //Debug.DrawRay(startPosition.position, Camera.main.transform.forward * maxRange, Color.white, 0.5f);
 
         if(lockOnScript.lockOn)
         {
             waterEffectScript.SetBeamTarget(lockOnScript.GetCurrentEnemyTr());
              ray = new Ray(this.startPosition.position, (lockOnScript.GetCurrentEnemyTr().position - this.startPosition.position).normalized * maxRange);
-            
         }
         else
         {
@@ -45,15 +42,15 @@ public class WaterArmAbility : ActiveAbilities
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, maxRange, mask))
         {
-            if(hit.rigidbody != null)
+            if(hit.rigidbody != null && !lockOnScript.lockOn)
             {
-                hit.rigidbody.AddForce(hit.point * forceMagnitude, ForceMode.Impulse);
+                hit.rigidbody.AddForce((beamBaseTarget.position-transform.position) * forceMagnitude, ForceMode.Impulse);
             }
-    
-        }
-        if ((cameraShake = GetComponent<CinemachineImpulseSource>()) != null)
-        {
-            cameraShake.GenerateImpulse();
+            if (hit.rigidbody != null && lockOnScript.lockOn)
+            {
+                hit.rigidbody.AddForce((lockOnScript.GetCurrentEnemyTr().position - transform.position) * forceMagnitude, ForceMode.Impulse);
+            }
+
         }
     }
 

@@ -282,7 +282,6 @@ public class PlayerMovement : MonoBehaviour
     [Header("Camera")]
     [Tooltip("Assegnare la Main")]
     [SerializeField] private Transform mainCamera;
-    [SerializeField] float rotationSpeed = 4f;
 
 
     [Header("Lock-On")]

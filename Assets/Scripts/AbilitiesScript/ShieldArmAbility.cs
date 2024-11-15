@@ -23,8 +23,6 @@ public class ShieldArmAbility : ActiveAbilities
         shield.SetActive(true);
         PlayShield();
 
-        Debug.Log("seso");
-
 
         if (!shield.GetComponent<ParticleSystem>().isPlaying)
         {

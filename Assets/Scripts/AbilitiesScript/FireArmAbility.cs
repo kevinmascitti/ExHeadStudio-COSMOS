@@ -13,8 +13,6 @@ public class FireArmAbility : ActiveAbilities
     [SerializeField] Transform bulletStartPosition;
     [SerializeField] GameObject bulletPrefab;
 
-    private CinemachineImpulseSource cameraShake; //impulso per muovere la camera allo sparo
-
     private int triggerID = Animator.StringToHash("isFireballShoot");
 
     public override void Ability()
@@ -26,10 +24,6 @@ public class FireArmAbility : ActiveAbilities
     {
         Instantiate(bulletPrefab, bulletStartPosition.position, bulletStartPosition.rotation);
         playerAnimator.SetBool(triggerID, false);
-        if ((cameraShake = GetComponent<CinemachineImpulseSource>()) != null )
-        {
-            cameraShake.GenerateImpulse();
-        }
     }
 }
 

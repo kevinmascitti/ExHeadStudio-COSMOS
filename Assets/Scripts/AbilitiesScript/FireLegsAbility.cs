@@ -1,15 +1,13 @@
 using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
-
-[RequireComponent(typeof(CinemachineImpulseSource))]
+using static CartoonFX.CFXR_Effect;
 public class FireLegsAbility : ActiveAbilities
 {
     [SerializeField] private float dashTime;
     [SerializeField] private float dashSpeed;
-
-    private CinemachineImpulseSource cameraShake;
 
     private PlayerMovement movementScript;
 
@@ -22,42 +20,16 @@ public class FireLegsAbility : ActiveAbilities
 
     public override void Update()
     {
-        if (isContinous)
+
+        if (Input.GetKey(KeyCode.E) && !cooldown)
         {
-            if (Input.GetKey(KeyCode.E) && abilityTimer >= 0.1f && !cooldown)
-            {
-                Ability();
-                abilityTimer -= Time.deltaTime;
-            }
-            else
-            {
-                StopAbility();
-                if (abilityTimer < 0.1f && !cooldown)
-                {
-                    cooldown = true;
-                    StartCoroutine("AbilityCooldown");
-                }
-                else if (abilityTimer < timeForContinous && cooldown)
-                {
-                    abilityTimer += Time.deltaTime;
-                }
-            }
+            Ability();
+            cooldown = true;
+            abilityTimer = 0;
+            StartCoroutine("AbilityCooldown");
         }
-        else
-        {
-            if (Input.GetKey(KeyCode.E) && !cooldown)
-            {
-                if ((cameraShake = GetComponent<CinemachineImpulseSource>()) != null)
-                {
-                    cameraShake.GenerateImpulse();
-                }
-                Ability();
-                cooldown = true;
-                abilityTimer = 0;
-                StartCoroutine("AbilityCooldown");
-            }
-            abilityTimer += Time.deltaTime;
-        }
+        abilityTimer += Time.deltaTime;
+
         UpdateAbiltyColumn();
     }
 

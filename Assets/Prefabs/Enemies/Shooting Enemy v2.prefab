@@ -240,8 +240,8 @@ MonoBehaviour:
   earthDef: 0
   canTakeDamageAgainTimer: 1
   enemyElement: 2
-  defHP: 20
-  MAX_HP: 20
+  defHP: 80
+  MAX_HP: 80
   frontSprite: {fileID: 818912605469486029}
   backSprite: {fileID: 3042649144369562608}
   chipSpeed: 1
@@ -291,7 +291,7 @@ MonoBehaviour:
   aimingDistance: 10
   idleDuration: 0
   patrolDuration: 0
-  aimDuration: 5
+  aimDuration: 2
   takeDistanceDuration: 0
   attackDuration: 0
 --- !u!195 &6099375619346915391
