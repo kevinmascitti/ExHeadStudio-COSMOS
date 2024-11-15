@@ -48,6 +48,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4487178518869903362, guid: c370b60197b50344aade3d8246fb8d9e,
+        type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 385
+      objectReference: {fileID: 0}
     - target: {fileID: 5101377931778459304, guid: c370b60197b50344aade3d8246fb8d9e,
         type: 3}
       propertyPath: m_LocalScale.z
@@ -107,6 +112,7 @@ PrefabInstance:
     - {fileID: 6240793585548019077, guid: c370b60197b50344aade3d8246fb8d9e, type: 3}
     - {fileID: 196062460518739984, guid: c370b60197b50344aade3d8246fb8d9e, type: 3}
     - {fileID: 1561501062356804729, guid: c370b60197b50344aade3d8246fb8d9e, type: 3}
+    - {fileID: 8985387625226523251, guid: c370b60197b50344aade3d8246fb8d9e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -119,12 +125,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 5136481307226349950}
   m_SourcePrefab: {fileID: 100100000, guid: c370b60197b50344aade3d8246fb8d9e, type: 3}
---- !u!198 &5538399777663993445 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 1582552114868158956, guid: c370b60197b50344aade3d8246fb8d9e,
-    type: 3}
-  m_PrefabInstance: {fileID: 6424951677668902793}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6566863248963088997 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 146416292059051500, guid: c370b60197b50344aade3d8246fb8d9e,
@@ -153,7 +153,6 @@ MonoBehaviour:
   playerCharacter: {fileID: 0}
   weaponType: 3
   movementSpeed: 0
-  atk: 0
   enemyLayer:
     serializedVersion: 2
     m_Bits: 16
@@ -165,12 +164,13 @@ MonoBehaviour:
   bulletElement: 2
   enemyMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 385
   blockMask:
     serializedVersion: 2
     m_Bits: 1
-  bulletSmokeEffect: {fileID: 5538399777663993445}
-  collisionParticle: {fileID: 7005689995103130044}
+  bulletSmokeEffect: {fileID: 0}
+  collisionParticle: {fileID: 0}
+  damage: 0
 --- !u!65 &5136481307226349950
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -181,7 +181,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -192,9 +192,3 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.5, y: 2, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!198 &7005689995103130044 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 4040633129275233845, guid: c370b60197b50344aade3d8246fb8d9e,
-    type: 3}
-  m_PrefabInstance: {fileID: 6424951677668902793}
-  m_PrefabAsset: {fileID: 0}

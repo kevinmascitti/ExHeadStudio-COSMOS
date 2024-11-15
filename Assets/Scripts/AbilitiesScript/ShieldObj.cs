@@ -28,6 +28,8 @@ public class ShieldObj : MonoBehaviour
         }
         else if(other.TryGetComponent<BulletScriptLauncherVariant>(out bulletScriptLauncherVariant))
         {
+            Debug.Log("hi");
+            bulletScriptLauncherVariant.damage = 0;
             Vector3 direction = (other.transform.forward).normalized; //acquisisce la direzione di movimento
             Vector3 inverse = direction * -1;
             Vector3 position = other.transform.position; //crea una reference

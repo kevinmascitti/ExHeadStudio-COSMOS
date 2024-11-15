@@ -21,7 +21,7 @@ public class BulletScriptLauncherVariant : Weapon
 
     private int maxEnemies = 25;
     private Collider[] enemiesArray;
-    private int damage;
+    public int damage;
     void Awake()
     {
         bulletSmokeEffect.Play();
@@ -33,6 +33,7 @@ public class BulletScriptLauncherVariant : Weapon
 
     private void OnCollisionEnter(Collision collision)
     {
+        Debug.Log("ho");
         collisionParticle.Play();
         bulletSmokeEffect.Stop();
 
@@ -50,7 +51,7 @@ public class BulletScriptLauncherVariant : Weapon
                 || distance <= 1)
             {
                 damage = Mathf.FloorToInt(Mathf.Lerp(maxDamage, minDamage, distance / damageRadius));
-                Enemy target = enemiesArray[i].GetComponentInParent<Enemy>();
+                PlayerCharacter target = enemiesArray[i].GetComponentInParent<PlayerCharacter>();
                 target.TakeDamage(damage, bulletElement);
 
             }
