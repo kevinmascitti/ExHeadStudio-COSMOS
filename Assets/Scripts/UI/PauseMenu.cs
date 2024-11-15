@@ -51,6 +51,17 @@ public class PauseMenu : MonoBehaviour
             item.enabled = false;
             Time.timeScale = 0f; //� una versione rudimentale per la pausa, va modificata per gli eventi che non avvengono in update
         }
+
+        PlayMorte();
+}
+    private FMOD.Studio.EventInstance deathSound;
+
+    public void PlayMorte()
+    {
+        deathSound = FMODUnity.RuntimeManager.CreateInstance("event:/Morte");
+        deathSound.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+        deathSound.start();
+        deathSound.release();
     }
     public void PauseGame()
     {

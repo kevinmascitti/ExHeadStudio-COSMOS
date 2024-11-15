@@ -255,12 +255,13 @@ MonoBehaviour:
   - {fileID: -939159189048629924}
   - {fileID: -5927845133775753537}
   - {fileID: 2810184609615468098}
+  - {fileID: 1779727484728961096}
   EditorParameters: []
   MasterBanks:
   - {fileID: 1075445325735490855}
   StringsBanks:
   - {fileID: 5783486797186047666}
-  cacheTime: 638672221697802656
+  cacheTime: 638672665897485751
   cacheVersion: 131618
 --- !u!114 &249055530296836542
 MonoBehaviour:
@@ -304,7 +305,7 @@ MonoBehaviour:
   Path: Assets/FModBanks/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638672221697791559
+  lastModified: 638672665897455690
   FileSizes: []
   Exists: 1
 --- !u!114 &1187934917662558244
@@ -334,6 +335,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1513
+--- !u!114 &1779727484728961096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Morte
+  m_EditorClassIdentifier: 
+  Path: event:/Morte
+  Guid:
+    Data1: 207054608
+    Data2: 1282545215
+    Data3: -991349113
+    Data4: -167353753
+  Banks:
+  - {fileID: 1075445325735490855}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 5718
 --- !u!114 &2810184609615468098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -430,10 +458,10 @@ MonoBehaviour:
   Path: Assets/FModBanks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638672221697802656
+  lastModified: 638672665897485751
   FileSizes:
   - Name: 
-    Value: 1756
+    Value: 1792
   Exists: 1
 --- !u!114 &6088727695221483639
 MonoBehaviour:
