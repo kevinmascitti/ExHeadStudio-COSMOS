@@ -33,7 +33,7 @@ public class BulletScriptLauncherVariant : Weapon
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("ho");
+        Debug.Log("ENonMancoDiNulla");
         collisionParticle.Play();
         bulletSmokeEffect.Stop();
 
@@ -51,8 +51,8 @@ public class BulletScriptLauncherVariant : Weapon
                 || distance <= 1)
             {
                 damage = Mathf.FloorToInt(Mathf.Lerp(maxDamage, minDamage, distance / damageRadius));
-                PlayerCharacter target = enemiesArray[i].GetComponentInParent<PlayerCharacter>();
-                target.TakeDamage(damage, bulletElement);
+               /* PlayerCharacter target = enemiesArray[i].GetComponentInParent<PlayerCharacter>();
+                target.TakeDamage(damage, bulletElement);*/
 
             }
         }

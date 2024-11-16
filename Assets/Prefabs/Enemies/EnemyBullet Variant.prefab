@@ -16,12 +16,12 @@ PrefabInstance:
     - target: {fileID: 1561501062356804729, guid: c370b60197b50344aade3d8246fb8d9e,
         type: 3}
       propertyPath: m_IncludeLayers.m_Bits
-      value: 256
+      value: 257
       objectReference: {fileID: 0}
     - target: {fileID: 4487178518869903362, guid: c370b60197b50344aade3d8246fb8d9e,
         type: 3}
       propertyPath: m_IncludeLayers.m_Bits
-      value: 256
+      value: 257
       objectReference: {fileID: 0}
     - target: {fileID: 5101377931778459304, guid: c370b60197b50344aade3d8246fb8d9e,
         type: 3}
@@ -75,6 +75,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6240793585548019077, guid: c370b60197b50344aade3d8246fb8d9e, type: 3}
+    - {fileID: 8985387625226523251, guid: c370b60197b50344aade3d8246fb8d9e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -102,7 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletDestroyTime: 2.5
-  damageRadius: 10
+  damageRadius: 15
   maxDamage: 30
   minDamage: 0
   bulletSpeed: 10
@@ -112,7 +113,7 @@ MonoBehaviour:
     m_Bits: 256
   blockMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 1
   bulletSmokeEffect: {fileID: 2331429811407916376, guid: 65fa61187a712bb45a0ac8e0955c3413,
     type: 3}
   collisionParticle: {fileID: 91396576481047385, guid: 2b971c1516193b94e98786bbab630a9d,

@@ -288,7 +288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   escapeDistance: 5
-  aimingDistance: 10
+  aimingDistance: 7
   idleDuration: 0
   patrolDuration: 0
   aimDuration: 2

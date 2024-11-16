@@ -36,6 +36,7 @@ public class EnemyBullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        Debug.Log("Povero");
         collisionParticle.Play();
         bulletSmokeEffect.GetComponent<ParticleSystem>().Stop();
          if(Physics.OverlapSphereNonAlloc(gameObject.transform.position, damageRadius, playerHit, playerMask) != 0)

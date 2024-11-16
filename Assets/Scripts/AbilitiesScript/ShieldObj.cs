@@ -7,7 +7,7 @@ public class ShieldObj : MonoBehaviour
 {
 
     private BulletScript bulletScript;
-    private BulletScriptLauncherVariant bulletScriptLauncherVariant;
+    private EnemyBullet enemyBullet;
     private EnemyWeapon enemyWeapon;
     private Enemy enemyScript;
     private Rigidbody enemyRb;
@@ -26,17 +26,15 @@ public class ShieldObj : MonoBehaviour
             other.GetComponent<Rigidbody>().velocity = reflected.normalized * mag;
 
         }
-        else if(other.TryGetComponent<BulletScriptLauncherVariant>(out bulletScriptLauncherVariant))
+        else if(other.TryGetComponent<EnemyBullet>(out enemyBullet))
         {
-            Debug.Log("hi");
-            bulletScriptLauncherVariant.damage = 0;
             Vector3 direction = (other.transform.forward).normalized; //acquisisce la direzione di movimento
             Vector3 inverse = direction * -1;
             Vector3 position = other.transform.position; //crea una reference
             Vector3 reflected = Vector3.Reflect(direction, transform.forward);
             other.transform.rotation = Quaternion.LookRotation(reflected);
             float mag = other.transform.GetComponent<Rigidbody>().velocity.magnitude;
-            bulletScriptLauncherVariant.SetVelocity(reflected.normalized * mag);
+            enemyBullet.SetVelocity(reflected.normalized * mag);
         }
         else if(other.TryGetComponent<EnemyWeapon>(out enemyWeapon))
         {
