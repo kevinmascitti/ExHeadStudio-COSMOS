@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -38,7 +39,7 @@ public class PlayerSounds : MonoBehaviour
 
     private void PlayHighSwing()
     {
-        axeSwing2 = FMODUnity.RuntimeManager.CreateInstance("event:/HighHeavySwing");
+        highSwing = FMODUnity.RuntimeManager.CreateInstance("event:/HeavySwing");
         highSwing.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
         highSwing.start();
         highSwing.release();
