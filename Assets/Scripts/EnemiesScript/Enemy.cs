@@ -10,7 +10,7 @@ public class Enemy : Character
 {
     public Element enemyElement;
     public Type type;
-    private Animator animator;
+    public Animator animator;
     public EventHandler OnEnemySpawn;
     public EventHandler OnEnemyDeath;
     public static EventHandler<EnemyTr> OnEnemyDestroyed; //evento per eliminare i nemici dal target group
@@ -170,6 +170,18 @@ public class Enemy : Character
             }
         }
     }
+
+       // 2 righe di codice per poter stunnare il nemico
+    public bool canBeStun = false;
+
+    public void StunOpportunity(){
+        canBeStun = true;
+    }
+
+    public void StunOpportunityOver(){
+        canBeStun = false;
+    }
+
     public void SetWeaponCollider(bool v)
     {
         if (v)

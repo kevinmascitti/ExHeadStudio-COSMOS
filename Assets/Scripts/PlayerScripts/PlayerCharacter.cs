@@ -312,6 +312,10 @@ public class PlayerCharacter : Character
 
         if (wAtk > enemy.def)
         {
+            //Potenzialmente può stannare il nemico se lui è in una certa fase dell'attacco
+            if(enemy.canBeStun && !enemy.animator.GetBool("isDead")){
+                enemy.animator.Play("Stunned");
+            }
             GameObject hitParticles = Instantiate(vfxList[0]) as GameObject; //viene istanziato un hit particle separato dall'originale
             //hitParticles.transform.parent = weaponList[0].transform; //si fa sì che l'hit particle si trovi nella posizione 
             hitParticles.transform.position = weaponList[0].transform.position;
