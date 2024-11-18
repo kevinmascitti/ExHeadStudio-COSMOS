@@ -15,24 +15,26 @@ public class AIArea: MonoBehaviour
     public static EventHandler<OnPlayerArg> OnPlayerEnter;
    
     public BoxCollider areaCollider;
+    public bool isArena;
+    public bool spawning=false;
+    public bool canSpawnAgain = true;
     public void Awake()
     {
         enemyList = new Dictionary<int, GameObject>();
         areaCollider = GetComponent<BoxCollider>();
         StateController.RemoveFromListAfterDeath += RemoveEnemy;
-
+        count = enemyList.Count;
 
     }
     
     virtual public void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag.Equals("Enemy") || other.gameObject.tag.Equals("ShootingEnemy") && !enemyList.ContainsKey(other.gameObject.GetInstanceID()))
+        if (other.gameObject.tag.Equals("Enemy") || other.gameObject.tag.Equals("ShootingEnemy") && !enemyList.ContainsKey(other.gameObject.GetInstanceID()) && !spawning)
         {
             enemyList.Add(other.gameObject.GetInstanceID(), other.gameObject);
 
             other.gameObject.GetComponent<StateController>().SetAreaOfAction(this);
 
-            count=enemyList.Count;
             if(isPlayerInside)
             {
                 other.gameObject.GetComponent<StateController>().canChase = true;
@@ -49,11 +51,24 @@ public class AIArea: MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         //Se il player esce dalla zona, i nemici smettono di inseguirlo
-        if (other.gameObject.tag.Equals("Player"))
+        if (other.gameObject.tag.Equals("Player") && !isArena)
         {
             isPlayerInside = false;
             OnPlayerExit?.Invoke(this, new OnPlayerArg(areaID));
+            return;
         }
+        else if (other.gameObject.tag.Equals("Player") && isArena)
+        {
+            foreach(int i in enemyList.Keys)
+            {
+                Debug.Log("Distruggendo: "+ enemyList[i].GetInstanceID());
+                Destroy(enemyList[i]);
+                
+            }
+            enemyList.Clear();
+            canSpawnAgain = true;
+}
+
         
     }
     private void RemoveEnemy(object sender, EnemyDeadArg e)

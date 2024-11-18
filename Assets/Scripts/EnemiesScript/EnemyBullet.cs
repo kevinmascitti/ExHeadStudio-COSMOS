@@ -36,14 +36,14 @@ public class EnemyBullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Povero");
+        //Debug.Log("Povero");
         collisionParticle.Play();
         bulletSmokeEffect.GetComponent<ParticleSystem>().Stop();
          if(Physics.OverlapSphereNonAlloc(gameObject.transform.position, damageRadius, playerHit, playerMask) != 0)
         {
             Debug.Log("Damage: 0");
             float distance = Vector3.Distance(gameObject.transform.position, playerHit[0].transform.position);
-            if (!Physics.Raycast(gameObject.transform.position, (playerHit[0].transform.position - gameObject.transform.position).normalized, damageRadius, blockMask.value)
+            if (Physics.Raycast(gameObject.transform.position, (playerHit[0].transform.position - gameObject.transform.position).normalized, damageRadius, blockMask.value)
                 || distance <= 1)
             {
                 damage = Mathf.FloorToInt(Mathf.Lerp(maxDamage, minDamage, distance / damageRadius));

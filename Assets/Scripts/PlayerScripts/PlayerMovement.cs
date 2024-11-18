@@ -254,6 +254,8 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Controlli Movimento")]
     [SerializeField, Range(0f, 100f)] float movementSpeed;
+    [Tooltip("La velocità orizzontale mentre Ciruzzo u' brav' uaglione sta saltando")]
+    [SerializeField, Range(0f, 10f)] float hJumpingSpeed;
     [SerializeField, Range(0f, 100f)] float maxJumpHeight = 1f;
     [SerializeField, Range(0f, 100f)] float turnSmoothTime = 0.1f;
     [SerializeField, Range(0f, 100f)] float maxJumpTime = .5f;
@@ -430,6 +432,7 @@ public class PlayerMovement : MonoBehaviour
         }
         if(playerVector.y> 2f && horizontalMovement != Vector3.zero)
         {
+            horizontalMovement=horizontalMovement.normalized*hJumpingSpeed;
             horizontalMovement.y = playerVector.y;
             playerController.Move(horizontalMovement * Time.fixedDeltaTime);
             

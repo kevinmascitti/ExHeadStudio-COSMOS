@@ -85,4 +85,14 @@ public class PlayerSounds : MonoBehaviour
         gate.start();
         gate.release();
     }
+
+    private FMOD.Studio.EventInstance cure;
+
+    private void PlayCure()
+    {
+        cure = FMODUnity.RuntimeManager.CreateInstance("event:/Heal");
+        cure.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+        cure.start();
+        cure.release();
+    }
 }

@@ -27,7 +27,7 @@ public class RepositionState : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-       // playerTransform = controller.GetPlayerTransform();
+        playerTransform = controller.GetPlayerTransform();
         controller.gameObject.transform.LookAt(playerTransform.position);
         float distance=controller.GetDistanceFromPlayer();
         if (repositionTimer >= repositionTime)

@@ -12,4 +12,9 @@ public class VFXTriggerEnemy : MonoBehaviour
         vfxList[0].GetComponent<ParticleSystem>().Play();
     }
 
+    public void StunOpportunityVFX(){
+        vfxList[1].GetComponent<ParticleSystem>().Play();
+    }
+
+
 }

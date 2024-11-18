@@ -24,6 +24,7 @@ public class CureObject : MonoBehaviour
             healParticles.transform.position = other.transform.position;
             healParticles.transform.parent = other.transform;
             healParticles.GetComponent<ParticleSystem>().Play();
+            PlayCure();
             float actual = other.gameObject.GetComponent<PlayerCharacter>().currentHP;
             actual += healthAmount;
             other.gameObject.GetComponent<PlayerCharacter>().UpdateHP(actual);
@@ -34,9 +35,17 @@ public class CureObject : MonoBehaviour
         //{
         //    StartCoroutine("DamageOverTime");
         //}
+        
+}
+    private FMOD.Studio.EventInstance cure;
 
+    private void PlayCure()
+    {
+        cure = FMODUnity.RuntimeManager.CreateInstance("event:/Heal");
+        cure.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+        cure.start();
+        cure.release();
     }
-
     IEnumerator DestroyParticle(GameObject particles)
     {
         yield return new WaitForSeconds(0.5f);
