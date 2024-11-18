@@ -54,13 +54,6 @@ public class LockOnCamSwitcher : MonoBehaviour
         {
             if(!lockOn) //ho fatto un modifica sulla direzione, prima era solo transfomr.forward e poi ho aggiunto un offset arbitrario sulla y
             {
-                /*for (int i = 1; i < targetGroup.m_Targets.Length; i++)
-                {
-                    if (targetGroup.m_Targets[i].target != null)
-                        targetGroup.m_Targets[i].target.Find(lockOnEmptyName + "/" + lockOnObjName).gameObject.SetActive(false); //spengo a tutti l'indicatore
-
-                    targetGroup.RemoveMember(targetGroup.m_Targets[i].target);
-                }*/
                 enemyNumber = Physics.BoxCastNonAlloc(transform.position + new Vector3(0f, yOffset, 0f), lockOnDimensions, Camera.main.transform.forward, enemyArray, Quaternion.identity, lockOnRange, lockOnMask, QueryTriggerInteraction.Collide); //l'ultimo parametro permette di usare dei collider trigger
             }
                 
@@ -97,6 +90,15 @@ public class LockOnCamSwitcher : MonoBehaviour
         {
             if (enemyIndex >= targetGroup.m_Targets.Length)
                 enemyIndex = 1;
+
+            if(targetGroup.m_Targets.Length >1 && targetGroup.m_Targets[enemyIndex].target == null)
+            {
+                enemyIndex++;
+                targetGroup.RemoveMember(targetGroup.m_Targets[enemyIndex-1].target);
+                if (enemyIndex >= targetGroup.m_Targets.Length)
+                    enemyIndex = 1;
+            }
+
 
             if (targetGroup.m_Targets.Length == 1 || Vector3.Distance(targetGroup.m_Targets[enemyIndex].target.position, transform.position) >= maxTargetDistance)
             {
@@ -146,13 +148,22 @@ public class LockOnCamSwitcher : MonoBehaviour
 
     private void ChangeToFree()
     {
-        for (int i = 1; i < targetGroup.m_Targets.Length; i++)
+        /*for (int i = 1; i < targetGroup.m_Targets.Length; i++)
+        {
+            if (targetGroup.m_Targets[i].target != null)
+                targetGroup.m_Targets[i].target.Find(lockOnEmptyName + "/" + lockOnObjName).gameObject.SetActive(false); //spengo a tutti l'indicatore
+
+            targetGroup.RemoveMember(targetGroup.m_Targets[i].target);
+        }*/
+
+        for (int i = targetGroup.m_Targets.Length-1; i > 0; i--)
         {
             if (targetGroup.m_Targets[i].target != null)
                 targetGroup.m_Targets[i].target.Find(lockOnEmptyName + "/" + lockOnObjName).gameObject.SetActive(false); //spengo a tutti l'indicatore
 
             targetGroup.RemoveMember(targetGroup.m_Targets[i].target);
         }
+
 
         playerFreeLookCam.Priority = 11;
         lockOnCam.Priority = 10;
@@ -229,7 +240,7 @@ public class LockOnCamSwitcher : MonoBehaviour
 
     private void OnDrawGizmos() //Test per vedere l'area del lock di Ciro
     {
-        Gizmos.DrawCube(transform.position + new Vector3(0f, yOffset, 0f), lockOnDimensions);
+        Gizmos.DrawCube(transform.position + new Vector3(0f, yOffset, 0f), 2*lockOnDimensions);
     }
 
     private void OnDestroy()

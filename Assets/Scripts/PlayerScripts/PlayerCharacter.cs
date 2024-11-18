@@ -247,8 +247,10 @@ public class PlayerCharacter : Character
         }
 
         def_HP = Mathf.Clamp(currentHP, 0, MAX_HP);
+        if (currentHP > MAX_HP) UpdateHP(MAX_HP);
         UpdateHPUI();
 
+        if(Input.GetKeyDown(KeyCode.E)) //Se la scatola non funziona più guardare qui e decomentare
         CheckForNPC();
     }
 
@@ -482,7 +484,7 @@ private void StopTime(){
         raycastHit = Physics.SphereCastAll(Camera.main.transform.position, 3f, Vector3.forward, maxDistanceNPC, npcLayer);
         if (raycastHit.Length > 0 && raycastHit[0].collider
             && raycastHit[0].transform.TryGetComponent(out NPC npc)
-            && Input.GetKeyDown(KeyCode.E)
+            //&& Input.GetKeyDown(KeyCode.E)
             && !choicePieceManager.isUIOpen)
         {
             OnChoicePieces?.Invoke(this, EventArgs.Empty);
@@ -492,7 +494,7 @@ private void StopTime(){
             healthBar.SetActive(false);
             abilitiesSection.SetActive(false);
         }
-        else if (choicePieceManager.isUIOpen && Input.GetKeyDown(KeyCode.E))
+        else if (choicePieceManager.isUIOpen) //&& Input.GetKeyDown(KeyCode.E))
         {
             OnEndChoicePieces?.Invoke(this, EventArgs.Empty);
             GetComponent<PlayerMovement>().enabled = true;
