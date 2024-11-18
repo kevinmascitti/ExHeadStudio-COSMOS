@@ -33,6 +33,7 @@ public class Enemy : Character
       
         UpdateHP(defHP);
         OnEnemySpawn?.Invoke(this, EventArgs.Empty);
+        PlayDespawn();
         gameObject.layer = LayerMask.NameToLayer("Enemy");
         animator = GetComponent<Animator>();
         foreach (Element e in stats.elemAtk.Keys)
@@ -46,6 +47,16 @@ public class Enemy : Character
           this.GetComponent<VFXTriggerEnemy>().vfxList[0].transform.parent = null;
        // EnemyWeapon.OnPlayerCollision += DoDamage;//QUESTO EVENTO NON ESISTE???? ESISTE IN PLAYERHITTER
         
+    }
+
+    private FMOD.Studio.EventInstance despawn;
+
+    public void PlayDespawn()
+    {
+        despawn = FMODUnity.RuntimeManager.CreateInstance("event:/DeSpawn");
+        despawn.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+        despawn.start();
+        despawn.release();
     }
 
     // Update is called once per frame
@@ -121,8 +132,10 @@ public class Enemy : Character
         yield return new WaitForSeconds(2f);
         this.GetComponent<VFXTriggerEnemy>().DeathVFX();
          this.GetComponent<VFXTriggerEnemy>().vfxList[0].transform.position = this.transform.position;
+        PlayDespawn();
         SpawnCureObject();
         Destroy(gameObject);
+        
     }
     private void SpawnCureObject()
     {
