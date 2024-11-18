@@ -2,69 +2,62 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spawner : AIArea
+public class Spawner : MonoBehaviour
 {
-    [SerializeField]private int maxEnemiesNumber;
+    Collider spawnTrigger;
+    [SerializeField] private int maxEnemiesNumber;
     [SerializeField] GameObject meleeEnemy;
     [SerializeField] GameObject rangedEnemy;
-    [SerializeField] List<Transform> spawnList= new List<Transform>();
-    private int spawnPos=0;
+    [SerializeField] List<Transform> spawnList = new List<Transform>();
+    private int spawnPos = 0;
     [Tooltip("0 = nemico melee\n 1 = nemico ranged")]
     [SerializeField] private int tipoNemico;
     [Tooltip("false = calcolo random\n true = crea solo nemici dati da tipoNemico")]
     [SerializeField] bool decideLuca;
+    [SerializeField] private AIArea aiArea;
+    
     private void Awake()
     {
-        base.Awake();
+        spawnTrigger = GetComponent<Collider>();
+        aiArea = GetComponentInParent<AIArea>();
         maxEnemiesNumber = spawnList.Count;
     }
-    
-    public override void OnTriggerEnter(Collider other)
+
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag.Equals("Player") && enemyList.Count < maxEnemiesNumber)
+        if (other.gameObject.tag.Equals("Player") && aiArea.enemyList.Count < maxEnemiesNumber && aiArea.canSpawnAgain)
         {
-            int currentEnemiesN=enemyList.Count;
-            for(int i = 0; i < maxEnemiesNumber-currentEnemiesN; i++)
+            aiArea.canSpawnAgain = false;
+            aiArea.spawning = true;
+            int currentEnemiesN = aiArea.enemyList.Count;
+            for (int i = 0; i < maxEnemiesNumber - currentEnemiesN; i++)
             {
-                Debug.Log("Spawn");
+                //Debug.Log("Spawn");
                 float enemyType;
                 if (!decideLuca) enemyType = Random.value;
                 else enemyType = tipoNemico;
                 GameObject nextSpawningEnemy;
                 if (enemyType < .5f) nextSpawningEnemy = meleeEnemy;
                 else nextSpawningEnemy = rangedEnemy;
-                int position = (int)  Random.Range(0f, spawnList.Count-0.1f);
-                var enemy = Instantiate(nextSpawningEnemy, spawnList[spawnPos].position, spawnList[spawnPos].rotation );
+                //int position = (int)Random.Range(0f, spawnList.Count - 0.1f);
+                var enemy = Instantiate(nextSpawningEnemy, spawnList[i].position, spawnList[i].rotation);
                 //enemy.GetComponent<Enemy>().SetID(++idControl);
-                enemyList.Add(enemy.GetComponent<Enemy>().GetInstanceID(), enemy);
-                enemy.GetComponent<StateController>().SetAreaOfAction(this);
-                spawnPos++;
-            }
-            spawnPos = 0;
-            if (!isPlayerInside)
-            {
-                isPlayerInside = true;
-
-                OnPlayerEnter?.Invoke(this, new OnPlayerArg(areaID));
+                aiArea.enemyList.Add(enemy.GetInstanceID(), enemy);
+                enemy.GetComponent<StateController>().SetAreaOfAction(aiArea);
+                Debug.Log(aiArea.enemyList[enemy.GetInstanceID()].GetInstanceID());
+               
             }
             
-            //count = enemyList.Count;
-            return;
+            StartCoroutine(WaitForIsSpawning());
+            
         }
-        if(other.gameObject.tag.Equals("Enemy") || other.gameObject.tag.Equals("ShootingEnemy") && !enemyList.ContainsKey(other.gameObject.GetComponent<Enemy>().GetInstanceID()))
-        {
-            other.GetComponent<StateController>().SetAreaOfAction(this);
-            enemyList.Add(other.gameObject.GetInstanceID(), other.gameObject);
-        }
-        //All'inizio del gioco, salvo in ogni area i nemici all'interno e in caso il player
-        else 
-        {
-            if (!isPlayerInside)
-            {
-                isPlayerInside = true;
-
-                OnPlayerEnter?.Invoke(this, new OnPlayerArg(areaID));
-            }
-        }
+    }
+    IEnumerator WaitForIsSpawning()
+    {
+        yield return new WaitForSeconds(2f);
+    }
+    private void OnTriggerExit(Collider other)
+    {
+       
     }
 }
