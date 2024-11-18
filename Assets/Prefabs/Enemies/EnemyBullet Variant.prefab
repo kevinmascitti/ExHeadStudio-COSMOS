@@ -21,12 +21,12 @@ PrefabInstance:
     - target: {fileID: 1561501062356804729, guid: c370b60197b50344aade3d8246fb8d9e,
         type: 3}
       propertyPath: m_IncludeLayers.m_Bits
-      value: 257
+      value: 256
       objectReference: {fileID: 0}
     - target: {fileID: 3317979504580894440, guid: c370b60197b50344aade3d8246fb8d9e,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4487178518869903362, guid: c370b60197b50344aade3d8246fb8d9e,
         type: 3}
@@ -113,8 +113,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletDestroyTime: 2.5
-  damageRadius: 15
-  maxDamage: 30
+  damageRadius: 5
+  maxDamage: 25
   minDamage: 0
   bulletSpeed: 10
   bulletElement: 0

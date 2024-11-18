@@ -11,7 +11,7 @@ public class PuzzleManagerFirstDoor : MonoBehaviour
     [SerializeField] private GameObject rampicantiPuzzle;
 
     private FireInteractive rampicantiScript;
-    private int brazierCounter = 0;
+    public int brazierCounter = 0;
     private bool rampicantiDistrutti = false;
 
     private void Start()

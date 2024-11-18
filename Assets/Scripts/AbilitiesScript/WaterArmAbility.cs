@@ -15,6 +15,8 @@ public class WaterArmAbility : ActiveAbilities
     private LockOnCamSwitcher lockOnScript;
     private Ray ray;
 
+    private Transform enemyTransform;
+
     [SerializeField] private BeamEmitter waterEffectScript;
     [SerializeField] private GameObject waterEffectObj;
     [SerializeField] private Transform beamBaseTarget;
@@ -31,7 +33,9 @@ public class WaterArmAbility : ActiveAbilities
             playerAnimator.Play("Cyrus_Cosmos_Rig_Cyrus_WaterJet"); 
             if(lockOnScript.lockOn)
             {
-                waterEffectScript.SetBeamTarget(lockOnScript.GetCurrentEnemyTr());
+                enemyTransform = lockOnScript.GetCurrentEnemyTr();
+                enemyTransform.position += new Vector3(0f, 1.5f, 0f);
+                waterEffectScript.SetBeamTarget(enemyTransform); //ho aggiunto un offset arbitratio per non sparare sui piedi
                 ray = new Ray(this.startPosition.position, (lockOnScript.GetCurrentEnemyTr().position - this.startPosition.position).normalized * maxRange);
             }
             else

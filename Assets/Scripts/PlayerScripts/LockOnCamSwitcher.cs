@@ -218,6 +218,7 @@ public class LockOnCamSwitcher : MonoBehaviour
         {
             if (targetGroup.FindMember(args.tr) == enemyIndex)
             {
+                targetGroup.m_Targets[enemyIndex].target.Find(lockOnEmptyName + "/" + lockOnObjName).gameObject.SetActive(false);
                 enemyIndex++;
             }
             targetGroup.RemoveMember(args.tr); //quando un nemico viene distrutto, lo elimino
@@ -226,6 +227,7 @@ public class LockOnCamSwitcher : MonoBehaviour
             enemyIndex = 1;
         if(targetGroup.m_Targets.Length >1)
             targetGroup.m_Targets[enemyIndex].target.Find(lockOnEmptyName + "/" + lockOnObjName).gameObject.SetActive(true);
+
     }
 
     public int GetEnemyIndex()

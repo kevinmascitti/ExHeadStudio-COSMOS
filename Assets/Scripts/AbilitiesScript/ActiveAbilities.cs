@@ -44,7 +44,7 @@ public abstract class ActiveAbilities : MonoBehaviour
         abilityIconCanvas.SetActive(true);
         frontAbilityImage.fillAmount = 1;
     }
-    private void OnDisable()
+    public void OnDisable()
     {
         abilityIconCanvas.SetActive(false);
     }
