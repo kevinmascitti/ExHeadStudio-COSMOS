@@ -6,7 +6,7 @@ public class TorchesForPuzzle : MonoBehaviour
 {
 
     //A CHI RINOMINA LE COSE TAGLIO LE MANI
-    [SerializeField] Light lightToSwitch;
+    [SerializeField] GameObject torchOrb;
     [SerializeField] int lightIndex;
 
     private PuzzleManagerFirstDoor puzzleManager;
@@ -14,7 +14,7 @@ public class TorchesForPuzzle : MonoBehaviour
     private bool alreadyLit;
     private void Awake()
     {
-        lightToSwitch.enabled = false;
+        torchOrb.SetActive(false);
         alreadyLit = false;
         puzzleManager = GameObject.Find("PuzzleManagerFirstDoor").GetComponent<PuzzleManagerFirstDoor>();
     }
@@ -23,7 +23,7 @@ public class TorchesForPuzzle : MonoBehaviour
     {
         if(!alreadyLit && puzzleManager.brazierCounter+1 == lightIndex) //questo più uno da vedere in base a come legge gli eventi 
         {
-            lightToSwitch.enabled = true;
+            torchOrb.SetActive(true);
             alreadyLit = true;
         }
     }

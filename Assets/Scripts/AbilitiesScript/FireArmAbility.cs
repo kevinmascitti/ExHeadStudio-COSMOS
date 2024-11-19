@@ -13,10 +13,17 @@ public class FireArmAbility : ActiveAbilities
     [SerializeField] Transform bulletStartPosition;
     [SerializeField] GameObject bulletPrefab;
 
+    private GameObject player;
+
     private int triggerID = Animator.StringToHash("isFireballShoot");
 
     public override void Ability()
     {
+        /*if(lockOnScript.lockOn)
+        {
+            player = GameObject.Find("Player");
+            Vector3.RotateTowards(player.transform.forward, lockOnScript.GetCurrentEnemyTr().position, 360, 5f);
+        }*/
         playerAnimator.SetBool(triggerID, true);       
     }
 
@@ -25,6 +32,8 @@ public class FireArmAbility : ActiveAbilities
         Instantiate(bulletPrefab, bulletStartPosition.position, bulletStartPosition.rotation);
         playerAnimator.SetBool(triggerID, false);
     }
+
+  
 }
 
 

@@ -21,10 +21,13 @@ public abstract class ActiveAbilities : MonoBehaviour
     protected float abilityFraction;
     protected bool cooldown = false;
 
+
+
     private void Awake()
     {
         frontAbilityImage.fillAmount = 1;
         playerAnimator = GetComponentInParent<Animator>();
+   
     }
     public virtual void Start()
     {
@@ -42,10 +45,12 @@ public abstract class ActiveAbilities : MonoBehaviour
     private void OnEnable()
     {
         abilityIconCanvas.SetActive(true);
+        abilityText.enabled = true;
         frontAbilityImage.fillAmount = 1;
     }
     public void OnDisable()
     {
+        abilityText.enabled = false;
         abilityIconCanvas.SetActive(false);
     }
 
