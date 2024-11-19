@@ -33,7 +33,7 @@ public class Enemy : Character
       
         UpdateHP(defHP);
         OnEnemySpawn?.Invoke(this, EventArgs.Empty);
-        PlayDespawn();
+        PlaySpawn();
         gameObject.layer = LayerMask.NameToLayer("Enemy");
         animator = GetComponent<Animator>();
         foreach (Element e in stats.elemAtk.Keys)
@@ -57,6 +57,16 @@ public class Enemy : Character
         despawn.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
         despawn.start();
         despawn.release();
+    }
+
+    private FMOD.Studio.EventInstance spawn;
+
+    public void PlaySpawn()
+    {
+        spawn = FMODUnity.RuntimeManager.CreateInstance("event:/Spawn");
+        spawn.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+        spawn.start();
+        spawn.release();
     }
 
     // Update is called once per frame

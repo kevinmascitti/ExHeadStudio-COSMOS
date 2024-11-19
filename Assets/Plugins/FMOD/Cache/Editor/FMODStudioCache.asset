@@ -204,10 +204,10 @@ MonoBehaviour:
   Path: Assets/FModBanks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638675563980000000
+  lastModified: 638676209357992452
   FileSizes:
   - Name: 
-    Value: 1870
+    Value: 1958
   Exists: 1
 --- !u!114 &-4943147270014602260
 MonoBehaviour:
@@ -316,7 +316,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 2026
+  Length: 2036
 --- !u!114 &-1919338287023657530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -494,12 +494,14 @@ MonoBehaviour:
   - {fileID: -4943147270014602260}
   - {fileID: 2006670905586908783}
   - {fileID: -3253300092096420038}
+  - {fileID: 7213234104082206929}
+  - {fileID: 1154371077015102329}
   EditorParameters: []
   MasterBanks:
   - {fileID: 3242763389841773268}
   StringsBanks:
   - {fileID: -5102002834016988035}
-  cacheTime: 638675563980000000
+  cacheTime: 638676209357992452
   cacheVersion: 131618
 --- !u!114 &765520483608951348
 MonoBehaviour:
@@ -528,6 +530,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 27053
+--- !u!114 &1154371077015102329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Spawn
+  m_EditorClassIdentifier: 
+  Path: event:/Spawn
+  Guid:
+    Data1: -1931693924
+    Data2: 1297007093
+    Data3: -1418390637
+    Data4: 1218952796
+  Banks:
+  - {fileID: 3242763389841773268}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2036
 --- !u!114 &1758225980676142035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -554,7 +583,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 1492
+  Length: 1732
 --- !u!114 &1781383790829600284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -678,7 +707,7 @@ MonoBehaviour:
   Path: Assets/FModBanks/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638675563980000000
+  lastModified: 638676209357957302
   FileSizes: []
   Exists: 1
 --- !u!114 &4431604247460978666
@@ -789,3 +818,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 15100
+--- !u!114 &7213234104082206929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Water Jet
+  m_EditorClassIdentifier: 
+  Path: event:/Water Jet
+  Guid:
+    Data1: -1705661824
+    Data2: 1335611661
+    Data3: 1506862510
+    Data4: -529776602
+  Banks:
+  - {fileID: 3242763389841773268}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 15306

@@ -95,4 +95,14 @@ public class PlayerSounds : MonoBehaviour
         cure.start();
         cure.release();
     }
+
+    private FMOD.Studio.EventInstance waterJet;
+
+    private void PlayWaterJet()
+    {
+        waterJet = FMODUnity.RuntimeManager.CreateInstance("event:/Water Jet");
+        waterJet.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+        waterJet.start();
+        waterJet.release();
+    }
 }

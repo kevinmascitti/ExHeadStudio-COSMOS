@@ -39,7 +39,7 @@ public class EnemyPatrolSounds : MonoBehaviour
 
     public void PlayGoblinHurt()
     {
-        goblinHurt = FMODUnity.RuntimeManager.CreateInstance("event:/PatrolIdle");
+        goblinHurt = FMODUnity.RuntimeManager.CreateInstance("event:/GoblinHurt");
         goblinHurt.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
         goblinHurt.start();
         goblinHurt.release();

@@ -30,7 +30,8 @@ public class WaterArmAbility : ActiveAbilities
     {
         if(!playerAnimator.GetBool("isJumpAscension")){
             waterEffectObj.SetActive(true);
-            playerAnimator.Play("Cyrus_Cosmos_Rig_Cyrus_WaterJet"); 
+            playerAnimator.Play("Cyrus_Cosmos_Rig_Cyrus_WaterJet");
+            PlayWaterJet();
             if(lockOnScript.lockOn)
             {
                 enemyTransform = lockOnScript.GetCurrentEnemyTr();
@@ -68,4 +69,13 @@ public class WaterArmAbility : ActiveAbilities
         playerAnimator.SetBool("isWaterJetOn", false);
     }
 
+    private FMOD.Studio.EventInstance waterJet;
+
+    private void PlayWaterJet()
+    {
+        waterJet = FMODUnity.RuntimeManager.CreateInstance("event:/Water Jet");
+        waterJet.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+        waterJet.start();
+        waterJet.release();
+    }
 }
