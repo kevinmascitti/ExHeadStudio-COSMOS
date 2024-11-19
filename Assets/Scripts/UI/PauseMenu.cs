@@ -2,6 +2,7 @@ using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,6 +12,7 @@ public class PauseMenu : MonoBehaviour
     //premendo escape; i comandi sono disabilitati quando il men� � attivo.
     [SerializeField] Canvas pauseMenu;
     [SerializeField] Canvas deathScreen;
+    [SerializeField] Canvas winScreen;
     [SerializeField] Canvas[] UI_elements;
     [SerializeField] GameObject player;
     [NonSerialized] public bool isUIOpen = false;
@@ -21,13 +23,15 @@ public class PauseMenu : MonoBehaviour
     {
         pauseMenu.enabled = false;
         deathScreen.enabled = false;
-
+        winScreen.enabled = false;
         PlayerCharacter.OnPlayerDeath += DeathScreen;
+        FinalArena.OnEndGame += WinScreen;
     }
 
     private void OnDestroy()
     {
         PlayerCharacter.OnPlayerDeath -= DeathScreen;
+        FinalArena.OnEndGame -= WinScreen;
     }
 
 
@@ -53,9 +57,26 @@ public class PauseMenu : MonoBehaviour
         }
 
         PlayMorte();
-}
-    private FMOD.Studio.EventInstance deathSound;
+    }
 
+    private FMOD.Studio.EventInstance deathSound;
+    public void WinScreen(object sender, EventArgs e)
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        player.GetComponent<PlayerMovement>().enabled = false;
+        winScreen.enabled = true;
+        foreach (var item in UI_elements)
+        {
+            item.enabled = false;
+            Time.timeScale = 0f; //� una versione rudimentale per la pausa, va modificata per gli eventi che non avvengono in update
+        }
+        PlayWin();
+    }
+    public void PlayWin()
+    {
+        //Da introdurre quello che deve succedere in caso di vittoria.
+    }
     public void PlayMorte()
     {
         deathSound = FMODUnity.RuntimeManager.CreateInstance("event:/Morte");
@@ -76,18 +97,19 @@ public class PauseMenu : MonoBehaviour
             Time.timeScale = 0f; //� una versione rudimentale per la pausa, va modificata per gli eventi che non avvengono in update
         }
     }
-
+    
     public void BackToGame()
     {
         player.GetComponent<PlayerMovement>().enabled = true;
         pauseMenu.enabled = false;
+        winScreen.enabled = false;
         isUIOpen = false;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         foreach (var item in UI_elements)
         {
             item.enabled = true;
-            Time.timeScale = 1;
+            Time.timeScale = 1f;
         }
     }
 

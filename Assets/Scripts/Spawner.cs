@@ -5,7 +5,7 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     Collider spawnTrigger;
-    [SerializeField] private int maxEnemiesNumber;
+    [SerializeField] public int maxEnemiesNumber;
     [SerializeField] GameObject meleeEnemy;
     [SerializeField] GameObject rangedEnemy;
     [SerializeField] List<Transform> spawnList = new List<Transform>();

@@ -48,7 +48,7 @@ public class AIArea: MonoBehaviour
         }
        
     }
-    private void OnTriggerExit(Collider other)
+    virtual public void OnTriggerExit(Collider other)
     {
         //Se il player esce dalla zona, i nemici smettono di inseguirlo
         if (other.gameObject.tag.Equals("Player") && !isArena)
