@@ -159,10 +159,12 @@ public class PlayerCharacter : Character
         if (attacksDone != 0 && Time.time - lastBaseAttack > maxComboDelay)
         {
             attacksDone = 0;
+            currentAtk = atk;
         }
         
         if (animator.GetBool("isBaseAttack") && animator.GetCurrentAnimatorStateInfo(0).IsName("Cyrus_Cosmos_Rig_Cyrus_Attacco_Leggero#1_Anticipation"))
         {
+            currentAtk = atk;
             animator.SetBool("isBaseAttack", false);
            SetFightingState(false);
         }
@@ -176,9 +178,10 @@ public class PlayerCharacter : Character
             (   animator.GetCurrentAnimatorStateInfo(0).IsName("Cyrus_Cosmos_Rig_Cyrus_Attacco_Pesante_#2_Anticipation")
             || animator.GetCurrentAnimatorStateInfo(0).IsName("Cyrus_Cosmos_Rig_Cyrus_Attacco_Pesante_v2_Anticipation"))) // animator.GetCurrentAnimatorStateInfo(0).IsName("StrongAttack"))
         {
+            currentAtk = atk;
             animator.SetBool("isStrongAttack", false);
             SetFightingState(false);
-            currentAtk = atk;
+
         }
         
         if ((isInputOn || isFighting)
@@ -189,9 +192,10 @@ public class PlayerCharacter : Character
 
             if (attacksDone == 0)
             {
+                currentAtk = atk;
                 animator.SetBool("isBaseAttack", true); 
                 SetFightingState(true);
-                currentAtk = atk;
+
                 lastBaseAttack = Time.time;
                 attacksDone++;
                 nextActionTimer = Time.time + cooldown;
@@ -216,7 +220,7 @@ public class PlayerCharacter : Character
            // Debug.Log(strongAttackIndex);
             animator.SetInteger("strongAttackIndex", strongAttackIndex);
             animator.SetBool("isStrongAttack", true);
-            atk = strongAtk;
+            currentAtk = strongAtk;
             SetFightingState(true);
             //StrongAttack(); questa è solo u debug
             nextActionTimer = Time.time + cooldown;
@@ -484,10 +488,10 @@ private void StopTime(){
     {
         Ray ray = new Ray();
         RaycastHit[] raycastHit;
-        raycastHit = Physics.SphereCastAll(Camera.main.transform.position, 3f, Vector3.forward, maxDistanceNPC, npcLayer);
+        raycastHit = Physics.SphereCastAll(Camera.main.transform.position, 10f, Vector3.forward, maxDistanceNPC, npcLayer);
         if (raycastHit.Length > 0 && raycastHit[0].collider
             && raycastHit[0].transform.TryGetComponent(out NPC npc)
-            && Input.GetKeyDown(KeyCode.E)
+            && Input.GetKeyDown(KeyCode.R)
             && !choicePieceManager.isUIOpen)
         {
             OnChoicePieces?.Invoke(this, EventArgs.Empty);
@@ -497,7 +501,7 @@ private void StopTime(){
             healthBar.SetActive(false);
             abilitiesSection.SetActive(false);
         }
-        else if (choicePieceManager.isUIOpen && Input.GetKeyDown(KeyCode.E))
+        else if (choicePieceManager.isUIOpen && Input.GetKeyDown(KeyCode.R))
         {
             OnEndChoicePieces?.Invoke(this, EventArgs.Empty);
             GetComponent<PlayerMovement>().enabled = true;

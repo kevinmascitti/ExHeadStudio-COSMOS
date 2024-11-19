@@ -186,19 +186,19 @@ public class ChoicePieceManager : MonoBehaviour
                 partTypeEmpties[PartType.Weapon].transform.position, Quaternion.Euler(270, 180, 0),
                 partTypeEmpties[PartType.Weapon].transform);
 
-            /*compositionUI[PartType.Head].AddComponent<Outline>();
-            compositionUI[PartType.Head].SetActive(false);
-            compositionUI[PartType.RightArm].AddComponent<Outline>();
-            compositionUI[PartType.RightArm].SetActive(false);
-            compositionUI[PartType.Body].AddComponent<Outline>();
-            compositionUI[PartType.Body].SetActive(false);
-            compositionUI[PartType.LeftArm].AddComponent<Outline>();
-            compositionUI[PartType.LeftArm].SetActive(false);
-            compositionUI[PartType.Legs].AddComponent<Outline>();
-            compositionUI[PartType.Legs].SetActive(false);*/
-            compositionUI[PartType.Weapon].AddComponent<Outline>();
-            compositionUI[PartType.Weapon].AddComponent<UIPiece>();
-            //compositionUI[PartType.Weapon].SetActive(false);
+            //compositionUI[PartType.Head].AddComponent<Outline>();
+            compositionUI[PartType.Head].SetActive(true);
+            //compositionUI[PartType.RightArm].AddComponent<Outline>();
+            compositionUI[PartType.RightArm].SetActive(true);
+            //compositionUI[PartType.Body].AddComponent<Outline>();
+            compositionUI[PartType.Body].SetActive(true);
+           // compositionUI[PartType.LeftArm].AddComponent<Outline>();
+            compositionUI[PartType.LeftArm].SetActive(true);
+           // compositionUI[PartType.Legs].AddComponent<Outline>();
+            compositionUI[PartType.Legs].SetActive(true);
+            //compositionUI[PartType.Weapon].AddComponent<Outline>();
+            //compositionUI[PartType.Weapon].AddComponent<UIPiece>();
+            compositionUI[PartType.Weapon].SetActive(true);
 
             selectedPartType = PartType.Head;
             UpdateUIInformation(player.completePiecesList[selectedPartType][selectedPieceNumbers[selectedPartType]]);
@@ -206,7 +206,7 @@ public class ChoicePieceManager : MonoBehaviour
 
             string scriptName = "Outline";
             var script = compositionUI[selectedPartType].GetComponent(scriptName) as MonoBehaviour;
-            script.enabled = true;
+            script.enabled = false;
         
             canvasChoicePieces.SetActive(true);
         }
