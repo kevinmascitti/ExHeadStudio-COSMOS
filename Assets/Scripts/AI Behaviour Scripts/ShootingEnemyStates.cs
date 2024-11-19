@@ -149,7 +149,7 @@ public class ShootingEnemyStates : MonoBehaviour
         rangedEnemyAnimator.Play("IdleState");
 
     }
-    private void Patrol() //Finché è in patrol, si sposta e si comporta di conseguenza al player
+    private void Patrol() //Finchï¿½ ï¿½ in patrol, si sposta e si comporta di conseguenza al player
     {
 
         
@@ -256,7 +256,7 @@ public class ShootingEnemyStates : MonoBehaviour
             
             if (playerDistance > aimingDistance)
             {
-                rangedEnemyState = RangedEnemyStates.Patrol; // In questo caso se player è troppo lontano, enemy non lo insegue ma si sposta in un'altra posizione, si può cambiare volendo
+                rangedEnemyState = RangedEnemyStates.Patrol; // In questo caso se player ï¿½ troppo lontano, enemy non lo insegue ma si sposta in un'altra posizione, si puï¿½ cambiare volendo
                 inAim = false;
                 return;
             }
@@ -299,6 +299,7 @@ public class ShootingEnemyStates : MonoBehaviour
     }
     private void ResetAttackControls()
     {
+        
         if(attackDuration<= 0f)
         {
             attackDuration = rangedEnemyAnimator.GetCurrentAnimatorStateInfo(0).length;
