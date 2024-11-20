@@ -23,6 +23,7 @@ public class PieceSwapper : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        
         if (other.CompareTag("Player"))
         {
             pieceArray = other.GetComponentsInChildren<Piece>();
@@ -37,7 +38,7 @@ public class PieceSwapper : MonoBehaviour
             }
 
             pieceToSet.SetActive(true);
-
+            PlayPickUp();
             gameObject.SetActive(false);
             VFX.SetActive(true);
             VFX.GetComponent<ParticleSystem>().Play();
@@ -45,5 +46,15 @@ public class PieceSwapper : MonoBehaviour
             VFX.transform.parent = other.transform;
             Destroy(this, 0.5f);
         }
+    }
+
+    private FMOD.Studio.EventInstance pickUp;
+
+    private void PlayPickUp()
+    {
+        pickUp = FMODUnity.RuntimeManager.CreateInstance("event:/Pick Up");
+        pickUp.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+        pickUp.start();
+        pickUp.release();
     }
 }
