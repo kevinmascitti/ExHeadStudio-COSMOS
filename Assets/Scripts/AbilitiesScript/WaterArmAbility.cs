@@ -3,6 +3,7 @@ using PilotoStudio;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 
 public class WaterArmAbility : ActiveAbilities
@@ -28,10 +29,15 @@ public class WaterArmAbility : ActiveAbilities
 
     public override void Ability()
     {
-        if(!playerAnimator.GetBool("isJumpAscension")){
+        if (waterEffectObj.activeSelf)
+        {
+            return;
+        }
+        if (!playerAnimator.GetBool("isJumpAscension")){
             waterEffectObj.SetActive(true);
             playerAnimator.Play("Cyrus_Cosmos_Rig_Cyrus_WaterJet");
             PlayWaterJet();
+
             if(lockOnScript.lockOn)
             {
                 enemyTransform = lockOnScript.GetCurrentEnemyTr();
@@ -67,6 +73,7 @@ public class WaterArmAbility : ActiveAbilities
     {
         waterEffectObj.SetActive(false);
         playerAnimator.SetBool("isWaterJetOn", false);
+        waterJet.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
     }
 
     private FMOD.Studio.EventInstance waterJet;
