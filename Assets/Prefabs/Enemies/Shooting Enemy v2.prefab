@@ -228,7 +228,7 @@ MonoBehaviour:
   effect: 5
   currentHP: 0
   isPlayer: 0
-  atk: 20
+  atk: 40
   def: 10
   normalAtk: 0
   normalDef: 0

@@ -114,7 +114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletDestroyTime: 2.5
   damageRadius: 5
-  maxDamage: 25
+  maxDamage: 35
   minDamage: 0
   bulletSpeed: 10
   bulletElement: 0
