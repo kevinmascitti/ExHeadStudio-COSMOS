@@ -1,0 +1,9 @@
+diff a/Assets/Scripts/PlayerMovement.cs b/Assets/Scripts/PlayerMovement.cs	(rejected hunks)
+@@ -66,6 +66,7 @@
+         //playerVector.y = 0f;
+         playerVector = playerCamera.forward * playerVector.z + playerCamera.right * playerVector.x;
+         
++>>>>>>> 9de0393ddd1f1092e6ab12490e624e7ab700eebd
+ 
+         // Se il player � a terra e si preme il tasto di salto, il player salta
+         if (Input.GetKeyDown(KeyCode.Space) && playerController.isGrounded)
