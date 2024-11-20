@@ -1,4 +1,4 @@
-using Cinemachine;
+    using Cinemachine;
 using PilotoStudio;
 using System.Collections;
 using System.Collections.Generic;
@@ -41,7 +41,7 @@ public class WaterArmAbility : ActiveAbilities
             if(lockOnScript.lockOn)
             {
                 enemyTransform = lockOnScript.GetCurrentEnemyTr();
-                enemyTransform.position += new Vector3(0f, 1.5f, 0f);
+                enemyTransform.position += new Vector3(0f, 3f, 0f);
                 waterEffectScript.SetBeamTarget(enemyTransform); //ho aggiunto un offset arbitratio per non sparare sui piedi
                 ray = new Ray(this.startPosition.position, (lockOnScript.GetCurrentEnemyTr().position - this.startPosition.position).normalized * maxRange);
             }

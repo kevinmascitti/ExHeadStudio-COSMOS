@@ -89,7 +89,6 @@ public class PlayerCharacter : Character
     [SerializeField] private Image frontHealthBar;
     [SerializeField] private Image backHealthBar;
     [Tooltip("Inserire le sprites del volto di Cyrus")]
-    [SerializeField] private Image[] icons;
     [SerializeField] private GameObject healthBar;
     [SerializeField] private GameObject abilitiesSection;   
 
