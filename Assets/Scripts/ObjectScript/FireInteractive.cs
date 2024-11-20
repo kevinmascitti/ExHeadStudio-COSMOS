@@ -22,7 +22,7 @@ public class FireInteractive : MonoBehaviour
     private Animator anim, childAnimator;
     private bool animationPLayed = false;
 
-    public static EventHandler<EnemyTr> OnEnemyDestroyed; //questo evento è dichiarato in enemy, ma ho bisogno di chiamare la stessa logica
+    public static EventHandler<EnemyTr> OnEnemyDestroyed; //questo evento ï¿½ dichiarato in enemy, ma ho bisogno di chiamare la stessa logica
 
     //Dichiaro un evento per il puzzle dei bracieri
     public delegate void OnBrazierLight();
@@ -91,7 +91,7 @@ public class FireInteractive : MonoBehaviour
             childAnimator.SetTrigger("openDoor");
             anim.SetInteger("openDoor", 1);
             animationPLayed = false;
-            Destroy(gameObject, 10f);
+            //Destroy(gameObject, 10f);
         }
 
     }

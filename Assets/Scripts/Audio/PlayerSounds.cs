@@ -105,4 +105,14 @@ public class PlayerSounds : MonoBehaviour
         waterJet.start();
         waterJet.release();
     }
+
+    private FMOD.Studio.EventInstance pickUp;
+
+    private void PlayPickUp()
+    {
+        pickUp = FMODUnity.RuntimeManager.CreateInstance("event:/Pick Up");
+        pickUp.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+        pickUp.start();
+        pickUp.release();
+    }
 }
