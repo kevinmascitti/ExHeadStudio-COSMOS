@@ -45,12 +45,12 @@ public abstract class ActiveAbilities : MonoBehaviour
     private void OnEnable()
     {
         abilityIconCanvas.SetActive(true);
-        abilityText.enabled = true;
+        //abilityText.enabled = true;
         frontAbilityImage.fillAmount = 1;
     }
     public void OnDisable()
     {
-        abilityText.enabled = false;
+        //abilityText.enabled = false;
         abilityIconCanvas.SetActive(false);
     }
 
@@ -134,7 +134,7 @@ public abstract class ActiveAbilities : MonoBehaviour
 
     }
 
-    public virtual void StopAbility() { } //la funzione serve a gestire l'abilità dello scudo
+    public virtual void StopAbility() { } //la funzione serve a gestire l'abilitï¿½ dello scudo
     public virtual void SetFalseObj() { } //la funzione serve per disattivare l'oggetto del braccio d'acqua
  
 }
