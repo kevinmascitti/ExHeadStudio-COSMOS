@@ -16,5 +16,12 @@ public class VFXTriggerEnemy : MonoBehaviour
         vfxList[1].GetComponent<ParticleSystem>().Play();
     }
 
+    public void SlashVFX(){
+        vfxList[2].GetComponent<ParticleSystem>().Play();
+        vfxList[3].GetComponent<ParticleSystem>().Play();
+        vfxList[4].GetComponent<ParticleSystem>().Play();
+    }
+
+
 
 }

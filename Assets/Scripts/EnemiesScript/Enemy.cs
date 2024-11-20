@@ -89,6 +89,9 @@ public class Enemy : Character
             else args.player.TakeDamage(stats.elemAtk[enemyElement] + atk - args.player.def - args.player.stats.elemDef[enemyElement], enemyElement);
         }
     }*/
+
+
+
     public void DoDamage(PlayerCharacter player)
     {
 
@@ -100,8 +103,11 @@ public class Enemy : Character
         {
             player.TakeDamage(stats.elemAtk[enemyElement] + atk - player.def - player.stats.elemDef[enemyElement], enemyElement);
             PlayCiroHurt();
+            player.animator.Play("Cyrus_Cosmos_Stun");
+
         }
     }
+    
     
                 
             
