@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PieceSwapper : MonoBehaviour
 {
-    // versione base, può, funzioanare se è da usare poche volte.
+    // versione base, puï¿½, funzioanare se ï¿½ da usare poche volte.
 
 
     [Tooltip("Ho inserito un pezzo preso direttamente dalla empty del player")]
@@ -13,6 +13,8 @@ public class PieceSwapper : MonoBehaviour
     private Piece[] pieceArray;
 
     private Piece pieceToSetScript;
+    
+    [SerializeField] private GameObject VFX;
 
     private void Awake()
     {
@@ -37,7 +39,10 @@ public class PieceSwapper : MonoBehaviour
             pieceToSet.SetActive(true);
 
             gameObject.SetActive(false);
-
+            VFX.SetActive(true);
+            VFX.GetComponent<ParticleSystem>().Play();
+            VFX.transform.position = other.transform.position;
+            VFX.transform.parent = other.transform;
             Destroy(this, 0.5f);
         }
     }
