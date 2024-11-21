@@ -33,7 +33,7 @@ public class FinalArena : AIArea
 
     private void ShowEndGameUIPanel()
     {
-        OnEndGame?.Invoke(this, EventArgs.Empty);
+        StartCoroutine(ShowWinPanel());
     }
     public override void OnTriggerExit(Collider other)
     {
@@ -43,6 +43,13 @@ public class FinalArena : AIArea
         }
         base.OnTriggerExit(other);
         
+    }
+
+    IEnumerator ShowWinPanel()
+    {
+        yield return new WaitForSeconds(3f);
+
+        OnEndGame?.Invoke(this, EventArgs.Empty);
     }
 }
 
