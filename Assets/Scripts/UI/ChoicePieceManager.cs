@@ -380,7 +380,8 @@ public class ChoicePieceManager : MonoBehaviour
         TMP_title.text = piece.name;
         TMP_element.text = piece.element.ToString();
         TMP_elementImage.sprite = elementSymbols[(int) piece.element];
-        TMP_stats.text = "Atk: " + piece.stats.atk + "\nDef: " + piece.stats.def;
+        /*if(piece.type == PartType.Weapon) { TMP_stats.text = "Atk: " + piece.stats.atk + "\nDef: " + piece.stats.def; }
+        TMP_stats.text = "Atk: " + piece.stats.atk + "\nDef: " + piece.stats.def;*/
         TMP_description.text = piece.description;
     }
 
