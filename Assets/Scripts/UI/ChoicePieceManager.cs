@@ -125,22 +125,22 @@ public class ChoicePieceManager : MonoBehaviour
     {
         if (isUIOpen)
         {
-            if (Input.GetKeyDown(KeyCode.RightArrow) && Time.time > nextActionTime)
+            if (Input.GetKeyDown(KeyCode.D) && Time.time > nextActionTime)
             {
                 NextPiece();
                 nextActionTime = Time.time + cooldown;
             }
-            else if (Input.GetKeyDown(KeyCode.LeftArrow) && Time.time > nextActionTime)
+            else if (Input.GetKeyDown(KeyCode.A) && Time.time > nextActionTime)
             {
                 PreviousPiece();
                 nextActionTime = Time.time + cooldown;
             }
-            else if (Input.GetKeyDown(KeyCode.DownArrow) && Time.time > nextActionTime)
+            else if (Input.GetKeyDown(KeyCode.S) && Time.time > nextActionTime)
             {
                 NextPartType();
                 nextActionTime = Time.time + cooldown;
             }
-            else if (Input.GetKeyDown(KeyCode.UpArrow) && Time.time > nextActionTime)
+            else if (Input.GetKeyDown(KeyCode.W) && Time.time > nextActionTime)
             {
                 PreviousPartType();
                 nextActionTime = Time.time + cooldown;

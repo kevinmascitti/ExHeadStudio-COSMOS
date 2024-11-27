@@ -13,17 +13,26 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] Canvas pauseMenu;
     [SerializeField] Canvas deathScreen;
     [SerializeField] Canvas winScreen;
+    [SerializeField] Canvas settingsScreen;
     [SerializeField] Canvas[] UI_elements;
     [SerializeField] GameObject player;
     [NonSerialized] public bool isUIOpen = false;
     [SerializeField] CinemachineFreeLook playerCamera;
     [SerializeField] CinemachineFreeLook lockOnCamera;
 
+    private bool yInverted;
+
     private void Awake()
     {
         pauseMenu.enabled = false;
         deathScreen.enabled = false;
         winScreen.enabled = false;
+        settingsScreen.enabled = false;
+
+        yInverted = false;
+        playerCamera.m_YAxis.m_InvertInput = false;
+        lockOnCamera.m_YAxis.m_InvertInput = false;
+
         PlayerCharacter.OnPlayerDeath += DeathScreen;
         FinalArena.OnEndGame += WinScreen;
     }
@@ -73,6 +82,20 @@ public class PauseMenu : MonoBehaviour
         }
         PlayWin();
     }
+
+    public void SettingsScreen()
+    {
+        pauseMenu.enabled = false;
+        settingsScreen.enabled = true;
+    }
+    public void BAckToPauseMenu()
+    {
+        settingsScreen.enabled = false;
+        pauseMenu.enabled = true;
+
+    }
+
+
     public void PlayWin()
     {
         //Da introdurre quello che deve succedere in caso di vittoria.
@@ -115,6 +138,30 @@ public class PauseMenu : MonoBehaviour
 
     public void InvertiComandiCamera()
     {
+        Debug.Log("Non salva i cambiamenti");
+       if(!yInverted)
+        {
+            playerCamera.m_YAxis.m_InvertInput = true;
+            lockOnCamera.m_YAxis.m_InvertInput = true;
+            yInverted = true;
+        }
+
+        else
+        {
+            playerCamera.m_YAxis.m_InvertInput = false;
+            lockOnCamera.m_YAxis.m_InvertInput = false;
+            yInverted = false;
+        }
+
+    }
+
+    public void ChangeCamSensitivityX(System.Single xValue)
+    {
+        playerCamera.m_XAxis.m_MaxSpeed = xValue;
+    }
+    public void ChangeCamSensitivityY(System.Single yValue)
+    {
+        playerCamera.m_YAxis.m_MaxSpeed = yValue;
     }
 
     public void RestartLevel()

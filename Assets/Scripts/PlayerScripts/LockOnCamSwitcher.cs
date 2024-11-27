@@ -50,7 +50,7 @@ public class LockOnCamSwitcher : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (Input.GetKeyDown(KeyCode.Mouse2))
         {
             if(!lockOn) //ho fatto un modifica sulla direzione, prima era solo transfomr.forward e poi ho aggiunto un offset arbitrario sulla y
             {
@@ -110,7 +110,9 @@ public class LockOnCamSwitcher : MonoBehaviour
                 //return;
             }
 
-            if (Input.GetKeyDown(KeyCode.Mouse2)) //TASTO CENTRALE DEL MOUSE
+            //nella nuova versione la rotella del mouse attiva il lock, la rotazione sposta avanti il puntatore
+
+            if (Input.mouseScrollDelta.y > 0.1)///(Input.GetKeyDown(KeyCode.Mouse2)) //TASTO CENTRALE DEL MOUSE
             {
                 if (targetGroup.m_Targets[enemyIndex].target != null)
                     targetGroup.m_Targets[enemyIndex].target.Find(lockOnEmptyName + "/" + lockOnObjName).gameObject.SetActive(false);
