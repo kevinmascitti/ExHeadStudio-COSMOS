@@ -8,12 +8,12 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Toon Skin Fishman
-    second: {fileID: 2100000, guid: 66005b39b207b0c4eb10a541e076350b, type: 2}
+    second: {fileID: 2100000, guid: 4b6d45efd0c7f5c40bee408fdccff223, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Toon Skin Fishman variant
-    second: {fileID: 2100000, guid: 1a1e61cad2374fc459702a9a7f85edab, type: 2}
+    second: {fileID: 2100000, guid: 9b110e9e898ac1e41ba2323426e705d5, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

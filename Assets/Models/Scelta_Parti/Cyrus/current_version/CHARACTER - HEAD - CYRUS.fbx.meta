@@ -8,8 +8,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: CosmosPower
-    second: {fileID: 3593776366282737434, guid: 19afadbee075b68438801cfab26f4c9d,
-      type: 3}
+    second: {fileID: 2100000, guid: 38d61fbed7ed00c4286bbbe64a7bbe30, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -30,12 +29,12 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Toon Hair
-    second: {fileID: 2100000, guid: 62278f57533afcc4daf412d887985c4d, type: 2}
+    second: {fileID: 2100000, guid: b9c50a27642477d4a90e491125ff21db, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Toon Skin
-    second: {fileID: 2100000, guid: 46dc5f638fdc71e419b29ed35e9ca974, type: 2}
+    second: {fileID: 2100000, guid: d3d0c3f24e3b9fa47a7428ee54f38105, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

@@ -11,7 +11,7 @@ using UnityEngine.UI;
 //Per vedere ctrl+sfhift+f per vedere chi riceve gli eventi (impostazione find all), in generale sulla
 //tenda cercare project invece di solution
 
-//TUTTI I MODELLI devono avere la proprietà read/write attivata ; i nome diei prefab devono corrsipondere a quelli dei modelli in scena
+//TUTTI I MODELLI devono avere la proprietï¿½ read/write attivata ; i nome diei prefab devono corrsipondere a quelli dei modelli in scena
 
 
 public class ChoicePieceManager : MonoBehaviour
@@ -149,69 +149,87 @@ public class ChoicePieceManager : MonoBehaviour
     }
 
     public void OpenChoicePiecesUI(object sender, EventArgs args)
+{
+    if (!isUIOpen)
     {
-        if (!isUIOpen)
-        {
-            Debug.Log("UI APERTA");
-            isUIOpen = true;
-            selectedPieceNumbers[PartType.Head] = player.composition[PartType.Head].numberInList;
-            selectedPieceNumbers[PartType.Body] = player.composition[PartType.Body].numberInList;
-            selectedPieceNumbers[PartType.RightArm] = player.composition[PartType.RightArm].numberInList;
-            selectedPieceNumbers[PartType.LeftArm] = player.composition[PartType.LeftArm].numberInList;
-            selectedPieceNumbers[PartType.Legs] = player.composition[PartType.Legs].numberInList;
-            selectedPieceNumbers[PartType.Weapon] = player.composition[PartType.Weapon].numberInList;
+        Debug.Log("UI APERTA");
+        isUIOpen = true;
+        selectedPieceNumbers[PartType.Head] = player.composition[PartType.Head].numberInList;
+        selectedPieceNumbers[PartType.Body] = player.composition[PartType.Body].numberInList;
+        selectedPieceNumbers[PartType.RightArm] = player.composition[PartType.RightArm].numberInList;
+        selectedPieceNumbers[PartType.LeftArm] = player.composition[PartType.LeftArm].numberInList;
+        selectedPieceNumbers[PartType.Legs] = player.composition[PartType.Legs].numberInList;
+        selectedPieceNumbers[PartType.Weapon] = player.composition[PartType.Weapon].numberInList;
 
-            compositionUI[PartType.Head] = Instantiate(
-                player.completePiecesList[PartType.Head][selectedPieceNumbers[PartType.Head]].prefab,
-                partTypeEmpties[PartType.Head].transform.position, Quaternion.Euler(270, 180, 0),
-                partTypeEmpties[PartType.Head].transform);
-            compositionUI[PartType.Body] = Instantiate(
-                player.completePiecesList[PartType.Body][selectedPieceNumbers[PartType.Body]].prefab,
-                partTypeEmpties[PartType.Body].transform.position, Quaternion.Euler(270, 180, 0),
-                partTypeEmpties[PartType.Body].transform);
-            compositionUI[PartType.RightArm] = Instantiate(
-                player.completePiecesList[PartType.RightArm][selectedPieceNumbers[PartType.RightArm]].prefab,
-                partTypeEmpties[PartType.RightArm].transform.position, Quaternion.Euler(270, 180, 0),
-                partTypeEmpties[PartType.RightArm].transform);
-            compositionUI[PartType.LeftArm] = Instantiate(
-                player.completePiecesList[PartType.LeftArm][selectedPieceNumbers[PartType.LeftArm]].prefab,
-                partTypeEmpties[PartType.LeftArm].transform.position, Quaternion.Euler(270, 180, 0),
-                partTypeEmpties[PartType.LeftArm].transform);
-            compositionUI[PartType.Legs] = Instantiate(
-                player.completePiecesList[PartType.Legs][selectedPieceNumbers[PartType.Legs]].prefab,
-                partTypeEmpties[PartType.Legs].transform.position, Quaternion.Euler(270, 180, 0),
-                partTypeEmpties[PartType.Legs].transform);
-            compositionUI[PartType.Weapon] = Instantiate(
-                player.completePiecesList[PartType.Weapon][selectedPieceNumbers[PartType.Weapon]].prefab,
-                partTypeEmpties[PartType.Weapon].transform.position, Quaternion.Euler(270, 180, 0),
-                partTypeEmpties[PartType.Weapon].transform);
+        compositionUI[PartType.Head] = Instantiate(
+            player.completePiecesList[PartType.Head][selectedPieceNumbers[PartType.Head]].prefab,
+            partTypeEmpties[PartType.Head].transform.position, Quaternion.Euler(270, 180, 0),
+            partTypeEmpties[PartType.Head].transform);
+        EnableOutline(compositionUI[PartType.Head]);
 
-            //compositionUI[PartType.Head].AddComponent<Outline>();
-            compositionUI[PartType.Head].SetActive(true);
-            //compositionUI[PartType.RightArm].AddComponent<Outline>();
-            compositionUI[PartType.RightArm].SetActive(true);
-            //compositionUI[PartType.Body].AddComponent<Outline>();
-            compositionUI[PartType.Body].SetActive(true);
-           // compositionUI[PartType.LeftArm].AddComponent<Outline>();
-            compositionUI[PartType.LeftArm].SetActive(true);
-           // compositionUI[PartType.Legs].AddComponent<Outline>();
-            compositionUI[PartType.Legs].SetActive(true);
-            //compositionUI[PartType.Weapon].AddComponent<Outline>();
-            //compositionUI[PartType.Weapon].AddComponent<UIPiece>();
-            compositionUI[PartType.Weapon].SetActive(true);
+        compositionUI[PartType.Body] = Instantiate(
+            player.completePiecesList[PartType.Body][selectedPieceNumbers[PartType.Body]].prefab,
+            partTypeEmpties[PartType.Body].transform.position, Quaternion.Euler(270, 180, 0),
+            partTypeEmpties[PartType.Body].transform);
+        DisableOutline(compositionUI[PartType.Body]);
 
-            selectedPartType = PartType.Head;
-            UpdateUIInformation(player.completePiecesList[selectedPartType][selectedPieceNumbers[selectedPartType]]);
-            partTypeEmpties[selectedPartType].GetComponent<ArrowIndicator>().ShowArrows();
+        compositionUI[PartType.RightArm] = Instantiate(
+            player.completePiecesList[PartType.RightArm][selectedPieceNumbers[PartType.RightArm]].prefab,
+            partTypeEmpties[PartType.RightArm].transform.position, Quaternion.Euler(270, 180, 0),
+            partTypeEmpties[PartType.RightArm].transform);
+        DisableOutline(compositionUI[PartType.RightArm]);
 
-            string scriptName = "Outline";
-            var script = compositionUI[selectedPartType].GetComponent(scriptName) as MonoBehaviour;
-            script.enabled = false;
-        
-            canvasChoicePieces.SetActive(true);
-        }
+        compositionUI[PartType.LeftArm] = Instantiate(
+            player.completePiecesList[PartType.LeftArm][selectedPieceNumbers[PartType.LeftArm]].prefab,
+            partTypeEmpties[PartType.LeftArm].transform.position, Quaternion.Euler(270, 180, 0),
+            partTypeEmpties[PartType.LeftArm].transform);
+        DisableOutline(compositionUI[PartType.LeftArm]);
+
+        compositionUI[PartType.Legs] = Instantiate(
+            player.completePiecesList[PartType.Legs][selectedPieceNumbers[PartType.Legs]].prefab,
+            partTypeEmpties[PartType.Legs].transform.position, Quaternion.Euler(270, 180, 0),
+            partTypeEmpties[PartType.Legs].transform);
+        DisableOutline(compositionUI[PartType.Legs]);
+
+        compositionUI[PartType.Weapon] = Instantiate(
+            player.completePiecesList[PartType.Weapon][selectedPieceNumbers[PartType.Weapon]].prefab,
+            partTypeEmpties[PartType.Weapon].transform.position, Quaternion.Euler(180, 90, 0),
+            partTypeEmpties[PartType.Weapon].transform);
+        DisableOutline(compositionUI[PartType.Weapon]);
+
+        compositionUI[PartType.Head].SetActive(true);
+        compositionUI[PartType.RightArm].SetActive(true);
+        compositionUI[PartType.Body].SetActive(true);
+        compositionUI[PartType.LeftArm].SetActive(true);
+        compositionUI[PartType.Legs].SetActive(true);
+        compositionUI[PartType.Weapon].SetActive(true);
+
+        selectedPartType = PartType.Head;
+        UpdateUIInformation(player.completePiecesList[selectedPartType][selectedPieceNumbers[selectedPartType]]);
+        partTypeEmpties[selectedPartType].GetComponent<ArrowIndicator>().ShowArrows();
+
+        canvasChoicePieces.SetActive(true);
     }
+}
 
+private void DisableOutline(GameObject piece)
+{
+    var outline = piece.GetComponent<Outline>();
+    if (outline != null)
+    {
+        outline.enabled = false;
+    }
+}
+
+private void EnableOutline(GameObject piece)
+{
+    var outline = piece.GetComponent<Outline>();
+    if (outline != null)
+    {
+        outline.enabled = true;
+        outline.OutlineWidth = 5.0f;
+    }
+}
     public void CloseChoicePiecesUI(object sender, EventArgs args)
     {
         if (isUIOpen)
@@ -277,24 +295,25 @@ public class ChoicePieceManager : MonoBehaviour
         SelectPartType(PartType.Weapon);
     }
 
-    private void SelectPartType(PartType partType)
-    {
-        Debug.Log("Cambio parte del corpo");
-        
-        partTypeEmpties[selectedPartType].GetComponent<ArrowIndicator>().HideArrows();
-        
-        string scriptName = "Outline";
-        var scriptOld = compositionUI[selectedPartType].GetComponent(scriptName) as MonoBehaviour;
-        scriptOld.enabled = false;
-        
-        int newSelectedPartTypeNumber = (int) partType;
-        selectedPartType = (PartType) newSelectedPartTypeNumber;
-        partTypeEmpties[selectedPartType].GetComponent<ArrowIndicator>().ShowArrows();
-        
-        var scriptNew = compositionUI[selectedPartType].GetComponent(scriptName) as MonoBehaviour;
-        scriptNew.enabled = true;
-        UpdateUIInformation(player.completePiecesList[selectedPartType][selectedPieceNumbers[selectedPartType]]);
-    }
+   
+private void SelectPartType(PartType partType)
+{
+    Debug.Log("Cambio parte del corpo");
+
+    partTypeEmpties[selectedPartType].GetComponent<ArrowIndicator>().HideArrows();
+
+    // Disabilita l'outline sulla parte precedentemente selezionata
+    DisableOutline(compositionUI[selectedPartType]);
+
+    selectedPartType = partType;
+    partTypeEmpties[selectedPartType].GetComponent<ArrowIndicator>().ShowArrows();
+
+    // Abilita l'outline sulla nuova parte selezionata
+    EnableOutline(compositionUI[selectedPartType]);
+
+    UpdateUIInformation(player.completePiecesList[selectedPartType][selectedPieceNumbers[selectedPartType]]);
+}
+
 
     private void PreviousPartType()
     {
@@ -310,49 +329,86 @@ public class ChoicePieceManager : MonoBehaviour
         SelectPartType((PartType) newSelectedPartTypeNumber);
     }
     
-    private void PreviousPiece()
-    {
-        int oldPieceNumber = selectedPieceNumbers[selectedPartType];
-        
-        string scriptName = "Outline";
-        var scriptOld = compositionUI[selectedPartType].GetComponent(scriptName) as MonoBehaviour;
-        scriptOld.enabled = false;
-        
-        FindPreviousUnlockedPieceNumber();
-        int newPieceNumber = selectedPieceNumbers[selectedPartType];
-        OnChangePiece?.Invoke(this, new ChangePieceArgs(selectedPartType, oldPieceNumber, newPieceNumber));
-
-        compositionUI[selectedPartType].GetComponent<UIPiece>().Deselect(partTypeEmpties[selectedPartType].transform.position, partTypeEmpties[selectedPartType].transform.position + new Vector3 (2,0,0));
-        compositionUI[selectedPartType] = Instantiate(player.completePiecesList[selectedPartType][newPieceNumber].prefab, partTypeEmpties[selectedPartType].transform.position - new Vector3 (2,0,0), Quaternion.Euler(270, 180,0), partTypeEmpties[selectedPartType].transform);
-        compositionUI[selectedPartType].GetComponent<UIPiece>().Select(partTypeEmpties[selectedPartType].transform.position - new Vector3 (2,0,0), partTypeEmpties[selectedPartType].transform.position);
-        
-        var scriptNew = compositionUI[selectedPartType].GetComponent(scriptName) as MonoBehaviour;
-        scriptNew.enabled = true;
-        
-        UpdateUIInformation(player.completePiecesList[selectedPartType][selectedPieceNumbers[selectedPartType]]);
-    }
+  private void PreviousPiece()
+{
+    int oldPieceNumber = selectedPieceNumbers[selectedPartType];
     
-    private void NextPiece()
-    {
-        int oldPieceNumber = selectedPieceNumbers[selectedPartType];
-        
-        string scriptName = "Outline";
-        var scriptOld = compositionUI[selectedPartType].GetComponent(scriptName) as MonoBehaviour;
-        scriptOld.enabled = false;
-        
-        FindNextUnlockedPieceNumber();
-        int newPieceNumber = selectedPieceNumbers[selectedPartType];
-        OnChangePiece?.Invoke(this, new ChangePieceArgs(selectedPartType, oldPieceNumber, newPieceNumber));
-        
-        compositionUI[selectedPartType].GetComponent<UIPiece>().Deselect(partTypeEmpties[selectedPartType].transform.position, partTypeEmpties[selectedPartType].transform.position - new Vector3 (2,0,0));
-        compositionUI[selectedPartType] = Instantiate(player.completePiecesList[selectedPartType][newPieceNumber].prefab, partTypeEmpties[selectedPartType].transform.position + new Vector3 (2,0,0), Quaternion.Euler(270, 180,0), partTypeEmpties[selectedPartType].transform);
-        compositionUI[selectedPartType].GetComponent<UIPiece>().Select(partTypeEmpties[selectedPartType].transform.position + new Vector3 (2,0,0), partTypeEmpties[selectedPartType].transform.position);
+    FindPreviousUnlockedPieceNumber();
+    int newPieceNumber = selectedPieceNumbers[selectedPartType];
+    OnChangePiece?.Invoke(this, new ChangePieceArgs(selectedPartType, oldPieceNumber, newPieceNumber));
 
-        var scriptNew = compositionUI[selectedPartType].GetComponent(scriptName) as MonoBehaviour;
-        scriptNew.enabled = true;
-        
-        UpdateUIInformation(player.completePiecesList[selectedPartType][selectedPieceNumbers[selectedPartType]]);
+    // Disabilita l'outline sul vecchio pezzo
+    var oldPiece = compositionUI[selectedPartType];
+    DisableOutline(oldPiece);
+
+    compositionUI[selectedPartType].GetComponent<UIPiece>().Deselect(partTypeEmpties[selectedPartType].transform.position, partTypeEmpties[selectedPartType].transform.position - new Vector3(2, 0, 0));
+    
+    Quaternion rotation;
+    if (selectedPartType == PartType.Weapon)
+    {
+        rotation = Quaternion.Euler(180, 90, 0);
     }
+    else
+    {
+        rotation = Quaternion.Euler(270, 180, 0);
+    }
+
+    compositionUI[selectedPartType] = Instantiate(
+        player.completePiecesList[selectedPartType][newPieceNumber].prefab, 
+        partTypeEmpties[selectedPartType].transform.position + new Vector3(2, 0, 0), 
+        rotation, 
+        partTypeEmpties[selectedPartType].transform
+    );
+    
+    compositionUI[selectedPartType].GetComponent<UIPiece>().Select(partTypeEmpties[selectedPartType].transform.position + new Vector3(2, 0, 0), partTypeEmpties[selectedPartType].transform.position);
+    
+    // Abilita l'outline sul nuovo pezzo
+    var newPiece = compositionUI[selectedPartType];
+    EnableOutline(newPiece);
+
+    UpdateUIInformation(player.completePiecesList[selectedPartType][selectedPieceNumbers[selectedPartType]]);
+}
+
+private void NextPiece()
+{
+    int oldPieceNumber = selectedPieceNumbers[selectedPartType];
+    
+    FindNextUnlockedPieceNumber();
+    int newPieceNumber = selectedPieceNumbers[selectedPartType];
+    OnChangePiece?.Invoke(this, new ChangePieceArgs(selectedPartType, oldPieceNumber, newPieceNumber));
+
+    // Disabilita l'outline sul vecchio pezzo
+    var oldPiece = compositionUI[selectedPartType];
+    DisableOutline(oldPiece);
+
+    compositionUI[selectedPartType].GetComponent<UIPiece>().Deselect(partTypeEmpties[selectedPartType].transform.position, partTypeEmpties[selectedPartType].transform.position + new Vector3(2, 0, 0));
+    
+    Quaternion rotation;
+    if (selectedPartType == PartType.Weapon)
+    {
+        rotation = Quaternion.Euler(180, 90, 0);
+    }
+    else
+    {
+        rotation = Quaternion.Euler(270, 180, 0);
+    }
+
+    compositionUI[selectedPartType] = Instantiate(
+        player.completePiecesList[selectedPartType][newPieceNumber].prefab, 
+        partTypeEmpties[selectedPartType].transform.position - new Vector3(2, 0, 0), 
+        rotation, 
+        partTypeEmpties[selectedPartType].transform
+    );
+    
+    compositionUI[selectedPartType].GetComponent<UIPiece>().Select(partTypeEmpties[selectedPartType].transform.position - new Vector3(2, 0, 0), partTypeEmpties[selectedPartType].transform.position);
+    
+    // Abilita l'outline sul nuovo pezzo
+    var newPiece = compositionUI[selectedPartType];
+    EnableOutline(newPiece);
+
+    UpdateUIInformation(player.completePiecesList[selectedPartType][selectedPieceNumbers[selectedPartType]]);
+}
+
 
     private void FindPreviousUnlockedPieceNumber()
     {

@@ -8,12 +8,12 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Toon Armature
-    second: {fileID: 2100000, guid: 8ee2fae4b502ca24e8ff3616cb725e67, type: 2}
+    second: {fileID: 2100000, guid: 38d61fbed7ed00c4286bbbe64a7bbe30, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Toon Metal
-    second: {fileID: 2100000, guid: 55cac2f7b321caf44a5f98834875dccf, type: 2}
+    second: {fileID: 2100000, guid: b706a91a43ed2fb4f8edc86477414a9e, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
