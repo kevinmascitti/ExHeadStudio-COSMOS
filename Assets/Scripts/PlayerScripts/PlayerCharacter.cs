@@ -223,8 +223,8 @@ public class PlayerCharacter : Character
             SetFightingState(true);
             //StrongAttack(); questa è solo u debug
             nextActionTimer = Time.time + cooldown;
-            strongAttackIndex++; //soluzione provvisoria per scegliere uno dei due attacchi pesanti a caso, non riesco ad importare numeri random
-            if (strongAttackIndex == 2) strongAttackIndex = 0;
+            //strongAttackIndex++; //soluzione provvisoria per scegliere uno dei due attacchi pesanti a caso, non riesco ad importare numeri random
+            //if (strongAttackIndex == 2) strongAttackIndex = 0;
         }
         
         else if (isInputOn && Time.time >= nextActionTimer && Input.GetKeyDown(KeyCode.C))
