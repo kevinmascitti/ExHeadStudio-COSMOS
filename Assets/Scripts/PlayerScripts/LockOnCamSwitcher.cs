@@ -112,7 +112,7 @@ public class LockOnCamSwitcher : MonoBehaviour
 
             //nella nuova versione la rotella del mouse attiva il lock, la rotazione sposta avanti il puntatore
 
-            if (Input.mouseScrollDelta.y > 0.1)///(Input.GetKeyDown(KeyCode.Mouse2)) //TASTO CENTRALE DEL MOUSE
+            if (Input.mouseScrollDelta.y > 0.01f)///(Input.GetKeyDown(KeyCode.Mouse2)) //TASTO CENTRALE DEL MOUSE
             {
                 if (targetGroup.m_Targets[enemyIndex].target != null)
                     targetGroup.m_Targets[enemyIndex].target.Find(lockOnEmptyName + "/" + lockOnObjName).gameObject.SetActive(false);
