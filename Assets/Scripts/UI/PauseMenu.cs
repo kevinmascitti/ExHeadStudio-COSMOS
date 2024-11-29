@@ -14,6 +14,7 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] Canvas deathScreen;
     [SerializeField] Canvas winScreen;
     [SerializeField] Canvas settingsScreen;
+    [SerializeField] Canvas hints;
     [SerializeField] Canvas[] UI_elements;
     [SerializeField] GameObject player;
     [NonSerialized] public bool isUIOpen = false;
@@ -28,7 +29,7 @@ public class PauseMenu : MonoBehaviour
         deathScreen.enabled = false;
         winScreen.enabled = false;
         settingsScreen.enabled = false;
-
+        hints.enabled = false;
         yInverted = false;
         playerCamera.m_YAxis.m_InvertInput = false;
         lockOnCamera.m_YAxis.m_InvertInput = false;

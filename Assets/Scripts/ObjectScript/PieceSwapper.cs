@@ -41,6 +41,7 @@ public class PieceSwapper : MonoBehaviour
             PlayPickUp();
             gameObject.SetActive(false);
             VFX.SetActive(true);
+            if(GetComponent<HintTrigger>()) UIHintsController.showHint(this, new HintArgs(GetComponent<HintTrigger>().hintText));
             VFX.GetComponent<ParticleSystem>().Play();
             VFX.transform.position = other.transform.position;
             VFX.transform.parent = other.transform;
