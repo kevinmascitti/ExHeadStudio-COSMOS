@@ -233,6 +233,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a31430b3ff94af4faeaad9a6319b5eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1101 &-5352690929993015559
+AnimatorStateTransition:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: isBaseAttack
+    m_EventTreshold: 0
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: 3746637398167752927}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 3
+  m_TransitionDuration: 0.25
+  m_TransitionOffset: 0
+  m_ExitTime: 0.5
+  m_HasExitTime: 0
+  m_HasFixedDuration: 1
+  m_InterruptionSource: 0
+  m_OrderedInterruption: 1
+  m_CanTransitionToSelf: 1
 --- !u!1101 &-4971502669944117709
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -243,6 +268,9 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 1
     m_ConditionEvent: isMoving
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: isBaseAttack
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -6352720469859102028}
@@ -404,6 +432,9 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 1
     m_ConditionEvent: isIdle
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: isBaseAttack
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 6325136280135573925}
@@ -914,6 +945,7 @@ AnimatorState:
   m_Transitions:
   - {fileID: -3280815035770594770}
   - {fileID: -4971502669944117709}
+  - {fileID: -5352690929993015559}
   m_StateMachineBehaviours:
   - {fileID: 3846995782869875695}
   m_Position: {x: 50, y: 50, z: 0}
