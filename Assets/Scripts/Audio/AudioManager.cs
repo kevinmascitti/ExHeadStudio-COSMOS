@@ -12,6 +12,9 @@ public class AudioManager : MonoBehaviour
     [field: Header("Dungeon Ambience")]
     [field: SerializeField] public EventReference dungeonAmbience { get; private set; }
 
+    private EventInstance musicInstance;
+    [field: Header("Music")]
+    [field: SerializeField] public EventReference music {  get; private set; }
     private void Awake()
     {
         if (instance != null)
@@ -28,6 +31,7 @@ public class AudioManager : MonoBehaviour
     private void Start()
     {
         InitializeAmbience(dungeonAmbience);
+        InitializeMusic(music);
     }
     private void InitializeAmbience(EventReference ambienceEventReference)
     {
@@ -35,5 +39,11 @@ public class AudioManager : MonoBehaviour
         ambianceEventInstance.start();
     }
     
+    private void InitializeMusic(EventReference eventReference)
+    {
+        musicInstance = RuntimeManager.CreateInstance(eventReference);
+        musicInstance.start();
+    }
 
+ 
 }
