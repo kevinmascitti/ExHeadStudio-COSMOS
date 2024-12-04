@@ -112,6 +112,7 @@ public class LockOnCamSwitcher : MonoBehaviour
 
             //nella nuova versione la rotella del mouse attiva il lock, la rotazione sposta avanti il puntatore
 
+            Debug.Log("Rotella mouse: " + Input.mouseScrollDelta);
             if (Input.mouseScrollDelta.y > 0.01f)///(Input.GetKeyDown(KeyCode.Mouse2)) //TASTO CENTRALE DEL MOUSE
             {
                 if (targetGroup.m_Targets[enemyIndex].target != null)
@@ -139,6 +140,7 @@ public class LockOnCamSwitcher : MonoBehaviour
                     enemyIndex = 1;
 
                 targetGroup.m_Targets[enemyIndex].target.Find(lockOnEmptyName + "/" + lockOnObjName).gameObject.SetActive(true);
+                transform.rotation = Quaternion.LookRotation(targetGroup.m_Targets[enemyIndex].target.position - transform.position, Vector3.up);
 
 
             }

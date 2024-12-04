@@ -30,6 +30,7 @@ public class CheckPointZoneScript : MonoBehaviour
             other.GetComponent<CharacterController>().enabled = false;
             other.GetComponent<PlayerMovement>().enabled = false;
             other.transform.position = checkPointTr.position;
+            other.transform.rotation = Quaternion.LookRotation(-transform.right, Vector3.up);
             other.GetComponent<CharacterController>().enabled = true;
             other.GetComponent<PlayerMovement>().enabled = true;
             other.GetComponent<PlayerCharacter>().TakeDamage(10, Element.Normal);

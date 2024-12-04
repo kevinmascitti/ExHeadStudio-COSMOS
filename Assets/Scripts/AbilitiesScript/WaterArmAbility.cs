@@ -2,6 +2,7 @@
 using PilotoStudio;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 using static UnityEngine.Rendering.DebugUI;
 
@@ -18,13 +19,17 @@ public class WaterArmAbility : ActiveAbilities
 
     private Transform enemyTransform;
 
+    private GameObject player;
+
     [SerializeField] private BeamEmitter waterEffectScript;
     [SerializeField] private GameObject waterEffectObj;
     [SerializeField] private Transform beamBaseTarget;
     public override void Start()
     {
         base.Start();
-        lockOnScript = GameObject.Find("Player").GetComponent<LockOnCamSwitcher>();
+
+        player = GameObject.Find("Player");
+        lockOnScript = player.GetComponent<LockOnCamSwitcher>();
     }
 
     public override void Ability()
@@ -56,11 +61,13 @@ public class WaterArmAbility : ActiveAbilities
             {
                 if(hit.rigidbody != null && !lockOnScript.lockOn)
                 {
+
                     hit.rigidbody.AddForce((beamBaseTarget.position-transform.position) * forceMagnitude, ForceMode.Impulse);
                 }
                 if (hit.rigidbody != null && lockOnScript.lockOn)
                 {
-                    hit.rigidbody.AddForce((lockOnScript.GetCurrentEnemyTr().position - transform.position) * forceMagnitude, ForceMode.Impulse);
+                    player.transform.rotation = Quaternion.LookRotation((lockOnScript.GetCurrentEnemyTr().position - transform.position), Vector3.up);
+                    hit.rigidbody.AddForce((lockOnScript.GetCurrentEnemyTr().position - transform.position) * forceMagnitude, ForceMode.Acceleration);
                 }
 
             }
