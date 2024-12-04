@@ -94,7 +94,7 @@ public class PlayerCharacter : Character
 
     //lista dei VFX
     [SerializeField] private List<GameObject> vfxList;
- 
+   
     public void Awake()
     {
         base.Awake();
@@ -158,18 +158,18 @@ public class PlayerCharacter : Character
         if (attacksDone != 0 && Time.time - lastBaseAttack > maxComboDelay)
         {
             attacksDone = 0;
-            currentAtk = atk;
+            //currentAtk = atk;
         }
         
         if (animator.GetBool("isBaseAttack") && animator.GetCurrentAnimatorStateInfo(0).IsName("Cyrus_Cosmos_Rig_Cyrus_Attacco_Leggero#1_Anticipation"))
         {
-            currentAtk = atk;
+            //currentAtk = atk;
             animator.SetBool("isBaseAttack", false);
            SetFightingState(false);
         }
         if (animator.GetBool("isBaseAttack2") && animator.GetCurrentAnimatorStateInfo(0).IsName("Cyrus_Cosmos_Rig_Cyrus_Attacco_Leggero#2_Recovery"))
         {
-            currentAtk = atk;
+            //currentAtk = atk;
             animator.SetBool("isBaseAttack2", false);
             SetFightingState(false);
         }
@@ -177,7 +177,7 @@ public class PlayerCharacter : Character
             (   animator.GetCurrentAnimatorStateInfo(0).IsName("Cyrus_Cosmos_Rig_Cyrus_Attacco_Pesante_#2_Anticipation")
             || animator.GetCurrentAnimatorStateInfo(0).IsName("Cyrus_Cosmos_Rig_Cyrus_Attacco_Pesante_v2_Anticipation"))) // animator.GetCurrentAnimatorStateInfo(0).IsName("StrongAttack"))
         {
-            currentAtk = atk;
+            //currentAtk = atk;
             animator.SetBool("isStrongAttack", false);
             SetFightingState(false);
 
@@ -191,7 +191,7 @@ public class PlayerCharacter : Character
 
             if (attacksDone == 0)
             {
-                currentAtk = atk;
+                //currentAtk = atk;
                 animator.SetBool("isBaseAttack", true); 
                 SetFightingState(true);
 
@@ -202,7 +202,7 @@ public class PlayerCharacter : Character
             else if (attacksDone == 1 && animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.5f &&
                 animator.GetCurrentAnimatorStateInfo(0).IsName("Cyrus_Cosmos_Rig_Cyrus_Attacco_Leggero#1_Action"))
             {
-                currentAtk = atk;
+                //currentAtk = atk;
                 // animator.SetBool("isBaseAttack2", true);
                 animator.Play("Cyrus_Cosmos_Rig_Cyrus_Attacco_Leggero#2_Anticipation");
                 SetFightingState(true);
@@ -219,7 +219,7 @@ public class PlayerCharacter : Character
            // Debug.Log(strongAttackIndex);
             animator.SetInteger("strongAttackIndex", strongAttackIndex);
             animator.SetBool("isStrongAttack", true);
-            currentAtk = strongAtk;
+            //currentAtk = strongAtk;
             SetFightingState(true);
             //StrongAttack(); questa è solo u debug
             nextActionTimer = Time.time + cooldown;
@@ -255,8 +255,15 @@ public class PlayerCharacter : Character
 
         CheckForNPC();
     }
+    public void SetHeavyAtkValue()
+    {
+        currentAtk = strongAtk;
+    }
+    public void SetNormalAtkValue()
+    {
+        currentAtk = atk;
+    }
 
-    
     public override void UpdateHP(float newHP)
     {
         base.UpdateHP(newHP);
