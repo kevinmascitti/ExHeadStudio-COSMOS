@@ -24,18 +24,30 @@ public class CheckPointZoneScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        playerCamera.PreviousStateIsValid = false;
+        //playerCamera.PreviousStateIsValid = false;
         if (other.CompareTag("Player"))
         {
             other.GetComponent<CharacterController>().enabled = false;
             other.GetComponent<PlayerMovement>().enabled = false;
+            other.GetComponent<PlayerCharacter>().TakeDamage(10, Element.Normal);
             other.transform.position = checkPointTr.position;
             other.transform.rotation = Quaternion.LookRotation(-transform.right, Vector3.up);
+            playerCamera.m_RecenterToTargetHeading.m_enabled = true;
+            playerCamera.m_YAxisRecentering.m_enabled = true;
+            playerCamera.m_RecenterToTargetHeading.RecenterNow();
+            playerCamera.m_YAxisRecentering.RecenterNow();
+            StartCoroutine(RecenteringTime());
             other.GetComponent<CharacterController>().enabled = true;
             other.GetComponent<PlayerMovement>().enabled = true;
-            other.GetComponent<PlayerCharacter>().TakeDamage(10, Element.Normal);
 
         }
     }
 
+
+    private IEnumerator RecenteringTime()
+    {
+        yield return new WaitForSeconds(0.5f);
+        playerCamera.m_RecenterToTargetHeading.m_enabled = false;
+        playerCamera.m_YAxisRecentering.m_enabled = false;
+    }
 }
