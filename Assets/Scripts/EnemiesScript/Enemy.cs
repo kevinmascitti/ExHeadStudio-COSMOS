@@ -44,8 +44,8 @@ public class Enemy : Character
                 break;
             }
         }
-          this.GetComponent<VFXTriggerEnemy>().vfxList[0].transform.parent = null;
-       // EnemyWeapon.OnPlayerCollision += DoDamage;//QUESTO EVENTO NON ESISTE???? ESISTE IN PLAYERHITTER
+        this.GetComponent<VFXTriggerEnemy>().vfxList[0].transform.parent = null;
+        // EnemyWeapon.OnPlayerCollision += DoDamage;//QUESTO EVENTO NON ESISTE???? ESISTE IN PLAYERHITTER
         
     }
 
@@ -103,13 +103,29 @@ public class Enemy : Character
         {
             player.TakeDamage(stats.elemAtk[enemyElement] + atk - player.def - player.stats.elemDef[enemyElement], enemyElement);
             PlayCiroHurt();
-            player.animator.Play("Cyrus_Cosmos_Stun");
+            GameObject hitParticles = Instantiate(this.GetComponent<VFXTriggerEnemy>().vfxList[5]) as GameObject; //viene istanziato un hit particle separato dall'originale
+            //hitParticles.transform.parent = weaponList[0].transform; //si fa sì che l'hit particle si trovi nella posizione 
+            hitParticles.transform.position = myWeapon.transform.position;
+
+      
+
+            hitParticles.SetActive(true);
+
+            hitParticles.GetComponent<ParticleSystem>().Play();
+            hitParticles.transform.parent = null;
+
+            StartCoroutine(DestroyParticle(hitParticles));
 
         }
     }
     
     
-                
+    //DestroyParticle serve per distraggere gli oggetti contenenti i particle system per evitare di intasare la hierarchy
+     IEnumerator DestroyParticle( GameObject hitParticles)
+    {
+        yield return new WaitForSeconds(0.5f);
+        Destroy(hitParticles);
+    }  
             
                             
     private FMOD.Studio.EventInstance ciroHurt;

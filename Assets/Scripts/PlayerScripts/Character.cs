@@ -146,7 +146,7 @@ public class Character : MonoBehaviour
             Die();
         }
     }
-
+    
     public void TakeDamage(int damage, Element element)
     {
         if (damageTaken == 0 && this.gameObject.layer == LayerMask.NameToLayer("Player"))
