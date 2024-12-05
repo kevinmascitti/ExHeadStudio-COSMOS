@@ -54,4 +54,24 @@ public class EnemyPatrolSounds : MonoBehaviour
         despawn.start();
         despawn.release();
     }
+
+    private FMOD.Studio.EventInstance shot;
+
+    public void PlayShot()
+    {
+        shot = FMODUnity.RuntimeManager.CreateInstance("event:/CannoneNemico");
+        shot.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+        shot.start();
+        shot.release();
+    }
+
+    private FMOD.Studio.EventInstance fuse;
+
+    public void PlayFuse()
+    {
+        fuse = FMODUnity.RuntimeManager.CreateInstance("event:/Cannone Fuse");
+        fuse.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+        fuse.start();
+        fuse.release();
+    }
 }

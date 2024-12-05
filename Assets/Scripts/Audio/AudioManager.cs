@@ -45,5 +45,8 @@ public class AudioManager : MonoBehaviour
         musicInstance.start();
     }
 
- 
+    public void SetMusicState(MusicState state)
+    {
+        musicInstance.setParameterByName("Stato Musica", (float) state);
+    }
 }
