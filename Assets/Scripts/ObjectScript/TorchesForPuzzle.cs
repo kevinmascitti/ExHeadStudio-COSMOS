@@ -10,6 +10,7 @@ public class TorchesForPuzzle : MonoBehaviour
     [SerializeField] int lightIndex;
 
     private PuzzleManagerFirstDoor puzzleManager;
+    [SerializeField] GameObject brazierOrb;
 
     private bool alreadyLit;
     private void Awake()
@@ -19,9 +20,16 @@ public class TorchesForPuzzle : MonoBehaviour
         puzzleManager = GameObject.Find("PuzzleManagerFirstDoor").GetComponent<PuzzleManagerFirstDoor>();
     }
 
+    private void Update(){
+        if(brazierOrb.GetComponent<ParticleSystem>().isPlaying){
+              torchOrb.SetActive(true);
+        }
+    }
+
+    /*
     private void switchLight()
     {
-        if(!alreadyLit && puzzleManager.brazierCounter+1 == lightIndex) //questo più uno da vedere in base a come legge gli eventi 
+        if(!alreadyLit && puzzleManager.brazierCounter+1 == lightIndex) //questo piï¿½ uno da vedere in base a come legge gli eventi 
         {
             torchOrb.SetActive(true);
             alreadyLit = true;
@@ -36,4 +44,5 @@ public class TorchesForPuzzle : MonoBehaviour
     {
         FireInteractive.onBrazierLight -= switchLight;
     }
+    */
 }
