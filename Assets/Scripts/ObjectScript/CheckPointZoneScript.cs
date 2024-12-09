@@ -39,13 +39,22 @@ public class CheckPointZoneScript : MonoBehaviour
             StartCoroutine(RecenteringTime());
             other.GetComponent<CharacterController>().enabled = true;
             other.GetComponent<PlayerMovement>().enabled = true;
-
+            PlayCiroHurt();
         }
     }
 
+    private FMOD.Studio.EventInstance ciroHurt;
 
+    public void PlayCiroHurt()
+    {
+        ciroHurt = FMODUnity.RuntimeManager.CreateInstance("event:/CiroHurt");
+        ciroHurt.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+        ciroHurt.start();
+        ciroHurt.release();
+    }
     private IEnumerator RecenteringTime()
     {
+        
         yield return new WaitForSeconds(0.5f);
         playerCamera.m_RecenterToTargetHeading.m_enabled = false;
         playerCamera.m_YAxisRecentering.m_enabled = false;
