@@ -115,4 +115,14 @@ public class PlayerSounds : MonoBehaviour
         pickUp.start();
         pickUp.release();
     }
+
+    private FMOD.Studio.EventInstance trumpet;
+
+    public void PlayTrumpetPuzzle()
+    {
+        trumpet = FMODUnity.RuntimeManager.CreateInstance("event:/Trumpet");
+        trumpet.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+        trumpet.start();
+        trumpet.release();
+    }
 }

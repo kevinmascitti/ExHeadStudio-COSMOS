@@ -103,23 +103,24 @@ public class FireInteractive : MonoBehaviour
         fireLight.enabled = true;
         smokeEffect.Play();
         fireEffect.Play();
-
+        PlayBracierePuzzle();
     }
 
     public void LighterForPuzzle()
     {
         if(!alreadyLight)
         {
-
+            alreadyLight = true;
             onBrazierLight.Invoke();
             OnEnemyDestroyed?.Invoke(this, new EnemyTr(this.gameObject.transform));
             fireLight.enabled = true;
             smokeEffect.Play();
             fireEffect.Play();
             gameObject.GetComponent<Collider>().enabled = false;
-            alreadyLight = true;
+            PlayBracierePuzzle();
+            PlayUnlock();
         }
-        PlayBracierePuzzle();
+        
     }
 
     private FMOD.Studio.EventInstance firePuzzle;
@@ -130,6 +131,16 @@ public class FireInteractive : MonoBehaviour
         firePuzzle.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
         firePuzzle.start();
         firePuzzle.release();
+    }
+
+    private FMOD.Studio.EventInstance ciroPuzzle;
+
+    public void PlayUnlock()
+    {
+        ciroPuzzle = FMODUnity.RuntimeManager.CreateInstance("event:/Unlock");
+        ciroPuzzle.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+        ciroPuzzle.start();
+        ciroPuzzle.release();
     }
 
 

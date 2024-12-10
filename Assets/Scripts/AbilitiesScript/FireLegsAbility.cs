@@ -36,6 +36,7 @@ public class FireLegsAbility : ActiveAbilities
     public override void Ability()
     {
         StartCoroutine(Dash());
+        PlayPLayerDash();
     }
 
     IEnumerator Dash()
@@ -46,5 +47,15 @@ public class FireLegsAbility : ActiveAbilities
             movementScript.playerController.Move(movementScript.getMoveDir() * dashSpeed * Time.deltaTime);
             yield return null;
         }
+    }
+
+    private FMOD.Studio.EventInstance dash;
+
+    public void PlayPLayerDash()
+    {
+        dash = FMODUnity.RuntimeManager.CreateInstance("event:/Dash");
+        dash.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+        dash.start();
+        dash.release();
     }
 }
