@@ -8,28 +8,26 @@ using UnityEngine.Rendering;
 
 public class LockOnCamSwitcher : MonoBehaviour
 {
-    // Occhio a rinominare gli oggetti che altrimenti lo script non funziona
-    // tutti gli oggetti che possono avere il lock devono avere un rigidbody con collisioni discrete, ho creato un tag aggiuntivo "sceneObj" per filtrare
-    //gli oggetti che vengono inseriti in lista
+    // Attention: renaming objects might break the script functionality
+    // All objects that can be locked on must have a rigidbody with discrete collisions, I created an additional tag "sceneObj" to filter
+    // objects that get added to the list
 
     [SerializeField] CinemachineFreeLook playerFreeLookCam;
     [SerializeField] CinemachineFreeLook lockOnCam;
     [SerializeField] CinemachineTargetGroup targetGroup;
-    [Tooltip("Inserire l'oggetto che viene usato come cross-hair per gli oggeti lockati")]
+    [Tooltip("Insert the object used as cross-hair for locked objects")]
     [SerializeField] GameObject lockOnEmpty;
     [SerializeField] GameObject lockOnIcon;
     [SerializeField] private LayerMask lockOnMask;
-    [Tooltip("Il vettore serve a dare le dimensioni del raycast che rileva i nemici")]
+    [Tooltip("The vector defines the dimensions of the raycast that detects enemies")]
     [SerializeField] private Vector3 lockOnDimensions = new Vector3(20, 10, 2);
     [SerializeField] private float yOffset = 5f;
     [SerializeField] private float lockOnRange = 40f;
     [SerializeField] private float maxTargetDistance = 20f;
 
-
-
     private RaycastHit[] enemyArray;
 
-    private string lockOnObjName; //questa serve per identificare gli oggetti nella hierarchy
+    private string lockOnObjName; // This is used to identify objects in the hierarchy
     private string lockOnEmptyName;
 
     private bool lockOnSwitcher = true;
@@ -39,7 +37,6 @@ public class LockOnCamSwitcher : MonoBehaviour
 
     void Start()
     {
-
         lockOnObjName = lockOnIcon.name;
         lockOnEmptyName = lockOnEmpty.name;
         playerFreeLookCam.Priority = 11;
@@ -52,17 +49,16 @@ public class LockOnCamSwitcher : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse2))
         {
-            if(!lockOn) //ho fatto un modifica sulla direzione, prima era solo transfomr.forward e poi ho aggiunto un offset arbitrario sulla y
+            if(!lockOn) // Modified the direction, previously it was only transform.forward and then I added an arbitrary y offset
             {
-                enemyNumber = Physics.BoxCastNonAlloc(transform.position + new Vector3(0f, yOffset, 0f), lockOnDimensions, Camera.main.transform.forward, enemyArray, Quaternion.identity, lockOnRange, lockOnMask, QueryTriggerInteraction.Collide); //l'ultimo parametro permette di usare dei collider trigger
+                enemyNumber = Physics.BoxCastNonAlloc(transform.position + new Vector3(0f, yOffset, 0f), lockOnDimensions, Camera.main.transform.forward, enemyArray, Quaternion.identity, lockOnRange, lockOnMask, QueryTriggerInteraction.Collide); // The last parameter allows using trigger colliders
             }
                 
-
             if(enemyNumber >=1)
             {
                 foreach(RaycastHit enemy in enemyArray)
                 {
-                    /*if(targetGroup.FindMember(enemy.transform) == -1 && enemy.transform.gameObject.CompareTag("sceneObj"))//condizione del metodo, aggiungo solo se non sono già presenti
+                    /*if(targetGroup.FindMember(enemy.transform) == -1 && enemy.transform.gameObject.CompareTag("sceneObj"))// Method condition, add only if not already present
                     {
                         targetGroup.AddMember(enemy.transform, 2f, 1f);
                     }
@@ -71,7 +67,6 @@ public class LockOnCamSwitcher : MonoBehaviour
                     {
                         targetGroup.AddMember(enemy.transform, 0.5f, 0.1f);
                     }
-
                 }
             }
 
@@ -83,7 +78,6 @@ public class LockOnCamSwitcher : MonoBehaviour
             {
                 ChangeToFree();
             }
-
         }
 
         if (lockOn)
@@ -99,7 +93,6 @@ public class LockOnCamSwitcher : MonoBehaviour
                     enemyIndex = 1;
             }
 
-
             if (targetGroup.m_Targets.Length == 1 || Vector3.Distance(targetGroup.m_Targets[enemyIndex].target.position, transform.position) >= maxTargetDistance)
             {
                 if(targetGroup.m_Targets.Length >1 && targetGroup.m_Targets[enemyIndex].target == null)
@@ -110,16 +103,15 @@ public class LockOnCamSwitcher : MonoBehaviour
                 //return;
             }
 
-            //nella nuova versione la rotella del mouse attiva il lock, la rotazione sposta avanti il puntatore
+            // In the new version, the mouse wheel activates the lock, rotation moves the pointer forward
 
-            Debug.Log("Rotella mouse: " + Input.mouseScrollDelta);
-            if (Input.mouseScrollDelta.y > 0.01f)///(Input.GetKeyDown(KeyCode.Mouse2)) //TASTO CENTRALE DEL MOUSE
+            Debug.Log("Mouse wheel: " + Input.mouseScrollDelta);
+            if (Input.mouseScrollDelta.y > 0.01f)///(Input.GetKeyDown(KeyCode.Mouse2)) // MIDDLE MOUSE BUTTON
             {
                 if (targetGroup.m_Targets[enemyIndex].target != null)
                     targetGroup.m_Targets[enemyIndex].target.Find(lockOnEmptyName + "/" + lockOnObjName).gameObject.SetActive(false);
                 else
                     targetGroup.RemoveMember(targetGroup.m_Targets[enemyIndex].target);
-
 
                 if (enemyIndex < targetGroup.m_Targets.Length)
                 {
@@ -141,21 +133,16 @@ public class LockOnCamSwitcher : MonoBehaviour
 
                 targetGroup.m_Targets[enemyIndex].target.Find(lockOnEmptyName + "/" + lockOnObjName).gameObject.SetActive(true);
                 transform.rotation = Quaternion.LookRotation(targetGroup.m_Targets[enemyIndex].target.position - transform.position, Vector3.up);
-
-
             }
         }
-
-
     }
-
 
     private void ChangeToFree()
     {
         /*for (int i = 1; i < targetGroup.m_Targets.Length; i++)
         {
             if (targetGroup.m_Targets[i].target != null)
-                targetGroup.m_Targets[i].target.Find(lockOnEmptyName + "/" + lockOnObjName).gameObject.SetActive(false); //spengo a tutti l'indicatore
+                targetGroup.m_Targets[i].target.Find(lockOnEmptyName + "/" + lockOnObjName).gameObject.SetActive(false); // Turn off the indicator for everyone
 
             targetGroup.RemoveMember(targetGroup.m_Targets[i].target);
         }*/
@@ -163,11 +150,10 @@ public class LockOnCamSwitcher : MonoBehaviour
         for (int i = targetGroup.m_Targets.Length-1; i > 0; i--)
         {
             if (targetGroup.m_Targets[i].target != null)
-                targetGroup.m_Targets[i].target.Find(lockOnEmptyName + "/" + lockOnObjName).gameObject.SetActive(false); //spengo a tutti l'indicatore
+                targetGroup.m_Targets[i].target.Find(lockOnEmptyName + "/" + lockOnObjName).gameObject.SetActive(false); // Turn off the indicator for everyone
 
             targetGroup.RemoveMember(targetGroup.m_Targets[i].target);
         }
-
 
         playerFreeLookCam.Priority = 11;
         lockOnCam.Priority = 10;
@@ -175,7 +161,7 @@ public class LockOnCamSwitcher : MonoBehaviour
         lockOnSwitcher = true;
         lockOn = false;
 
-        if (targetGroup.m_Targets.Length > 1 && targetGroup.m_Targets[enemyIndex].target != null) //spengo l'indicatore del nemico corrente
+        if (targetGroup.m_Targets.Length > 1 && targetGroup.m_Targets[enemyIndex].target != null) // Turn off the current enemy's indicator
         {
             targetGroup.m_Targets[enemyIndex].target.Find(lockOnEmptyName + "/" + lockOnObjName).gameObject.SetActive(false);
         }
@@ -185,7 +171,7 @@ public class LockOnCamSwitcher : MonoBehaviour
 
     private void ChangeToLock()
     {
-        for (int i = 1; i < targetGroup.m_Targets.Length; i++) //pulizia dai transform nulli
+        for (int i = 1; i < targetGroup.m_Targets.Length; i++) // Clean up null transforms
         {
             if (targetGroup.m_Targets[i].target == null)
                 targetGroup.RemoveMember(targetGroup.m_Targets[i].target);
@@ -216,6 +202,7 @@ public class LockOnCamSwitcher : MonoBehaviour
         if(enemyIndex < targetGroup.m_Targets.Length)
          targetGroup.m_Targets[enemyIndex].target.Find(lockOnEmptyName + "/" + lockOnObjName).gameObject.SetActive(true);
     }
+
     private void RemoveEnemy(object sender, EnemyTr args)
     {
         if(targetGroup.FindMember(args.tr) != -1)
@@ -225,13 +212,12 @@ public class LockOnCamSwitcher : MonoBehaviour
                 targetGroup.m_Targets[enemyIndex].target.Find(lockOnEmptyName + "/" + lockOnObjName).gameObject.SetActive(false);
                 enemyIndex++;
             }
-            targetGroup.RemoveMember(args.tr); //quando un nemico viene distrutto, lo elimino
+            targetGroup.RemoveMember(args.tr); // When an enemy is destroyed, remove it
         }
         if (enemyIndex >= targetGroup.m_Targets.Length)
             enemyIndex = 1;
         if(targetGroup.m_Targets.Length >1)
             targetGroup.m_Targets[enemyIndex].target.Find(lockOnEmptyName + "/" + lockOnObjName).gameObject.SetActive(true);
-
     }
 
     public int GetEnemyIndex()
@@ -244,7 +230,7 @@ public class LockOnCamSwitcher : MonoBehaviour
         return targetGroup.m_Targets[GetEnemyIndex()].target;
     }
 
-    private void OnDrawGizmos() //Test per vedere l'area del lock di Ciro
+    private void OnDrawGizmos() // Test to visualize Ciro's lock area
     {
         Gizmos.DrawCube(transform.position + new Vector3(0f, yOffset, 0f), 2*lockOnDimensions);
     }
@@ -253,5 +239,4 @@ public class LockOnCamSwitcher : MonoBehaviour
     {
         Enemy.OnEnemyDestroyed -= RemoveEnemy;
     }
-
 }
